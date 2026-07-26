@@ -11133,6 +11133,8 @@
 			}
 		};
 	}
+	var TOGGLE_OFFSET = 34;
+	var PANEL_OFFSET = 44;
 	var TAB_LABELS = {
 		field: "Em campo",
 		party: "Meu time",
@@ -11152,13 +11154,13 @@
 		gmax: "gmax"
 	};
 	var css = `
-.ptr-root{position:fixed;z-index:2147483000;font:500 12px/1.45 ui-sans-serif,system-ui,sans-serif;color:#e8e8ea}
-.ptr-toggle{position:absolute;display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;
+.ptr-root{position:fixed;inset:0;pointer-events:none;z-index:2147483000;font:500 12px/1.45 ui-sans-serif,system-ui,sans-serif;color:#e8e8ea}
+.ptr-toggle{position:absolute;pointer-events:auto;display:flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;
   background:rgba(18,18,22,.82);border:1px solid rgba(255,255,255,.14);cursor:pointer;user-select:none;
   backdrop-filter:blur(6px);transition:background .15s}
 .ptr-toggle:hover{background:rgba(30,30,38,.94)}
 .ptr-dot{width:7px;height:7px;border-radius:50%;background:#22c55e}
-.ptr-panel{position:absolute;width:310px;max-height:min(70vh,520px);display:flex;flex-direction:column;
+.ptr-panel{position:absolute;pointer-events:auto;width:310px;max-height:min(70vh,520px);display:flex;flex-direction:column;
   background:rgba(16,16,20,.95);border:1px solid rgba(255,255,255,.14);border-radius:10px;overflow:hidden;
   box-shadow:0 12px 34px rgba(0,0,0,.5);backdrop-filter:blur(10px)}
 .ptr-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,.1)}
@@ -11265,11 +11267,14 @@
 			return this.open;
 		}
 		placeAt(rect) {
-			const right = window.innerWidth - (rect.left + rect.width);
-			this.toggle.style.top = `${rect.top + 8}px`;
-			this.toggle.style.right = `${right + 8}px`;
-			this.panel.style.top = `${rect.top + 40}px`;
-			this.panel.style.right = `${right + 8}px`;
+			const canvasRight = rect.left + rect.width;
+			const canvasBottom = rect.top + rect.height;
+			const right = Math.max(window.innerWidth - canvasRight, 0) + 10;
+			this.toggle.style.top = `${canvasBottom - TOGGLE_OFFSET}px`;
+			this.toggle.style.right = `${right}px`;
+			this.panel.style.bottom = `${window.innerHeight - canvasBottom + PANEL_OFFSET}px`;
+			this.panel.style.right = `${right}px`;
+			this.panel.style.maxHeight = `${Math.max(rect.height - PANEL_OFFSET - 20, 160)}px`;
 		}
 		update(content) {
 			this.content = content;
@@ -11524,7 +11529,8 @@
 			this.panel.placeAt({
 				top: rect.top,
 				left: rect.left,
-				width: rect.width
+				width: rect.width,
+				height: rect.height
 			});
 		}
 	};

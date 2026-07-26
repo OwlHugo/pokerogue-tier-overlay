@@ -1,7 +1,7 @@
 # PokéRogue Tier Overlay
 
-Mostra, dentro do próprio jogo, **o melhor tier competitivo do Smogon que a linha evolutiva
-de cada Pokémon alcança** — na batalha e na tela de escolha de starter.
+Mostra, dentro do próprio jogo, **o melhor tier competitivo do Smogon que cada Pokémon
+consegue alcançar** — contando evolução, Mega Evolução e Gigantamax.
 
 Um Magikarp é LC e parece lixo. Ele vira Gyarados. O overlay diz isso antes de você decidir
 gastar a Pokébola.
@@ -34,17 +34,38 @@ Abra o PokéRogue, toque no favorito, e o overlay liga.
 
 Ele funciona **porque a captura do jogo não depende de injeção precoce** (veja abaixo). A
 contrapartida é que você precisa tocar o favorito a cada carregamento da página, e que a URL
-tem cerca de 88 kB — alguns navegadores não gostam de favoritos tão longos.
+tem cerca de 180 kB — alguns navegadores não gostam de favoritos tão longos.
 
 ## Onde aparece
 
 | Tela | O que mostra |
 |---|---|
-| Batalha | Badge acima de cada Pokémon inimigo, com o tier atual, o melhor tier da linha e qual evolução o alcança |
+| Batalha | Badge acima de cada Pokémon inimigo, com o tier atual e o melhor tier alcançável |
 | Escolha de starter | A sigla do melhor tier em cada ícone da grade, acompanhando filtros e rolagem |
+| Painel (botão "Tiers") | Abas de **Em campo**, **Meu time** e **Bioma** |
+
+O painel fica fechado por padrão, como um botão pequeno no canto do jogo. Os dados só
+aparecem quando você pede — a tela do jogo continua sendo do jogo.
+
+### O que conta como "alcançável"
+
+O PokéRogue libera Mega Evolução e Gigantamax, então o tier que importa não é só o da
+espécie: **Mawile é ZU, mas Mawile-Mega é OU. Kangaskhan-Mega é Uber. Charizard-Gmax é AG.**
+O overlay considera as três coisas — evolução, mega e gmax — e mostra qual delas dá o
+melhor resultado.
+
+O alcance conta apenas o que dá para obter **a partir daquele Pokémon**: um Vaporeon não
+volta a ser Eevee, então ele não "alcança" o Gmax do Eevee nem os outros eeveelutions.
 
 Pokémon fundidos mostram o melhor tier entre as duas linhas. Espécie que o Smogon não
 cataloga aparece como `?` — o overlay nunca inventa um tier.
+
+### Aba de bioma
+
+Lista o que aparece no bioma atual, agrupado por raridade (Chefe, Ultra raro, … Comum) e
+ordenado pelo melhor tier alcançável — para decidir se vale continuar ali ou trocar de rota.
+Os pools de encontro são extraídos do próprio código do PokéRogue por
+`npm run build:biomes`.
 
 ## Desenvolver
 
@@ -57,6 +78,8 @@ npm run build
 |---|---|
 | `npm run build` | gera `dist/pokerogue-tier-overlay.user.js` |
 | `npm run build:tiers` | regenera a tabela de tiers a partir do `@pkmn/dex` |
+| `npm run build:biomes` | regenera os pools de encontro a partir do repositório do PokéRogue |
+| `npm run build:bookmarklet` | gera `dist/bookmarklet.txt` |
 | `npm test` | testes (Vitest) |
 | `npm run typecheck` | TypeScript em modo strict |
 | `npm run lint` | Biome |
@@ -101,8 +124,11 @@ seria pior que nenhum painel.
 
 ## Limitações conhecidas
 
-- Marca só os Pokémon inimigos em campo, não o seu time.
+- Não sugere moveset nem analisa cobertura de tipos do time. O painel mostra tier e
+  alcance; escolha de golpes ainda é com você.
 - Formas exclusivas do PokéRogue sem equivalente no Smogon caem para a espécie base.
+- Tier mede força no metagame competitivo do Smogon, que não é a mesma coisa que força no
+  PokéRogue: o jogo tem passivas, fusões e itens que o Smogon não modela.
 - Depende de nomes internos do PokéRogue, que não são uma API pública. Hoje eles não são
   minificados; se isso mudar, o overlay avisa em vez de mentir.
 - `npm audit` acusa uma falha de DoS em `brace-expansion`, dependência transitiva de build

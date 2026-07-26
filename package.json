@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "biome check .",
     "format": "biome check --write .",
-    "build:bookmarklet": "tsx tools/build-bookmarklet.mts"
+    "build:bookmarklet": "tsx tools/build-bookmarklet.mts",
+    "build:biomes": "tsx tools/build-biomes.mts"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.14",

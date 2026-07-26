@@ -77,6 +77,6 @@ export class Hud {
     const canvas = document.querySelector('canvas');
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
-    this.panel.placeAt({ top: rect.top, left: rect.left, width: rect.width });
+    this.panel.placeAt({ top: rect.top, left: rect.left, width: rect.width, height: rect.height });
   }
 }
