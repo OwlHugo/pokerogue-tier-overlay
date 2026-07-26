@@ -1,0 +1,15 @@
+{
+  "name": "pokerogue-tier-overlay",
+  "version": "1.0.0",
+  "description": "Overlay que marca o melhor tier Smogon da linha evolutiva dos Pokemon inimigos no PokeRogue",
+  "type": "module",
+  "scripts": {
+    "build:tiers": "node scripts/build-tiers.mjs",
+    "test": "node --test test/",
+    "start": "node src/launch.mjs"
+  },
+  "dependencies": {
+    "@pkmn/dex": "^0.9.36",
+    "puppeteer": "^24.10.0"
+  }
+}
