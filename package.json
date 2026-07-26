@@ -1,15 +1,28 @@
 {
   "name": "pokerogue-tier-overlay",
-  "version": "1.0.0",
-  "description": "Overlay que marca o melhor tier Smogon da linha evolutiva dos Pokemon inimigos no PokeRogue",
+  "version": "2.0.0",
+  "description": "Marca o melhor tier competitivo do Smogon da linha evolutiva de cada Pokemon no PokeRogue",
   "type": "module",
+  "license": "MIT",
   "scripts": {
-    "build:tiers": "node scripts/build-tiers.mjs",
-    "test": "node --test",
-    "start": "node src/launch.mjs"
+    "dev": "vite",
+    "build": "vite build",
+    "build:tiers": "tsx tools/build-tier-table.mts",
+    "launch": "tsx tools/dev-launch.mts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "format": "biome check --write ."
   },
-  "dependencies": {
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.14",
     "@pkmn/dex": "^0.9.36",
-    "puppeteer": "^24.10.0"
+    "puppeteer": "^24.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^8.1.5",
+    "vite-plugin-monkey": "^8.1.0",
+    "vitest": "^4.1.10",
+    "@types/node": "^24.0.0"
   }
 }
