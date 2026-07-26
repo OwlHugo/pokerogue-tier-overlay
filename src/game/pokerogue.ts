@@ -15,6 +15,7 @@ export interface PokeRoguePokemon extends DisplayContainer {
   formIndex: number;
   fusionSpecies: PokeRogueSpecies | null;
   fusionFormIndex: number;
+  level?: number;
 }
 
 export interface StarterContainer extends DisplayContainer {
@@ -30,9 +31,15 @@ export interface Ui {
   handlers: readonly object[];
 }
 
+export interface Arena {
+  biomeType: number;
+}
+
 export interface BattleScene extends Scene {
   currentBattle: object | null;
   getEnemyField(): readonly PokeRoguePokemon[];
+  party?: readonly PokeRoguePokemon[];
+  arena?: Arena;
   ui: Ui;
 }
 

@@ -5,7 +5,14 @@ import type { PhaserGame } from '../src/game/phaser';
 import { fakeBattleScene, fakePokemon } from './support/fake-pokerogue';
 
 const table: TierTable = {
-  '129': { tier: 'LC', bestTier: 'RU', bestName: 'Gyarados', mega: null, gmax: null },
+  '129': {
+    name: 'Magikarp',
+    tier: 'LC',
+    bestTier: 'RU',
+    bestName: 'Gyarados',
+    mega: null,
+    gmax: null,
+  },
 };
 
 function fakeGame(scene: unknown): PhaserGame {

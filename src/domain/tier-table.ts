@@ -7,6 +7,7 @@ export interface UnlockedForm {
 }
 
 export interface TierEntry {
+  name: string;
   tier: Tier | null;
   bestTier: Tier | null;
   bestName: string | null;

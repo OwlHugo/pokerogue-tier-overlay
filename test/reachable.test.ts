@@ -3,6 +3,7 @@ import { bestReachable } from '../src/domain/reachable';
 import type { TierEntry } from '../src/domain/tier-table';
 
 const entry = (over: Partial<TierEntry> = {}): TierEntry => ({
+  name: 'Teste',
   tier: 'LC',
   bestTier: 'ZU',
   bestName: 'Base',

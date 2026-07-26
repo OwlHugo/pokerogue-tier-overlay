@@ -39,6 +39,7 @@ function entryFor(entry: Species): TierEntry {
   const dexNumbers = line.map((name) => dex.species.get(name).num);
 
   return {
+    name: entry.name,
     tier: tierOf(entry.name),
     ...bestOfLine(line, tierOf),
     mega: bestFormOfLine(MEGA_BY_NUMBER, dexNumbers),

@@ -1,5 +1,5 @@
 import { compareTier, type Tier } from './tier';
-import type { TierEntry } from './tier-table';
+import type { UnlockedForm } from './tier-table';
 
 export type ReachableSource = 'line' | 'mega' | 'gmax';
 
@@ -9,7 +9,14 @@ export interface Reachable {
   source: ReachableSource;
 }
 
-export function bestReachable(entry: TierEntry): Reachable {
+export interface ReachableInput {
+  bestTier: Tier | null;
+  bestName: string | null;
+  mega: UnlockedForm | null;
+  gmax: UnlockedForm | null;
+}
+
+export function bestReachable(entry: ReachableInput): Reachable {
   let best: Reachable = { tier: entry.bestTier, name: entry.bestName, source: 'line' };
 
   for (const [source, form] of [
