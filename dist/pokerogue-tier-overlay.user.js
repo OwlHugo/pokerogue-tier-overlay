@@ -5536,9 +5536,9 @@
 	}
 	var BADGE_OFFSET$1 = {
 		x: 0,
-		y: -58
+		y: -26
 	};
-	var BADGE_SCALE$1 = .35;
+	var BADGE_SCALE$1 = .08;
 	function targetFor$1(pokemon, index) {
 		const primary = {
 			speciesId: pokemon.species.speciesId,
@@ -5654,10 +5654,10 @@
 		}
 	};
 	var BADGE_OFFSET = {
-		x: 0,
-		y: 15
+		x: 8,
+		y: 24
 	};
-	var BADGE_SCALE = .14;
+	var BADGE_SCALE = .12;
 	function targetFor(container) {
 		const primary = {
 			speciesId: container.species.speciesId,

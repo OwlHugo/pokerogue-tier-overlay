@@ -2,8 +2,8 @@ import { keyFor } from '../domain/species-key';
 import type { StarterContainer, StarterSelectHandler } from './pokerogue';
 import type { Target } from './target';
 
-const BADGE_OFFSET = { x: 0, y: 15 };
-const BADGE_SCALE = 0.14;
+const BADGE_OFFSET = { x: 8, y: 24 };
+const BADGE_SCALE = 0.12;
 
 function targetFor(container: StarterContainer): Target {
   const primary = { speciesId: container.species.speciesId, formKey: '' };

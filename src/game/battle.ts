@@ -2,8 +2,8 @@ import { keyFor } from '../domain/species-key';
 import { type BattleScene, formKeyOf, type PokeRoguePokemon } from './pokerogue';
 import type { Target } from './target';
 
-const BADGE_OFFSET = { x: 0, y: -58 };
-const BADGE_SCALE = 0.35;
+const BADGE_OFFSET = { x: 0, y: -26 };
+const BADGE_SCALE = 0.08;
 
 function targetFor(pokemon: PokeRoguePokemon, index: number): Target {
   const primary = {
