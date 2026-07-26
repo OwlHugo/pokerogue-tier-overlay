@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build:tiers": "node scripts/build-tiers.mjs",
-    "test": "node --test test/",
+    "test": "node --test",
     "start": "node src/launch.mjs"
   },
   "dependencies": {
