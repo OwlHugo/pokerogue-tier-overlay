@@ -15,6 +15,7 @@ export default defineConfig({
         icon: 'https://pokerogue.net/logo512.png',
         match: ['https://pokerogue.net/*'],
         'run-at': 'document-start',
+        grant: 'none',
         license: 'MIT',
         homepageURL: repository,
         supportURL: `${repository}/issues`,

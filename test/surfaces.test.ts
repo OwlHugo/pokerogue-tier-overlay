@@ -8,8 +8,8 @@ import type { FakeScene } from './support/fake-phaser';
 import { fakeBattleScene, fakePokemon, fakeStarterContainer } from './support/fake-pokerogue';
 
 const table: TierTable = {
-  '129': { tier: 'LC', bestTier: 'RU', bestName: 'Gyarados', line: ['Magikarp', 'Gyarados'] },
-  '1': { tier: 'LC', bestTier: 'OU', bestName: 'Venusaur', line: ['Bulbasaur', 'Venusaur'] },
+  '129': { tier: 'LC', bestTier: 'RU', bestName: 'Gyarados' },
+  '1': { tier: 'LC', bestTier: 'OU', bestName: 'Venusaur' },
 };
 
 const contextOf = (scene: ReturnType<typeof fakeBattleScene>, handlerName: string | null) =>

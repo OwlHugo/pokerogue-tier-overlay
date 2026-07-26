@@ -3,16 +3,15 @@ import { keyFor } from '../src/domain/species-key';
 import { resolveTiers, type TierTable } from '../src/domain/tier-table';
 
 const table: TierTable = {
-  '129': { tier: 'LC', bestTier: 'RU', bestName: 'Gyarados', line: ['Magikarp', 'Gyarados'] },
-  '10': { tier: 'LC', bestTier: 'ZU', bestName: 'Butterfree', line: ['Caterpie', 'Butterfree'] },
-  '26': { tier: 'ZU', bestTier: 'ZU', bestName: 'Raichu', line: ['Pichu', 'Pikachu', 'Raichu'] },
+  '129': { tier: 'LC', bestTier: 'RU', bestName: 'Gyarados' },
+  '10': { tier: 'LC', bestTier: 'ZU', bestName: 'Butterfree' },
+  '26': { tier: 'ZU', bestTier: 'ZU', bestName: 'Raichu' },
   '26:alola': {
     tier: 'NU',
     bestTier: 'NU',
     bestName: 'Raichu-Alola',
-    line: ['Pichu', 'Pikachu', 'Raichu-Alola'],
   },
-  '163': { tier: 'LC', bestTier: 'ZU', bestName: 'Noctowl', line: ['Hoothoot', 'Noctowl'] },
+  '163': { tier: 'LC', bestTier: 'ZU', bestName: 'Noctowl' },
 };
 
 describe('keyFor', () => {

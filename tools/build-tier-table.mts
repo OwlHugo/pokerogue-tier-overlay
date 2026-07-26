@@ -1,78 +1,56 @@
 import { writeFileSync } from 'node:fs';
 import type { Species } from '@pkmn/dex';
 import { Dex } from '@pkmn/dex';
+import { bestOfLine, evolutionLine, type SpeciesSource } from '../src/domain/evolution';
 import { keyFor, type SpeciesKey } from '../src/domain/species-key';
-import { compareTier, normalizeTier, type Tier } from '../src/domain/tier';
+import { compareTier, normalizeTier } from '../src/domain/tier';
 import type { TierEntry } from '../src/domain/tier-table';
 
 const REGIONAL_FORMS = new Set(['alola', 'galar', 'hisui', 'paldea']);
 const GENERATION = 9;
 
 const dex = Dex.forGen(GENERATION);
+const species: SpeciesSource = { get: (name) => dex.species.get(name) };
 
-function regionOf(species: Species): string {
-  if (!species.forme) return '';
-  const region = species.forme.split('-')[0]?.toLowerCase() ?? '';
+function regionOf(entry: Species): string {
+  if (!entry.forme) return '';
+  const region = entry.forme.split('-')[0]?.toLowerCase() ?? '';
   return REGIONAL_FORMS.has(region) ? region : '';
 }
 
-function keyOf(species: Species): SpeciesKey | null {
-  if (species.num < 1) return null;
-  if (species.forme && !regionOf(species)) return null;
-  return keyFor(species.num, regionOf(species));
+function keyOf(entry: Species): SpeciesKey | null {
+  if (entry.num < 1) return null;
+  if (entry.forme && !regionOf(entry)) return null;
+  return keyFor(entry.num, regionOf(entry));
 }
 
-function rootOf(species: Species): Species {
-  let current = species;
-  while (current.prevo) current = dex.species.get(current.prevo);
-  return current;
-}
-
-function descendantsOf(species: Species, into: string[]): string[] {
-  into.push(species.name);
-  for (const evolution of species.evos ?? []) {
-    descendantsOf(dex.species.get(evolution), into);
-  }
-  return into;
-}
-
-function entryFor(species: Species): TierEntry {
-  const line = descendantsOf(rootOf(species), []);
-
-  let bestTier: Tier | null = null;
-  let bestName: string | null = null;
-
-  for (const name of line) {
-    const tier = normalizeTier(dex.species.get(name).tier);
-    if (tier === null || compareTier(tier, bestTier) >= 0) continue;
-    bestTier = tier;
-    bestName = name;
-  }
-
-  return { tier: normalizeTier(species.tier), bestTier, bestName, line };
+function entryFor(entry: Species): TierEntry {
+  return {
+    tier: normalizeTier(entry.tier),
+    ...bestOfLine(species, evolutionLine(species, entry)),
+  };
 }
 
 const table: Record<SpeciesKey, TierEntry> = {};
 
-for (const species of dex.species.all()) {
-  const key = keyOf(species);
+for (const entry of dex.species.all()) {
+  const key = keyOf(entry);
   if (!key) continue;
 
-  const entry = entryFor(species);
+  const candidate = entryFor(entry);
   const existing = table[key];
-  if (existing && compareTier(existing.bestTier, entry.bestTier) <= 0) continue;
+  if (existing && compareTier(existing.bestTier, candidate.bestTier) <= 0) continue;
 
-  table[key] = entry;
+  table[key] = candidate;
 }
 
-const source = [
+const code = [
   `import type { TierTable } from '../src/domain/tier-table';`,
   '',
   `export const TIER_TABLE: TierTable = ${JSON.stringify(table)};`,
   '',
 ].join('\n');
 
-writeFileSync(new URL('../data/tier-table.generated.ts', import.meta.url), source);
+writeFileSync(new URL('../data/tier-table.generated.ts', import.meta.url), code);
 
-const count = Object.keys(table).length;
-process.stdout.write(`${count} especies em data/tier-table.generated.ts\n`);
+process.stdout.write(`${Object.keys(table).length} especies em data/tier-table.generated.ts\n`);

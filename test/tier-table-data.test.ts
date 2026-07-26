@@ -24,12 +24,6 @@ describe('tabela gerada', () => {
     }
   });
 
-  test('toda entrada tem linha evolutiva nao vazia', () => {
-    for (const [key, entry] of entries) {
-      expect(entry.line.length, key).toBeGreaterThan(0);
-    }
-  });
-
   test('nenhum pokemon inventado pelo smogon entrou na tabela', () => {
     for (const [key] of entries) {
       expect(Number.parseInt(key, 10)).toBeGreaterThan(0);
@@ -39,12 +33,11 @@ describe('tabela gerada', () => {
   test('Magikarp herda o tier do Gyarados', () => {
     const magikarp = TIER_TABLE['129'];
     expect(magikarp?.bestName).toBe('Gyarados');
-    expect(magikarp?.line).toEqual(['Magikarp', 'Gyarados']);
   });
 
   test('Raichu de Alola tem entrada propria distinta da base', () => {
     expect(TIER_TABLE['26:alola']).toBeDefined();
-    expect(TIER_TABLE['26:alola']?.line).toContain('Raichu-Alola');
+    expect(TIER_TABLE['26:alola']?.bestName).toBe('Raichu-Alola');
   });
 
   test('resolve um Hoothoot como foi visto em batalha real', () => {

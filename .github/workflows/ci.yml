@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run lint
+
+      - run: npm run typecheck
+
+      - run: npm test
+
+      - run: npm run build
+
+      - name: A tabela de tiers commitada esta em dia com o gerador
+        run: |
+          npm run build:tiers
+          git diff --exit-code data/tier-table.generated.ts
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: userscript
+          path: dist/*.user.js

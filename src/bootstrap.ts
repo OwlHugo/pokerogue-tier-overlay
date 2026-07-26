@@ -1,0 +1,50 @@
+import type { TierTable } from './domain/tier-table';
+import { contextOf } from './game/context';
+import type { PhaserGame } from './game/phaser';
+import type { BattleScene } from './game/pokerogue';
+import { Overlay } from './overlay';
+import { BadgeLayer } from './render/badge-layer';
+import { BattleSurface } from './surfaces/battle-surface';
+import { StarterSurface } from './surfaces/starter-surface';
+
+export const BATTLE_SCENE_KEY = 'battle';
+
+export interface OverlayRunner {
+  readonly started: boolean;
+  tick(): void;
+  destroy(): void;
+}
+
+function overlayFor(scene: BattleScene, table: TierTable): Overlay {
+  return new Overlay(
+    [
+      new BattleSurface(new BadgeLayer(scene), table),
+      new StarterSurface(new BadgeLayer(scene), table),
+    ],
+    () => contextOf(scene),
+  );
+}
+
+function battleSceneOf(game: PhaserGame): BattleScene | null {
+  return (game.scene.getScene(BATTLE_SCENE_KEY) as BattleScene | null) ?? null;
+}
+
+export function startOverlay(game: PhaserGame, table: TierTable): OverlayRunner {
+  let overlay: Overlay | null = null;
+
+  return {
+    get started() {
+      return overlay !== null;
+    },
+    tick() {
+      const scene = battleSceneOf(game);
+      if (!scene) return;
+      overlay ??= overlayFor(scene, table);
+      overlay.tick();
+    },
+    destroy() {
+      overlay?.destroy();
+      overlay = null;
+    },
+  };
+}

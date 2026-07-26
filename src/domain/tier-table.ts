@@ -5,7 +5,6 @@ export interface TierEntry {
   tier: Tier | null;
   bestTier: Tier | null;
   bestName: string | null;
-  line: readonly string[];
 }
 
 export type TierTable = Readonly<Record<SpeciesKey, TierEntry>>;
