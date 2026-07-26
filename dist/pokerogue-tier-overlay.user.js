@@ -2213,12 +2213,9 @@
 			"name": "Raichu",
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Raichu-Alola",
+			"bestName": "Raichu",
 			"mega": null,
-			"gmax": {
-				"tier": "AG",
-				"name": "Pikachu-Gmax"
-			}
+			"gmax": null
 		},
 		"27": {
 			"name": "Sandshrew",
@@ -2437,10 +2434,7 @@
 			"bestTier": "ZU",
 			"bestName": "Persian",
 			"mega": null,
-			"gmax": {
-				"tier": "AG",
-				"name": "Meowth-Gmax"
-			}
+			"gmax": null
 		},
 		"54": {
 			"name": "Psyduck",
@@ -2509,8 +2503,8 @@
 		"62": {
 			"name": "Poliwrath",
 			"tier": "ZU",
-			"bestTier": "NUBL",
-			"bestName": "Politoed",
+			"bestTier": "ZU",
+			"bestName": "Poliwrath",
 			"mega": null,
 			"gmax": null
 		},
@@ -2674,8 +2668,8 @@
 		"80": {
 			"name": "Slowbro",
 			"tier": "RU",
-			"bestTier": "UU",
-			"bestName": "Slowking",
+			"bestTier": "RU",
+			"bestName": "Slowbro",
 			"mega": {
 				"tier": "RUBL",
 				"name": "Slowbro-Mega"
@@ -2889,7 +2883,7 @@
 			"name": "Exeggutor",
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Exeggutor-Alola",
+			"bestName": "Exeggutor",
 			"mega": null,
 			"gmax": null
 		},
@@ -2904,8 +2898,8 @@
 		"105": {
 			"name": "Marowak",
 			"tier": "ZU",
-			"bestTier": "RU",
-			"bestName": "Marowak-Alola",
+			"bestTier": "ZU",
+			"bestName": "Marowak",
 			"mega": null,
 			"gmax": null
 		},
@@ -2920,8 +2914,8 @@
 		"107": {
 			"name": "Hitmonchan",
 			"tier": "ZU",
-			"bestTier": "PU",
-			"bestName": "Hitmonlee",
+			"bestTier": "ZU",
+			"bestName": "Hitmonchan",
 			"mega": null,
 			"gmax": null
 		},
@@ -2944,8 +2938,8 @@
 		"110": {
 			"name": "Weezing",
 			"tier": "ZU",
-			"bestTier": "OU",
-			"bestName": "Weezing-Galar",
+			"bestTier": "ZU",
+			"bestName": "Weezing",
 			"mega": null,
 			"gmax": null
 		},
@@ -3044,7 +3038,7 @@
 			"name": "Mr. Mime",
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Mr. Rime",
+			"bestName": "Mr. Mime",
 			"mega": null,
 			"gmax": null
 		},
@@ -3157,35 +3151,26 @@
 		"134": {
 			"name": "Vaporeon",
 			"tier": "NU",
-			"bestTier": "RU",
-			"bestName": "Umbreon",
+			"bestTier": "NU",
+			"bestName": "Vaporeon",
 			"mega": null,
-			"gmax": {
-				"tier": "AG",
-				"name": "Eevee-Gmax"
-			}
+			"gmax": null
 		},
 		"135": {
 			"name": "Jolteon",
 			"tier": "ZU",
-			"bestTier": "RU",
-			"bestName": "Umbreon",
+			"bestTier": "ZU",
+			"bestName": "Jolteon",
 			"mega": null,
-			"gmax": {
-				"tier": "AG",
-				"name": "Eevee-Gmax"
-			}
+			"gmax": null
 		},
 		"136": {
 			"name": "Flareon",
 			"tier": "ZU",
-			"bestTier": "RU",
-			"bestName": "Umbreon",
+			"bestTier": "ZU",
+			"bestName": "Flareon",
 			"mega": null,
-			"gmax": {
-				"tier": "AG",
-				"name": "Eevee-Gmax"
-			}
+			"gmax": null
 		},
 		"137": {
 			"name": "Porygon",
@@ -3359,8 +3344,8 @@
 		"157": {
 			"name": "Typhlosion",
 			"tier": "ZU",
-			"bestTier": "PU",
-			"bestName": "Typhlosion-Hisui",
+			"bestTier": "ZU",
+			"bestName": "Typhlosion",
 			"mega": null,
 			"gmax": null
 		},
@@ -3571,8 +3556,8 @@
 		"182": {
 			"name": "Bellossom",
 			"tier": "ZU",
-			"bestTier": "NU",
-			"bestName": "Vileplume",
+			"bestTier": "ZU",
+			"bestName": "Bellossom",
 			"mega": null,
 			"gmax": null
 		},
@@ -3683,13 +3668,10 @@
 		"196": {
 			"name": "Espeon",
 			"tier": "PU",
-			"bestTier": "RU",
-			"bestName": "Umbreon",
+			"bestTier": "PU",
+			"bestName": "Espeon",
 			"mega": null,
-			"gmax": {
-				"tier": "AG",
-				"name": "Eevee-Gmax"
-			}
+			"gmax": null
 		},
 		"197": {
 			"name": "Umbreon",
@@ -3697,10 +3679,7 @@
 			"bestTier": "RU",
 			"bestName": "Umbreon",
 			"mega": null,
-			"gmax": {
-				"tier": "AG",
-				"name": "Eevee-Gmax"
-			}
+			"gmax": null
 		},
 		"198": {
 			"name": "Murkrow",
@@ -3715,10 +3694,7 @@
 			"tier": "UU",
 			"bestTier": "UU",
 			"bestName": "Slowking",
-			"mega": {
-				"tier": "RUBL",
-				"name": "Slowbro-Mega"
-			},
+			"mega": null,
 			"gmax": null
 		},
 		"200": {
@@ -4035,8 +4011,8 @@
 		"237": {
 			"name": "Hitmontop",
 			"tier": "ZU",
-			"bestTier": "PU",
-			"bestName": "Hitmonlee",
+			"bestTier": "ZU",
+			"bestName": "Hitmontop",
 			"mega": null,
 			"gmax": null
 		},
@@ -4304,7 +4280,7 @@
 			"name": "Silcoon",
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Dustox",
+			"bestName": "Beautifly",
 			"mega": null,
 			"gmax": null
 		},
@@ -4312,7 +4288,7 @@
 			"name": "Beautifly",
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Dustox",
+			"bestName": "Beautifly",
 			"mega": null,
 			"gmax": null
 		},
@@ -4438,7 +4414,7 @@
 			"name": "Gardevoir",
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Gallade",
+			"bestName": "Gardevoir",
 			"mega": {
 				"tier": "UUBL",
 				"name": "Gardevoir-Mega"
@@ -4520,8 +4496,8 @@
 		"292": {
 			"name": "Shedinja",
 			"tier": "ZU",
-			"bestTier": "ZUBL",
-			"bestName": "Ninjask",
+			"bestTier": "ZU",
+			"bestName": "Shedinja",
 			"mega": null,
 			"gmax": null
 		},
@@ -5138,7 +5114,7 @@
 			"name": "Glalie",
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Froslass",
+			"bestName": "Glalie",
 			"mega": {
 				"tier": "NU",
 				"name": "Glalie-Mega"
@@ -5180,8 +5156,8 @@
 		"367": {
 			"name": "Huntail",
 			"tier": "ZU",
-			"bestTier": "ZUBL",
-			"bestName": "Gorebyss",
+			"bestTier": "ZU",
+			"bestName": "Huntail",
 			"mega": null,
 			"gmax": null
 		},
@@ -5576,7 +5552,7 @@
 			"name": "Wormadam",
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Mothim",
+			"bestName": "Wormadam",
 			"mega": null,
 			"gmax": null
 		},
@@ -6061,24 +6037,18 @@
 		"470": {
 			"name": "Leafeon",
 			"tier": "ZU",
-			"bestTier": "RU",
-			"bestName": "Umbreon",
+			"bestTier": "ZU",
+			"bestName": "Leafeon",
 			"mega": null,
-			"gmax": {
-				"tier": "AG",
-				"name": "Eevee-Gmax"
-			}
+			"gmax": null
 		},
 		"471": {
 			"name": "Glaceon",
 			"tier": "ZU",
-			"bestTier": "RU",
-			"bestName": "Umbreon",
+			"bestTier": "ZU",
+			"bestName": "Glaceon",
 			"mega": null,
-			"gmax": {
-				"tier": "AG",
-				"name": "Eevee-Gmax"
-			}
+			"gmax": null
 		},
 		"472": {
 			"name": "Gliscor",
@@ -6111,7 +6081,7 @@
 			"bestName": "Gallade",
 			"mega": {
 				"tier": "UUBL",
-				"name": "Gardevoir-Mega"
+				"name": "Gallade-Mega"
 			},
 			"gmax": null
 		},
@@ -6136,10 +6106,7 @@
 			"tier": "ZU",
 			"bestTier": "ZU",
 			"bestName": "Froslass",
-			"mega": {
-				"tier": "NU",
-				"name": "Glalie-Mega"
-			},
+			"mega": null,
 			"gmax": null
 		},
 		"479": {
@@ -6337,8 +6304,8 @@
 		"503": {
 			"name": "Samurott",
 			"tier": "ZU",
-			"bestTier": "OU",
-			"bestName": "Samurott-Hisui",
+			"bestTier": "ZU",
+			"bestName": "Samurott",
 			"mega": null,
 			"gmax": null
 		},
@@ -6708,8 +6675,8 @@
 		"549": {
 			"name": "Lilligant",
 			"tier": "ZU",
-			"bestTier": "NUBL",
-			"bestName": "Lilligant-Hisui",
+			"bestTier": "ZU",
+			"bestName": "Lilligant",
 			"mega": null,
 			"gmax": null
 		},
@@ -7651,7 +7618,7 @@
 			"name": "Vivillon",
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Vivillon-Fancy",
+			"bestName": "Vivillon",
 			"mega": null,
 			"gmax": null
 		},
@@ -7747,7 +7714,7 @@
 			"name": "Meowstic",
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Meowstic-F",
+			"bestName": "Meowstic",
 			"mega": null,
 			"gmax": null
 		},
@@ -7922,13 +7889,10 @@
 		"700": {
 			"name": "Sylveon",
 			"tier": "NU",
-			"bestTier": "RU",
-			"bestName": "Umbreon",
+			"bestTier": "NU",
+			"bestName": "Sylveon",
 			"mega": null,
-			"gmax": {
-				"tier": "AG",
-				"name": "Eevee-Gmax"
-			}
+			"gmax": null
 		},
 		"701": {
 			"name": "Hawlucha",
@@ -7965,16 +7929,16 @@
 		"705": {
 			"name": "Sliggoo",
 			"tier": "NFE",
-			"bestTier": "RU",
-			"bestName": "Goodra-Hisui",
+			"bestTier": "PU",
+			"bestName": "Goodra",
 			"mega": null,
 			"gmax": null
 		},
 		"706": {
 			"name": "Goodra",
 			"tier": "PU",
-			"bestTier": "RU",
-			"bestName": "Goodra-Hisui",
+			"bestTier": "PU",
+			"bestName": "Goodra",
 			"mega": null,
 			"gmax": null
 		},
@@ -8289,7 +8253,7 @@
 			"name": "Lycanroc",
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Lycanroc-Midnight",
+			"bestName": "Lycanroc",
 			"mega": null,
 			"gmax": null
 		},
@@ -8657,7 +8621,7 @@
 			"name": "Solgaleo",
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Lunala",
+			"bestName": "Solgaleo",
 			"mega": null,
 			"gmax": null
 		},
@@ -9122,8 +9086,8 @@
 		"841": {
 			"name": "Flapple",
 			"tier": "ZU",
-			"bestTier": "UU",
-			"bestName": "Hydrapple",
+			"bestTier": "ZU",
+			"bestName": "Flapple",
 			"mega": null,
 			"gmax": {
 				"tier": "AG",
@@ -9133,12 +9097,12 @@
 		"842": {
 			"name": "Appletun",
 			"tier": "ZU",
-			"bestTier": "UU",
-			"bestName": "Hydrapple",
+			"bestTier": "ZU",
+			"bestName": "Appletun",
 			"mega": null,
 			"gmax": {
 				"tier": "AG",
-				"name": "Flapple-Gmax"
+				"name": "Appletun-Gmax"
 			}
 		},
 		"843": {
@@ -9202,7 +9166,7 @@
 			"name": "Toxtricity",
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Toxtricity-Low-Key",
+			"bestName": "Toxtricity",
 			"mega": null,
 			"gmax": {
 				"tier": "AG",
@@ -9343,10 +9307,7 @@
 			"bestTier": "ZU",
 			"bestName": "Perrserker",
 			"mega": null,
-			"gmax": {
-				"tier": "AG",
-				"name": "Meowth-Gmax"
-			}
+			"gmax": null
 		},
 		"864": {
 			"name": "Cursola",
@@ -9594,7 +9555,7 @@
 			"name": "Urshifu",
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Urshifu-Rapid-Strike",
+			"bestName": "Urshifu",
 			"mega": null,
 			"gmax": {
 				"tier": "AG",
@@ -9660,12 +9621,9 @@
 		"900": {
 			"name": "Kleavor",
 			"tier": "RU",
-			"bestTier": "OU",
-			"bestName": "Scizor",
-			"mega": {
-				"tier": "OU",
-				"name": "Scizor-Mega"
-			},
+			"bestTier": "RU",
+			"bestName": "Kleavor",
+			"mega": null,
 			"gmax": null
 		},
 		"901": {
@@ -9679,8 +9637,8 @@
 		"902": {
 			"name": "Basculegion",
 			"tier": "NU",
-			"bestTier": "RU",
-			"bestName": "Basculegion-F",
+			"bestTier": "NU",
+			"bestName": "Basculegion",
 			"mega": null,
 			"gmax": null
 		},
@@ -9792,7 +9750,7 @@
 			"name": "Oinkologne",
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Oinkologne-F",
+			"bestName": "Oinkologne",
 			"mega": null,
 			"gmax": null
 		},
@@ -9864,7 +9822,7 @@
 			"name": "Maushold",
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Maushold-Four",
+			"bestName": "Maushold",
 			"mega": null,
 			"gmax": null
 		},
@@ -9951,8 +9909,8 @@
 		"936": {
 			"name": "Armarouge",
 			"tier": "RU",
-			"bestTier": "OU",
-			"bestName": "Ceruledge",
+			"bestTier": "RU",
+			"bestName": "Armarouge",
 			"mega": null,
 			"gmax": null
 		},
@@ -10320,7 +10278,7 @@
 			"name": "Dudunsparce",
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Dudunsparce-Three-Segment",
+			"bestName": "Dudunsparce",
 			"mega": null,
 			"gmax": null
 		},
@@ -10554,10 +10512,7 @@
 			"bestTier": "UU",
 			"bestName": "Hydrapple",
 			"mega": null,
-			"gmax": {
-				"tier": "AG",
-				"name": "Flapple-Gmax"
-			}
+			"gmax": null
 		},
 		"1012": {
 			"name": "Poltchageist",
@@ -10613,10 +10568,7 @@
 			"bestTier": "Uber",
 			"bestName": "Archaludon",
 			"mega": null,
-			"gmax": {
-				"tier": "AG",
-				"name": "Duraludon-Gmax"
-			}
+			"gmax": null
 		},
 		"1019": {
 			"name": "Hydrapple",
@@ -10624,10 +10576,7 @@
 			"bestTier": "UU",
 			"bestName": "Hydrapple",
 			"mega": null,
-			"gmax": {
-				"tier": "AG",
-				"name": "Flapple-Gmax"
-			}
+			"gmax": null
 		},
 		"1020": {
 			"name": "Gouging Fire",
@@ -10710,10 +10659,7 @@
 			"bestTier": "ZU",
 			"bestName": "Raichu-Alola",
 			"mega": null,
-			"gmax": {
-				"tier": "AG",
-				"name": "Pikachu-Gmax"
-			}
+			"gmax": null
 		},
 		"27:alola": {
 			"name": "Sandshrew-Alola",
@@ -10791,10 +10737,7 @@
 			"bestTier": "ZU",
 			"bestName": "Persian-Alola",
 			"mega": null,
-			"gmax": {
-				"tier": "AG",
-				"name": "Meowth-Gmax"
-			}
+			"gmax": null
 		},
 		"58:hisui": {
 			"name": "Growlithe-Hisui",
@@ -10866,8 +10809,8 @@
 		"80:galar": {
 			"name": "Slowbro-Galar",
 			"tier": "PU",
-			"bestTier": "OU",
-			"bestName": "Slowking-Galar",
+			"bestTier": "PU",
+			"bestName": "Slowbro-Galar",
 			"mega": {
 				"tier": "RUBL",
 				"name": "Slowbro-Mega"
@@ -10999,10 +10942,7 @@
 			"tier": "OU",
 			"bestTier": "OU",
 			"bestName": "Slowking-Galar",
-			"mega": {
-				"tier": "RUBL",
-				"name": "Slowbro-Mega"
-			},
+			"mega": null,
 			"gmax": null
 		},
 		"211:hisui": {
@@ -11112,8 +11052,8 @@
 		"628:hisui": {
 			"name": "Braviary-Hisui",
 			"tier": "PU",
-			"bestTier": "NU",
-			"bestName": "Braviary",
+			"bestTier": "PU",
+			"bestName": "Braviary-Hisui",
 			"mega": null,
 			"gmax": null
 		},
@@ -11136,16 +11076,16 @@
 		"713:hisui": {
 			"name": "Avalugg-Hisui",
 			"tier": "PU",
-			"bestTier": "NU",
-			"bestName": "Avalugg",
+			"bestTier": "PU",
+			"bestName": "Avalugg-Hisui",
 			"mega": null,
 			"gmax": null
 		},
 		"724:hisui": {
 			"name": "Decidueye-Hisui",
 			"tier": "PU",
-			"bestTier": "NU",
-			"bestName": "Decidueye",
+			"bestTier": "PU",
+			"bestName": "Decidueye-Hisui",
 			"mega": null,
 			"gmax": null
 		}
@@ -11563,7 +11503,7 @@
 		sync(scene) {
 			this.place();
 			if (!this.panel.isOpen) return;
-			const biomeId = scene.arena?.biomeType;
+			const biomeId = scene.arena?.biomeId;
 			const biome = biomeId === void 0 ? null : this.biomes[biomeId];
 			this.panel.update({
 				field: fieldView(scene, this.tiers),

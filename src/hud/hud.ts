@@ -54,7 +54,7 @@ export class Hud {
     this.place();
     if (!this.panel.isOpen) return;
 
-    const biomeId = scene.arena?.biomeType;
+    const biomeId = scene.arena?.biomeId;
     const biome = biomeId === undefined ? null : this.biomes[biomeId];
 
     this.panel.update({

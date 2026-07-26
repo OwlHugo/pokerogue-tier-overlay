@@ -1,7 +1,7 @@
 import { writeFileSync } from 'node:fs';
 import type { Species } from '@pkmn/dex';
 import { Dex } from '@pkmn/dex';
-import { bestOfLine, evolutionLine, type SpeciesSource } from '../src/domain/evolution';
+import { bestOfLine, reachableLine, type SpeciesSource } from '../src/domain/evolution';
 import { keyFor, type SpeciesKey } from '../src/domain/species-key';
 import { compareTier } from '../src/domain/tier';
 import { type GenerationSource, tierAcrossGenerations } from '../src/domain/tier-cascade';
@@ -35,7 +35,7 @@ function keyOf(entry: Species): SpeciesKey | null {
 }
 
 function entryFor(entry: Species): TierEntry {
-  const line = evolutionLine(species, entry);
+  const line = reachableLine(species, entry);
   const dexNumbers = line.map((name) => dex.species.get(name).num);
 
   return {

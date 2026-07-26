@@ -34,6 +34,10 @@ export function evolutionLine(source: SpeciesSource, species: SpeciesNode): stri
   return collect(source, rootOf(source, species), []);
 }
 
+export function reachableLine(source: SpeciesSource, species: SpeciesNode): string[] {
+  return collect(source, species, []);
+}
+
 export type TierResolver = (name: string) => Tier | null;
 
 export function bestOfLine(line: readonly string[], tierOf: TierResolver): BestOfLine {

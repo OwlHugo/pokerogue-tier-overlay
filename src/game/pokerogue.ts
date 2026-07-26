@@ -32,7 +32,7 @@ export interface Ui {
 }
 
 export interface Arena {
-  biomeType: number;
+  biomeId: number;
 }
 
 export interface BattleScene extends Scene {
