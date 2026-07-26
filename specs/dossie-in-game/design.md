@@ -1,48 +1,116 @@
 # Design — companion in-game
 
-## Princípio herdado
+## Estado: isto documenta código que já existe
 
-A v2 separa domínio puro de render burro: `domain/` não conhece Phaser, `render/` não conhece
-regra. Esta spec estende a fronteira em vez de abrir exceção nela.
+Os commits `7f8f6a5`, `b584133` e `17fe810` já entregaram a maior parte desta spec. Este
+documento descreve a arquitetura **como ela é**, e marca em cada seção o que ainda é proposta.
+Verificado: 109 testes passando, `tsc --noEmit` limpo.
 
-## Uma superfície de interação, não três
+| Componente | Onde | Estado |
+|---|---|---|
+| Pílula clicável + painel com abas | `src/hud/panel.ts` | existe |
+| Abas de campo, time e bioma | `src/hud/panel.ts`, `src/hud/views.ts` | existe |
+| Mega e Gigantamax no alcance de tier | `src/domain/reachable.ts` | existe |
+| Pools de espécie por bioma | `src/domain/biome.ts`, `tools/build-biomes.mts` | existe, sem pin |
+| Badges de tier em batalha e starter | `src/render/`, `src/surfaces/` | herdado da v2 |
+| Aba de destinos (escolha de mapa) | — | proposta |
+| Egg moves, hidden ability, catch rate | — | proposta |
+| Nomes vindos dos locales | `BIOME_LABELS` manual em `hud.ts` | proposta |
+| Cobertura de tipos do time | — | proposta |
+| Licença AGPL e workflow de drift | — | proposta |
 
-O maior risco desta spec não é técnico: é virar uma HUD paralela competindo com a do jogo.
-A defesa é arquitetural, não de disciplina — **existe um único componente de UI**, o `Hub`, e
-toda tela o reusa. Não há painel de batalha, painel de starter e painel de mapa; há o hub,
-alimentado por abas diferentes.
+## Duas camadas de render, e por que a divergência é deliberada
+
+A v2 estabeleceu que **badges são objetos Phaser, não HTML**, e o motivo continua válido: a
+grade de starter tem 572 ícones, e cada badge sendo filha do container que o jogo desenha faz
+posição, escala, rolagem e visibilidade serem herdadas. O problema de sincronização não é
+resolvido — ele deixa de existir.
+
+O painel escolheu o caminho oposto: **DOM posicionado sobre o canvas**, ancorado por
+`getBoundingClientRect` a cada tick (`Hud.place`). A divergência é defensável e fica registrada
+como consciente:
+
+- O painel é **um** retângulo, não 572. O custo de sincronizar é um `placeAt` por tick.
+- Ele precisa de rolagem, `text-overflow`, `backdrop-filter` e um layout de linhas. Reproduzir
+  isso em objetos Phaser custaria muito mais que o ganho.
+- Badges continuam Phaser. Nenhuma das duas camadas invade a outra.
+
+A regra que sobrevive intacta: **`src/domain/` não conhece nem Phaser nem DOM.** É o que
+mantém `views.ts` e `reachable.ts` testáveis sem navegador.
+
+## O padrão de interação
+
+Fechado, o overlay é a badge da v2 mais uma pílula discreta. Nada é despejado na tela.
 
 ```
-badge (v2, já existe)  --clique-->  Hub  --abas-->  conteúdo montado pelo domínio
+pílula  --clique-->  painel  --abas-->  conteúdo montado por funções puras de views.ts
 ```
 
-Consequência prática: o slice B (busca por atalho) não desenha nada novo — ele só empurra
-outra aba para dentro do mesmo hub. E o custo de adicionar uma tela é uma função pura que
-devolve linhas.
+Uma superfície de interação, reusada por todas as telas. É o que impede a feature de virar HUD
+paralela — e é o que faz uma tela nova custar uma função pura que devolve linhas, não um
+componente.
 
 ## O que foi verificado no jogo rodando
 
-O jogo foi instrumentado em `pokerogue.net` com a estratégia de captura da v2 (hook em
-`Phaser.Scenes.Systems.prototype.step`). Cinco coisas mudaram o desenho.
+Instrumentado em `pokerogue.net` com a estratégia de captura da v2 (hook em
+`Phaser.Scenes.Systems.prototype.step`).
 
-**O objeto de espécie entrega bem mais do que a v2 usa** — `abilityHidden`, `catchRate`,
-`type1`, `type2`, `baseStats`, `growthRate`, `forms`, `getEvolutionLevels()`.
+**O objeto de espécie entrega mais do que o painel usa hoje** — `abilityHidden` (`140` no
+Ralts), `catchRate` (`235`), `type1`/`type2`, `baseStats`, `growthRate`, `forms`, e
+`getEvolutionLevels()` devolvendo `[[281,20],[282,30],[475,1]]`.
 
 **Mega, GMax, Primal e Eternamax saem de `species.forms[].formKey`**, com os valores do enum
-`SpeciesFormKey` do upstream. Runtime, não tabela: acompanha a versão do jogador de graça.
+`SpeciesFormKey`. Runtime, não tabela: acompanha a versão do jogador de graça. É o que
+`reachable.ts` já explora.
 
-**`StarterSelectUiHandler.allSpecies` expõe as 572 espécies em runtime.** Não é necessário
-aqui, mas é o caminho do slice B.
+**O bioma atual é `scene.arena.biomeId`** — confirmado em `src/field/arena.ts:60` do upstream,
+onde o campo é `public readonly biomeId: BiomeId`.
 
-**`window.i18next` não existe.** Nomes só saem de tabela gerada.
+**`StarterSelectUiHandler.allSpecies` expõe as 572 espécies em runtime.** Não é usado hoje; é o
+caminho de uma busca por atalho sem UI nova.
+
+**`window.i18next` não existe.** Nome de ability, move e bioma só sai de tabela gerada.
+`window.gameInfo` existe e expõe bioma, wave e party, mas como strings de exibição sob um
+`gameInfoVersion` próprio — contrato mais frágil que os objetos da cena.
 
 **O Browser pane do app não roda PokéRogue**: a página fica `document.hidden: true`, o
-`requestAnimationFrame` congela e o Phaser não termina o boot. Verificação exige Chrome
-headful — o que confirma `npm run launch` como a ferramenta das tarefas de tela.
+`requestAnimationFrame` congela após poucos quadros e o Phaser não termina o boot. Verificação
+exige Chrome headful, o que confirma `npm run launch` como a ferramenta das tarefas de tela.
 
-## Os dados, e por que a escolha de mapa sai de graça
+## Os dados
 
-Cada bioma do upstream exporta um objeto `Biome` completo:
+### O problema do gerador atual
+
+`tools/build-biomes.mts` faz `fetch` em
+`raw.githubusercontent.com/pagefaultgames/pokerogue/beta` e extrai os dados com expressões
+regulares sobre o TypeScript. Dois defeitos:
+
+- **`beta` é alvo móvel.** A tabela pode mudar entre duas execuções sem ninguém ter decidido
+  nada, e não há como reproduzir uma geração anterior.
+- **Regex sobre TypeScript quebra em silêncio.** Uma reformatação no upstream produz tabela
+  vazia ou parcial sem erro.
+
+### A correção proposta
+
+Importar os módulos de verdade a partir de um commit pinado em `data/pokerogue-source.json`.
+Os arquivos de dado são object literals com referências a enums; com os aliases (`#enums/*`,
+`#data/*`) mapeados no tsconfig do gerador, o `tsx` importa e lê estruturas reais, com os enums
+já resolvidos em número. `tsx` não faz type check, então o `strict: false` do upstream é
+irrelevante.
+
+Isso não vale para todos os arquivos: `egg-moves.ts` importa só enums e resolve direto, mas
+`balance/biomes/*.ts` importa `#data/terrain`, que arrasta `i18next`, `#app/messages` e
+`#field/pokemon` e quebra em Node. A saída é aliasar os módulos contaminados para stubs em
+`tools/stubs/` — hoje **um só**, o `TerrainType`. O teto é cinco: passando disso, o gerador
+troca importação por leitura de AST, para a gambiarra não crescer sem alguém decidir que ela
+cresceu.
+
+Ordenação determinística na emissão é o que torna a geração reprodutível: sem ela, a ordem de
+`readdirSync` varia entre sistemas de arquivos e o arquivo mudaria sem o dado ter mudado.
+
+### A escolha de mapa sai de graça
+
+Cada bioma do upstream exporta um objeto completo:
 
 ```ts
 interface Biome {
@@ -50,198 +118,90 @@ interface Biome {
   pokemonPool: Record<BiomePoolTier, Record<TimeOfDay, readonly SpeciesId[]>>;
   trainerPool: Record<BiomePoolTier, readonly TrainerType[]>;
   trainerChance: number;
-  weatherPool: ...;
   biomeLinks: readonly (BiomeId | readonly [BiomeId, number])[];
 }
 ```
 
-`biomeLinks` é o grafo de destinos — Plains leva a Grass, Metropolis e Lake. É literalmente a
-tela de escolha de mapa, e vem do mesmo `import` que já dá as pools de espécie. A feature mais
-pedida desta spec custa uma segunda projeção sobre dados que o gerador já tem em mãos.
+`biomeLinks` são "os biomas para onde se pode viajar a partir daqui" — Plains leva a Grass,
+Metropolis e Lake. É literalmente a tela de escolha de mapa, e vem do mesmo `import` que já dá
+as pools. A feature mais pedida custa um campo a mais na `BiomeEntry` e uma projeção em
+`views.ts`.
 
-O upstream inclusive já declara o formato invertido que precisamos —
-`CatchableSpecies = Record<SpeciesId, readonly BiomeTierTimeOfDay[]>` — o que confirma o
-desenho, ainda que a instância seja module-scope e inalcançável.
+Um link pode vir como `BiomeId` ou como `[BiomeId, peso]`; o peso é probabilidade de transição
+e não muda o conjunto de destinos oferecidos, então só o id entra.
 
-### Tabelas emitidas
+### Tabelas
 
-| Arquivo | Forma |
-|---|---|
-| `data/egg-moves.generated.ts` | `Record<number, readonly number[]>` |
-| `data/biome-index.generated.ts` | `Record<number, readonly Encounter[]>` |
-| `data/biome-links.generated.ts` | `Record<number, readonly number[]>` |
-| `data/names.generated.ts` | `ABILITY_NAMES`, `MOVE_NAMES`, `BIOME_NAMES`, `TYPE_NAMES` |
+| Arquivo | Forma | Estado |
+|---|---|---|
+| `data/tier-table.generated.ts` | tiers, mega e gmax por espécie | existe |
+| `data/biome-table.generated.ts` | `Record<biomeId, { name, pools }>` | existe; ganha `links` |
+| `data/egg-moves.generated.ts` | `Record<speciesId, moveId[]>` | proposta |
+| `data/names.generated.ts` | `MOVE_NAMES`, `BIOME_NAMES`, `TYPE_NAMES` | proposta |
 
-Ids numéricos como chave: cada nome aparece uma vez, na tabela de nomes, em vez de repetido
-em cada entrada. As tabelas de nome são filtradas (AD-5) — `move.json` tem 179 KB e usaríamos
-uma fração.
+Ids numéricos como chave: cada nome aparece uma vez, na tabela de nomes, em vez de repetido em
+cada entrada. As tabelas de nome entram filtradas — `move.json` tem 179 KB e usaríamos uma
+fração.
 
-Estimativa, com `minify: false`, medida no arquivo distribuído: bundle atual 99 KB, tabelas
-~90–130 KB, total ~200–230 KB contra o teto de 500 KB de AD-8.
-
-### O gerador
-
-`tools/build-pokerogue-data.mts`, irmão do `build-tier-table.mts`. Duas fontes pinadas em
-`data/pokerogue-source.json`: o repositório do jogo, para estrutura, e
-`pagefaultgames/pokerogue-locales`, para nomes — que são JSON puro, sem cadeia de import.
-
-Os arquivos de dado são object literals com referências a enums. Com os aliases (`#enums/*`,
-`#data/*`) mapeados no tsconfig do gerador, o `tsx` importa os módulos e lê estruturas reais,
-com os enums já resolvidos em número. `tsx` não faz type check, então o `strict: false` do
-upstream é irrelevante.
-
-Isso **não vale para todos os arquivos**: `egg-moves.ts` importa só enums e resolve direto,
-mas `balance/biomes/*.ts` importa `#data/terrain`, que arrasta `i18next`, `#app/messages` e
-`#field/pokemon`, e quebra em Node. A saída é aliasar os módulos contaminados para stubs em
-`tools/stubs/` — hoje **um só**, o `TerrainType`. AD-6 põe teto de cinco: passando disso, o
-gerador troca importação por leitura de AST, para a gambiarra não crescer sem alguém decidir.
-
-Ordenação determinística na emissão é o que faz AD-2 valer: sem ela, a ordem de `readdirSync`
-variaria entre máquinas e o arquivo mudaria sem o dado ter mudado.
-
-## Módulos
+## Domínio
 
 ```
-src/domain/            puro, testável, sem Phaser
-  biome.ts       Encounter, encountersIn, destinationsFrom
-  forms.ts       formsOf(formKeys): SpecialForm[]        ← mega, gmax, primal, eternamax
-  team.ts        profileOf(members): TeamProfile          ← tipos presentes, espécies possuídas
-  dossier.ts     dossierFor(facts, tables): Dossier
-  advice.ts      biomeAdvice(destino, profile, tables): BiomeAdvice
+src/domain/          puro: sem Phaser, sem DOM
+  tier.ts            ordem canônica dos tiers                     existe
+  tier-table.ts      resolução com fusão                          existe
+  evolution.ts       linha evolutiva                              existe
+  tier-cascade.ts    fallback de tier entre gerações              existe
+  reachable.ts       melhor alcance: linha, mega ou gmax          existe
+  biome.ts           BiomeTable, pools, ordem de raridade         existe; ganha links
+  coverage.ts        missingTypes(time, todos)                    proposta
 
-src/game/              leitura do runtime, nada mais
-  facts.ts       readRuntimeFacts(pokemon, biomeId)
-  party.ts       readTeam(scene): TeamMember[]
-
-src/render/            desenho, sem regra
-  hub.ts         Hub: abas, linhas, abrir/fechar
-  badge-layer.ts (+)  badge passa a aceitar clique
-
-src/surfaces/
-  battle-surface.ts   (+hub)
-  starter-surface.ts  (+hub)
-  biome-surface.ts    (novo)
+src/hud/             painel DOM
+  panel.ts           pílula, abas, linhas                         existe
+  views.ts           funções puras cena → linhas                  existe
+  hud.ts             posicionamento e orquestração                existe
 ```
 
-### Contratos
+`views.ts` é a fronteira: recebe a cena e devolve estruturas de dado. É o que permite testar o
+conteúdo do painel sem navegador, e é onde a aba de destinos entra.
 
-```ts
-// domain/biome.ts
-interface Encounter { biome: number; rarity: number; timeOfDay: number }
-type BiomeIndex = Record<number, readonly Encounter[]>;
-type BiomeLinks = Record<number, readonly number[]>;
-encountersIn(index: BiomeIndex, speciesId: number, biomeId: number | null): readonly Encounter[];
-destinationsFrom(links: BiomeLinks, biomeId: number | null): readonly number[];
-
-// domain/forms.ts
-interface SpecialForm { key: string; label: string }
-formsOf(formKeys: readonly string[]): readonly SpecialForm[];
-
-// domain/team.ts
-interface TeamMember { speciesId: number; types: readonly number[] }
-interface TeamProfile { species: ReadonlySet<number>; types: ReadonlySet<number> }
-profileOf(members: readonly TeamMember[]): TeamProfile;
-
-// domain/advice.ts
-interface BiomeAdvice {
-  biome: number;
-  byRarity: ReadonlyMap<number, readonly number[]>;
-  newSpecies: readonly number[];
-  missingTypes: readonly number[];
-}
-biomeAdvice(destination: number, profile: TeamProfile, tables: AdviceTables): BiomeAdvice;
-```
-
-`formsOf` filtra pelos valores do enum `SpeciesFormKey` e ignora formas comuns e regionais —
-uma espécie sem forma especial devolve lista vazia, e a aba de formas nem é oferecida (AD-15).
-
-`biomeAdvice` com time vazio devolve o conteúdo do bioma sem a parte comparativa. Não lança,
-e não inventa recomendação — `missingTypes` é fato derivado (os 18 tipos menos os presentes no
-time), não julgamento.
-
-Cobertura de tipo aqui é **presença**, não eficácia: quais tipos o time tem, e quais não tem.
-Tabela de efetividade e cálculo de dano são o slice C, e enfiá-los aqui seria escopo que
+Cobertura de tipo aqui é **presença**, não eficácia: quais tipos o time tem e quais não tem.
+Tabela de efetividade e cálculo de dano são escopo separado, e enfiá-los aqui seria escopo que
 ninguém revisou.
 
-## O hub
+Time vazio devolve lista vazia em vez de "faltam todos os tipos": sem time, a comparação não
+tem significado, e apresentá-la seria opinião disfarçada de fato — exatamente o que o overlay
+recusa ao exibir `?` em vez de inventar tier.
 
-`Hub` é o único componente de UI novo. Ele tem uma badge dona (a que foi clicada), um conjunto
-de abas e um corpo de linhas.
+## Licença
 
-```ts
-interface Tab { id: string; label: string; lines: readonly string[] }
-class Hub {
-  open(owner: DisplayContainer, tabs: readonly Tab[]): void;
-  select(id: string): void;
-  close(): void;
-  get size(): number;
-  get openFor(): DisplayContainer | null;
-}
-```
+`pagefaultgames/pokerogue` e `pagefaultgames/pokerogue-locales` são **AGPL-3.0-only**, e
+`data/biome-table.generated.ts` já é derivado do primeiro. O projeto se distribui como MIT.
+Isso não é risco futuro: está no repositório agora.
 
-Regras que caem direto dos critérios:
+Se a extração constitui obra derivada é ponto contestado — fato isolado não tem copyright, mas
+a compilação (a seleção e o arranjo das pools de bioma) tem proteção em várias jurisdições, e o
+gerador copia a compilação quase inteira. Em vez de apostar numa interpretação, o projeto adota
+AGPL-3.0-only e a questão deixa de existir. É coerente com ser companion de um jogo AGPL, e o
+Greasyfork aceita.
 
-- Fechado, `size === 0` e nenhum objeto existe na cena (AD-17).
-- `select` troca só as linhas do corpo; os objetos das abas permanecem (AD-19).
-- `open` para outro dono fecha o anterior — é o que dá AD-20 em batalha dupla sem código de
-  coordenação entre badges.
-- O hub é filho do container que o jogo desenha, como as badges. Posição, escala e
-  visibilidade são herdadas, e é isso que faz AD-22 sair sem layout de mobile.
+## Manutenção: o workflow de drift
 
-A badge vira interativa (`setInteractive` mais `pointerdown`), o que exige ampliar o shim em
-`src/game/phaser.ts`. Nenhuma tecla nova é registrada — o overlay não disputa teclado com o
-jogo, e o clique só é consumido quando cai sobre a badge (AD-18).
+O risco real não é técnico, é temporal — o PokéRogue atualiza e a tabela passa a mentir. Mentir
+é pior que omitir, e o overlay já escolheu omitir (`?` do Smogon).
 
-## Fluxo
-
-```
-tick → surface.matches ─┬→ readTargets → badgeSpecs → BadgeLayer.reconcile      (v2)
-                        │
-                        └→ onBadgeClick(target) → tabsFor(target, contexto) → Hub.open
-```
-
-`tabsFor` é onde cada surface difere, e é sempre uma função pura:
-
-| Surface | Abas |
-|---|---|
-| batalha | Dossiê, Linha, Formas |
-| starter | Dossiê, Linha, Formas |
-| bioma | uma aba por destino do `biomeLinks` |
-
-A interface `Surface` ganha só o repasse do clique. `Overlay.tick` não ganha ramificação: ele
-já chama `sync` e `clear`, e `clear` passa a fechar o hub (AD-23).
+Só faz sentido **depois** do pin: sem commit fixo não há o que comparar. Workflow semanal roda o
+gerador contra a HEAD dos dois upstreams e abre PR se as tabelas mudarem. O PR passa pelo CI
+existente. Merge é decisão humana — o overlay não se atualiza sozinho a partir de código de
+terceiro.
 
 ## Teste
 
 | Alvo | Como |
 |---|---|
-| `biome`, `forms`, `team`, `dossier`, `advice` | Vitest puro: fusão, forma regional, espécie sem egg move, espécie fora do bioma, bioma nulo, time vazio, espécie sem forma especial |
-| `hub` | fake Phaser, padrão de `test/badge-layer.test.ts`: abrir, trocar aba sem recriar, abrir para outro dono fechando o anterior, `size === 0` após `close` |
+| `reachable`, `biome`, `coverage`, `views` | Vitest puro, sem navegador |
+| `panel` | `test/panel.test.ts`, sobre DOM em jsdom |
 | tabelas geradas | cardinalidade e formato, padrão de `test/tier-table-data.test.ts` |
-| gerador | reprodutibilidade (AD-2) e falha explícita sem fonte (AD-3) |
-| in-game | **screenshot obrigatória**, padrão V9 da v2 |
+| gerador | reprodutibilidade e falha explícita sem fonte |
+| in-game | **screenshot obrigatória** com `npm run launch`, padrão V9 da v2 |
 
 Sem screenshot, os critérios de tela não estão atendidos. Foi assim na v2 e continua sendo.
-
-## Manutenção: o workflow de drift
-
-O risco real não é técnico, é temporal — o PokéRogue atualiza e a tabela passa a mentir.
-Mentir é pior que omitir, e o overlay já escolheu omitir (`?` do Smogon).
-
-`.github/workflows/data-drift.yml`, semanal: roda o gerador contra a HEAD dos dois upstreams e
-abre PR com tabelas e pins atualizados se houver diff. O PR passa pelo CI existente (AD-25).
-Merge é decisão humana — o overlay não se atualiza sozinho a partir de código de terceiro.
-
-## Arquivos afetados
-
-| Arquivo | Mudança |
-|---|---|
-| `src/game/phaser.ts` | shim ganha `setInteractive` e `on('pointerdown')` |
-| `src/game/pokerogue.ts` | tipa `catchRate`, `abilityHidden`, `type1/2`, `forms`, `arena.biomeType`, party |
-| `src/render/badge-layer.ts` | `BadgeSpec` ganha `onClick` opcional |
-| `src/surfaces/*.ts` | repasse do clique; `biome-surface.ts` é novo |
-| `src/bootstrap.ts`, `src/main.ts` | montagem do hub e injeção das tabelas |
-| `package.json` | script `build:data` |
-| `tools/stubs/` | stub do `TerrainType` |
-| `.github/workflows/` | `data-drift.yml` |
-| `LICENSE`, `vite.config.ts`, `README.md` | AGPL-3.0-only e crédito às fontes (AD-9) |

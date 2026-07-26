@@ -78,7 +78,7 @@ Lido ao vivo em `pokerogue.net`, capturando o jogo pela mesma estratégia da v2:
 | `getEvolutionLevels()` | `[[281,20],[282,30],[475,1]]` |
 | `species.forms[].formKey` | chaves do enum `SpeciesFormKey` |
 | `StarterSelectUiHandler.allSpecies` | 572 espécies |
-| `scene.arena.biomeType` | id numérico do bioma atual |
+| `scene.arena.biomeId` | id numérico do bioma atual |
 
 `window.i18next` **não** existe: nome de ability, move e bioma só sai de tabela gerada.
 `window.gameInfo` existe e expõe bioma, wave e party, mas como strings de exibição sob um
@@ -90,7 +90,7 @@ fonte.
 | Dado | Fonte |
 |---|---|
 | `catchRate`, `abilityHidden`, tipos, base stats, `forms[].formKey` | runtime, via `species` |
-| bioma atual | runtime, via `scene.arena.biomeType` |
+| bioma atual | runtime, via `scene.arena.biomeId` |
 | time do jogador | runtime, via a party da cena |
 | egg moves por espécie | gerada de `pokerogue` |
 | raridade por bioma e hora do dia | gerada de `pokerogue` |

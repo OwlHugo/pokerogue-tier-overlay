@@ -1,44 +1,122 @@
-# Plano de implementação — companion in-game
+# Plano de implementação — delta sobre o HUD existente
 
 > **Para quem for executar:** siga tarefa por tarefa, na ordem. Cada passo é uma ação de 2 a 5
-> minutos. Os checkboxes acompanham o progresso.
+> minutos.
 
-**Objetivo:** transformar a badge da v2 num companion — clique nela e abre um hub com abas que
-respondem o que a decisão daquele momento precisa, em batalha, na seleção de starter e na
-escolha de bioma.
+## Este plano não é greenfield
 
-**Arquitetura:** `src/domain/` é puro e não conhece Phaser; `src/render/` desenha e não decide.
-Existe **um** componente de UI novo, o `Hub`, reusado por todas as telas. Dado que o objeto de
-runtime já entrega é lido de lá; o resto vem de tabelas geradas de dois upstreams pinados.
+O repositório **já implementa** a maior parte do que a spec pede. Commits `7f8f6a5`,
+`b584133` e `17fe810` entregaram:
 
-**Stack:** TypeScript strict, Vite + `vite-plugin-monkey`, Vitest, Biome, `tsx` nos geradores,
-Puppeteer na verificação.
+| Já existe | Onde |
+|---|---|
+| Pílula clicável que abre painel com abas | `src/hud/panel.ts` (DOM sobre o canvas) |
+| Abas de campo, time e bioma | `src/hud/panel.ts`, `src/hud/views.ts` |
+| Mega e Gigantamax no alcance de tier | `src/domain/reachable.ts`, `tools/unlocked-forms.mts` |
+| Pools de espécie por bioma | `src/domain/biome.ts`, `data/biome-table.generated.ts` |
+| Badges de tier em batalha e starter | herdado da v2 |
+
+Estado verificado: **109 testes passando, `tsc --noEmit` limpo**.
+
+O painel é **DOM posicionado sobre o canvas**, não objetos Phaser. Isso contraria a decisão da
+v2 ("as badges são objetos Phaser, não elementos HTML"), e a divergência é defensável: a v2
+sincronizava 572 badges minúsculas herdando transformação do container, enquanto o painel é um
+retângulo só, ancorado por `getBoundingClientRect`. O custo do DOM aqui é um `placeAt` por
+tick; o custo de fazer uma lista rolável de 40 linhas em objetos Phaser seria muito maior.
+**A decisão fica registrada como consciente, e as badges continuam Phaser.**
+
+Este plano cobre só o que falta.
+
+**Objetivo do delta:** tornar o dado reprodutível e auditável, resolver a exposição de licença
+que já está no ar, e fechar as lacunas de conteúdo — egg moves, hidden ability, catch rate,
+escolha de mapa e cobertura de tipos.
 
 ## Restrições globais
 
-Valem em toda tarefa.
-
-- `npm run typecheck` roda com `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`
-  e `verbatimModuleSyntax`. Índice de array e de `Record` devolve `T | undefined`.
+- `npm run typecheck` roda com `strict`, `noUncheckedIndexedAccess`,
+  `exactOptionalPropertyTypes` e `verbatimModuleSyntax`.
 - `npm run lint` é Biome; rode `npm run format` antes de commitar.
-- **Nenhum comentário no código.** Decisão explícita do autor, registrada na spec da v2.
+- **Nenhum comentário no código.** Decisão explícita do autor.
 - Nomes de teste em português, no estilo dos existentes.
-- Arquivos gerados vão em `data/*.generated.ts` e são commitados.
 - Sem fallback, sem camada de compatibilidade, sem `try/catch` sem recuperação real.
-- Falha do gerador é falha: nunca emita tabela parcial.
-- O corte de entrega é A1–A11. A12 é incremento.
+- A suíte tem que continuar em 109 testes ou mais, sempre verde.
 
 ---
 
-## Task A1: Resolver das duas fontes upstream
+## Task B1: Relicenciar para AGPL-3.0-only
+
+**Por que primeiro:** `data/biome-table.generated.ts` já é derivado de
+`pagefaultgames/pokerogue`, que é **AGPL-3.0-only**, e o projeto se distribui como MIT. Isso
+não é risco futuro — está no repositório agora. As outras tarefas ampliam o dado derivado, e
+ampliar antes de resolver seria aumentar a exposição de propósito.
+
+**Arquivos:** modificar `LICENSE`, `package.json`, `vite.config.ts`, `README.md`.
+
+- [ ] **Passo 1: Trocar o texto da licença**
+
+```bash
+curl -sS https://www.gnu.org/licenses/agpl-3.0.txt -o LICENSE && head -3 LICENSE
+```
+
+Esperado: `GNU AFFERO GENERAL PUBLIC LICENSE`.
+
+- [ ] **Passo 2: Acompanhar nos metadados**
+
+Em `package.json`, troque `"license": "MIT"` por `"license": "AGPL-3.0-only"`.
+Em `vite.config.ts`, dentro de `userscript`, troque `license: 'MIT'` por
+`license: 'AGPL-3.0-only'`.
+
+- [ ] **Passo 3: Creditar as fontes no README**
+
+Acrescente:
+
+```markdown
+## De onde vêm os dados
+
+Tiers do Smogon via [`@pkmn/dex`](https://github.com/pkmn/ps) (MIT).
+
+Pools de bioma, egg moves e nomes exibidos são gerados de
+[`pagefaultgames/pokerogue`](https://github.com/pagefaultgames/pokerogue) e
+[`pagefaultgames/pokerogue-locales`](https://github.com/pagefaultgames/pokerogue-locales),
+ambos AGPL-3.0-only. Por isso este projeto também é AGPL-3.0-only.
+
+A fonte da verdade é o código do jogo, não a wiki nem o fórum: onde os dois divergirem, vale
+o que efetivamente roda.
+```
+
+- [ ] **Passo 4: Verificar e commitar**
+
+```bash
+npm run build && grep -c "AGPL" dist/pokerogue-tier-overlay.meta.js
+```
+
+Esperado: pelo menos `1`.
+
+```bash
+git add LICENSE package.json vite.config.ts README.md
+git commit -m "docs: relicencia para AGPL-3.0-only e credita as fontes upstream"
+```
+
+---
+
+## Task B2: Pinar as fontes e tornar o gerador reprodutível
+
+`tools/build-biomes.mts` hoje faz `fetch` em
+`raw.githubusercontent.com/pagefaultgames/pokerogue/beta` e extrai os dados com expressões
+regulares. Dois problemas: `beta` é alvo móvel, então a tabela muda sem ninguém decidir; e
+regex sobre TypeScript quebra em silêncio quando o upstream reformata.
+
+A troca é importar os módulos de verdade a partir de um commit pinado. Verificado: os arquivos
+de bioma são object literals com referências a enums, e o único import que arrasta `i18next` e
+Phaser por transitividade é `#data/terrain`, que precisa de um stub.
 
 **Arquivos:** criar `data/pokerogue-source.json`, `tools/upstream.mts`, `tools/stubs/terrain.ts`,
-`tools/pokerogue.tsconfig.json`, `tools/build-pokerogue-data.mts`, `test/upstream.test.ts`;
+`tools/pokerogue.tsconfig.json`, `test/upstream.test.ts`; reescrever `tools/build-biomes.mts`;
 modificar `package.json`, `.gitignore`.
 
-**Interfaces:** produz `parsePins(raw: string): Pins`, `readPins(): Pins`,
-`fetchUpstream(name: string, pin: Pin, sparse: readonly string[]): string`.
-`Pin = { repo: string; commit: string }`, `Pins = { pokerogue: Pin; locales: Pin }`.
+**Interfaces:** produz `parsePins(raw): Pins`, `readPins(): Pins`,
+`fetchUpstream(name, pin, sparse): string`. `Pin = { repo: string; commit: string }`,
+`Pins = { pokerogue: Pin; locales: Pin }`.
 
 - [ ] **Passo 1: Escrever o teste que falha**
 
@@ -133,8 +211,8 @@ export function fetchUpstream(name: string, pin: Pin, sparse: readonly string[])
 }
 ```
 
-`execFileSync` lança quando o `git` sai com código diferente de zero — pin inválido, rede
-ausente ou repositório errado abortam ali. É AD-3, sem `try/catch`.
+`execFileSync` lança quando o `git` sai com código diferente de zero. Pin inválido, rede
+ausente ou repositório errado abortam ali, sem `try/catch` e sem tabela parcial.
 
 - [ ] **Passo 4: Rodar e confirmar que passa**
 
@@ -144,15 +222,14 @@ npx vitest run test/upstream.test.ts
 
 Esperado: PASS, 3 testes.
 
-- [ ] **Passo 5: Criar pin, stub e tsconfig do gerador**
-
-Descubra os SHAs:
+- [ ] **Passo 5: Criar pin, stub e tsconfig**
 
 ```bash
-gh api repos/pagefaultgames/pokerogue/commits/main --jq .sha; gh api repos/pagefaultgames/pokerogue-locales/commits/main --jq .sha
+gh api repos/pagefaultgames/pokerogue/commits/beta --jq .sha; gh api repos/pagefaultgames/pokerogue-locales/commits/main --jq .sha
 ```
 
-`data/pokerogue-source.json`, com os SHAs colados:
+`data/pokerogue-source.json`, com os SHAs colados. O branch continua sendo `beta`, que é o que
+o jogo em produção usa — o que muda é que agora é um commit específico, não a ponta.
 
 ```json
 {
@@ -161,8 +238,7 @@ gh api repos/pagefaultgames/pokerogue/commits/main --jq .sha; gh api repos/pagef
 }
 ```
 
-`tools/stubs/terrain.ts` — os arquivos de bioma importam `TerrainType` de `#data/terrain`, que
-por transitividade puxa `i18next`, `#app/messages` e `#field/pokemon` e quebra em Node:
+`tools/stubs/terrain.ts`:
 
 ```ts
 export enum TerrainType {
@@ -174,7 +250,8 @@ export enum TerrainType {
 }
 ```
 
-`tools/pokerogue.tsconfig.json`:
+`tools/pokerogue.tsconfig.json` — `#data/terrain` vem antes de `#data/*` para ganhar da regra
+genérica:
 
 ```json
 {
@@ -192,88 +269,289 @@ export enum TerrainType {
 }
 ```
 
-`#data/terrain` vem antes de `#data/*` para ganhar da regra genérica.
-
 Acrescente `.upstream/` ao `.gitignore`.
 
-- [ ] **Passo 6: Escrever o esqueleto do gerador**
+- [ ] **Passo 6: Reescrever `tools/build-biomes.mts` sem regex**
 
-`tools/build-pokerogue-data.mts`:
+Cada arquivo de bioma exporta um objeto com `biomeId`, `pokemonPool` e `biomeLinks`. Emite a
+mesma `BiomeTable` de hoje, para não quebrar `views.ts` nem `hud.ts`:
 
 ```ts
-import { readdirSync, readFileSync } from 'node:fs';
+import { readdirSync, writeFileSync } from 'node:fs';
+import type { BiomeEntry, BiomeTable, PoolTier } from '../src/domain/biome';
 import { fetchUpstream, readPins } from './upstream.mts';
 
-const pins = readPins();
+const POOL_TIERS: readonly PoolTier[] = [
+  'COMMON',
+  'UNCOMMON',
+  'RARE',
+  'SUPER_RARE',
+  'ULTRA_RARE',
+  'BOSS',
+];
 
+interface UpstreamBiome {
+  biomeId: number;
+  pokemonPool: Record<string, Record<string, readonly number[]>>;
+  biomeLinks: readonly (number | readonly [number, number])[];
+}
+
+const pins = readPins();
 const game = fetchUpstream('pokerogue', pins.pokerogue, [
   'src/data/balance/biomes',
-  'src/data/balance/moves',
   'src/enums',
   'src/@types',
 ]);
 
-const locales = fetchUpstream('locales', pins.locales, ['en']);
+const biomeNames = (await import(`${game}/src/enums/biome-id.ts`)) as {
+  BiomeId: Record<string, number>;
+};
+const nameById = new Map(Object.entries(biomeNames.BiomeId).map(([name, id]) => [id, name]));
 
-const biomeFiles = readdirSync(`${game}/src/data/balance/biomes`)
+const files = readdirSync(`${game}/src/data/balance/biomes`)
   .filter((file) => file.endsWith('.ts'))
   .sort();
 
-const abilityKeys = Object.keys(JSON.parse(readFileSync(`${locales}/en/ability.json`, 'utf8')));
+const table: BiomeTable = {};
 
-process.stdout.write(`${biomeFiles.length} biomas e ${abilityKeys.length} chaves de ability\n`);
+for (const file of files) {
+  const loaded = (await import(`${game}/src/data/balance/biomes/${file}`)) as Record<string, unknown>;
+  const biome = Object.values(loaded).find(
+    (value): value is UpstreamBiome =>
+      typeof value === 'object' && value !== null && 'biomeId' in value && 'pokemonPool' in value,
+  );
+  if (!biome) throw new Error(`bioma sem export reconhecivel: ${file}`);
+
+  const pools: BiomeEntry['pools'] = {};
+  POOL_TIERS.forEach((label, tier) => {
+    const ids = [...new Set(Object.values(biome.pokemonPool[tier] ?? {}).flat())].sort(
+      (a, b) => a - b,
+    );
+    if (ids.length > 0) pools[label] = ids;
+  });
+
+  table[biome.biomeId] = { name: nameById.get(biome.biomeId) ?? String(biome.biomeId), pools };
+}
+
+const sorted = Object.fromEntries(
+  Object.entries(table).sort(([a], [b]) => Number(a) - Number(b)),
+) as BiomeTable;
+
+writeFileSync(
+  new URL('../data/biome-table.generated.ts', import.meta.url),
+  [
+    `import type { BiomeTable } from '../src/domain/biome';`,
+    '',
+    `export const BIOME_TABLE: BiomeTable = ${JSON.stringify(sorted)};`,
+    '',
+  ].join('\n'),
+);
+
+process.stdout.write(`${Object.keys(sorted).length} biomas em data/biome-table.generated.ts\n`);
 ```
 
-O `.sort()` não é cosmético: sem ele a ordem de `readdirSync` varia entre sistemas de arquivos
-e o arquivo gerado mudaria sem o dado ter mudado, quebrando AD-2.
+O `.sort()` nos arquivos e nos ids não é cosmético: sem ele a ordem varia entre sistemas de
+arquivos e o arquivo gerado mudaria sem o dado ter mudado.
 
-- [ ] **Passo 7: Registrar o script e rodar**
+Ajuste o script em `package.json` para
+`"build:biomes": "tsx --tsconfig tools/pokerogue.tsconfig.json tools/build-biomes.mts"`.
 
-Em `package.json`, ao lado de `build:tiers`:
-
-```json
-"build:data": "tsx --tsconfig tools/pokerogue.tsconfig.json tools/build-pokerogue-data.mts",
-```
+- [ ] **Passo 7: Gerar, comparar e confirmar reprodutibilidade**
 
 ```bash
-npm run build:data && npm run build:data
+npm run build:biomes && npm test
+npm run build:biomes && git diff --exit-code data/biome-table.generated.ts && echo identico
 ```
 
-Esperado: a mesma linha nas duas execuções, algo como `31 biomas e 300+ chaves de ability`.
+Esperado: os 109 testes continuam verdes, depois `identico`. Se a tabela mudar em relação à
+gerada por regex, **inspecione o diff antes de aceitar** — pode ser correção real do parser ou
+regressão.
 
 - [ ] **Passo 8: Confirmar que pin inválido aborta**
 
 ```bash
-cp data/pokerogue-source.json /tmp/pin.bak && node -e "const f=require('fs'),p='data/pokerogue-source.json',o=JSON.parse(f.readFileSync(p,'utf8'));o.pokerogue.commit='0'.repeat(40);f.writeFileSync(p,JSON.stringify(o,null,2))" && npm run build:data; echo "codigo: $?"; cp /tmp/pin.bak data/pokerogue-source.json
+cp data/pokerogue-source.json /tmp/pin.bak && node -e "const f=require('fs'),p='data/pokerogue-source.json',o=JSON.parse(f.readFileSync(p,'utf8'));o.pokerogue.commit='0'.repeat(40);f.writeFileSync(p,JSON.stringify(o,null,2))" && npm run build:biomes; echo "codigo: $?"; cp /tmp/pin.bak data/pokerogue-source.json
 ```
 
-Esperado: `codigo:` diferente de `0`, com o erro do `git` visível. O pin original volta ao final.
+Esperado: `codigo:` diferente de `0`.
 
 - [ ] **Passo 9: Commit**
 
 ```bash
 npm run format && npm run typecheck && npm test
-git add data/pokerogue-source.json tools test/upstream.test.ts package.json .gitignore
-git commit -m "feat: resolver das fontes upstream pinadas do pokerogue"
+git add data/pokerogue-source.json tools test/upstream.test.ts package.json .gitignore data/biome-table.generated.ts
+git commit -m "refactor: gera tabela de biomas de commit pinado em vez de regex sobre beta"
 ```
 
 ---
 
-## Task A2: Tabela de egg moves
+## Task B3: Grafo de destinos e aba de mapa
 
-**Arquivos:** modificar `tools/build-pokerogue-data.mts`; criar `data/egg-moves.generated.ts`
-(gerado) e `test/egg-moves-data.test.ts`.
+`biomeLinks` já vem no mesmo objeto que o gerador de B2 importa: são os biomas para onde se
+pode viajar a partir daqui. Plains leva a Grass, Metropolis e Lake. É a tela de escolha de
+mapa, e custa uma segunda projeção sobre dados já em mãos.
 
-**Interfaces:** produz `export const EGG_MOVES: Record<number, readonly number[]>`, chave
-`speciesId`, valor lista de `moveId`.
+**Arquivos:** modificar `src/domain/biome.ts`, `tools/build-biomes.mts`, `src/hud/views.ts`,
+`src/hud/panel.ts`, `src/hud/hud.ts`; criar `test/destinations.test.ts`.
+
+**Interfaces:** `BiomeEntry` ganha `links: readonly number[]`. Produz
+`destinationsView(biomeId, biomes, tiers): DestinationGroup[]`, com
+`DestinationGroup { biome: number; name: string; highlights: PokemonRow[] }`.
 
 - [ ] **Passo 1: Escrever o teste que falha**
+
+`test/destinations.test.ts`:
+
+```ts
+import { describe, expect, test } from 'vitest';
+import type { BiomeTable } from '../src/domain/biome';
+import { destinationsView } from '../src/hud/views';
+
+const biomes: BiomeTable = {
+  1: { name: 'PLAINS', pools: { COMMON: [1] }, links: [2, 9] },
+  2: { name: 'GRASS', pools: { COMMON: [2], BOSS: [3] }, links: [] },
+  9: { name: 'LAKE', pools: {}, links: [] },
+};
+
+const tiers = {
+  '1': { tier: 'LC', bestTier: 'PU', bestName: 'Venusaur', mega: null, gmax: null, name: 'Bulbasaur' },
+  '2': { tier: 'LC', bestTier: 'OU', bestName: 'Ivysaur', mega: null, gmax: null, name: 'Ivysaur' },
+  '3': { tier: 'OU', bestTier: 'OU', bestName: 'Venusaur', mega: null, gmax: null, name: 'Venusaur' },
+} as never;
+
+describe('destinationsView', () => {
+  test('monta um grupo por destino do bioma atual', () => {
+    expect(destinationsView(1, biomes, tiers).map((g) => g.name)).toEqual(['GRASS', 'LAKE']);
+  });
+
+  test('destino sem pool aparece com destaques vazios', () => {
+    expect(destinationsView(1, biomes, tiers)[1]?.highlights).toEqual([]);
+  });
+
+  test('bioma sem destino devolve lista vazia', () => {
+    expect(destinationsView(2, biomes, tiers)).toEqual([]);
+  });
+
+  test('bioma desconhecido devolve lista vazia sem lancar', () => {
+    expect(destinationsView(99, biomes, tiers)).toEqual([]);
+  });
+
+  test('os destaques vem ordenados pelo melhor alcance', () => {
+    const highlights = destinationsView(1, biomes, tiers)[0]?.highlights ?? [];
+    expect(highlights[0]?.reachTier).toBe('OU');
+  });
+});
+```
+
+- [ ] **Passo 2: Rodar e confirmar que falha**
+
+```bash
+npx vitest run test/destinations.test.ts
+```
+
+Esperado: FAIL, `destinationsView` não exportado.
+
+- [ ] **Passo 3: Levar `links` até a tabela**
+
+Em `src/domain/biome.ts`, acrescente a `BiomeEntry`:
+
+```ts
+  links: readonly number[];
+```
+
+Em `tools/build-biomes.mts`, dentro do laço, antes do `table[biome.biomeId] = ...`:
+
+```ts
+  const links = [
+    ...new Set(biome.biomeLinks.map((link) => (typeof link === 'number' ? link : link[0]))),
+  ].sort((a, b) => a - b);
+```
+
+e inclua `links` no objeto atribuído. Um link pode vir como `BiomeId` ou como
+`[BiomeId, peso]`; o peso é probabilidade de transição e não muda o conjunto de destinos
+oferecidos, então só o id entra.
+
+- [ ] **Passo 4: Escrever `destinationsView`**
+
+Em `src/hud/views.ts`, reusando o `rowFor` e o `byReach` que já existem no arquivo:
+
+```ts
+export interface DestinationGroup {
+  biome: number;
+  name: string;
+  highlights: PokemonRow[];
+}
+
+const HIGHLIGHT_LIMIT = 6;
+
+export function destinationsView(
+  biomeId: number,
+  biomes: BiomeTable,
+  table: TierTable,
+): DestinationGroup[] {
+  const current = biomes[biomeId];
+  if (!current) return [];
+
+  return current.links.flatMap((destination) => {
+    const entry = biomes[destination];
+    if (!entry) return [];
+
+    const highlights = Object.values(entry.pools)
+      .flat()
+      .map((speciesId) => {
+        const known = table[`${speciesId}`];
+        return rowFor(known?.name ?? `#${speciesId}`, speciesId, null, table);
+      })
+      .sort(byReach)
+      .slice(0, HIGHLIGHT_LIMIT);
+
+    return [{ biome: destination, name: entry.name, highlights }];
+  });
+}
+```
+
+O corte em seis não é arbitrário nem silencioso: o painel tem 310px e a pergunta na escolha de
+mapa é "o que de melhor tem lá", não "liste tudo". O rótulo da aba deixa isso explícito no
+passo seguinte.
+
+- [ ] **Passo 5: Ligar a aba no painel**
+
+Em `src/hud/panel.ts`, acrescente `'destinos'` a `TabId`, `'Para onde'` a `TAB_LABELS`, e
+`destinations: DestinationGroup[]` a `PanelContent`. O corpo da aba reusa `rowElement` sob um
+cabeçalho `ptr-group` por destino, com o texto `${nome} — melhores ${n}`.
+
+Em `src/hud/hud.ts`, no `panel.update`, acrescente
+`destinations: biomeId === undefined ? [] : destinationsView(biomeId, this.biomes, this.tiers)`.
+
+- [ ] **Passo 6: Rodar tudo e commitar**
+
+```bash
+npx vitest run test/destinations.test.ts && npm test && npm run typecheck
+npm run format
+git add src/domain/biome.ts tools/build-biomes.mts src/hud data/biome-table.generated.ts test/destinations.test.ts
+git commit -m "feat: aba de destinos com o melhor de cada bioma alcancavel"
+```
+
+---
+
+## Task B4: Egg moves, hidden ability e catch rate
+
+Verificado em jogo: `species.abilityHidden` e `species.catchRate` vêm do runtime — Ralts
+devolveu `140` e `235`. Egg moves não estão no objeto do Pokémon e precisam de tabela gerada;
+`egg-moves.ts` do upstream importa só enums e resolve direto.
+
+**Arquivos:** modificar `tools/build-biomes.mts` (ou criar `tools/build-moves.mts`),
+`src/game/pokerogue.ts`, `src/hud/views.ts`, `src/hud/panel.ts`; criar
+`data/egg-moves.generated.ts`, `data/names.generated.ts`, `test/egg-moves-data.test.ts`.
+
+- [ ] **Passo 1: Escrever o teste dos dados**
 
 `test/egg-moves-data.test.ts`:
 
 ```ts
 import { describe, expect, test } from 'vitest';
 import { EGG_MOVES } from '../data/egg-moves.generated';
+import { MOVE_NAMES } from '../data/names.generated';
 
 const entries = Object.entries(EGG_MOVES);
 
@@ -282,22 +560,22 @@ describe('tabela de egg moves', () => {
     expect(entries.length).toBeGreaterThanOrEqual(400);
   });
 
-  test('as chaves sao numero de especie', () => {
-    for (const [key] of entries) {
-      expect(key).toMatch(/^\d+$/);
-      expect(Number.parseInt(key, 10)).toBeGreaterThan(0);
-    }
-  });
-
-  test('todo valor e lista nao vazia de ids de move', () => {
+  test('as chaves sao numero de especie e os valores sao listas nao vazias', () => {
     for (const [key, moves] of entries) {
+      expect(key).toMatch(/^\d+$/);
       expect(moves.length, key).toBeGreaterThan(0);
-      for (const move of moves) expect(Number.isInteger(move), key).toBe(true);
     }
   });
 
-  test('Bulbasaur tem quatro egg moves', () => {
-    expect(EGG_MOVES[1]).toHaveLength(4);
+  test('todo egg move tem nome na tabela de nomes', () => {
+    for (const [key, moves] of entries) {
+      for (const move of moves) expect(MOVE_NAMES[move], `${key}/${move}`).toBeTypeOf('string');
+    }
+  });
+
+  test('nenhum nome de move sobra sem uso', () => {
+    const usados = new Set(Object.values(EGG_MOVES).flat());
+    for (const key of Object.keys(MOVE_NAMES)) expect(usados.has(Number(key)), key).toBe(true);
   });
 });
 ```
@@ -308,14 +586,17 @@ describe('tabela de egg moves', () => {
 npx vitest run test/egg-moves-data.test.ts
 ```
 
-Esperado: FAIL, `Failed to resolve import "../data/egg-moves.generated"`.
+Esperado: FAIL, imports não resolvidos.
 
-- [ ] **Passo 3: Emitir a tabela**
+- [ ] **Passo 3: Emitir egg moves e nomes**
 
-Acrescente em `tools/build-pokerogue-data.mts`, trocando o `process.stdout.write`:
+Acrescente ao gerador, com `locales` resolvido por `fetchUpstream('locales', pins.locales, ['en'])`.
+Os nomes vivem no repositório de locales como JSON puro, indexados por chave em camelCase; os
+enums do jogo dão o mapa id → rótulo em `SCREAMING_SNAKE_CASE`:
 
 ```ts
-import { writeFileSync } from 'node:fs';
+const camel = (value: string): string =>
+  value.toLowerCase().replace(/_(.)/g, (_, letter: string) => letter.toUpperCase());
 
 const eggModule = (await import(`${game}/src/data/balance/moves/egg-moves.ts`)) as {
   speciesEggMoves: Record<number, readonly number[]>;
@@ -328,1762 +609,192 @@ for (const [speciesId, moves] of Object.entries(eggModule.speciesEggMoves).sort(
   if (moves.length > 0) eggMoves[Number(speciesId)] = moves;
 }
 
-writeFileSync(
-  new URL('../data/egg-moves.generated.ts', import.meta.url),
-  `export const EGG_MOVES: Record<number, readonly number[]> = ${JSON.stringify(eggMoves)};\n`,
-);
+const usedMoves = new Set(Object.values(eggMoves).flat());
+const moveEnum = (await import(`${game}/src/enums/move-id.ts`)) as { MoveId: Record<string, number> };
+const moveLocale = JSON.parse(readFileSync(`${locales}/en/move.json`, 'utf8')) as Record<
+  string,
+  { name?: string } | string
+>;
 
-process.stdout.write(`${Object.keys(eggMoves).length} especies com egg move\n`);
+const moveNames: Record<number, string> = {};
+for (const [label, id] of Object.entries(moveEnum.MoveId)) {
+  if (typeof id !== 'number' || !usedMoves.has(id)) continue;
+  const entry = moveLocale[camel(label)];
+  const name = typeof entry === 'string' ? entry : entry?.name;
+  if (name) moveNames[id] = name;
+}
 ```
 
-- [ ] **Passo 4: Gerar e rodar o teste**
+Emita os dois arquivos com `JSON.stringify` sobre as chaves já ordenadas. O filtro por
+`usedMoves` é deliberado: `move.json` tem 179 KB e usaríamos uma fração.
 
-```bash
-npm run build:data && npx vitest run test/egg-moves-data.test.ts
+- [ ] **Passo 4: Ler HA e catch rate do runtime**
+
+Em `src/game/pokerogue.ts`, acrescente a `PokeRogueSpecies`:
+
+```ts
+  catchRate: number;
+  abilityHidden: number;
 ```
 
-Esperado: contagem impressa, depois PASS com 4 testes.
+Em `src/hud/views.ts`, `PokemonRow` ganha três campos, e `rowForPokemon` os preenche a partir
+de `pokemon.species`. Campo sem dado vem `null` e **não vira linha** no painel — não existe
+texto de preenchimento:
 
-- [ ] **Passo 5: Confirmar reprodutibilidade**
-
-```bash
-npm run build:data && git diff --exit-code data/egg-moves.generated.ts && echo identico
+```ts
+  hiddenAbility: string | null;
+  eggMoves: readonly string[];
+  catchRate: number | null;
 ```
 
-Esperado: `identico`.
+`rowFor`, que também serve às listas de bioma, preenche esses campos com `null` e `[]`: ali não
+há instância de Pokémon, só id de espécie.
 
-- [ ] **Passo 6: Commit**
+- [ ] **Passo 5: Exibir no painel**
+
+Em `src/hud/panel.ts`, `rowElement` ganha uma segunda linha, renderizada só quando houver
+conteúdo — HA, egg moves e catch rate, separados por `·`. Linha sem conteúdo não é criada.
+
+- [ ] **Passo 6: Rodar e commitar**
 
 ```bash
-npm run format && npm run typecheck && npm test
-git add tools/build-pokerogue-data.mts data/egg-moves.generated.ts test/egg-moves-data.test.ts
-git commit -m "feat: tabela de egg moves gerada do upstream"
+npm run build:biomes && npm test && npm run typecheck
+npm run format
+git add data tools src/game/pokerogue.ts src/hud test/egg-moves-data.test.ts
+git commit -m "feat: egg moves, hidden ability e catch rate no painel"
 ```
 
 ---
 
-## Task A3: Índice de biomas e grafo de destinos
+## Task B5: Nomes de bioma vindos dos locales
 
-**Arquivos:** criar `src/domain/biome.ts`, `test/biome.test.ts`,
-`test/biome-data.test.ts`; modificar `tools/build-pokerogue-data.mts`; gerar
-`data/biome-index.generated.ts` e `data/biome-links.generated.ts`.
+`src/hud/hud.ts` tem hoje um `BIOME_LABELS` com 35 traduções escritas à mão. Elas envelhecem
+sem aviso quando o upstream adiciona bioma, e existem só em português.
 
-**Interfaces:** produz `Encounter`, `BiomeIndex`, `BiomeLinks`,
-`encountersIn(index, speciesId, biomeId): readonly Encounter[]`,
-`destinationsFrom(links, biomeId): readonly number[]`.
-
-- [ ] **Passo 1: Escrever o teste do domínio**
-
-`test/biome.test.ts`:
-
-```ts
-import { describe, expect, test } from 'vitest';
-import { type BiomeIndex, type BiomeLinks, destinationsFrom, encountersIn } from '../src/domain/biome';
-
-const index: BiomeIndex = {
-  1: [
-    { biome: 10, rarity: 0, timeOfDay: 4 },
-    { biome: 10, rarity: 2, timeOfDay: 1 },
-    { biome: 20, rarity: 4, timeOfDay: 4 },
-  ],
-};
-
-const links: BiomeLinks = { 1: [2, 4, 9], 50: [] };
-
-describe('encountersIn', () => {
-  test('devolve todas as ocorrencias da especie no bioma consultado', () => {
-    expect(encountersIn(index, 1, 10)).toHaveLength(2);
-  });
-
-  test('ignora ocorrencias de outros biomas', () => {
-    expect(encountersIn(index, 1, 20)).toEqual([{ biome: 20, rarity: 4, timeOfDay: 4 }]);
-  });
-
-  test('especie ausente do bioma devolve lista vazia sem erro', () => {
-    expect(encountersIn(index, 1, 99)).toEqual([]);
-  });
-
-  test('especie fora do indice devolve lista vazia sem erro', () => {
-    expect(encountersIn(index, 999, 10)).toEqual([]);
-  });
-
-  test('bioma desconhecido devolve lista vazia', () => {
-    expect(encountersIn(index, 1, null)).toEqual([]);
-  });
-});
-
-describe('destinationsFrom', () => {
-  test('devolve os destinos do bioma', () => {
-    expect(destinationsFrom(links, 1)).toEqual([2, 4, 9]);
-  });
-
-  test('bioma terminal devolve lista vazia', () => {
-    expect(destinationsFrom(links, 50)).toEqual([]);
-  });
-
-  test('bioma desconhecido devolve lista vazia sem erro', () => {
-    expect(destinationsFrom(links, 999)).toEqual([]);
-    expect(destinationsFrom(links, null)).toEqual([]);
-  });
-});
-```
-
-- [ ] **Passo 2: Rodar e confirmar que falha**
-
-```bash
-npx vitest run test/biome.test.ts
-```
-
-Esperado: FAIL, `Failed to resolve import "../src/domain/biome"`.
-
-- [ ] **Passo 3: Escrever `src/domain/biome.ts`**
-
-```ts
-export interface Encounter {
-  biome: number;
-  rarity: number;
-  timeOfDay: number;
-}
-
-export type BiomeIndex = Record<number, readonly Encounter[]>;
-export type BiomeLinks = Record<number, readonly number[]>;
-
-export function encountersIn(
-  index: BiomeIndex,
-  speciesId: number,
-  biomeId: number | null,
-): readonly Encounter[] {
-  if (biomeId === null) return [];
-  return (index[speciesId] ?? []).filter((encounter) => encounter.biome === biomeId);
-}
-
-export function destinationsFrom(links: BiomeLinks, biomeId: number | null): readonly number[] {
-  return biomeId === null ? [] : (links[biomeId] ?? []);
-}
-```
-
-- [ ] **Passo 4: Rodar e confirmar que passa**
-
-```bash
-npx vitest run test/biome.test.ts
-```
-
-Esperado: PASS, 8 testes.
-
-- [ ] **Passo 5: Escrever o teste das tabelas geradas**
-
-`test/biome-data.test.ts`:
-
-```ts
-import { describe, expect, test } from 'vitest';
-import { BIOME_INDEX } from '../data/biome-index.generated';
-import { BIOME_LINKS } from '../data/biome-links.generated';
-
-describe('indice de biomas gerado', () => {
-  const entries = Object.entries(BIOME_INDEX);
-
-  test('cobre pelo menos 500 especies', () => {
-    expect(entries.length).toBeGreaterThanOrEqual(500);
-  });
-
-  test('toda ocorrencia tem bioma, raridade e hora do dia inteiros', () => {
-    for (const [key, encounters] of entries) {
-      for (const encounter of encounters) {
-        expect(Number.isInteger(encounter.biome), key).toBe(true);
-        expect(Number.isInteger(encounter.rarity), key).toBe(true);
-        expect(Number.isInteger(encounter.timeOfDay), key).toBe(true);
-      }
-    }
-  });
-
-  test('nenhuma especie entra com lista vazia', () => {
-    for (const [key, encounters] of entries) expect(encounters.length, key).toBeGreaterThan(0);
-  });
-});
-
-describe('grafo de destinos gerado', () => {
-  test('cobre pelo menos 20 biomas', () => {
-    expect(Object.keys(BIOME_LINKS).length).toBeGreaterThanOrEqual(20);
-  });
-
-  test('Plains leva a Grass, Metropolis e Lake', () => {
-    expect(BIOME_LINKS[1]).toEqual(expect.arrayContaining([2, 4, 9]));
-  });
-
-  test('todo destino e um bioma conhecido do indice de links', () => {
-    for (const [origin, destinations] of Object.entries(BIOME_LINKS)) {
-      for (const destination of destinations) {
-        expect(Number.isInteger(destination), origin).toBe(true);
-      }
-    }
-  });
-});
-```
-
-- [ ] **Passo 6: Rodar e confirmar que falha**
-
-```bash
-npx vitest run test/biome-data.test.ts
-```
-
-Esperado: FAIL, import não resolvido.
-
-- [ ] **Passo 7: Emitir as duas tabelas**
-
-Acrescente em `tools/build-pokerogue-data.mts`:
-
-```ts
-import type { BiomeIndex, BiomeLinks, Encounter } from '../src/domain/biome';
-
-interface UpstreamBiome {
-  biomeId: number;
-  pokemonPool: Record<string, Record<string, readonly number[]>>;
-  biomeLinks: readonly (number | readonly [number, number])[];
-}
-
-const rawIndex: Record<number, Encounter[]> = {};
-const rawLinks: Record<number, number[]> = {};
-
-for (const file of biomeFiles) {
-  const loaded = (await import(`${game}/src/data/balance/biomes/${file}`)) as Record<string, unknown>;
-  const biome = Object.values(loaded).find(
-    (value): value is UpstreamBiome =>
-      typeof value === 'object' && value !== null && 'biomeId' in value && 'pokemonPool' in value,
-  );
-  if (!biome) throw new Error(`bioma sem export reconhecivel: ${file}`);
-
-  rawLinks[biome.biomeId] = biome.biomeLinks.map((link) =>
-    typeof link === 'number' ? link : link[0],
-  );
-
-  for (const [rarity, byTime] of Object.entries(biome.pokemonPool)) {
-    for (const [timeOfDay, speciesIds] of Object.entries(byTime)) {
-      for (const speciesId of speciesIds) {
-        (rawIndex[speciesId] ??= []).push({
-          biome: biome.biomeId,
-          rarity: Number(rarity),
-          timeOfDay: Number(timeOfDay),
-        });
-      }
-    }
-  }
-}
-
-const byNumericKey = <T>(source: Record<number, T>): Record<number, T> =>
-  Object.fromEntries(Object.entries(source).sort(([a], [b]) => Number(a) - Number(b))) as Record<number, T>;
-
-const biomeIndex: BiomeIndex = byNumericKey(
-  Object.fromEntries(
-    Object.entries(rawIndex).map(([id, list]) => [
-      Number(id),
-      list.sort((a, b) => a.biome - b.biome || a.rarity - b.rarity || a.timeOfDay - b.timeOfDay),
-    ]),
-  ),
-);
-
-const biomeLinks: BiomeLinks = byNumericKey(rawLinks);
-
-writeFileSync(
-  new URL('../data/biome-index.generated.ts', import.meta.url),
-  [
-    `import type { BiomeIndex } from '../src/domain/biome';`,
-    '',
-    `export const BIOME_INDEX: BiomeIndex = ${JSON.stringify(biomeIndex)};`,
-    '',
-  ].join('\n'),
-);
-
-writeFileSync(
-  new URL('../data/biome-links.generated.ts', import.meta.url),
-  [
-    `import type { BiomeLinks } from '../src/domain/biome';`,
-    '',
-    `export const BIOME_LINKS: BiomeLinks = ${JSON.stringify(biomeLinks)};`,
-    '',
-  ].join('\n'),
-);
-```
-
-Um `biomeLink` pode vir como `BiomeId` ou como `[BiomeId, peso]`; o peso é probabilidade de
-transição e não muda o conjunto de destinos oferecidos, então só o id entra.
-
-- [ ] **Passo 8: Gerar, testar e conferir reprodutibilidade**
-
-```bash
-npm run build:data && npx vitest run test/biome-data.test.ts test/biome.test.ts
-npm run build:data && git diff --exit-code data/biome-index.generated.ts data/biome-links.generated.ts && echo identico
-```
-
-Esperado: PASS nos dois arquivos, depois `identico`.
-
-- [ ] **Passo 9: Commit**
-
-```bash
-npm run format && npm run typecheck && npm test
-git add src/domain/biome.ts test/biome.test.ts test/biome-data.test.ts tools/build-pokerogue-data.mts data/biome-index.generated.ts data/biome-links.generated.ts
-git commit -m "feat: indice de biomas por especie e grafo de destinos"
-```
-
----
-
-## Task A4: Tabelas de nome filtradas
-
-**Arquivos:** modificar `tools/build-pokerogue-data.mts`; criar `data/names.generated.ts`
-(gerado) e `test/names-data.test.ts`.
-
-**Interfaces:** consome `EGG_MOVES` de A2 e `BIOME_INDEX` de A3. Produz `ABILITY_NAMES`,
-`MOVE_NAMES`, `BIOME_NAMES`, `TYPE_NAMES`, todos `Record<number, string>`.
-
-O JSON de locales é indexado por chave em camelCase (`trace`, `gigaDrain`), não por id. Os
-enums `AbilityId`, `MoveId`, `BiomeId` e `PokemonType` do upstream dão o mapa id → rótulo em
-`SCREAMING_SNAKE_CASE`. A ponte é converter o rótulo para camelCase e procurar a chave.
+**Arquivos:** modificar `tools/build-biomes.mts`, `src/hud/hud.ts`; criar
+`test/biome-names.test.ts`.
 
 - [ ] **Passo 1: Escrever o teste que falha**
 
-`test/names-data.test.ts`:
-
 ```ts
 import { describe, expect, test } from 'vitest';
-import { BIOME_INDEX } from '../data/biome-index.generated';
-import { EGG_MOVES } from '../data/egg-moves.generated';
-import { ABILITY_NAMES, BIOME_NAMES, MOVE_NAMES, TYPE_NAMES } from '../data/names.generated';
+import { BIOME_TABLE } from '../data/biome-table.generated';
+import { BIOME_NAMES } from '../data/names.generated';
 
-describe('tabelas de nome', () => {
-  test('todo move que e egg move tem nome', () => {
-    for (const [species, moves] of Object.entries(EGG_MOVES)) {
-      for (const move of moves) expect(MOVE_NAMES[move], `${species}/${move}`).toBeTypeOf('string');
+describe('nomes de bioma', () => {
+  test('todo bioma da tabela tem nome legivel', () => {
+    for (const key of Object.keys(BIOME_TABLE)) {
+      expect(BIOME_NAMES[Number(key)], key).toBeTypeOf('string');
     }
-  });
-
-  test('todo bioma do indice tem nome', () => {
-    const biomes = new Set(Object.values(BIOME_INDEX).flat().map((e) => e.biome));
-    for (const biome of biomes) expect(BIOME_NAMES[biome], String(biome)).toBeTypeOf('string');
-  });
-
-  test('nenhum nome de move sobra sem uso', () => {
-    const usados = new Set(Object.values(EGG_MOVES).flat());
-    for (const key of Object.keys(MOVE_NAMES)) expect(usados.has(Number(key)), key).toBe(true);
-  });
-
-  test('as abilities cobrem pelo menos 200 entradas', () => {
-    expect(Object.keys(ABILITY_NAMES).length).toBeGreaterThanOrEqual(200);
-  });
-
-  test('os 18 tipos tem nome', () => {
-    expect(Object.keys(TYPE_NAMES).length).toBeGreaterThanOrEqual(18);
   });
 
   test('nenhum nome vazio', () => {
-    for (const table of [ABILITY_NAMES, MOVE_NAMES, BIOME_NAMES, TYPE_NAMES]) {
-      for (const [key, name] of Object.entries(table)) expect(name.length, key).toBeGreaterThan(0);
+    for (const [key, name] of Object.entries(BIOME_NAMES)) {
+      expect(name.length, key).toBeGreaterThan(0);
     }
   });
 });
 ```
 
-- [ ] **Passo 2: Rodar e confirmar que falha**
+- [ ] **Passo 2: Emitir `BIOME_NAMES` de `en/biomes.json`**
+
+Mesma ponte enum → camelCase → locale do passo B4.
+
+- [ ] **Passo 3: Remover `BIOME_LABELS` do `hud.ts`**
+
+Troque o `BIOME_LABELS.get(biome.name) ?? biome.name` por `BIOME_NAMES[biomeId] ?? biome.name`.
+As 35 linhas de tradução saem do código.
+
+- [ ] **Passo 4: Rodar e commitar**
 
 ```bash
-npx vitest run test/names-data.test.ts
-```
-
-Esperado: FAIL, import não resolvido.
-
-- [ ] **Passo 3: Emitir as tabelas de nome**
-
-```ts
-const camel = (value: string): string =>
-  value.toLowerCase().replace(/_(.)/g, (_, letter: string) => letter.toUpperCase());
-
-async function namesFrom(
-  enumFile: string,
-  enumName: string,
-  localeFile: string,
-  keep: (id: number) => boolean,
-): Promise<Record<number, string>> {
-  const loaded = (await import(`${game}/src/enums/${enumFile}`)) as Record<string, unknown>;
-  const ids = loaded[enumName] as Record<string, string | number>;
-  const locale = JSON.parse(readFileSync(`${locales}/en/${localeFile}`, 'utf8')) as Record<
-    string,
-    { name?: string } | string
-  >;
-
-  const names: Record<number, string> = {};
-  for (const [label, id] of Object.entries(ids)) {
-    if (typeof id !== 'number' || !keep(id)) continue;
-    const entry = locale[camel(label)];
-    const name = typeof entry === 'string' ? entry : entry?.name;
-    if (name) names[id] = name;
-  }
-  return byNumericKey(names);
-}
-
-const eggMoveIds = new Set(Object.values(eggMoves).flat());
-const biomeIds = new Set(Object.values(biomeIndex).flat().map((e) => e.biome));
-
-const moveNames = await namesFrom('move-id.ts', 'MoveId', 'move.json', (id) => eggMoveIds.has(id));
-const biomeNames = await namesFrom('biome-id.ts', 'BiomeId', 'biomes.json', (id) => biomeIds.has(id));
-const abilityNames = await namesFrom('ability-id.ts', 'AbilityId', 'ability.json', () => true);
-const typeNames = await namesFrom('pokemon-type.ts', 'PokemonType', 'pokemon-info.json', () => true);
-
-const table = (name: string, value: Record<number, string>): string =>
-  `export const ${name}: Record<number, string> = ${JSON.stringify(value)};`;
-
-writeFileSync(
-  new URL('../data/names.generated.ts', import.meta.url),
-  [
-    table('ABILITY_NAMES', abilityNames),
-    table('MOVE_NAMES', moveNames),
-    table('BIOME_NAMES', biomeNames),
-    table('TYPE_NAMES', typeNames),
-    '',
-  ].join('\n'),
-);
-```
-
-O `keep` é AD-5: `MOVE_NAMES` só recebe move que é egg move, `BIOME_NAMES` só bioma presente
-no índice. Abilities e tipos entram inteiros porque vêm do runtime e qualquer id pode aparecer.
-
-- [ ] **Passo 4: Gerar e rodar o teste**
-
-```bash
-npm run build:data && npx vitest run test/names-data.test.ts
-```
-
-Esperado: PASS, 6 testes. Se um nome faltar, a chave do locale diverge do enum — imprima o par
-e ajuste `camel` ou o nome do arquivo de locale antes de seguir. `pokemon-info.json` pode
-aninhar os tipos sob outra chave; confirme a estrutura com
-`node -e "console.log(Object.keys(require('./.upstream/locales/en/pokemon-info.json')))"`.
-
-- [ ] **Passo 5: Medir o tamanho**
-
-```bash
-wc -c data/*.generated.ts
-```
-
-Esperado: soma bem abaixo de 400 KB. É o insumo do teto de AD-8.
-
-- [ ] **Passo 6: Commit**
-
-```bash
-npm run format && npm run typecheck && npm test
-git add tools/build-pokerogue-data.mts data/names.generated.ts test/names-data.test.ts
-git commit -m "feat: tabelas de nome filtradas do repositorio de locales"
+npm run build:biomes && npm test && npm run typecheck && npm run format
+git add tools src/hud/hud.ts data test/biome-names.test.ts
+git commit -m "refactor: nomes de bioma vem dos locales em vez de tabela manual"
 ```
 
 ---
 
-## Task A5: `domain/forms.ts`
+## Task B6: Cobertura de tipos do time
 
-**Arquivos:** criar `src/domain/forms.ts` e `test/forms.test.ts`.
+A aba "Meu time" lista o time. A pergunta que ela ainda não responde é qual buraco o time tem —
+e é o que transforma a aba de destinos em decisão.
 
-**Interfaces:** produz `interface SpecialForm { key: string; label: string }` e
-`formsOf(formKeys: readonly string[]): readonly SpecialForm[]`.
+**Arquivos:** criar `src/domain/coverage.ts`, `test/coverage.test.ts`; modificar
+`src/game/pokerogue.ts`, `src/hud/views.ts`, `src/hud/panel.ts`.
+
+**Interfaces:** produz `missingTypes(team: readonly TeamMember[], allTypes: readonly number[]): readonly number[]`,
+com `TeamMember { types: readonly number[] }`.
 
 - [ ] **Passo 1: Escrever o teste que falha**
 
-`test/forms.test.ts`:
-
 ```ts
 import { describe, expect, test } from 'vitest';
-import { formsOf } from '../src/domain/forms';
+import { missingTypes } from '../src/domain/coverage';
 
-describe('formsOf', () => {
-  test('reconhece mega e devolve rotulo legivel', () => {
-    expect(formsOf(['', 'mega'])).toEqual([{ key: 'mega', label: 'Mega' }]);
+const todos = [10, 11, 12];
+
+describe('missingTypes', () => {
+  test('time vazio devolve lista vazia em vez de todos os tipos', () => {
+    expect(missingTypes([], todos)).toEqual([]);
   });
 
-  test('reconhece mega-x e mega-y separadamente', () => {
-    expect(formsOf(['', 'mega-x', 'mega-y']).map((f) => f.label)).toEqual(['Mega X', 'Mega Y']);
+  test('lista os tipos que ninguem no time tem', () => {
+    expect(missingTypes([{ types: [10] }], todos)).toEqual([11, 12]);
   });
 
-  test('reconhece gigantamax, primal e eternamax', () => {
-    expect(formsOf(['gigantamax', 'primal', 'eternamax']).map((f) => f.label)).toEqual([
-      'Gigantamax',
-      'Primal',
-      'Eternamax',
-    ]);
+  test('tipo duplo cobre os dois', () => {
+    expect(missingTypes([{ types: [10, 11] }], todos)).toEqual([12]);
   });
 
-  test('ignora forma vazia e formas regionais', () => {
-    expect(formsOf(['', 'alola', 'galar', 'hisui', 'paldea'])).toEqual([]);
-  });
-
-  test('especie sem forma especial devolve lista vazia', () => {
-    expect(formsOf([])).toEqual([]);
-  });
-
-  test('nao repete a mesma forma declarada duas vezes', () => {
-    expect(formsOf(['mega', 'mega'])).toHaveLength(1);
+  test('time que cobre tudo devolve lista vazia', () => {
+    expect(missingTypes([{ types: [10, 11, 12] }], todos)).toEqual([]);
   });
 });
 ```
 
-- [ ] **Passo 2: Rodar e confirmar que falha**
+Time vazio devolve lista vazia, não "faltam todos": sem time, a comparação não tem significado,
+e apresentar uma seria opinião disfarçada de fato.
 
-```bash
-npx vitest run test/forms.test.ts
-```
-
-Esperado: FAIL, `Failed to resolve import "../src/domain/forms"`.
-
-- [ ] **Passo 3: Escrever `src/domain/forms.ts`**
-
-Os valores vêm do enum `SpeciesFormKey` do upstream. Copiá-los é deliberado: são a chave de
-leitura de um dado de runtime, não uma tabela que muda com balanceamento, e importá-los
-custaria arrastar o gerador para dentro do bundle.
-
-```ts
-export interface SpecialForm {
-  key: string;
-  label: string;
-}
-
-const LABELS: Record<string, string> = {
-  mega: 'Mega',
-  'mega-x': 'Mega X',
-  'mega-y': 'Mega Y',
-  'mega-z': 'Mega Z',
-  'mega-original': 'Mega Original',
-  'mega-curly': 'Mega Curly',
-  'mega-droopy': 'Mega Droopy',
-  'mega-stretchy': 'Mega Stretchy',
-  primal: 'Primal',
-  origin: 'Origin',
-  therian: 'Therian',
-  gigantamax: 'Gigantamax',
-  'gigantamax-single': 'Gigantamax Single Strike',
-  'gigantamax-rapid': 'Gigantamax Rapid Strike',
-  eternamax: 'Eternamax',
-};
-
-export function formsOf(formKeys: readonly string[]): readonly SpecialForm[] {
-  const seen = new Set<string>();
-  const forms: SpecialForm[] = [];
-
-  for (const key of formKeys) {
-    const label = LABELS[key];
-    if (!label || seen.has(key)) continue;
-    seen.add(key);
-    forms.push({ key, label });
-  }
-
-  return forms;
-}
-```
-
-`incarnate` fica de fora de propósito: é a forma base das lendárias de força, não uma conquista
-que muda a decisão do jogador.
-
-- [ ] **Passo 4: Rodar e confirmar que passa**
-
-```bash
-npx vitest run test/forms.test.ts
-```
-
-Esperado: PASS, 6 testes.
-
-- [ ] **Passo 5: Commit**
-
-```bash
-npm run format && npm run typecheck && npm test
-git add src/domain/forms.ts test/forms.test.ts
-git commit -m "feat: reconhecimento de formas especiais mega, gmax e primal"
-```
-
----
-
-## Task A6: `domain/team.ts` e `game/party.ts`
-
-**Arquivos:** criar `src/domain/team.ts`, `src/game/party.ts`, `test/team.test.ts`; modificar
-`src/game/pokerogue.ts`.
-
-**Interfaces:** produz `TeamMember { speciesId: number; types: readonly number[] }`,
-`TeamProfile { species: ReadonlySet<number>; types: ReadonlySet<number> }`,
-`profileOf(members): TeamProfile`, `readTeam(scene: BattleScene): TeamMember[]`.
-
-- [ ] **Passo 1: Escrever o teste que falha**
-
-`test/team.test.ts`:
-
-```ts
-import { describe, expect, test } from 'vitest';
-import { profileOf } from '../src/domain/team';
-
-describe('profileOf', () => {
-  test('time vazio devolve conjuntos vazios sem lancar', () => {
-    const profile = profileOf([]);
-    expect(profile.species.size).toBe(0);
-    expect(profile.types.size).toBe(0);
-  });
-
-  test('reune as especies do time', () => {
-    const profile = profileOf([
-      { speciesId: 1, types: [12] },
-      { speciesId: 4, types: [10] },
-    ]);
-    expect([...profile.species].sort((a, b) => a - b)).toEqual([1, 4]);
-  });
-
-  test('especie de tipo duplo contribui com os dois tipos', () => {
-    expect(profileOf([{ speciesId: 1, types: [12, 8] }]).types.size).toBe(2);
-  });
-
-  test('especie repetida nao duplica o conjunto', () => {
-    const profile = profileOf([
-      { speciesId: 1, types: [12] },
-      { speciesId: 1, types: [12] },
-    ]);
-    expect(profile.species.size).toBe(1);
-    expect(profile.types.size).toBe(1);
-  });
-});
-```
-
-- [ ] **Passo 2: Rodar e confirmar que falha**
-
-```bash
-npx vitest run test/team.test.ts
-```
-
-Esperado: FAIL, `Failed to resolve import "../src/domain/team"`.
-
-- [ ] **Passo 3: Escrever os dois módulos**
-
-`src/domain/team.ts`:
+- [ ] **Passo 2: Escrever `src/domain/coverage.ts`**
 
 ```ts
 export interface TeamMember {
-  speciesId: number;
   types: readonly number[];
 }
 
-export interface TeamProfile {
-  species: ReadonlySet<number>;
-  types: ReadonlySet<number>;
-}
-
-export function profileOf(members: readonly TeamMember[]): TeamProfile {
-  const species = new Set<number>();
-  const types = new Set<number>();
-
-  for (const member of members) {
-    species.add(member.speciesId);
-    for (const type of member.types) types.add(type);
-  }
-
-  return { species, types };
+export function missingTypes(
+  team: readonly TeamMember[],
+  allTypes: readonly number[],
+): readonly number[] {
+  if (team.length === 0) return [];
+  const present = new Set(team.flatMap((member) => member.types));
+  return allTypes.filter((type) => !present.has(type));
 }
 ```
 
-Em `src/game/pokerogue.ts`, acrescente `type1: number`, `type2: number | null` a
-`PokeRogueSpecies`, e à `BattleScene` os campos `party: readonly PokeRoguePokemon[]` e
-`arena: { biomeType: number } | null`.
+- [ ] **Passo 3: Ligar no painel**
 
-`src/game/party.ts`:
+`PokeRogueSpecies` ganha `type1: number` e `type2: number | null`. `partyView` passa a devolver
+também os tipos, e o rodapé da aba "Meu time" mostra `Sem cobertura: ...` usando `TYPE_NAMES`,
+emitido pelo gerador a partir do enum `PokemonType` e do locale correspondente. Linha só
+aparece quando há tipo faltando.
 
-```ts
-import type { TeamMember } from '../domain/team';
-import type { BattleScene } from './pokerogue';
-
-export function readTeam(scene: BattleScene): TeamMember[] {
-  return scene.party.map((pokemon) => ({
-    speciesId: pokemon.species.speciesId,
-    types: [pokemon.species.type1, pokemon.species.type2].filter(
-      (type): type is number => type !== null,
-    ),
-  }));
-}
-```
-
-- [ ] **Passo 4: Rodar e confirmar que passa**
+- [ ] **Passo 4: Rodar e commitar**
 
 ```bash
-npx vitest run test/team.test.ts
-```
-
-Esperado: PASS, 4 testes.
-
-- [ ] **Passo 5: Commit**
-
-```bash
-npm run format && npm run typecheck && npm test
-git add src/domain/team.ts src/game/party.ts src/game/pokerogue.ts test/team.test.ts
-git commit -m "feat: perfil do time do jogador a partir da party da cena"
+npx vitest run test/coverage.test.ts && npm test && npm run typecheck && npm run format
+git add src/domain/coverage.ts src/game/pokerogue.ts src/hud test/coverage.test.ts data tools
+git commit -m "feat: cobertura de tipos do time na aba do time"
 ```
 
 ---
 
-## Task A7: `domain/dossier.ts`
-
-**Arquivos:** criar `src/domain/dossier.ts`, `src/game/facts.ts`, `test/dossier.test.ts`,
-`test/facts.test.ts`; modificar `test/support/fake-pokerogue.ts`.
-
-**Interfaces:** produz `RuntimeFacts`, `readRuntimeFacts(pokemon, biomeId)`, `DossierTables`,
-`Dossier`, `dossierFor(facts, tables)`.
-
-- [ ] **Passo 1: Escrever os testes que falham**
-
-`test/facts.test.ts`:
-
-```ts
-import { describe, expect, test } from 'vitest';
-import { readRuntimeFacts } from '../src/game/facts';
-import { fakePokemon } from './support/fake-pokerogue';
-
-describe('readRuntimeFacts', () => {
-  test('le catch rate, hidden ability e formas da especie', () => {
-    const facts = readRuntimeFacts(
-      fakePokemon({ speciesId: 280, catchRate: 235, abilityHidden: 140, formKeys: ['', 'mega'] }),
-      10,
-    );
-    expect(facts.catchRate).toBe(235);
-    expect(facts.hiddenAbilityId).toBe(140);
-    expect(facts.formKeys).toEqual(['', 'mega']);
-    expect(facts.biomeId).toBe(10);
-  });
-
-  test('bioma nulo atravessa sem lancar', () => {
-    expect(readRuntimeFacts(fakePokemon({ speciesId: 1 }), null).biomeId).toBeNull();
-  });
-
-  test('especie sem hidden ability devolve null', () => {
-    expect(
-      readRuntimeFacts(fakePokemon({ speciesId: 1, abilityHidden: 0 }), 1).hiddenAbilityId,
-    ).toBeNull();
-  });
-
-  test('fusao junta os dois nomes e preenche a referencia secundaria', () => {
-    const facts = readRuntimeFacts(
-      fakePokemon({ speciesId: 280, name: 'Ralts', fusionName: 'Gyarados', fusionId: 130 }),
-      1,
-    );
-    expect(facts.name).toBe('Ralts/Gyarados');
-    expect(facts.fusion?.speciesId).toBe(130);
-  });
-});
-```
-
-Acrescente `fakePokemon` em `test/support/fake-pokerogue.ts`, seguindo o que já existe para os
-alvos de batalha, com os campos `catchRate`, `abilityHidden`, `formKeys`, `name`, `fusionName`
-e `fusionId`.
-
-`test/dossier.test.ts`:
-
-```ts
-import { describe, expect, test } from 'vitest';
-import { type DossierTables, dossierFor } from '../src/domain/dossier';
-import type { RuntimeFacts } from '../src/game/facts';
-
-const tables: DossierTables = {
-  tiers: { '280': { tier: 'LC', bestTier: 'OU', bestName: 'Gardevoir' } },
-  eggMoves: { 280: [1, 2] },
-  biomes: { 280: [{ biome: 10, rarity: 2, timeOfDay: 4 }] },
-  abilityNames: { 140: 'Trace' },
-  moveNames: { 1: 'Memento', 2: 'Encore' },
-};
-
-const facts = (overrides: Partial<RuntimeFacts> = {}): RuntimeFacts => ({
-  name: 'Ralts',
-  primary: { speciesId: 280, formKey: '' },
-  fusion: null,
-  catchRate: 235,
-  hiddenAbilityId: 140,
-  formKeys: ['', 'mega'],
-  biomeId: 10,
-  ...overrides,
-});
-
-describe('dossierFor', () => {
-  test('resolve nome de hidden ability e de egg move pelos ids', () => {
-    const dossier = dossierFor(facts(), tables);
-    expect(dossier.hiddenAbility).toBe('Trace');
-    expect(dossier.eggMoves).toEqual(['Memento', 'Encore']);
-  });
-
-  test('expoe as formas especiais reconhecidas', () => {
-    expect(dossierFor(facts(), tables).forms.map((f) => f.label)).toEqual(['Mega']);
-  });
-
-  test('filtra as ocorrencias pelo bioma atual', () => {
-    expect(dossierFor(facts(), tables).encounters).toHaveLength(1);
-    expect(dossierFor(facts({ biomeId: 99 }), tables).encounters).toEqual([]);
-  });
-
-  test('bioma nulo omite so a raridade e preserva o resto', () => {
-    const dossier = dossierFor(facts({ biomeId: null }), tables);
-    expect(dossier.encounters).toEqual([]);
-    expect(dossier.catchRate).toBe(235);
-    expect(dossier.hiddenAbility).toBe('Trace');
-  });
-
-  test('hidden ability desconhecida vira null em vez de texto de preenchimento', () => {
-    expect(dossierFor(facts({ hiddenAbilityId: 999 }), tables).hiddenAbility).toBeNull();
-  });
-
-  test('especie sem egg move devolve lista vazia', () => {
-    expect(
-      dossierFor(facts({ primary: { speciesId: 1, formKey: '' } }), tables).eggMoves,
-    ).toEqual([]);
-  });
-
-  test('fusao mantem o nome composto e os fatos da especie primaria', () => {
-    const dossier = dossierFor(
-      facts({ name: 'Ralts/Gyarados', fusion: { speciesId: 130, formKey: '' } }),
-      tables,
-    );
-    expect(dossier.name).toBe('Ralts/Gyarados');
-    expect(dossier.catchRate).toBe(235);
-  });
-});
-```
-
-- [ ] **Passo 2: Rodar e confirmar que falham**
-
-```bash
-npx vitest run test/facts.test.ts test/dossier.test.ts
-```
-
-Esperado: FAIL nos dois, imports não resolvidos.
-
-- [ ] **Passo 3: Escrever `src/game/facts.ts`**
-
-```ts
-import type { SpeciesRef } from '../domain/species-key';
-import { formKeyOf, type PokeRoguePokemon } from './pokerogue';
-
-export interface RuntimeFacts {
-  name: string;
-  primary: SpeciesRef;
-  fusion: SpeciesRef | null;
-  catchRate: number | null;
-  hiddenAbilityId: number | null;
-  formKeys: readonly string[];
-  biomeId: number | null;
-}
-
-export function readRuntimeFacts(pokemon: PokeRoguePokemon, biomeId: number | null): RuntimeFacts {
-  const species = pokemon.species;
-  const fusionSpecies = pokemon.fusionSpecies;
-
-  return {
-    name: fusionSpecies ? `${species.name}/${fusionSpecies.name}` : species.name,
-    primary: { speciesId: species.speciesId, formKey: formKeyOf(species, pokemon.formIndex) },
-    fusion: fusionSpecies
-      ? {
-          speciesId: fusionSpecies.speciesId,
-          formKey: formKeyOf(fusionSpecies, pokemon.fusionFormIndex),
-        }
-      : null,
-    catchRate: species.catchRate || null,
-    hiddenAbilityId: species.abilityHidden || null,
-    formKeys: (species.forms ?? []).map((form) => form.formKey),
-    biomeId,
-  };
-}
-```
-
-- [ ] **Passo 4: Escrever `src/domain/dossier.ts`**
-
-```ts
-import type { RuntimeFacts } from '../game/facts';
-import { type BiomeIndex, type Encounter, encountersIn } from './biome';
-import { formsOf, type SpecialForm } from './forms';
-import { type ResolvedTiers, resolveTiers, type TierTable } from './tier-table';
-
-export interface DossierTables {
-  tiers: TierTable;
-  eggMoves: Record<number, readonly number[]>;
-  biomes: BiomeIndex;
-  abilityNames: Record<number, string>;
-  moveNames: Record<number, string>;
-}
-
-export interface Dossier {
-  name: string;
-  tiers: ResolvedTiers;
-  hiddenAbility: string | null;
-  eggMoves: readonly string[];
-  forms: readonly SpecialForm[];
-  encounters: readonly Encounter[];
-  catchRate: number | null;
-}
-
-export function dossierFor(facts: RuntimeFacts, tables: DossierTables): Dossier {
-  const speciesId = facts.primary.speciesId;
-
-  return {
-    name: facts.name,
-    tiers: resolveTiers(tables.tiers, facts.primary, facts.fusion),
-    hiddenAbility:
-      facts.hiddenAbilityId === null ? null : (tables.abilityNames[facts.hiddenAbilityId] ?? null),
-    eggMoves: (tables.eggMoves[speciesId] ?? []).flatMap((id) => tables.moveNames[id] ?? []),
-    forms: formsOf(facts.formKeys),
-    encounters: encountersIn(tables.biomes, speciesId, facts.biomeId),
-    catchRate: facts.catchRate,
-  };
-}
-```
-
-`dossier.ts` importa de `game/facts` apenas o `type` — nenhum valor atravessa a fronteira, e
-AD-10 continua valendo.
-
-- [ ] **Passo 5: Rodar e confirmar que passam**
-
-```bash
-npx vitest run test/facts.test.ts test/dossier.test.ts
-```
-
-Esperado: PASS, 4 e 7 testes.
-
-- [ ] **Passo 6: Confirmar o isolamento do domínio**
-
-```bash
-grep -rn "from '\.\./render\|phaser" src/domain/ ; echo "codigo: $?"
-```
-
-Esperado: nenhuma linha, `codigo: 1`. É AD-10.
-
-- [ ] **Passo 7: Commit**
-
-```bash
-npm run format && npm run typecheck && npm test
-git add src/game/facts.ts src/domain/dossier.ts test/facts.test.ts test/dossier.test.ts test/support/fake-pokerogue.ts
-git commit -m "feat: montagem do dossie a partir de fatos e tabelas"
-```
-
----
-
-## Task A8: `domain/advice.ts`
-
-**Arquivos:** criar `src/domain/advice.ts` e `test/advice.test.ts`.
-
-**Interfaces:** consome `BiomeIndex` de A3 e `TeamProfile` de A6. Produz
-`AdviceTables { biomes: BiomeIndex; allTypes: readonly number[] }`, `BiomeAdvice`,
-`biomeAdvice(destination: number, profile: TeamProfile, tables: AdviceTables): BiomeAdvice`.
-
-- [ ] **Passo 1: Escrever o teste que falha**
-
-`test/advice.test.ts`:
-
-```ts
-import { describe, expect, test } from 'vitest';
-import { type AdviceTables, biomeAdvice } from '../src/domain/advice';
-import { profileOf } from '../src/domain/team';
-
-const tables: AdviceTables = {
-  biomes: {
-    1: [{ biome: 5, rarity: 0, timeOfDay: 4 }],
-    2: [{ biome: 5, rarity: 0, timeOfDay: 4 }],
-    3: [{ biome: 5, rarity: 2, timeOfDay: 4 }],
-    9: [{ biome: 7, rarity: 0, timeOfDay: 4 }],
-  },
-  allTypes: [10, 11, 12],
-};
-
-describe('biomeAdvice', () => {
-  test('agrupa as especies do destino por raridade', () => {
-    const advice = biomeAdvice(5, profileOf([]), tables);
-    expect(advice.byRarity.get(0)).toEqual([1, 2]);
-    expect(advice.byRarity.get(2)).toEqual([3]);
-  });
-
-  test('ignora especies de outros biomas', () => {
-    expect([...biomeAdvice(5, profileOf([]), tables).byRarity.values()].flat()).not.toContain(9);
-  });
-
-  test('marca como novas as especies que o time nao tem', () => {
-    const profile = profileOf([{ speciesId: 1, types: [10] }]);
-    expect(biomeAdvice(5, profile, tables).newSpecies).toEqual([2, 3]);
-  });
-
-  test('lista os tipos que o time ainda nao cobre', () => {
-    const profile = profileOf([{ speciesId: 1, types: [10, 11] }]);
-    expect(biomeAdvice(5, profile, tables).missingTypes).toEqual([12]);
-  });
-
-  test('time vazio devolve o conteudo sem parte comparativa e sem lancar', () => {
-    const advice = biomeAdvice(5, profileOf([]), tables);
-    expect(advice.newSpecies).toEqual([]);
-    expect(advice.missingTypes).toEqual([]);
-    expect(advice.byRarity.size).toBe(2);
-  });
-
-  test('bioma sem especie devolve estrutura vazia', () => {
-    const advice = biomeAdvice(99, profileOf([]), tables);
-    expect(advice.byRarity.size).toBe(0);
-    expect(advice.biome).toBe(99);
-  });
-});
-```
-
-- [ ] **Passo 2: Rodar e confirmar que falha**
-
-```bash
-npx vitest run test/advice.test.ts
-```
-
-Esperado: FAIL, `Failed to resolve import "../src/domain/advice"`.
-
-- [ ] **Passo 3: Escrever `src/domain/advice.ts`**
-
-```ts
-import type { BiomeIndex } from './biome';
-import type { TeamProfile } from './team';
-
-export interface AdviceTables {
-  biomes: BiomeIndex;
-  allTypes: readonly number[];
-}
-
-export interface BiomeAdvice {
-  biome: number;
-  byRarity: ReadonlyMap<number, readonly number[]>;
-  newSpecies: readonly number[];
-  missingTypes: readonly number[];
-}
-
-export function biomeAdvice(
-  destination: number,
-  profile: TeamProfile,
-  tables: AdviceTables,
-): BiomeAdvice {
-  const byRarity = new Map<number, number[]>();
-
-  for (const [speciesId, encounters] of Object.entries(tables.biomes)) {
-    for (const encounter of encounters) {
-      if (encounter.biome !== destination) continue;
-      const bucket = byRarity.get(encounter.rarity) ?? [];
-      if (!bucket.includes(Number(speciesId))) bucket.push(Number(speciesId));
-      byRarity.set(encounter.rarity, bucket);
-    }
-  }
-
-  const present = [...byRarity.values()].flat().sort((a, b) => a - b);
-  const empty = profile.species.size === 0;
-
-  return {
-    biome: destination,
-    byRarity,
-    newSpecies: empty ? [] : present.filter((speciesId) => !profile.species.has(speciesId)),
-    missingTypes: empty ? [] : tables.allTypes.filter((type) => !profile.types.has(type)),
-  };
-}
-```
-
-Time vazio devolve as listas comparativas vazias em vez de "tudo é novo": sem time, a
-comparação não tem significado, e inventar uma seria opinião disfarçada de fato — exatamente o
-que a spec proíbe.
-
-- [ ] **Passo 4: Rodar e confirmar que passa**
-
-```bash
-npx vitest run test/advice.test.ts
-```
-
-Esperado: PASS, 6 testes.
-
-- [ ] **Passo 5: Commit**
-
-```bash
-npm run format && npm run typecheck && npm test
-git add src/domain/advice.ts test/advice.test.ts
-git commit -m "feat: cruzamento entre conteudo do bioma e time do jogador"
-```
-
----
-
-## Task A9: Badge clicável
-
-**Arquivos:** modificar `src/game/phaser.ts`, `src/render/badge-layer.ts`,
-`test/support/fake-phaser.ts`, `test/badge-layer.test.ts`.
-
-**Interfaces:** `BadgeSpec` ganha `onClick?: () => void`. `TextObject` ganha
-`setInteractive(): this` e `on(event: 'pointerdown', handler: () => void): this`.
-
-- [ ] **Passo 1: Escrever o teste que falha**
-
-Acrescente em `test/badge-layer.test.ts`:
-
-```ts
-describe('BadgeLayer clicavel', () => {
-  test('badge com onClick vira interativa e chama o handler', () => {
-    const layer = new BadgeLayer(scene);
-    let chamou = 0;
-    layer.reconcile([spec('a', { onClick: () => { chamou += 1; } })]);
-
-    scene.created[0]?.click();
-
-    expect(chamou).toBe(1);
-    expect(scene.created[0]?.interactive).toBe(true);
-  });
-
-  test('badge sem onClick nao vira interativa', () => {
-    const layer = new BadgeLayer(scene);
-    layer.reconcile([spec('a')]);
-
-    expect(scene.created[0]?.interactive).toBe(false);
-  });
-
-  test('reconciliar de novo mantem o clique funcionando', () => {
-    const layer = new BadgeLayer(scene);
-    let chamou = 0;
-    const onClick = () => { chamou += 1; };
-    layer.reconcile([spec('a', { onClick })]);
-    layer.reconcile([spec('a', { onClick, text: 'outro' })]);
-
-    scene.created[0]?.click();
-
-    expect(scene.created).toHaveLength(1);
-    expect(chamou).toBe(1);
-  });
-});
-```
-
-Em `test/support/fake-phaser.ts`, acrescente à `FakeText`:
-
-```ts
-  interactive = false;
-  private handlers: Array<() => void> = [];
-
-  setInteractive(): this {
-    this.interactive = true;
-    return this;
-  }
-
-  on(_event: 'pointerdown', handler: () => void): this {
-    this.handlers.push(handler);
-    return this;
-  }
-
-  click(): void {
-    for (const handler of this.handlers) handler();
-  }
-```
-
-- [ ] **Passo 2: Rodar e confirmar que falha**
-
-```bash
-npx vitest run test/badge-layer.test.ts
-```
-
-Esperado: FAIL, `onClick` não existe em `BadgeSpec`.
-
-- [ ] **Passo 3: Ampliar o shim e o layer**
-
-Em `src/game/phaser.ts`, acrescente a `TextObject`:
-
-```ts
-  setInteractive(): this;
-  on(event: 'pointerdown', handler: () => void): this;
-```
-
-Em `src/render/badge-layer.ts`, acrescente `onClick?: () => void;` a `BadgeSpec` e, em
-`create`, depois do `setScale(spec.scale)`:
-
-```ts
-    if (spec.onClick) {
-      object.setInteractive().on('pointerdown', () => this.badges.get(spec.key)?.spec.onClick?.());
-    }
-```
-
-O handler consulta o spec **atual** pelo `key` em vez de fechar sobre o `onClick` do momento da
-criação. Sem isso, reconciliar com um handler novo deixaria o clique chamando o antigo — é o
-bug que o terceiro teste cobre.
-
-- [ ] **Passo 4: Rodar e confirmar que passa**
-
-```bash
-npx vitest run test/badge-layer.test.ts
-```
-
-Esperado: PASS, incluindo os 3 novos.
-
-- [ ] **Passo 5: Commit**
-
-```bash
-npm run format && npm run typecheck && npm test
-git add src/game/phaser.ts src/render/badge-layer.ts test/support/fake-phaser.ts test/badge-layer.test.ts
-git commit -m "feat: badge aceita clique sem registrar tecla nova"
-```
-
----
-
-## Task A10: `render/hub.ts`
-
-**Arquivos:** criar `src/render/hub.ts`, `test/hub.test.ts`; modificar `src/render/palette.ts`.
-
-**Interfaces:** produz `interface Tab { id: string; label: string; lines: readonly string[] }` e
-`class Hub { open(owner, tabs): void; select(id): void; close(): void; get size(): number; get openFor(): DisplayContainer | null }`.
-
-- [ ] **Passo 1: Escrever o teste que falha**
-
-`test/hub.test.ts`:
-
-```ts
-import { beforeEach, describe, expect, test } from 'vitest';
-import { Hub, type Tab } from '../src/render/hub';
-import { type FakeContainer, FakeScene } from './support/fake-phaser';
-
-let scene: FakeScene;
-let owner: FakeContainer;
-
-beforeEach(() => {
-  scene = new FakeScene();
-  owner = scene.makeContainer();
-});
-
-const tabs: Tab[] = [
-  { id: 'dossie', label: 'Dossie', lines: ['Ralts', 'LC -> OU'] },
-  { id: 'formas', label: 'Formas', lines: ['Mega'] },
-];
-
-describe('Hub', () => {
-  test('fechado nao existe objeto nenhum na cena', () => {
-    const hub = new Hub(scene);
-    expect(hub.size).toBe(0);
-    expect(hub.openFor).toBeNull();
-  });
-
-  test('abrir desenha rotulos das abas e as linhas da primeira', () => {
-    const hub = new Hub(scene);
-    hub.open(owner, tabs);
-
-    expect(hub.size).toBe(4);
-    expect(hub.openFor).toBe(owner);
-  });
-
-  test('trocar de aba nao recria os rotulos das abas', () => {
-    const hub = new Hub(scene);
-    hub.open(owner, tabs);
-    const rotulos = scene.created.filter((o) => o.text === 'Dossie' || o.text === 'Formas');
-
-    hub.select('formas');
-
-    expect(rotulos.every((o) => !o.destroyed)).toBe(true);
-    expect(hub.size).toBe(3);
-  });
-
-  test('abrir para outro dono fecha o anterior', () => {
-    const hub = new Hub(scene);
-    const outro = scene.makeContainer();
-    hub.open(owner, tabs);
-
-    hub.open(outro, tabs);
-
-    expect(owner.children).toHaveLength(0);
-    expect(hub.openFor).toBe(outro);
-  });
-
-  test('close destroi tudo e zera a contagem', () => {
-    const hub = new Hub(scene);
-    hub.open(owner, tabs);
-
-    hub.close();
-
-    expect(hub.size).toBe(0);
-    expect(hub.openFor).toBeNull();
-    expect(owner.children).toHaveLength(0);
-    expect(scene.created.every((o) => o.destroyed)).toBe(true);
-  });
-
-  test('abrir e fechar vinte vezes nao deixa objeto orfao', () => {
-    const hub = new Hub(scene);
-
-    for (let round = 0; round < 20; round += 1) {
-      hub.open(owner, tabs);
-      hub.close();
-    }
-
-    expect(hub.size).toBe(0);
-    expect(owner.children).toHaveLength(0);
-  });
-
-  test('selecionar aba inexistente nao muda nada', () => {
-    const hub = new Hub(scene);
-    hub.open(owner, tabs);
-    const antes = hub.size;
-
-    hub.select('nao-existe');
-
-    expect(hub.size).toBe(antes);
-  });
-});
-```
-
-- [ ] **Passo 2: Rodar e confirmar que falha**
-
-```bash
-npx vitest run test/hub.test.ts
-```
-
-Esperado: FAIL, `Failed to resolve import "../src/render/hub"`.
-
-- [ ] **Passo 3: Escrever `src/render/hub.ts`**
-
-```ts
-import type { DisplayContainer, Scene, TextObject } from '../game/phaser';
-import { HUB_DEPTH, hubBodyStyle, hubTabStyle } from './palette';
-
-export interface Tab {
-  id: string;
-  label: string;
-  lines: readonly string[];
-}
-
-const LINE_HEIGHT = 14;
-const ORIGIN = { x: 10, y: 10 };
-const BODY_TOP = ORIGIN.y + LINE_HEIGHT;
-const SCALE = 0.2;
-
-export class Hub {
-  private owner: DisplayContainer | null = null;
-  private tabs: readonly Tab[] = [];
-  private tabObjects: TextObject[] = [];
-  private bodyObjects: TextObject[] = [];
-
-  constructor(private readonly scene: Scene) {}
-
-  get size(): number {
-    return this.tabObjects.length + this.bodyObjects.length;
-  }
-
-  get openFor(): DisplayContainer | null {
-    return this.owner;
-  }
-
-  open(owner: DisplayContainer, tabs: readonly Tab[]): void {
-    this.close();
-    if (tabs.length === 0) return;
-
-    this.owner = owner;
-    this.tabs = tabs;
-
-    tabs.forEach((tab, index) => {
-      const object = this.scene.add
-        .text(ORIGIN.x + index * 40, ORIGIN.y, tab.label, hubTabStyle())
-        .setOrigin(0, 0)
-        .setDepth(HUB_DEPTH)
-        .setScale(SCALE)
-        .setInteractive()
-        .on('pointerdown', () => this.select(tab.id));
-
-      owner.add(object);
-      this.tabObjects.push(object);
-    });
-
-    this.renderBody(tabs[0]?.lines ?? []);
-  }
-
-  select(id: string): void {
-    const tab = this.tabs.find((candidate) => candidate.id === id);
-    if (!tab) return;
-    this.renderBody(tab.lines);
-  }
-
-  close(): void {
-    for (const object of [...this.tabObjects, ...this.bodyObjects]) {
-      this.owner?.remove(object);
-      object.destroy();
-    }
-    this.tabObjects = [];
-    this.bodyObjects = [];
-    this.tabs = [];
-    this.owner = null;
-  }
-
-  private renderBody(lines: readonly string[]): void {
-    const owner = this.owner;
-    if (!owner) return;
-
-    for (const object of this.bodyObjects) {
-      owner.remove(object);
-      object.destroy();
-    }
-    this.bodyObjects = [];
-
-    lines.forEach((line, index) => {
-      const object = this.scene.add
-        .text(ORIGIN.x, BODY_TOP + index * LINE_HEIGHT, line, hubBodyStyle())
-        .setOrigin(0, 0)
-        .setDepth(HUB_DEPTH)
-        .setScale(SCALE);
-
-      owner.add(object);
-      this.bodyObjects.push(object);
-    });
-  }
-}
-```
-
-`open` chama `close` primeiro: é o que dá AD-20 em batalha dupla sem nenhuma coordenação entre
-badges. `renderBody` só toca no corpo, e é o que dá AD-19.
-
-Em `src/render/palette.ts`, acrescente:
-
-```ts
-export const HUB_DEPTH = 1001;
-
-export function hubTabStyle(): TextStyle {
-  return {
-    fontFamily: 'emerald',
-    fontSize: '48px',
-    color: '#fbbf24',
-    backgroundColor: '#18181bee',
-    padding: { x: 4, y: 2 },
-  };
-}
-
-export function hubBodyStyle(): TextStyle {
-  return {
-    fontFamily: 'emerald',
-    fontSize: '48px',
-    color: '#ffffff',
-    backgroundColor: '#18181bdd',
-    padding: { x: 4, y: 2 },
-  };
-}
-```
-
-- [ ] **Passo 4: Rodar e confirmar que passa**
-
-```bash
-npx vitest run test/hub.test.ts
-```
-
-Esperado: PASS, 7 testes.
-
-- [ ] **Passo 5: Commit**
-
-```bash
-npm run format && npm run typecheck && npm test
-git add src/render/hub.ts src/render/palette.ts test/hub.test.ts
-git commit -m "feat: hub com abas como unica superficie de interacao"
-```
-
----
-
-## Task A11: Batalha e starter
-
-**Arquivos:** criar `src/surfaces/tabs.ts`, `test/tabs.test.ts`; modificar
-`src/surfaces/battle-surface.ts`, `src/surfaces/starter-surface.ts`, `src/bootstrap.ts`,
-`src/main.ts`.
-
-**Interfaces:** produz `dossierTabs(dossier: Dossier, biomeNames: Record<number, string>): Tab[]`.
-
-- [ ] **Passo 1: Escrever o teste que falha**
-
-`test/tabs.test.ts`:
-
-```ts
-import { describe, expect, test } from 'vitest';
-import type { Dossier } from '../src/domain/dossier';
-import { dossierTabs } from '../src/surfaces/tabs';
-
-const dossier = (overrides: Partial<Dossier> = {}): Dossier => ({
-  name: 'Ralts',
-  tiers: { tier: 'LC', bestTier: 'OU', bestName: 'Gardevoir' },
-  hiddenAbility: 'Trace',
-  eggMoves: ['Memento'],
-  forms: [{ key: 'mega', label: 'Mega' }],
-  encounters: [{ biome: 10, rarity: 2, timeOfDay: 4 }],
-  catchRate: 235,
-  ...overrides,
-});
-
-describe('dossierTabs', () => {
-  test('monta as abas de dossie e formas', () => {
-    expect(dossierTabs(dossier(), { 10: 'Town' }).map((t) => t.id)).toEqual(['dossie', 'formas']);
-  });
-
-  test('especie sem forma especial nao ganha aba de formas', () => {
-    expect(dossierTabs(dossier({ forms: [] }), {}).map((t) => t.id)).toEqual(['dossie']);
-  });
-
-  test('campo vazio nao vira linha nem texto de preenchimento', () => {
-    const tabs = dossierTabs(dossier({ hiddenAbility: null, eggMoves: [], encounters: [] }), {});
-    const linhas = tabs[0]?.lines ?? [];
-    expect(linhas.join(' ')).not.toMatch(/desconhecid|\?\?\?/i);
-    expect(linhas).toHaveLength(3);
-  });
-
-  test('bioma sem nome na tabela nao produz linha de raridade', () => {
-    const linhas = dossierTabs(dossier(), {})[0]?.lines ?? [];
-    expect(linhas.some((l) => /Town/.test(l))).toBe(false);
-  });
-});
-```
-
-- [ ] **Passo 2: Rodar e confirmar que falha**
-
-```bash
-npx vitest run test/tabs.test.ts
-```
-
-Esperado: FAIL, import não resolvido.
-
-- [ ] **Passo 3: Escrever `src/surfaces/tabs.ts`**
-
-```ts
-import type { Dossier } from '../domain/dossier';
-import { fullLabel } from '../render/label';
-import type { Tab } from '../render/hub';
-
-const RARITY = ['Common', 'Uncommon', 'Rare', 'Super Rare', 'Ultra Rare', 'Boss'] as const;
-
-export function dossierTabs(dossier: Dossier, biomeNames: Record<number, string>): Tab[] {
-  const lines = [dossier.name, fullLabel(dossier.tiers)];
-
-  if (dossier.hiddenAbility) lines.push(`HA ${dossier.hiddenAbility}`);
-  if (dossier.eggMoves.length > 0) lines.push(`Egg ${dossier.eggMoves.join(', ')}`);
-
-  for (const encounter of dossier.encounters) {
-    const biome = biomeNames[encounter.biome];
-    const rarity = RARITY[encounter.rarity];
-    if (biome && rarity) lines.push(`${biome} ${rarity}`);
-  }
-
-  if (dossier.catchRate !== null) lines.push(`Catch ${dossier.catchRate}`);
-
-  const tabs: Tab[] = [{ id: 'dossie', label: 'Dossie', lines }];
-
-  if (dossier.forms.length > 0) {
-    tabs.push({ id: 'formas', label: 'Formas', lines: dossier.forms.map((form) => form.label) });
-  }
-
-  return tabs;
-}
-```
-
-- [ ] **Passo 4: Ligar nas surfaces**
-
-`src/surfaces/battle-surface.ts` passa a receber hub e tabelas, e a badge ganha `onClick`:
-
-```ts
-import { dossierFor, type DossierTables } from '../domain/dossier';
-import { readBattleTargets } from '../game/battle';
-import type { GameContext } from '../game/context';
-import { readRuntimeFacts } from '../game/facts';
-import type { BadgeLayer } from '../render/badge-layer';
-import type { Hub } from '../render/hub';
-import { fullLabel } from '../render/label';
-import { badgeSpecsFor } from './badge-specs';
-import type { Surface } from './surface';
-import { dossierTabs } from './tabs';
-
-export class BattleSurface implements Surface {
-  readonly name = 'battle';
-
-  constructor(
-    private readonly layer: BadgeLayer,
-    private readonly hub: Hub,
-    private readonly tables: DossierTables,
-    private readonly biomeNames: Record<number, string>,
-  ) {}
-
-  matches(context: GameContext): boolean {
-    return context.scene.currentBattle !== null;
-  }
-
-  sync(context: GameContext): void {
-    const enemies = context.scene.getEnemyField();
-    const biomeId = context.scene.arena?.biomeType ?? null;
-    const specs = badgeSpecsFor(readBattleTargets(context.scene), this.tables.tiers, fullLabel);
-
-    this.layer.reconcile(
-      specs.map((spec, index) => {
-        const enemy = enemies[index];
-        if (!enemy) return spec;
-        return {
-          ...spec,
-          onClick: () => {
-            if (this.hub.openFor === spec.parent) {
-              this.hub.close();
-              return;
-            }
-            const dossier = dossierFor(readRuntimeFacts(enemy, biomeId), this.tables);
-            this.hub.open(spec.parent, dossierTabs(dossier, this.biomeNames));
-          },
-        };
-      }),
-    );
-  }
-
-  clear(): void {
-    this.layer.clear();
-    this.hub.close();
-  }
-}
-```
-
-`StarterSurface` recebe o mesmo tratamento, usando `readStarterTargets` e o container do
-starter como dono do hub. `bootstrap.ts` cria um `Hub` único, compartilhado pelas duas
-surfaces — é o que garante que abrir numa tela feche o que estava aberto na outra:
-
-```ts
-function overlayFor(scene: BattleScene, tables: DossierTables): Overlay {
-  const hub = new Hub(scene);
-
-  return new Overlay(
-    [
-      new BattleSurface(new BadgeLayer(scene), hub, tables, BIOME_NAMES),
-      new StarterSurface(new BadgeLayer(scene), hub, tables, BIOME_NAMES),
-    ],
-    () => contextOf(scene),
-  );
-}
-```
-
-`startOverlay` passa a receber `DossierTables` em vez de `TierTable`; ajuste a assinatura e o
-`src/main.ts`, que monta as tabelas a partir dos quatro arquivos gerados.
-
-- [ ] **Passo 5: Rodar tudo**
-
-```bash
-npm test && npm run typecheck
-```
-
-Esperado: PASS em todos os arquivos, incluindo `test/overlay.test.ts`, que já cobre AD-23
-(`clear` chamado exatamente uma vez ao sair da tela).
-
-- [ ] **Passo 6: Commit**
-
-```bash
-npm run format
-git add src/surfaces src/bootstrap.ts src/main.ts test/tabs.test.ts
-git commit -m "feat: hub ligado nas surfaces de batalha e de starter"
-```
-
----
-
-## Task A12: Escolha de bioma
-
-**Arquivos:** criar `src/surfaces/biome-surface.ts`, `test/biome-surface.test.ts`; modificar
-`src/bootstrap.ts`.
-
-Esta tarefa é incremento sobre um produto que já funciona. O handler da tela de escolha é
-descoberto em jogo, como foi feito para `StarterSelectUiHandler` na v2.
-
-- [ ] **Passo 1: Descobrir o handler da tela de escolha**
-
-```bash
-npm run launch
-```
-
-Chegue a uma escolha de bioma e rode no console:
-
-```js
-const s = window.__p.game.scene.getScene('battle');
-s.ui.handlers[s.ui.mode].constructor.name
-```
-
-Anote o nome — ele vira a constante `BIOME_SELECT_HANDLER`, no mesmo padrão de
-`STARTER_SELECT_HANDLER` em `starter-surface.ts`.
-
-- [ ] **Passo 2: Escrever o teste que falha**
-
-`test/biome-surface.test.ts` cobre a montagem das abas, que é a parte com regra:
-
-```ts
-import { describe, expect, test } from 'vitest';
-import { biomeAdvice } from '../src/domain/advice';
-import { profileOf } from '../src/domain/team';
-import { adviceTabs } from '../src/surfaces/biome-surface';
-
-const tables = {
-  biomes: { 1: [{ biome: 5, rarity: 0, timeOfDay: 4 }], 2: [{ biome: 7, rarity: 2, timeOfDay: 4 }] },
-  allTypes: [10, 11],
-};
-
-const names = { 5: 'Forest', 7: 'Lake' };
-const speciesNames = { 1: 'Bulbasaur', 2: 'Squirtle' };
-
-describe('adviceTabs', () => {
-  test('monta uma aba por destino', () => {
-    const advices = [5, 7].map((d) => biomeAdvice(d, profileOf([]), tables));
-    expect(adviceTabs(advices, names, speciesNames, {}).map((t) => t.label)).toEqual(['Forest', 'Lake']);
-  });
-
-  test('destino sem especie ainda produz aba, com corpo vazio', () => {
-    const advices = [biomeAdvice(99, profileOf([]), tables)];
-    expect(adviceTabs(advices, names, speciesNames, {})[0]?.lines).toEqual([]);
-  });
-
-  test('nenhum destino produz nenhuma aba', () => {
-    expect(adviceTabs([], names, speciesNames, {})).toEqual([]);
-  });
-});
-```
-
-- [ ] **Passo 3: Rodar e confirmar que falha**
-
-```bash
-npx vitest run test/biome-surface.test.ts
-```
-
-Esperado: FAIL, import não resolvido.
-
-- [ ] **Passo 4: Escrever `src/surfaces/biome-surface.ts`**
-
-```ts
-import type { BiomeAdvice } from '../domain/advice';
-import type { Tab } from '../render/hub';
-
-const RARITY = ['Common', 'Uncommon', 'Rare', 'Super Rare', 'Ultra Rare', 'Boss'] as const;
-
-export function adviceTabs(
-  advices: readonly BiomeAdvice[],
-  biomeNames: Record<number, string>,
-  speciesNames: Record<number, string>,
-  typeNames: Record<number, string>,
-): Tab[] {
-  return advices.map((advice) => {
-    const lines: string[] = [];
-
-    for (const [rarity, speciesIds] of [...advice.byRarity].sort(([a], [b]) => a - b)) {
-      const label = RARITY[rarity];
-      const named = speciesIds.flatMap((id) => speciesNames[id] ?? []);
-      if (label && named.length > 0) lines.push(`${label}: ${named.join(', ')}`);
-    }
-
-    if (advice.newSpecies.length > 0) lines.push(`Novos: ${advice.newSpecies.length}`);
-
-    const missing = advice.missingTypes.flatMap((type) => typeNames[type] ?? []);
-    if (missing.length > 0) lines.push(`Time sem: ${missing.join(', ')}`);
-
-    return {
-      id: String(advice.biome),
-      label: biomeNames[advice.biome] ?? String(advice.biome),
-      lines,
-    };
-  });
-}
-```
-
-A classe `BiomeSurface` segue o padrão de `StarterSurface`: `matches` compara
-`context.handlerName` com `BIOME_SELECT_HANDLER`, `sync` monta os `advices` com
-`destinationsFrom` mais `readTeam`, e `clear` fecha o hub.
-
-- [ ] **Passo 5: Rodar, ligar no bootstrap e verificar em jogo**
-
-```bash
-npx vitest run test/biome-surface.test.ts && npm test
-npm run build && npm run launch
-```
-
-Esperado: PASS, e o hub abrindo na tela de escolha de bioma. **Screenshot.**
-
-- [ ] **Passo 6: Commit**
-
-```bash
-npm run format && npm run typecheck
-git add src/surfaces/biome-surface.ts src/bootstrap.ts test/biome-surface.test.ts
-git commit -m "feat: hub na escolha de bioma cruzando destino com o time"
-```
-
----
-
-## Task A13: Workflow de drift
+## Task B7: Workflow de drift
+
+O risco desta spec não é técnico, é temporal — o PokéRogue atualiza e a tabela passa a mentir.
+Mentir é pior que omitir, e o overlay já escolheu omitir (`?` do Smogon). Com o pin de B2, o
+drift vira detectável.
 
 **Arquivos:** criar `.github/workflows/data-drift.yml`.
 
@@ -2120,7 +831,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          game=$(gh api repos/pagefaultgames/pokerogue/commits/main --jq .sha)
+          game=$(gh api repos/pagefaultgames/pokerogue/commits/beta --jq .sha)
           loc=$(gh api repos/pagefaultgames/pokerogue-locales/commits/main --jq .sha)
           node -e "
             const f=require('fs'), p='data/pokerogue-source.json';
@@ -2130,7 +841,7 @@ jobs:
             f.writeFileSync(p, JSON.stringify(o,null,2)+'\n');
           " "$game" "$loc"
 
-      - run: npm run build:data
+      - run: npm run build:biomes
 
       - uses: peter-evans/create-pull-request@v7
         with:
@@ -2142,17 +853,15 @@ jobs:
             Revise o diff antes do merge — o overlay nao se atualiza sozinho a partir de codigo de terceiro.
 ```
 
-`create-pull-request` não abre PR quando não há diff, então semana sem mudança upstream não
-gera ruído. O PR dispara o `ci.yml` existente, que atende AD-25.
+`create-pull-request` não abre PR quando não há diff, então semana sem mudança não gera ruído.
+O PR dispara o `ci.yml` existente. Merge é decisão humana: o overlay não se atualiza sozinho a
+partir de código de terceiro.
 
-- [ ] **Passo 2: Testar com pins antigos**
+- [ ] **Passo 2: Testar com pin antigo e commitar**
 
-Aponte `data/pokerogue-source.json` para SHAs de alguns meses atrás num branch, e dispare o
-workflow pelo `workflow_dispatch` na aba Actions.
+Aponte o pin para um SHA de meses atrás num branch e dispare por `workflow_dispatch`.
 
-Esperado: PR aberto com diff não vazio em `data/*.generated.ts`, com o CI rodando nele.
-
-- [ ] **Passo 3: Commit**
+Esperado: PR com diff não vazio em `data/*.generated.ts`, com o CI rodando nele.
 
 ```bash
 git add .github/workflows/data-drift.yml
@@ -2161,34 +870,37 @@ git commit -m "ci: workflow semanal de drift das tabelas geradas"
 
 ---
 
-## Task A14: Verificação em jogo
+## Task B8: Verificação em jogo
+
+O Browser pane do app **não serve** para isto: a página fica com `document.hidden: true`, o
+`requestAnimationFrame` congela após poucos quadros e o Phaser não termina o boot. Use
+`npm run launch`, que abre Chrome headful.
 
 Sem screenshot, nenhum item está pronto. É o padrão que a v2 estabeleceu na V9.
 
-- [ ] **Passo 1: Subir o jogo com o bundle**
+- [ ] **Passo 1: Subir**
 
 ```bash
 npm run build && npm run launch
 ```
 
-- [ ] **Passo 2: Batalha simples**
+- [ ] **Passo 2: Pílula e painel em batalha**
 
-Clique na badge do inimigo. **Screenshot.** O hub não pode cobrir a HUD nem a caixa de diálogo
-(AD-21). Clique de novo e confirme que fecha (AD-18).
+Clique na pílula. **Screenshot.** O painel não pode cobrir a HUD nem a caixa de diálogo.
+Percorra as quatro abas.
 
-- [ ] **Passo 3: Batalha dupla**
+- [ ] **Passo 3: Aba de destinos numa escolha de bioma**
 
-Clique na badge do primeiro inimigo, depois na do segundo. **Screenshot de cada.** Abrir a
-segunda tem que fechar a primeira (AD-20).
+**Screenshot** da aba "Para onde", com os destaques de cada destino.
 
-- [ ] **Passo 4: Starter com forma especial**
+- [ ] **Passo 4: HA, egg moves e catch rate**
 
-Na seleção de starter, clique na badge de uma espécie com mega — Venusaur, Charizard ou
-Gardevoir. **Screenshot** da aba Formas (AD-15).
+Abra a aba "Em campo" com um inimigo que tenha hidden ability e egg moves. **Screenshot.**
+Depois um sem egg move: a linha não existe, e não há texto de preenchimento.
 
-- [ ] **Passo 5: Escolha de bioma**
+- [ ] **Passo 5: Cobertura de tipos**
 
-Numa escolha de bioma, abra o hub e percorra as abas de destino. **Screenshot.**
+Com time montado, **screenshot** do rodapé de "Meu time".
 
 - [ ] **Passo 6: Celular**
 
@@ -2196,79 +908,42 @@ Numa escolha de bioma, abra o hub e percorra as abas de destino. **Screenshot.**
 npm run launch -- --late
 ```
 
-Redimensione para 390×844 e repita o passo 2. **Screenshot.** O hub deve continuar legível sem
-código de layout específico (AD-22).
+Redimensione para 390×844 e repita o passo 2. **Screenshot.**
 
-- [ ] **Passo 7: Espécie sem egg move**
-
-Abra o hub de uma espécie sem egg move. **Screenshot.** A linha não existe, e não há texto de
-preenchimento no lugar (AD-11).
-
-- [ ] **Passo 8: Commit das evidências**
+- [ ] **Passo 7: Commit das evidências**
 
 ```bash
 git add docs/
-git commit -m "docs: screenshots de verificacao em jogo do hub"
+git commit -m "docs: screenshots de verificacao em jogo do painel"
 ```
 
 ---
 
-## Task A15: Licença, bundle e publicação
+## Task B9: Fechamento
 
-**Arquivos:** modificar `LICENSE`, `package.json`, `vite.config.ts`, `README.md`.
-
-- [ ] **Passo 1: Trocar a licença**
-
-Substitua `LICENSE` pelo texto integral da AGPL-3.0-only
-(<https://www.gnu.org/licenses/agpl-3.0.txt>) e, em `package.json`, troque `"license": "MIT"`
-por `"license": "AGPL-3.0-only"`.
-
-- [ ] **Passo 2: Acompanhar no bloco de metadados**
-
-Em `vite.config.ts`, dentro de `userscript`, troque `license: 'MIT'` por
-`license: 'AGPL-3.0-only'`.
-
-- [ ] **Passo 3: Creditar as fontes no README**
-
-```markdown
-## De onde vêm os dados
-
-Tiers do Smogon via [`@pkmn/dex`](https://github.com/pkmn/ps) (MIT).
-
-Egg moves, pools de bioma, grafo de destinos e os nomes exibidos são gerados de
-[`pagefaultgames/pokerogue`](https://github.com/pagefaultgames/pokerogue) e
-[`pagefaultgames/pokerogue-locales`](https://github.com/pagefaultgames/pokerogue-locales),
-ambos AGPL-3.0-only. Por isso este projeto também é AGPL-3.0-only.
-
-A fonte da verdade é o código do jogo, não a wiki nem o fórum: onde os dois divergirem, vale o
-que efetivamente roda. As tabelas geradas são atualizadas por um workflow semanal que abre PR
-quando o upstream muda.
-```
-
-Documente também que o hub abre no clique da badge, e o que cada aba mostra.
-
-- [ ] **Passo 4: Verificar o bundle**
-
-```bash
-npm run build && wc -c dist/pokerogue-tier-overlay.user.js
-grep -c "@require" dist/pokerogue-tier-overlay.meta.js; echo "esperado: 0"
-```
-
-Esperado: abaixo de 512000 bytes (AD-8) e nenhum `@require` (AD-7).
-
-- [ ] **Passo 5: Suíte completa**
+- [ ] **Passo 1: Suíte completa**
 
 ```bash
 npm run lint && npm run typecheck && npm test && npm run build
 ```
 
-Esperado: tudo verde (AD-26).
+Esperado: tudo verde, com contagem de testes maior que os 109 de partida.
 
-- [ ] **Passo 6: Commit**
+- [ ] **Passo 2: Tamanho do bundle**
 
 ```bash
-git add LICENSE package.json vite.config.ts README.md
-git commit -m "docs: relicencia para AGPL-3.0-only e credita as fontes upstream"
+wc -c dist/pokerogue-tier-overlay.user.js
+grep -c "@require" dist/pokerogue-tier-overlay.meta.js; echo "esperado: 0"
+```
+
+Esperado: abaixo de 512000 bytes, e nenhum `@require`.
+
+- [ ] **Passo 3: README**
+
+Documente a pílula, as quatro abas e o que cada uma responde.
+
+```bash
+git add README.md && git commit -m "docs: documenta as abas do painel"
 ```
 
 ---
@@ -2277,5 +952,6 @@ git commit -m "docs: relicencia para AGPL-3.0-only e credita as fontes upstream"
 
 Publicar no Greasyfork é passo manual seu — não consigo autenticar na sua conta.
 
-Slice B (busca por atalho) não desenha UI nova: empurra outra aba para dentro do mesmo `Hub`,
-alimentada pelo `StarterSelectUiHandler.allSpecies` que já foi mapeado em runtime.
+O que fica mapeado e não entra aqui: `StarterSelectUiHandler.allSpecies` expõe as 572 espécies
+em runtime, que é o caminho de uma busca por atalho sem UI nova; e `getEvolutionLevels()`
+devolve os níveis de evolução, que alimentariam uma aba de planejamento.
