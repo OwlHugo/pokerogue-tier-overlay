@@ -1,21 +1,19 @@
 import { keyFor } from '../domain/species-key';
 import { type BattleScene, formKeyOf, type PokeRoguePokemon } from './pokerogue';
+import { speciesRefOf } from './species-ref';
 import type { Target } from './target';
 
-const BADGE_OFFSET = { x: 0, y: -26 };
-const BADGE_SCALE = 0.08;
+const BADGE_OFFSET = { x: 0, y: -30 };
+const BADGE_SCALE = 0.16;
 
 function targetFor(pokemon: PokeRoguePokemon, index: number): Target {
-  const primary = {
-    speciesId: pokemon.species.speciesId,
-    formKey: formKeyOf(pokemon.species, pokemon.formIndex),
-  };
+  const primary = speciesRefOf(
+    pokemon.species.speciesId,
+    formKeyOf(pokemon.species, pokemon.formIndex),
+  );
   const fusionSpecies = pokemon.fusionSpecies;
   const fusion = fusionSpecies
-    ? {
-        speciesId: fusionSpecies.speciesId,
-        formKey: formKeyOf(fusionSpecies, pokemon.fusionFormIndex),
-      }
+    ? speciesRefOf(fusionSpecies.speciesId, formKeyOf(fusionSpecies, pokemon.fusionFormIndex))
     : null;
 
   const name = fusionSpecies

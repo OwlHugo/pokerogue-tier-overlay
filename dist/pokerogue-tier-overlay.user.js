@@ -5534,21 +5534,34 @@
 	function formKeyOf(species, formIndex) {
 		return species.forms?.[formIndex]?.formKey ?? "";
 	}
+	var NATIONAL_DEX_MAX = 1025;
+	var FORM_ID_BASE = 1e3;
+	var REGION_BY_PREFIX = {
+		2: "alola",
+		4: "galar",
+		6: "hisui",
+		8: "paldea"
+	};
+	function speciesRefOf(speciesId, formKey) {
+		if (speciesId <= NATIONAL_DEX_MAX) return {
+			speciesId,
+			formKey
+		};
+		const prefix = Math.floor(speciesId / FORM_ID_BASE);
+		return {
+			speciesId: speciesId % FORM_ID_BASE,
+			formKey: REGION_BY_PREFIX[prefix] ?? ""
+		};
+	}
 	var BADGE_OFFSET$1 = {
 		x: 0,
-		y: -26
+		y: -30
 	};
-	var BADGE_SCALE$1 = .08;
+	var BADGE_SCALE$1 = .16;
 	function targetFor$1(pokemon, index) {
-		const primary = {
-			speciesId: pokemon.species.speciesId,
-			formKey: formKeyOf(pokemon.species, pokemon.formIndex)
-		};
+		const primary = speciesRefOf(pokemon.species.speciesId, formKeyOf(pokemon.species, pokemon.formIndex));
 		const fusionSpecies = pokemon.fusionSpecies;
-		const fusion = fusionSpecies ? {
-			speciesId: fusionSpecies.speciesId,
-			formKey: formKeyOf(fusionSpecies, pokemon.fusionFormIndex)
-		} : null;
+		const fusion = fusionSpecies ? speciesRefOf(fusionSpecies.speciesId, formKeyOf(fusionSpecies, pokemon.fusionFormIndex)) : null;
 		const name = fusionSpecies ? `${pokemon.species.name}/${fusionSpecies.name}` : pokemon.species.name;
 		return {
 			key: `battle:${index}:${keyFor(primary.speciesId, primary.formKey)}`,
@@ -5655,14 +5668,11 @@
 	};
 	var BADGE_OFFSET = {
 		x: 8,
-		y: 24
+		y: 15
 	};
-	var BADGE_SCALE = .12;
+	var BADGE_SCALE = .085;
 	function targetFor(container) {
-		const primary = {
-			speciesId: container.species.speciesId,
-			formKey: ""
-		};
+		const primary = speciesRefOf(container.species.speciesId, "");
 		return {
 			key: `starter:${keyFor(primary.speciesId, primary.formKey)}`,
 			name: container.species.name,

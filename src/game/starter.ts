@@ -1,12 +1,13 @@
 import { keyFor } from '../domain/species-key';
 import type { StarterContainer, StarterSelectHandler } from './pokerogue';
+import { speciesRefOf } from './species-ref';
 import type { Target } from './target';
 
-const BADGE_OFFSET = { x: 8, y: 24 };
-const BADGE_SCALE = 0.12;
+const BADGE_OFFSET = { x: 8, y: 15 };
+const BADGE_SCALE = 0.085;
 
 function targetFor(container: StarterContainer): Target {
-  const primary = { speciesId: container.species.speciesId, formKey: '' };
+  const primary = speciesRefOf(container.species.speciesId, '');
 
   return {
     key: `starter:${keyFor(primary.speciesId, primary.formKey)}`,

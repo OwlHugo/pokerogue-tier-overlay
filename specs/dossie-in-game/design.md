@@ -7,22 +7,48 @@ regra. Esta spec estende essa fronteira em vez de abrir exceção nela. `dossier
 que sustenta o slice B (Ctrl+K) depois, sem reescrita — por isso ele recebe fatos já
 extraídos, e não uma cena.
 
+## O que foi verificado no jogo rodando
+
+Antes de projetar, o jogo foi instrumentado em `pokerogue.net` com a mesma estratégia de
+captura da v2 (hook em `Phaser.Scenes.Systems.prototype.step`). Quatro coisas mudaram o
+desenho, e uma mudou o método.
+
+**O objeto de espécie entrega mais do que a v2 usa.** `abilityHidden`, `catchRate`, `type1`,
+`type2`, `baseStats`, `baseTotal`, `growthRate`, `legendary`, `category`, `forms`, além de
+`getEvolutionLevels()`. O dossiê consome só `abilityHidden` e `catchRate`; o resto fica
+anotado, porque escopo que ninguém pediu é escopo que ninguém revisa.
+
+**`StarterSelectUiHandler.allSpecies` expõe as 572 espécies em runtime.** Não é usado nesta
+spec — o dossiê descreve o alvo em batalha, que já vem pelo `getEnemyField()`. Fica
+registrado porque é o caminho natural do slice B.
+
+**`window.i18next` não existe.** Fecha a questão: nome de ability e de move só sai de tabela
+gerada.
+
+**A tela de starter já mostra Ability, Passive, Nature, Growth Rate, tipos e os slots de egg
+move.** Um painel ali seria duplicação do jogo. Daí AD-25: a tela de starter não muda.
+
+**O Browser pane do app não consegue rodar PokéRogue.** A página fica com
+`document.hidden: true`, o `requestAnimationFrame` congela após poucos quadros e o Phaser
+nunca termina o boot. Verificação exige Chrome headful — o que confirma `npm run launch`
+como a ferramenta certa para as tarefas de tela.
+
 ## Por que hidratação híbrida, e não uma fonte só
 
 O PokéRogue carrega tudo que precisamos no cliente, mas não entrega tudo pelo mesmo caminho.
 
 `src/data/data-lists.ts` exporta `allAbilities`, `allMoves`, `catchableSpecies` e
-`allBiomes`. São `const` de escopo de módulo, preenchidos no init do jogo. Não estão em
-`window`, e num bundle minificado alcançá-los significaria depender de nomes manglados —
-que mudam a cada build do jogo, silenciosamente. Esse caminho está descartado.
+`allBiomes`. São `const` de escopo de módulo, preenchidos no init. Não estão em `window`, e
+num bundle minificado alcançá-los significaria depender de nomes manglados — que mudam a cada
+build do jogo, silenciosamente. Caminho descartado.
 
-Já o objeto que o overlay **já lê** hoje (`pokemon.species`) carrega `catchRate` e
-`abilityHidden` diretamente. Ler dali é grátis, reflete a versão exata que o
-jogador está rodando, e acompanha fusão e forma sem código extra.
+Já o objeto que o overlay **já lê** carrega `catchRate` e `abilityHidden` diretamente. Ler
+dali é grátis, reflete a versão exata que o jogador roda, e acompanha fusão e forma sem
+código extra.
 
 Daí a regra: **runtime quando o dado está no objeto que já lemos; tabela gerada só para o
-resto.** Não é redundância — é reduzir ao mínimo o conjunto de dados que pode ficar velho.
-Só o lado gerado precisa do workflow de drift.
+resto.** Não é redundância — é reduzir ao mínimo o conjunto que pode ficar velho. Só o lado
+gerado precisa do workflow de drift.
 
 ## Gerador de dados
 
@@ -30,10 +56,9 @@ Só o lado gerado precisa do workflow de drift.
 
 ### Duas fontes, não uma
 
-Os dados estruturais estão no repositório do jogo; os **nomes** não. `allAbilities` e
-`allMoves` são module-scope, e o texto exibido vem do i18n, que vive em outro repositório
-(`pagefaultgames/pokerogue-locales`) como JSON puro — sem cadeia de import nenhuma. Nome não
-precisa de TypeScript, precisa de `JSON.parse`.
+Os dados estruturais estão no repositório do jogo; os **nomes** não. O texto exibido vem do
+i18n, que vive em `pagefaultgames/pokerogue-locales` como JSON puro — sem cadeia de import
+nenhuma. Nome não precisa de TypeScript, precisa de `JSON.parse`.
 
 `data/pokerogue-source.json` pina os dois:
 
@@ -45,8 +70,8 @@ precisa de TypeScript, precisa de `JSON.parse`.
 ```
 
 Pin explícito é o que faz AD-2 (reprodutibilidade) valer e o que dá ao workflow semanal algo
-concreto para comparar e atualizar. Falha de resolução aborta o gerador (AD-3): tabela
-parcial mentiria para o jogador, e o overlay tem o princípio de nunca inventar dado.
+concreto para comparar. Falha de resolução aborta o gerador (AD-3): tabela parcial mentiria
+para o jogador, e o overlay tem o princípio de nunca inventar dado.
 
 ### Importar os dados estruturais, e os stubs que isso exige
 
@@ -64,7 +89,6 @@ por transitividade e quebrando em Node.
 A saída é aliasar os poucos módulos contaminados para stubs locais em `tools/stubs/`, que
 reexportam só o enum de que os dados precisam. A lista fica declarada em um lugar só, e AD-22
 põe um teto nela: passou de cinco entradas, o gerador troca importação por leitura de AST.
-O teto existe para que a gambiarra não cresça sem alguém decidir que ela cresceu.
 
 ### Tabelas emitidas
 
@@ -78,8 +102,13 @@ IDs numéricos como chave mantêm o bundle pequeno: cada nome aparece uma vez, n
 nomes, em vez de repetido em cada entrada de espécie.
 
 As tabelas de nome são filtradas (AD-21): entram só os nomes referenciados — as hidden
-abilities que existem, os moves que são egg move, os ~30 biomas. `move.json` tem 179 KB e
-usaríamos uma fração dele.
+abilities que existem, os moves que são egg move, os ~30 biomas.
+
+O índice de biomas é **invertido** na geração. O upstream é organizado por bioma
+(`beach.ts` lista quem aparece na praia); a pergunta é a oposta. Inverter uma vez em build
+time evita varrer 30 pools a cada frame. O índice fica plano — espécie → todas as ocorrências
+— e o filtro pelo bioma atual acontece na consulta. Plano é mais simples de testar, e é a
+forma que o slice B vai querer para listar todos os biomas.
 
 Estimativa, e o build é `minify: false` — o número é do arquivo como distribuído:
 
@@ -89,25 +118,24 @@ Estimativa, e o build é `minify: false` — o número é do arquivo como distri
 | egg moves + índice de biomas + nomes filtrados | ~90–120 KB |
 | **total esperado** | **~190–220 KB**, contra o teto de 500 KB de AD-6 |
 
-O índice de biomas é **invertido** na geração. O upstream é organizado por bioma
-(`beach.ts` lista quem aparece na praia); a pergunta do jogador é a oposta ("onde acho este
-Pokémon?"). Inverter uma vez em build time evita varrer 30 pools a cada frame.
-
 ## Módulos novos
 
 ```
 src/domain/
-  biome.ts      Encounter, BiomeIndex, encountersOf(index, speciesId)
-  dossier.ts    dossierFor(facts, tables): Dossier
+  biome.ts      Encounter, encountersIn(index, speciesId, biomeId)
+  dossier.ts    dossierFor(facts, tables): Dossier              ← puro, testável
 
 src/game/
-  facts.ts      readRuntimeFacts(pokemon | starterContainer): RuntimeFacts
+  pokerogue.ts  (+)  tipa catchRate e abilityHidden em PokeRogueSpecies
+  facts.ts      readRuntimeFacts(pokemon, biomeId): RuntimeFacts
   focus.ts      FocusCycle: nenhum → alvo 0 → alvo 1 → nenhum
-  keys.ts       binding da tecla, com guarda de conflito
+  keys.ts       binding da tecla, com repasse do evento ao jogo
 
 src/render/
-  panel.ts      Panel.render(dossier) / Panel.clear() / Panel.size
+  panel.ts      container Phaser: backdrop + linhas. Sem regra de negócio.
 ```
+
+A tela de starter não aparece nesta lista, e é de propósito (AD-25).
 
 ### Contratos
 
@@ -126,6 +154,7 @@ interface RuntimeFacts {
   fusion: SpeciesRef | null;
   catchRate: number | null;
   hiddenAbilityId: number | null;
+  biomeId: number | null;          // null quando o bioma não pôde ser lido (AD-24)
 }
 
 // domain/dossier.ts — puro
@@ -134,30 +163,40 @@ interface Dossier {
   tiers: ResolvedTiers;                  // reusa domain/tier-table.ts
   hiddenAbility: string | null;
   eggMoves: readonly string[];
-  encounters: readonly Encounter[];
+  encounters: readonly Encounter[];      // já filtradas pelo bioma atual
   catchRate: number | null;
 }
 ```
 
-`dossierFor` não lança e não consulta nada externo: campo sem dado vem `null` ou vazio, e é
-o `panel.ts` que decide não desenhar a linha (AD-8). Regra de fusão em AD-9: tier resolvido
-entre as duas linhas como a v2 já faz, campos factuais da espécie primária — que é o que o
-runtime entrega.
+`dossierFor` não lança e não consulta nada externo: campo sem dado vem `null` ou vazio, e é o
+`panel.ts` que decide não desenhar a linha (AD-8). Regra de fusão em AD-9: tier resolvido
+entre as duas linhas como a v2 já faz, campos factuais da espécie primária.
+
+Hora do dia só é exibida quando a ocorrência é restrita a um período — se a espécie aparece
+em `TimeOfDay.ALL`, a linha mostra só a raridade. Assim o painel não depende de ler a hora do
+jogo, que é dado que nada garante estar acessível.
+
+## O bioma atual
+
+`scene.arena.biomeType` é enum numérico e é a fonte. `window.gameInfo` também expõe o bioma,
+mas como string de exibição e sob um `gameInfoVersion` próprio — contrato mais frágil, e
+exigiria casar texto traduzido com id. Foi o `gameInfo` que revelou que o dado existia; o
+`arena.biomeType` é por onde ele entra.
+
+Bioma ilegível não é erro: a linha de raridade some e o resto do painel continua (AD-24).
 
 ## Fluxo
 
 ```
-tick → surface.match → readTargets ─┬→ badgeSpecsFor → BadgeLayer.reconcile   (existente)
-                                    │
-                                    └→ focus.current → readRuntimeFacts
-                                                     → dossierFor(facts, tables)
-                                                     → Panel.render
+tick → BattleSurface.matches ─┬→ readBattleTargets → badgeSpecsFor → BadgeLayer.reconcile  (existente)
+                              │
+                              └→ focus.current → readRuntimeFacts
+                                               → dossierFor(facts, tables)
+                                               → Panel.render
 ```
 
-O painel entra como um segundo consumidor dos mesmos alvos. `Surface` ganha `focusedTarget`;
-`BattleSurface` resolve pelo `FocusCycle`, `StarterSurface` pelo cursor que o próprio jogo
-mantém. `Overlay.tick` não ganha ramificação nova: chama `Panel.render` ou `Panel.clear`
-pelo mesmo critério que já usa para as badges.
+O painel entra como segundo consumidor dos mesmos alvos, e só na `BattleSurface`. A interface
+`Surface` **não muda** — `StarterSurface` não conhece foco nem painel, e não deve conhecer.
 
 `Panel` segue a disciplina do `BadgeLayer`: reconcilia texto e posição, não destrói e recria
 por frame. Fechado, `clear()` deixa `size === 0` (AD-11).
@@ -168,33 +207,32 @@ visibilidade são herdadas — é o que faz AD-16 (celular) sair sem código de 
 ## A tecla
 
 `keys.ts` registra o handler e **repassa** o evento ao jogo quando o painel não deve reagir
-(diálogo aberto, tela sem alvo). O overlay nunca consome input que o jogo esperava.
+(diálogo aberto, sem alvo). O overlay nunca consome input que o jogo esperava.
 
-Qual tecla satisfaz AD-12 é resultado de verificação em jogo (tarefa A6), não de suposição:
-o PokéRogue usa o teclado para jogar, e escolher `Tab` no papel é o tipo de decisão que
-falha em produção. A tarefa entrega a tecla e a evidência de que ela está livre nas duas
-telas.
+Qual tecla satisfaz AD-12 é resultado de verificação em jogo (tarefa A5), não de suposição.
+Já se observou na tela de starter que `C`, `G`, `N` e `U` estão ocupadas, além de setas,
+Enter e Esc — escolher `Tab` no papel é o tipo de decisão que falha em produção.
 
 ## Manutenção: o workflow de drift
 
 O risco real desta spec não é técnico, é temporal — o PokéRogue atualiza e a tabela gerada
 passa a mentir. Mentir é pior que omitir, e o overlay já escolheu omitir (`?` do Smogon).
 
-`.github/workflows/data-drift.yml`, agendado semanalmente: roda o gerador contra a HEAD do
-upstream, compara com as tabelas versionadas e, havendo diff, abre PR com as tabelas novas e
-o pin atualizado. O PR passa pelo CI existente antes de ser mergeável (AD-19). Merge é
-decisão humana — o overlay não se atualiza sozinho a partir de código de terceiro.
+`.github/workflows/data-drift.yml`, semanal: roda o gerador contra a HEAD dos dois upstreams,
+compara com as tabelas versionadas e, havendo diff, abre PR com as tabelas novas e os pins
+atualizados. O PR passa pelo CI existente antes de ser mergeável (AD-19). Merge é decisão
+humana — o overlay não se atualiza sozinho a partir de código de terceiro.
 
 ## Teste
 
 | Alvo | Como |
 |---|---|
-| `biome.ts`, `dossier.ts` | Vitest puro: fusão, forma regional, espécie sem egg move, espécie em 0 e em N biomas, HA ausente |
+| `biome.ts`, `dossier.ts` | Vitest puro: fusão, forma regional, espécie sem egg move, espécie ausente do bioma atual, bioma nulo, HA ausente |
 | `panel.ts` | fake Phaser, no padrão de `test/badge-layer.test.ts`: criação, atualização, remoção, `size === 0` após `clear` |
 | `focus.ts` | ciclo com 1 e 2 alvos, e alvo removido no meio do ciclo |
 | tabelas geradas | cardinalidade e formato de chave, no padrão de `test/tier-table-data.test.ts` |
 | gerador | reprodutibilidade (AD-2) e falha explícita sem fonte (AD-3) |
-| in-game | **screenshot obrigatória**, padrão V9 da v2: painel em batalha simples e dupla sem cobrir HUD, na grade de starter, em viewport de celular, e a tecla livre |
+| in-game | **screenshot obrigatória**, padrão V9 da v2: painel em batalha simples e dupla sem cobrir HUD, em viewport de celular, tecla livre, e a tela de starter inalterada |
 
 Sem screenshot, os critérios de tela não estão atendidos. Foi assim na v2 e continua sendo.
 
@@ -202,11 +240,9 @@ Sem screenshot, os critérios de tela não estão atendidos. Foi assim na v2 e c
 
 | Arquivo | Mudança |
 |---|---|
-| `src/game/pokerogue.ts` | tipa `catchRate` e `abilityHidden` em `PokeRogueSpecies` |
-| `src/surfaces/surface.ts` | `Surface` passa a expor `focusedTarget` |
-| `src/surfaces/battle-surface.ts` | resolve foco pelo `FocusCycle` |
-| `src/surfaces/starter-surface.ts` | resolve foco pelo cursor do jogo |
-| `src/overlay.ts` | segundo consumidor dos alvos: `Panel.render` / `Panel.clear` |
+| `src/game/pokerogue.ts` | tipa `catchRate` e `abilityHidden` em `PokeRogueSpecies`, e `biomeType` em `arena` |
+| `src/surfaces/battle-surface.ts` | segundo consumidor dos alvos: `Panel.render` / `Panel.clear` |
+| `src/bootstrap.ts` | monta `Panel`, `FocusCycle` e o binding de tecla na `BattleSurface` |
 | `src/main.ts` | injeta as tabelas novas |
 | `package.json` | script `build:data` |
 | `tools/stubs/` | stubs dos módulos upstream contaminados por `i18next`/Phaser |
@@ -214,3 +250,5 @@ Sem screenshot, os critérios de tela não estão atendidos. Foi assim na v2 e c
 | `LICENSE` | MIT → AGPL-3.0-only (AD-23) |
 | `vite.config.ts` | campo `license` do bloco de metadados acompanha |
 | `README.md` | painel, tecla, origem dos dados e crédito aos repositórios AGPL |
+
+`src/surfaces/starter-surface.ts` e `src/surfaces/surface.ts` **não** aparecem aqui (AD-25).
