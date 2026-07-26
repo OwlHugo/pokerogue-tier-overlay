@@ -17,8 +17,24 @@ Hoothoot   LC → RU (Noctowl)
 2. Instale o script pelo Greasyfork *(link após a publicação)*.
 3. Abra [pokerogue.net](https://pokerogue.net/). Pronto.
 
-Funciona em Chrome, Firefox, Edge e Safari no desktop, e no Firefox do Android. O Chrome do
-Android não suporta extensão nenhuma — nesse caso, use o bookmarklet.
+Funciona em Chrome, Firefox, Edge e Safari no desktop, e no Firefox do Android.
+
+### No celular, ou onde não dá para instalar extensão
+
+O Chrome do Android não suporta extensão nenhuma, e o Kiwi Browser, que era a saída, foi
+descontinuado. Para esses casos existe um bookmarklet: um favorito que você toca depois que
+o jogo abre.
+
+```bash
+npm run build:bookmarklet
+```
+
+Isso gera `dist/bookmarklet.txt`. Crie um favorito e cole o conteúdo no campo de endereço.
+Abra o PokéRogue, toque no favorito, e o overlay liga.
+
+Ele funciona **porque a captura do jogo não depende de injeção precoce** (veja abaixo). A
+contrapartida é que você precisa tocar o favorito a cada carregamento da página, e que a URL
+tem cerca de 88 kB — alguns navegadores não gostam de favoritos tão longos.
 
 ## Onde aparece
 

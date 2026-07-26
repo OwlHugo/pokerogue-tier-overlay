@@ -82,9 +82,19 @@ Transformar o overlay em software que outra pessoa instala em um clique, usa sem
   (contagem de objetos criados pelo overlay volta a zero ao sair).
 - CA-20: A identificação de espécie continua por `speciesId`, nunca por texto exibido.
 
+## Acrescentado durante a implementação
+
+- CA-21: Um segundo formato de distribuição, bookmarklet, gerado por
+  `npm run build:bookmarklet`. Cobre Chrome no Android e iOS Safari, onde não existe
+  extensão. Viável apenas porque CA-8 tornou a captura independente de injeção precoce.
+- CA-22: Nenhuma espécie da tabela fica sem tier. 292 das 1025 espécies base são `Illegal`
+  na geração 9 por não existirem em Scarlet/Violet, embora existam no PokéRogue; o tier cai
+  para a geração mais recente que as cataloga.
+
 ## Fora de escopo
 
-- Extensão de Chrome / Web Store.
+- Extensão de Chrome / Web Store — descartada também por custo: a taxa de US$5 da loja é o
+  único desembolso que o projeto teria, e o autor pediu custo zero.
 - Qualquer forma de cobrança, licenciamento ou servidor.
 - Marcar o time do jogador.
 - Pokédex, sumário, gacha de ovos e demais telas.

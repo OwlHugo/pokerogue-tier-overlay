@@ -223,6 +223,13 @@ não é o Tampermonkey. A instalação real no Tampermonkey/Violentmonkey precis
 por você antes de publicar — eu não consigo instalar a extensão nem validar o timing real de
 `document-start` daqui.
 
+**Armadilha de verificação, descoberta na marra:** o PokéRogue mantém **uma sessão por
+conta**. Abrir o jogo logado em mais de uma janela derruba as outras: o jogo continua com
+`Phaser` carregado e o handler correto em `ui.mode`, mas a scene nunca monta a grade e o
+canvas fica preto. Isso imita perfeitamente um bug do overlay — `starterContainers` com 572
+itens e nenhum `visible`. Toda verificação em jogo real precisa de **uma única sessão ativa**,
+senão o resultado é ruído.
+
 ## Migração da v1
 
 - `src/overlay.js`, `src/launch.mjs`, `src/tier-rank.mjs`, `src/evo-line.mjs` saem.
