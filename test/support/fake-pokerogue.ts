@@ -44,7 +44,9 @@ export function fakeStarterContainer(options: {
   return container;
 }
 
-export function fakeBattleScene(options: { enemies: PokeRoguePokemon[] | null }): BattleScene {
+export function fakeBattleScene(options: {
+  enemies: PokeRoguePokemon[] | null;
+}): FakeScene & BattleScene {
   const scene = new FakeScene() as FakeScene & BattleScene;
   scene.currentBattle = options.enemies ? {} : null;
   scene.getEnemyField = () => options.enemies ?? [];

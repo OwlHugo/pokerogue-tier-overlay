@@ -33,3 +33,19 @@ export interface Scene {
     text(x: number, y: number, text: string, style: TextStyle): TextObject;
   };
 }
+
+export interface PhaserGame {
+  scene: { getScene(key: string): unknown };
+}
+
+export type BootMethod = (this: PhaserGame, ...args: never[]) => unknown;
+export type StepMethod = (this: { game: PhaserGame }, ...args: never[]) => unknown;
+
+export interface PhaserNamespace {
+  Game: { prototype: { boot: BootMethod } };
+  Scenes: { Systems: { prototype: { step: StepMethod } } };
+}
+
+export interface PhaserHost {
+  Phaser?: PhaserNamespace;
+}
