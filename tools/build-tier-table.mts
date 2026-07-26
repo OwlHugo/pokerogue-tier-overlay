@@ -6,6 +6,7 @@ import { keyFor, type SpeciesKey } from '../src/domain/species-key';
 import { compareTier } from '../src/domain/tier';
 import { type GenerationSource, tierAcrossGenerations } from '../src/domain/tier-cascade';
 import type { TierEntry } from '../src/domain/tier-table';
+import { bestFormOfLine, GMAX_BY_NUMBER, MEGA_BY_NUMBER } from './unlocked-forms.mjs';
 
 const REGIONAL_FORMS = new Set(['alola', 'galar', 'hisui', 'paldea']);
 const GENERATION = 9;
@@ -34,9 +35,14 @@ function keyOf(entry: Species): SpeciesKey | null {
 }
 
 function entryFor(entry: Species): TierEntry {
+  const line = evolutionLine(species, entry);
+  const dexNumbers = line.map((name) => dex.species.get(name).num);
+
   return {
     tier: tierOf(entry.name),
-    ...bestOfLine(evolutionLine(species, entry), tierOf),
+    ...bestOfLine(line, tierOf),
+    mega: bestFormOfLine(MEGA_BY_NUMBER, dexNumbers),
+    gmax: bestFormOfLine(GMAX_BY_NUMBER, dexNumbers),
   };
 }
 

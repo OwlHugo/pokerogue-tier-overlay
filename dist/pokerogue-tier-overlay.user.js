@@ -18,5407 +18,8145 @@
 		"1": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Venusaur"
+			"bestName": "Venusaur",
+			"mega": {
+				"tier": "UUBL",
+				"name": "Venusaur-Mega"
+			},
+			"gmax": {
+				"tier": "AG",
+				"name": "Venusaur-Gmax"
+			}
 		},
 		"2": {
 			"tier": "NFE",
 			"bestTier": "PU",
-			"bestName": "Venusaur"
+			"bestName": "Venusaur",
+			"mega": {
+				"tier": "UUBL",
+				"name": "Venusaur-Mega"
+			},
+			"gmax": {
+				"tier": "AG",
+				"name": "Venusaur-Gmax"
+			}
 		},
 		"3": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Venusaur"
+			"bestName": "Venusaur",
+			"mega": {
+				"tier": "UUBL",
+				"name": "Venusaur-Mega"
+			},
+			"gmax": {
+				"tier": "AG",
+				"name": "Venusaur-Gmax"
+			}
 		},
 		"4": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Charizard"
+			"bestName": "Charizard",
+			"mega": {
+				"tier": "OU",
+				"name": "Charizard-Mega-X"
+			},
+			"gmax": {
+				"tier": "AG",
+				"name": "Charizard-Gmax"
+			}
 		},
 		"5": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Charizard"
+			"bestName": "Charizard",
+			"mega": {
+				"tier": "OU",
+				"name": "Charizard-Mega-X"
+			},
+			"gmax": {
+				"tier": "AG",
+				"name": "Charizard-Gmax"
+			}
 		},
 		"6": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Charizard"
+			"bestName": "Charizard",
+			"mega": {
+				"tier": "OU",
+				"name": "Charizard-Mega-X"
+			},
+			"gmax": {
+				"tier": "AG",
+				"name": "Charizard-Gmax"
+			}
 		},
 		"7": {
 			"tier": "LC",
 			"bestTier": "RUBL",
-			"bestName": "Blastoise"
+			"bestName": "Blastoise",
+			"mega": {
+				"tier": "RU",
+				"name": "Blastoise-Mega"
+			},
+			"gmax": {
+				"tier": "AG",
+				"name": "Blastoise-Gmax"
+			}
 		},
 		"8": {
 			"tier": "NFE",
 			"bestTier": "RUBL",
-			"bestName": "Blastoise"
+			"bestName": "Blastoise",
+			"mega": {
+				"tier": "RU",
+				"name": "Blastoise-Mega"
+			},
+			"gmax": {
+				"tier": "AG",
+				"name": "Blastoise-Gmax"
+			}
 		},
 		"9": {
 			"tier": "RUBL",
 			"bestTier": "RUBL",
-			"bestName": "Blastoise"
+			"bestName": "Blastoise",
+			"mega": {
+				"tier": "RU",
+				"name": "Blastoise-Mega"
+			},
+			"gmax": {
+				"tier": "AG",
+				"name": "Blastoise-Gmax"
+			}
 		},
 		"10": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Butterfree"
+			"bestName": "Butterfree",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Butterfree-Gmax"
+			}
 		},
 		"11": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Butterfree"
+			"bestName": "Butterfree",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Butterfree-Gmax"
+			}
 		},
 		"12": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Butterfree"
+			"bestName": "Butterfree",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Butterfree-Gmax"
+			}
 		},
 		"13": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Beedrill"
+			"bestName": "Beedrill",
+			"mega": {
+				"tier": "UU",
+				"name": "Beedrill-Mega"
+			},
+			"gmax": null
 		},
 		"14": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Beedrill"
+			"bestName": "Beedrill",
+			"mega": {
+				"tier": "UU",
+				"name": "Beedrill-Mega"
+			},
+			"gmax": null
 		},
 		"15": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Beedrill"
+			"bestName": "Beedrill",
+			"mega": {
+				"tier": "UU",
+				"name": "Beedrill-Mega"
+			},
+			"gmax": null
 		},
 		"16": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Pidgeot"
+			"bestName": "Pidgeot",
+			"mega": {
+				"tier": "UU",
+				"name": "Pidgeot-Mega"
+			},
+			"gmax": null
 		},
 		"17": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Pidgeot"
+			"bestName": "Pidgeot",
+			"mega": {
+				"tier": "UU",
+				"name": "Pidgeot-Mega"
+			},
+			"gmax": null
 		},
 		"18": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Pidgeot"
+			"bestName": "Pidgeot",
+			"mega": {
+				"tier": "UU",
+				"name": "Pidgeot-Mega"
+			},
+			"gmax": null
 		},
 		"19": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Raticate"
+			"bestName": "Raticate",
+			"mega": null,
+			"gmax": null
 		},
 		"20": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Raticate"
+			"bestName": "Raticate",
+			"mega": null,
+			"gmax": null
 		},
 		"21": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Fearow"
+			"bestName": "Fearow",
+			"mega": null,
+			"gmax": null
 		},
 		"22": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Fearow"
+			"bestName": "Fearow",
+			"mega": null,
+			"gmax": null
 		},
 		"23": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Arbok"
+			"bestName": "Arbok",
+			"mega": null,
+			"gmax": null
 		},
 		"24": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Arbok"
+			"bestName": "Arbok",
+			"mega": null,
+			"gmax": null
 		},
 		"25": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Raichu-Alola"
+			"bestName": "Raichu-Alola",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Pikachu-Gmax"
+			}
 		},
 		"26": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Raichu-Alola"
+			"bestName": "Raichu-Alola",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Pikachu-Gmax"
+			}
 		},
 		"27": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Sandslash"
+			"bestName": "Sandslash",
+			"mega": null,
+			"gmax": null
 		},
 		"28": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Sandslash"
+			"bestName": "Sandslash",
+			"mega": null,
+			"gmax": null
 		},
 		"29": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Nidoqueen"
+			"bestName": "Nidoqueen",
+			"mega": null,
+			"gmax": null
 		},
 		"30": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Nidoqueen"
+			"bestName": "Nidoqueen",
+			"mega": null,
+			"gmax": null
 		},
 		"31": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Nidoqueen"
+			"bestName": "Nidoqueen",
+			"mega": null,
+			"gmax": null
 		},
 		"32": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Nidoking"
+			"bestName": "Nidoking",
+			"mega": null,
+			"gmax": null
 		},
 		"33": {
 			"tier": "NFE",
 			"bestTier": "UU",
-			"bestName": "Nidoking"
+			"bestName": "Nidoking",
+			"mega": null,
+			"gmax": null
 		},
 		"34": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Nidoking"
+			"bestName": "Nidoking",
+			"mega": null,
+			"gmax": null
 		},
 		"35": {
 			"tier": "NFE",
 			"bestTier": "OU",
-			"bestName": "Clefable"
+			"bestName": "Clefable",
+			"mega": null,
+			"gmax": null
 		},
 		"36": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Clefable"
+			"bestName": "Clefable",
+			"mega": null,
+			"gmax": null
 		},
 		"37": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Ninetales"
+			"bestName": "Ninetales",
+			"mega": null,
+			"gmax": null
 		},
 		"38": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Ninetales"
+			"bestName": "Ninetales",
+			"mega": null,
+			"gmax": null
 		},
 		"39": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Wigglytuff"
+			"bestName": "Wigglytuff",
+			"mega": null,
+			"gmax": null
 		},
 		"40": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Wigglytuff"
+			"bestName": "Wigglytuff",
+			"mega": null,
+			"gmax": null
 		},
 		"41": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Crobat"
+			"bestName": "Crobat",
+			"mega": null,
+			"gmax": null
 		},
 		"42": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Crobat"
+			"bestName": "Crobat",
+			"mega": null,
+			"gmax": null
 		},
 		"43": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Vileplume"
+			"bestName": "Vileplume",
+			"mega": null,
+			"gmax": null
 		},
 		"44": {
 			"tier": "NFE",
 			"bestTier": "NU",
-			"bestName": "Vileplume"
+			"bestName": "Vileplume",
+			"mega": null,
+			"gmax": null
 		},
 		"45": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Vileplume"
+			"bestName": "Vileplume",
+			"mega": null,
+			"gmax": null
 		},
 		"46": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Parasect"
+			"bestName": "Parasect",
+			"mega": null,
+			"gmax": null
 		},
 		"47": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Parasect"
+			"bestName": "Parasect",
+			"mega": null,
+			"gmax": null
 		},
 		"48": {
 			"tier": "LC",
 			"bestTier": "ZUBL",
-			"bestName": "Venomoth"
+			"bestName": "Venomoth",
+			"mega": null,
+			"gmax": null
 		},
 		"49": {
 			"tier": "ZUBL",
 			"bestTier": "ZUBL",
-			"bestName": "Venomoth"
+			"bestName": "Venomoth",
+			"mega": null,
+			"gmax": null
 		},
 		"50": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Dugtrio"
+			"bestName": "Dugtrio",
+			"mega": null,
+			"gmax": null
 		},
 		"51": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Dugtrio"
+			"bestName": "Dugtrio",
+			"mega": null,
+			"gmax": null
 		},
 		"52": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Persian"
+			"bestName": "Persian",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Meowth-Gmax"
+			}
 		},
 		"53": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Persian"
+			"bestName": "Persian",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Meowth-Gmax"
+			}
 		},
 		"54": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Golduck"
+			"bestName": "Golduck",
+			"mega": null,
+			"gmax": null
 		},
 		"55": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Golduck"
+			"bestName": "Golduck",
+			"mega": null,
+			"gmax": null
 		},
 		"56": {
 			"tier": "LC",
 			"bestTier": "Uber",
-			"bestName": "Annihilape"
+			"bestName": "Annihilape",
+			"mega": null,
+			"gmax": null
 		},
 		"57": {
 			"tier": "ZU",
 			"bestTier": "Uber",
-			"bestName": "Annihilape"
+			"bestName": "Annihilape",
+			"mega": null,
+			"gmax": null
 		},
 		"58": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Arcanine"
+			"bestName": "Arcanine",
+			"mega": null,
+			"gmax": null
 		},
 		"59": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Arcanine"
+			"bestName": "Arcanine",
+			"mega": null,
+			"gmax": null
 		},
 		"60": {
 			"tier": "LC",
 			"bestTier": "NUBL",
-			"bestName": "Politoed"
+			"bestName": "Politoed",
+			"mega": null,
+			"gmax": null
 		},
 		"61": {
 			"tier": "NFE",
 			"bestTier": "NUBL",
-			"bestName": "Politoed"
+			"bestName": "Politoed",
+			"mega": null,
+			"gmax": null
 		},
 		"62": {
 			"tier": "ZU",
 			"bestTier": "NUBL",
-			"bestName": "Politoed"
+			"bestName": "Politoed",
+			"mega": null,
+			"gmax": null
 		},
 		"63": {
 			"tier": "LC",
 			"bestTier": "UUBL",
-			"bestName": "Alakazam"
+			"bestName": "Alakazam",
+			"mega": {
+				"tier": "OU",
+				"name": "Alakazam-Mega"
+			},
+			"gmax": null
 		},
 		"64": {
 			"tier": "NFE",
 			"bestTier": "UUBL",
-			"bestName": "Alakazam"
+			"bestName": "Alakazam",
+			"mega": {
+				"tier": "OU",
+				"name": "Alakazam-Mega"
+			},
+			"gmax": null
 		},
 		"65": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Alakazam"
+			"bestName": "Alakazam",
+			"mega": {
+				"tier": "OU",
+				"name": "Alakazam-Mega"
+			},
+			"gmax": null
 		},
 		"66": {
 			"tier": "LC",
 			"bestTier": "NUBL",
-			"bestName": "Machamp"
+			"bestName": "Machamp",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Machamp-Gmax"
+			}
 		},
 		"67": {
 			"tier": "NFE",
 			"bestTier": "NUBL",
-			"bestName": "Machamp"
+			"bestName": "Machamp",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Machamp-Gmax"
+			}
 		},
 		"68": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Machamp"
+			"bestName": "Machamp",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Machamp-Gmax"
+			}
 		},
 		"69": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Victreebel"
+			"bestName": "Victreebel",
+			"mega": null,
+			"gmax": null
 		},
 		"70": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Victreebel"
+			"bestName": "Victreebel",
+			"mega": null,
+			"gmax": null
 		},
 		"71": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Victreebel"
+			"bestName": "Victreebel",
+			"mega": null,
+			"gmax": null
 		},
 		"72": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Tentacruel"
+			"bestName": "Tentacruel",
+			"mega": null,
+			"gmax": null
 		},
 		"73": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Tentacruel"
+			"bestName": "Tentacruel",
+			"mega": null,
+			"gmax": null
 		},
 		"74": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Golem"
+			"bestName": "Golem",
+			"mega": null,
+			"gmax": null
 		},
 		"75": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Golem"
+			"bestName": "Golem",
+			"mega": null,
+			"gmax": null
 		},
 		"76": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Golem"
+			"bestName": "Golem",
+			"mega": null,
+			"gmax": null
 		},
 		"77": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Rapidash"
+			"bestName": "Rapidash",
+			"mega": null,
+			"gmax": null
 		},
 		"78": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Rapidash"
+			"bestName": "Rapidash",
+			"mega": null,
+			"gmax": null
 		},
 		"79": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Slowking"
+			"bestName": "Slowking",
+			"mega": {
+				"tier": "RUBL",
+				"name": "Slowbro-Mega"
+			},
+			"gmax": null
 		},
 		"80": {
 			"tier": "RU",
 			"bestTier": "UU",
-			"bestName": "Slowking"
+			"bestName": "Slowking",
+			"mega": {
+				"tier": "RUBL",
+				"name": "Slowbro-Mega"
+			},
+			"gmax": null
 		},
 		"81": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Magnezone"
+			"bestName": "Magnezone",
+			"mega": null,
+			"gmax": null
 		},
 		"82": {
 			"tier": "ZU",
 			"bestTier": "RU",
-			"bestName": "Magnezone"
+			"bestName": "Magnezone",
+			"mega": null,
+			"gmax": null
 		},
 		"83": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Farfetch’d"
+			"bestName": "Farfetch’d",
+			"mega": null,
+			"gmax": null
 		},
 		"84": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Dodrio"
+			"bestName": "Dodrio",
+			"mega": null,
+			"gmax": null
 		},
 		"85": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Dodrio"
+			"bestName": "Dodrio",
+			"mega": null,
+			"gmax": null
 		},
 		"86": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Dewgong"
+			"bestName": "Dewgong",
+			"mega": null,
+			"gmax": null
 		},
 		"87": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Dewgong"
+			"bestName": "Dewgong",
+			"mega": null,
+			"gmax": null
 		},
 		"88": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Muk"
+			"bestName": "Muk",
+			"mega": null,
+			"gmax": null
 		},
 		"89": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Muk"
+			"bestName": "Muk",
+			"mega": null,
+			"gmax": null
 		},
 		"90": {
 			"tier": "LC",
 			"bestTier": "NUBL",
-			"bestName": "Cloyster"
+			"bestName": "Cloyster",
+			"mega": null,
+			"gmax": null
 		},
 		"91": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Cloyster"
+			"bestName": "Cloyster",
+			"mega": null,
+			"gmax": null
 		},
 		"92": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Gengar"
+			"bestName": "Gengar",
+			"mega": {
+				"tier": "Uber",
+				"name": "Gengar-Mega"
+			},
+			"gmax": {
+				"tier": "AG",
+				"name": "Gengar-Gmax"
+			}
 		},
 		"93": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Gengar"
+			"bestName": "Gengar",
+			"mega": {
+				"tier": "Uber",
+				"name": "Gengar-Mega"
+			},
+			"gmax": {
+				"tier": "AG",
+				"name": "Gengar-Gmax"
+			}
 		},
 		"94": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Gengar"
+			"bestName": "Gengar",
+			"mega": {
+				"tier": "Uber",
+				"name": "Gengar-Mega"
+			},
+			"gmax": {
+				"tier": "AG",
+				"name": "Gengar-Gmax"
+			}
 		},
 		"95": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Steelix"
+			"bestName": "Steelix",
+			"mega": {
+				"tier": "UU",
+				"name": "Steelix-Mega"
+			},
+			"gmax": null
 		},
 		"96": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Hypno"
+			"bestName": "Hypno",
+			"mega": null,
+			"gmax": null
 		},
 		"97": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Hypno"
+			"bestName": "Hypno",
+			"mega": null,
+			"gmax": null
 		},
 		"98": {
 			"tier": "LC",
 			"bestTier": "PUBL",
-			"bestName": "Kingler"
+			"bestName": "Kingler",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Kingler-Gmax"
+			}
 		},
 		"99": {
 			"tier": "PUBL",
 			"bestTier": "PUBL",
-			"bestName": "Kingler"
+			"bestName": "Kingler",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Kingler-Gmax"
+			}
 		},
 		"100": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Electrode"
+			"bestName": "Electrode",
+			"mega": null,
+			"gmax": null
 		},
 		"101": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Electrode"
+			"bestName": "Electrode",
+			"mega": null,
+			"gmax": null
 		},
 		"102": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Exeggutor-Alola"
+			"bestName": "Exeggutor-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"103": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Exeggutor-Alola"
+			"bestName": "Exeggutor-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"104": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Marowak-Alola"
+			"bestName": "Marowak-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"105": {
 			"tier": "ZU",
 			"bestTier": "RU",
-			"bestName": "Marowak-Alola"
+			"bestName": "Marowak-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"106": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Hitmonlee"
+			"bestName": "Hitmonlee",
+			"mega": null,
+			"gmax": null
 		},
 		"107": {
 			"tier": "ZU",
 			"bestTier": "PU",
-			"bestName": "Hitmonlee"
+			"bestName": "Hitmonlee",
+			"mega": null,
+			"gmax": null
 		},
 		"108": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Lickilicky"
+			"bestName": "Lickilicky",
+			"mega": null,
+			"gmax": null
 		},
 		"109": {
 			"tier": "LC",
 			"bestTier": "OU",
-			"bestName": "Weezing-Galar"
+			"bestName": "Weezing-Galar",
+			"mega": null,
+			"gmax": null
 		},
 		"110": {
 			"tier": "ZU",
 			"bestTier": "OU",
-			"bestName": "Weezing-Galar"
+			"bestName": "Weezing-Galar",
+			"mega": null,
+			"gmax": null
 		},
 		"111": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Rhyperior"
+			"bestName": "Rhyperior",
+			"mega": null,
+			"gmax": null
 		},
 		"112": {
 			"tier": "PU",
 			"bestTier": "NU",
-			"bestName": "Rhyperior"
+			"bestName": "Rhyperior",
+			"mega": null,
+			"gmax": null
 		},
 		"113": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Blissey"
+			"bestName": "Blissey",
+			"mega": null,
+			"gmax": null
 		},
 		"114": {
 			"tier": "NFE",
 			"bestTier": "UU",
-			"bestName": "Tangrowth"
+			"bestName": "Tangrowth",
+			"mega": null,
+			"gmax": null
 		},
 		"115": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Kangaskhan"
+			"bestName": "Kangaskhan",
+			"mega": {
+				"tier": "Uber",
+				"name": "Kangaskhan-Mega"
+			},
+			"gmax": null
 		},
 		"116": {
 			"tier": "LC",
 			"bestTier": "ZUBL",
-			"bestName": "Kingdra"
+			"bestName": "Kingdra",
+			"mega": null,
+			"gmax": null
 		},
 		"117": {
 			"tier": "NFE",
 			"bestTier": "ZUBL",
-			"bestName": "Kingdra"
+			"bestName": "Kingdra",
+			"mega": null,
+			"gmax": null
 		},
 		"118": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Seaking"
+			"bestName": "Seaking",
+			"mega": null,
+			"gmax": null
 		},
 		"119": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Seaking"
+			"bestName": "Seaking",
+			"mega": null,
+			"gmax": null
 		},
 		"120": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Starmie"
+			"bestName": "Starmie",
+			"mega": null,
+			"gmax": null
 		},
 		"121": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Starmie"
+			"bestName": "Starmie",
+			"mega": null,
+			"gmax": null
 		},
 		"122": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Mr. Rime"
+			"bestName": "Mr. Rime",
+			"mega": null,
+			"gmax": null
 		},
 		"123": {
 			"tier": "NU",
 			"bestTier": "OU",
-			"bestName": "Scizor"
+			"bestName": "Scizor",
+			"mega": {
+				"tier": "OU",
+				"name": "Scizor-Mega"
+			},
+			"gmax": null
 		},
 		"124": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Jynx"
+			"bestName": "Jynx",
+			"mega": null,
+			"gmax": null
 		},
 		"125": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Electivire"
+			"bestName": "Electivire",
+			"mega": null,
+			"gmax": null
 		},
 		"126": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Magmortar"
+			"bestName": "Magmortar",
+			"mega": null,
+			"gmax": null
 		},
 		"127": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Pinsir"
+			"bestName": "Pinsir",
+			"mega": {
+				"tier": "UUBL",
+				"name": "Pinsir-Mega"
+			},
+			"gmax": null
 		},
 		"128": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Tauros"
+			"bestName": "Tauros",
+			"mega": null,
+			"gmax": null
 		},
 		"129": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Gyarados"
+			"bestName": "Gyarados",
+			"mega": {
+				"tier": "OU",
+				"name": "Gyarados-Mega"
+			},
+			"gmax": null
 		},
 		"130": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Gyarados"
+			"bestName": "Gyarados",
+			"mega": {
+				"tier": "OU",
+				"name": "Gyarados-Mega"
+			},
+			"gmax": null
 		},
 		"131": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Lapras"
+			"bestName": "Lapras",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Lapras-Gmax"
+			}
 		},
 		"132": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Ditto"
+			"bestName": "Ditto",
+			"mega": null,
+			"gmax": null
 		},
 		"133": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Umbreon"
+			"bestName": "Umbreon",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Eevee-Gmax"
+			}
 		},
 		"134": {
 			"tier": "NU",
 			"bestTier": "RU",
-			"bestName": "Umbreon"
+			"bestName": "Umbreon",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Eevee-Gmax"
+			}
 		},
 		"135": {
 			"tier": "ZU",
 			"bestTier": "RU",
-			"bestName": "Umbreon"
+			"bestName": "Umbreon",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Eevee-Gmax"
+			}
 		},
 		"136": {
 			"tier": "ZU",
 			"bestTier": "RU",
-			"bestName": "Umbreon"
+			"bestName": "Umbreon",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Eevee-Gmax"
+			}
 		},
 		"137": {
 			"tier": "NFE",
 			"bestTier": "NUBL",
-			"bestName": "Porygon-Z"
+			"bestName": "Porygon-Z",
+			"mega": null,
+			"gmax": null
 		},
 		"138": {
 			"tier": "LC",
 			"bestTier": "PUBL",
-			"bestName": "Omastar"
+			"bestName": "Omastar",
+			"mega": null,
+			"gmax": null
 		},
 		"139": {
 			"tier": "PUBL",
 			"bestTier": "PUBL",
-			"bestName": "Omastar"
+			"bestName": "Omastar",
+			"mega": null,
+			"gmax": null
 		},
 		"140": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Kabutops"
+			"bestName": "Kabutops",
+			"mega": null,
+			"gmax": null
 		},
 		"141": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Kabutops"
+			"bestName": "Kabutops",
+			"mega": null,
+			"gmax": null
 		},
 		"142": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Aerodactyl"
+			"bestName": "Aerodactyl",
+			"mega": {
+				"tier": "UU",
+				"name": "Aerodactyl-Mega"
+			},
+			"gmax": null
 		},
 		"143": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Snorlax"
+			"bestName": "Snorlax",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Snorlax-Gmax"
+			}
 		},
 		"144": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Articuno"
+			"bestName": "Articuno",
+			"mega": null,
+			"gmax": null
 		},
 		"145": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Zapdos"
+			"bestName": "Zapdos",
+			"mega": null,
+			"gmax": null
 		},
 		"146": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Moltres"
+			"bestName": "Moltres",
+			"mega": null,
+			"gmax": null
 		},
 		"147": {
 			"tier": "LC",
 			"bestTier": "OU",
-			"bestName": "Dragonite"
+			"bestName": "Dragonite",
+			"mega": null,
+			"gmax": null
 		},
 		"148": {
 			"tier": "NFE",
 			"bestTier": "OU",
-			"bestName": "Dragonite"
+			"bestName": "Dragonite",
+			"mega": null,
+			"gmax": null
 		},
 		"149": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Dragonite"
+			"bestName": "Dragonite",
+			"mega": null,
+			"gmax": null
 		},
 		"150": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Mewtwo"
+			"bestName": "Mewtwo",
+			"mega": {
+				"tier": "Uber",
+				"name": "Mewtwo-Mega-X"
+			},
+			"gmax": null
 		},
 		"151": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Mew"
+			"bestName": "Mew",
+			"mega": null,
+			"gmax": null
 		},
 		"152": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Meganium"
+			"bestName": "Meganium",
+			"mega": null,
+			"gmax": null
 		},
 		"153": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Meganium"
+			"bestName": "Meganium",
+			"mega": null,
+			"gmax": null
 		},
 		"154": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Meganium"
+			"bestName": "Meganium",
+			"mega": null,
+			"gmax": null
 		},
 		"155": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Typhlosion-Hisui"
+			"bestName": "Typhlosion-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"156": {
 			"tier": "NFE",
 			"bestTier": "PU",
-			"bestName": "Typhlosion-Hisui"
+			"bestName": "Typhlosion-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"157": {
 			"tier": "ZU",
 			"bestTier": "PU",
-			"bestName": "Typhlosion-Hisui"
+			"bestName": "Typhlosion-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"158": {
 			"tier": "LC",
 			"bestTier": "NUBL",
-			"bestName": "Feraligatr"
+			"bestName": "Feraligatr",
+			"mega": null,
+			"gmax": null
 		},
 		"159": {
 			"tier": "NFE",
 			"bestTier": "NUBL",
-			"bestName": "Feraligatr"
+			"bestName": "Feraligatr",
+			"mega": null,
+			"gmax": null
 		},
 		"160": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Feraligatr"
+			"bestName": "Feraligatr",
+			"mega": null,
+			"gmax": null
 		},
 		"161": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Furret"
+			"bestName": "Furret",
+			"mega": null,
+			"gmax": null
 		},
 		"162": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Furret"
+			"bestName": "Furret",
+			"mega": null,
+			"gmax": null
 		},
 		"163": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Noctowl"
+			"bestName": "Noctowl",
+			"mega": null,
+			"gmax": null
 		},
 		"164": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Noctowl"
+			"bestName": "Noctowl",
+			"mega": null,
+			"gmax": null
 		},
 		"165": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Ledian"
+			"bestName": "Ledian",
+			"mega": null,
+			"gmax": null
 		},
 		"166": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Ledian"
+			"bestName": "Ledian",
+			"mega": null,
+			"gmax": null
 		},
 		"167": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Ariados"
+			"bestName": "Ariados",
+			"mega": null,
+			"gmax": null
 		},
 		"168": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Ariados"
+			"bestName": "Ariados",
+			"mega": null,
+			"gmax": null
 		},
 		"169": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Crobat"
+			"bestName": "Crobat",
+			"mega": null,
+			"gmax": null
 		},
 		"170": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Lanturn"
+			"bestName": "Lanturn",
+			"mega": null,
+			"gmax": null
 		},
 		"171": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Lanturn"
+			"bestName": "Lanturn",
+			"mega": null,
+			"gmax": null
 		},
 		"172": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Raichu-Alola"
+			"bestName": "Raichu-Alola",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Pikachu-Gmax"
+			}
 		},
 		"173": {
 			"tier": "LC",
 			"bestTier": "OU",
-			"bestName": "Clefable"
+			"bestName": "Clefable",
+			"mega": null,
+			"gmax": null
 		},
 		"174": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Wigglytuff"
+			"bestName": "Wigglytuff",
+			"mega": null,
+			"gmax": null
 		},
 		"175": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Togekiss"
+			"bestName": "Togekiss",
+			"mega": null,
+			"gmax": null
 		},
 		"176": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Togekiss"
+			"bestName": "Togekiss",
+			"mega": null,
+			"gmax": null
 		},
 		"177": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Xatu"
+			"bestName": "Xatu",
+			"mega": null,
+			"gmax": null
 		},
 		"178": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Xatu"
+			"bestName": "Xatu",
+			"mega": null,
+			"gmax": null
 		},
 		"179": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Ampharos"
+			"bestName": "Ampharos",
+			"mega": {
+				"tier": "RU",
+				"name": "Ampharos-Mega"
+			},
+			"gmax": null
 		},
 		"180": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Ampharos"
+			"bestName": "Ampharos",
+			"mega": {
+				"tier": "RU",
+				"name": "Ampharos-Mega"
+			},
+			"gmax": null
 		},
 		"181": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Ampharos"
+			"bestName": "Ampharos",
+			"mega": {
+				"tier": "RU",
+				"name": "Ampharos-Mega"
+			},
+			"gmax": null
 		},
 		"182": {
 			"tier": "ZU",
 			"bestTier": "NU",
-			"bestName": "Vileplume"
+			"bestName": "Vileplume",
+			"mega": null,
+			"gmax": null
 		},
 		"183": {
 			"tier": "NFE",
 			"bestTier": "UU",
-			"bestName": "Azumarill"
+			"bestName": "Azumarill",
+			"mega": null,
+			"gmax": null
 		},
 		"184": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Azumarill"
+			"bestName": "Azumarill",
+			"mega": null,
+			"gmax": null
 		},
 		"185": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Sudowoodo"
+			"bestName": "Sudowoodo",
+			"mega": null,
+			"gmax": null
 		},
 		"186": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Politoed"
+			"bestName": "Politoed",
+			"mega": null,
+			"gmax": null
 		},
 		"187": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Jumpluff"
+			"bestName": "Jumpluff",
+			"mega": null,
+			"gmax": null
 		},
 		"188": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Jumpluff"
+			"bestName": "Jumpluff",
+			"mega": null,
+			"gmax": null
 		},
 		"189": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Jumpluff"
+			"bestName": "Jumpluff",
+			"mega": null,
+			"gmax": null
 		},
 		"190": {
 			"tier": "NFE",
 			"bestTier": "PU",
-			"bestName": "Ambipom"
+			"bestName": "Ambipom",
+			"mega": null,
+			"gmax": null
 		},
 		"191": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Sunflora"
+			"bestName": "Sunflora",
+			"mega": null,
+			"gmax": null
 		},
 		"192": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Sunflora"
+			"bestName": "Sunflora",
+			"mega": null,
+			"gmax": null
 		},
 		"193": {
 			"tier": "NFE",
 			"bestTier": "RUBL",
-			"bestName": "Yanmega"
+			"bestName": "Yanmega",
+			"mega": null,
+			"gmax": null
 		},
 		"194": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Quagsire"
+			"bestName": "Quagsire",
+			"mega": null,
+			"gmax": null
 		},
 		"195": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Quagsire"
+			"bestName": "Quagsire",
+			"mega": null,
+			"gmax": null
 		},
 		"196": {
 			"tier": "PU",
 			"bestTier": "RU",
-			"bestName": "Umbreon"
+			"bestName": "Umbreon",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Eevee-Gmax"
+			}
 		},
 		"197": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Umbreon"
+			"bestName": "Umbreon",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Eevee-Gmax"
+			}
 		},
 		"198": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Honchkrow"
+			"bestName": "Honchkrow",
+			"mega": null,
+			"gmax": null
 		},
 		"199": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Slowking"
+			"bestName": "Slowking",
+			"mega": {
+				"tier": "RUBL",
+				"name": "Slowbro-Mega"
+			},
+			"gmax": null
 		},
 		"200": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Mismagius"
+			"bestName": "Mismagius",
+			"mega": null,
+			"gmax": null
 		},
 		"201": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Unown"
+			"bestName": "Unown",
+			"mega": null,
+			"gmax": null
 		},
 		"202": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Wobbuffet"
+			"bestName": "Wobbuffet",
+			"mega": null,
+			"gmax": null
 		},
 		"203": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Farigiraf"
+			"bestName": "Farigiraf",
+			"mega": null,
+			"gmax": null
 		},
 		"204": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Forretress"
+			"bestName": "Forretress",
+			"mega": null,
+			"gmax": null
 		},
 		"205": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Forretress"
+			"bestName": "Forretress",
+			"mega": null,
+			"gmax": null
 		},
 		"206": {
 			"tier": "NFE",
 			"bestTier": "PU",
-			"bestName": "Dudunsparce-Three-Segment"
+			"bestName": "Dudunsparce-Three-Segment",
+			"mega": null,
+			"gmax": null
 		},
 		"207": {
 			"tier": "NU",
 			"bestTier": "OU",
-			"bestName": "Gliscor"
+			"bestName": "Gliscor",
+			"mega": null,
+			"gmax": null
 		},
 		"208": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Steelix"
+			"bestName": "Steelix",
+			"mega": {
+				"tier": "UU",
+				"name": "Steelix-Mega"
+			},
+			"gmax": null
 		},
 		"209": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Granbull"
+			"bestName": "Granbull",
+			"mega": null,
+			"gmax": null
 		},
 		"210": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Granbull"
+			"bestName": "Granbull",
+			"mega": null,
+			"gmax": null
 		},
 		"211": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Qwilfish"
+			"bestName": "Qwilfish",
+			"mega": null,
+			"gmax": null
 		},
 		"212": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Scizor"
+			"bestName": "Scizor",
+			"mega": {
+				"tier": "OU",
+				"name": "Scizor-Mega"
+			},
+			"gmax": null
 		},
 		"213": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Shuckle"
+			"bestName": "Shuckle",
+			"mega": null,
+			"gmax": null
 		},
 		"214": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Heracross"
+			"bestName": "Heracross",
+			"mega": {
+				"tier": "UUBL",
+				"name": "Heracross-Mega"
+			},
+			"gmax": null
 		},
 		"215": {
 			"tier": "NFE",
 			"bestTier": "OU",
-			"bestName": "Weavile"
+			"bestName": "Weavile",
+			"mega": null,
+			"gmax": null
 		},
 		"216": {
 			"tier": "LC",
 			"bestTier": "UUBL",
-			"bestName": "Ursaluna"
+			"bestName": "Ursaluna",
+			"mega": null,
+			"gmax": null
 		},
 		"217": {
 			"tier": "NFE",
 			"bestTier": "UUBL",
-			"bestName": "Ursaluna"
+			"bestName": "Ursaluna",
+			"mega": null,
+			"gmax": null
 		},
 		"218": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Magcargo"
+			"bestName": "Magcargo",
+			"mega": null,
+			"gmax": null
 		},
 		"219": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Magcargo"
+			"bestName": "Magcargo",
+			"mega": null,
+			"gmax": null
 		},
 		"220": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Mamoswine"
+			"bestName": "Mamoswine",
+			"mega": null,
+			"gmax": null
 		},
 		"221": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Mamoswine"
+			"bestName": "Mamoswine",
+			"mega": null,
+			"gmax": null
 		},
 		"222": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Corsola"
+			"bestName": "Corsola",
+			"mega": null,
+			"gmax": null
 		},
 		"223": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Octillery"
+			"bestName": "Octillery",
+			"mega": null,
+			"gmax": null
 		},
 		"224": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Octillery"
+			"bestName": "Octillery",
+			"mega": null,
+			"gmax": null
 		},
 		"225": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Delibird"
+			"bestName": "Delibird",
+			"mega": null,
+			"gmax": null
 		},
 		"226": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Mantine"
+			"bestName": "Mantine",
+			"mega": null,
+			"gmax": null
 		},
 		"227": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Skarmory"
+			"bestName": "Skarmory",
+			"mega": null,
+			"gmax": null
 		},
 		"228": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Houndoom"
+			"bestName": "Houndoom",
+			"mega": {
+				"tier": "RUBL",
+				"name": "Houndoom-Mega"
+			},
+			"gmax": null
 		},
 		"229": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Houndoom"
+			"bestName": "Houndoom",
+			"mega": {
+				"tier": "RUBL",
+				"name": "Houndoom-Mega"
+			},
+			"gmax": null
 		},
 		"230": {
 			"tier": "ZUBL",
 			"bestTier": "ZUBL",
-			"bestName": "Kingdra"
+			"bestName": "Kingdra",
+			"mega": null,
+			"gmax": null
 		},
 		"231": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Donphan"
+			"bestName": "Donphan",
+			"mega": null,
+			"gmax": null
 		},
 		"232": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Donphan"
+			"bestName": "Donphan",
+			"mega": null,
+			"gmax": null
 		},
 		"233": {
 			"tier": "ZUBL",
 			"bestTier": "NUBL",
-			"bestName": "Porygon-Z"
+			"bestName": "Porygon-Z",
+			"mega": null,
+			"gmax": null
 		},
 		"234": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Wyrdeer"
+			"bestName": "Wyrdeer",
+			"mega": null,
+			"gmax": null
 		},
 		"235": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Smeargle"
+			"bestName": "Smeargle",
+			"mega": null,
+			"gmax": null
 		},
 		"236": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Hitmonlee"
+			"bestName": "Hitmonlee",
+			"mega": null,
+			"gmax": null
 		},
 		"237": {
 			"tier": "ZU",
 			"bestTier": "PU",
-			"bestName": "Hitmonlee"
+			"bestName": "Hitmonlee",
+			"mega": null,
+			"gmax": null
 		},
 		"238": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Jynx"
+			"bestName": "Jynx",
+			"mega": null,
+			"gmax": null
 		},
 		"239": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Electivire"
+			"bestName": "Electivire",
+			"mega": null,
+			"gmax": null
 		},
 		"240": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Magmortar"
+			"bestName": "Magmortar",
+			"mega": null,
+			"gmax": null
 		},
 		"241": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Miltank"
+			"bestName": "Miltank",
+			"mega": null,
+			"gmax": null
 		},
 		"242": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Blissey"
+			"bestName": "Blissey",
+			"mega": null,
+			"gmax": null
 		},
 		"243": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Raikou"
+			"bestName": "Raikou",
+			"mega": null,
+			"gmax": null
 		},
 		"244": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Entei"
+			"bestName": "Entei",
+			"mega": null,
+			"gmax": null
 		},
 		"245": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Suicune"
+			"bestName": "Suicune",
+			"mega": null,
+			"gmax": null
 		},
 		"246": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Tyranitar"
+			"bestName": "Tyranitar",
+			"mega": {
+				"tier": "OU",
+				"name": "Tyranitar-Mega"
+			},
+			"gmax": null
 		},
 		"247": {
 			"tier": "NFE",
 			"bestTier": "UU",
-			"bestName": "Tyranitar"
+			"bestName": "Tyranitar",
+			"mega": {
+				"tier": "OU",
+				"name": "Tyranitar-Mega"
+			},
+			"gmax": null
 		},
 		"248": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Tyranitar"
+			"bestName": "Tyranitar",
+			"mega": {
+				"tier": "OU",
+				"name": "Tyranitar-Mega"
+			},
+			"gmax": null
 		},
 		"249": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Lugia"
+			"bestName": "Lugia",
+			"mega": null,
+			"gmax": null
 		},
 		"250": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Ho-Oh"
+			"bestName": "Ho-Oh",
+			"mega": null,
+			"gmax": null
 		},
 		"251": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Celebi"
+			"bestName": "Celebi",
+			"mega": null,
+			"gmax": null
 		},
 		"252": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Sceptile"
+			"bestName": "Sceptile",
+			"mega": {
+				"tier": "RU",
+				"name": "Sceptile-Mega"
+			},
+			"gmax": null
 		},
 		"253": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Sceptile"
+			"bestName": "Sceptile",
+			"mega": {
+				"tier": "RU",
+				"name": "Sceptile-Mega"
+			},
+			"gmax": null
 		},
 		"254": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Sceptile"
+			"bestName": "Sceptile",
+			"mega": {
+				"tier": "RU",
+				"name": "Sceptile-Mega"
+			},
+			"gmax": null
 		},
 		"255": {
 			"tier": "LC",
 			"bestTier": "UUBL",
-			"bestName": "Blaziken"
+			"bestName": "Blaziken",
+			"mega": {
+				"tier": "Uber",
+				"name": "Blaziken-Mega"
+			},
+			"gmax": null
 		},
 		"256": {
 			"tier": "NFE",
 			"bestTier": "UUBL",
-			"bestName": "Blaziken"
+			"bestName": "Blaziken",
+			"mega": {
+				"tier": "Uber",
+				"name": "Blaziken-Mega"
+			},
+			"gmax": null
 		},
 		"257": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Blaziken"
+			"bestName": "Blaziken",
+			"mega": {
+				"tier": "Uber",
+				"name": "Blaziken-Mega"
+			},
+			"gmax": null
 		},
 		"258": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Swampert"
+			"bestName": "Swampert",
+			"mega": {
+				"tier": "OU",
+				"name": "Swampert-Mega"
+			},
+			"gmax": null
 		},
 		"259": {
 			"tier": "NFE",
 			"bestTier": "NU",
-			"bestName": "Swampert"
+			"bestName": "Swampert",
+			"mega": {
+				"tier": "OU",
+				"name": "Swampert-Mega"
+			},
+			"gmax": null
 		},
 		"260": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Swampert"
+			"bestName": "Swampert",
+			"mega": {
+				"tier": "OU",
+				"name": "Swampert-Mega"
+			},
+			"gmax": null
 		},
 		"261": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Mightyena"
+			"bestName": "Mightyena",
+			"mega": null,
+			"gmax": null
 		},
 		"262": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Mightyena"
+			"bestName": "Mightyena",
+			"mega": null,
+			"gmax": null
 		},
 		"263": {
 			"tier": "NFE",
 			"bestTier": "NUBL",
-			"bestName": "Linoone"
+			"bestName": "Linoone",
+			"mega": null,
+			"gmax": null
 		},
 		"264": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Linoone"
+			"bestName": "Linoone",
+			"mega": null,
+			"gmax": null
 		},
 		"265": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Dustox"
+			"bestName": "Dustox",
+			"mega": null,
+			"gmax": null
 		},
 		"266": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Dustox"
+			"bestName": "Dustox",
+			"mega": null,
+			"gmax": null
 		},
 		"267": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Dustox"
+			"bestName": "Dustox",
+			"mega": null,
+			"gmax": null
 		},
 		"268": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Dustox"
+			"bestName": "Dustox",
+			"mega": null,
+			"gmax": null
 		},
 		"269": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Dustox"
+			"bestName": "Dustox",
+			"mega": null,
+			"gmax": null
 		},
 		"270": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Ludicolo"
+			"bestName": "Ludicolo",
+			"mega": null,
+			"gmax": null
 		},
 		"271": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Ludicolo"
+			"bestName": "Ludicolo",
+			"mega": null,
+			"gmax": null
 		},
 		"272": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Ludicolo"
+			"bestName": "Ludicolo",
+			"mega": null,
+			"gmax": null
 		},
 		"273": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Shiftry"
+			"bestName": "Shiftry",
+			"mega": null,
+			"gmax": null
 		},
 		"274": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Shiftry"
+			"bestName": "Shiftry",
+			"mega": null,
+			"gmax": null
 		},
 		"275": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Shiftry"
+			"bestName": "Shiftry",
+			"mega": null,
+			"gmax": null
 		},
 		"276": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Swellow"
+			"bestName": "Swellow",
+			"mega": null,
+			"gmax": null
 		},
 		"277": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Swellow"
+			"bestName": "Swellow",
+			"mega": null,
+			"gmax": null
 		},
 		"278": {
 			"tier": "LC",
 			"bestTier": "UUBL",
-			"bestName": "Pelipper"
+			"bestName": "Pelipper",
+			"mega": null,
+			"gmax": null
 		},
 		"279": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Pelipper"
+			"bestName": "Pelipper",
+			"mega": null,
+			"gmax": null
 		},
 		"280": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Gallade"
+			"bestName": "Gallade",
+			"mega": {
+				"tier": "UUBL",
+				"name": "Gardevoir-Mega"
+			},
+			"gmax": null
 		},
 		"281": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Gallade"
+			"bestName": "Gallade",
+			"mega": {
+				"tier": "UUBL",
+				"name": "Gardevoir-Mega"
+			},
+			"gmax": null
 		},
 		"282": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Gallade"
+			"bestName": "Gallade",
+			"mega": {
+				"tier": "UUBL",
+				"name": "Gardevoir-Mega"
+			},
+			"gmax": null
 		},
 		"283": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Masquerain"
+			"bestName": "Masquerain",
+			"mega": null,
+			"gmax": null
 		},
 		"284": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Masquerain"
+			"bestName": "Masquerain",
+			"mega": null,
+			"gmax": null
 		},
 		"285": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Breloom"
+			"bestName": "Breloom",
+			"mega": null,
+			"gmax": null
 		},
 		"286": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Breloom"
+			"bestName": "Breloom",
+			"mega": null,
+			"gmax": null
 		},
 		"287": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Slaking"
+			"bestName": "Slaking",
+			"mega": null,
+			"gmax": null
 		},
 		"288": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Slaking"
+			"bestName": "Slaking",
+			"mega": null,
+			"gmax": null
 		},
 		"289": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Slaking"
+			"bestName": "Slaking",
+			"mega": null,
+			"gmax": null
 		},
 		"290": {
 			"tier": "LC",
 			"bestTier": "ZUBL",
-			"bestName": "Ninjask"
+			"bestName": "Ninjask",
+			"mega": null,
+			"gmax": null
 		},
 		"291": {
 			"tier": "ZUBL",
 			"bestTier": "ZUBL",
-			"bestName": "Ninjask"
+			"bestName": "Ninjask",
+			"mega": null,
+			"gmax": null
 		},
 		"292": {
 			"tier": "ZU",
 			"bestTier": "ZUBL",
-			"bestName": "Ninjask"
+			"bestName": "Ninjask",
+			"mega": null,
+			"gmax": null
 		},
 		"293": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Exploud"
+			"bestName": "Exploud",
+			"mega": null,
+			"gmax": null
 		},
 		"294": {
 			"tier": "NFE",
 			"bestTier": "NU",
-			"bestName": "Exploud"
+			"bestName": "Exploud",
+			"mega": null,
+			"gmax": null
 		},
 		"295": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Exploud"
+			"bestName": "Exploud",
+			"mega": null,
+			"gmax": null
 		},
 		"296": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Hariyama"
+			"bestName": "Hariyama",
+			"mega": null,
+			"gmax": null
 		},
 		"297": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Hariyama"
+			"bestName": "Hariyama",
+			"mega": null,
+			"gmax": null
 		},
 		"298": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Azumarill"
+			"bestName": "Azumarill",
+			"mega": null,
+			"gmax": null
 		},
 		"299": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Probopass"
+			"bestName": "Probopass",
+			"mega": null,
+			"gmax": null
 		},
 		"300": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Delcatty"
+			"bestName": "Delcatty",
+			"mega": null,
+			"gmax": null
 		},
 		"301": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Delcatty"
+			"bestName": "Delcatty",
+			"mega": null,
+			"gmax": null
 		},
 		"302": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Sableye"
+			"bestName": "Sableye",
+			"mega": {
+				"tier": "OU",
+				"name": "Sableye-Mega"
+			},
+			"gmax": null
 		},
 		"303": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Mawile"
+			"bestName": "Mawile",
+			"mega": {
+				"tier": "OU",
+				"name": "Mawile-Mega"
+			},
+			"gmax": null
 		},
 		"304": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Aggron"
+			"bestName": "Aggron",
+			"mega": {
+				"tier": "UU",
+				"name": "Aggron-Mega"
+			},
+			"gmax": null
 		},
 		"305": {
 			"tier": "NFE",
 			"bestTier": "PU",
-			"bestName": "Aggron"
+			"bestName": "Aggron",
+			"mega": {
+				"tier": "UU",
+				"name": "Aggron-Mega"
+			},
+			"gmax": null
 		},
 		"306": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Aggron"
+			"bestName": "Aggron",
+			"mega": {
+				"tier": "UU",
+				"name": "Aggron-Mega"
+			},
+			"gmax": null
 		},
 		"307": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Medicham"
+			"bestName": "Medicham",
+			"mega": {
+				"tier": "OU",
+				"name": "Medicham-Mega"
+			},
+			"gmax": null
 		},
 		"308": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Medicham"
+			"bestName": "Medicham",
+			"mega": {
+				"tier": "OU",
+				"name": "Medicham-Mega"
+			},
+			"gmax": null
 		},
 		"309": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Manectric"
+			"bestName": "Manectric",
+			"mega": {
+				"tier": "UU",
+				"name": "Manectric-Mega"
+			},
+			"gmax": null
 		},
 		"310": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Manectric"
+			"bestName": "Manectric",
+			"mega": {
+				"tier": "UU",
+				"name": "Manectric-Mega"
+			},
+			"gmax": null
 		},
 		"311": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Plusle"
+			"bestName": "Plusle",
+			"mega": null,
+			"gmax": null
 		},
 		"312": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Minun"
+			"bestName": "Minun",
+			"mega": null,
+			"gmax": null
 		},
 		"313": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Volbeat"
+			"bestName": "Volbeat",
+			"mega": null,
+			"gmax": null
 		},
 		"314": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Illumise"
+			"bestName": "Illumise",
+			"mega": null,
+			"gmax": null
 		},
 		"315": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Roserade"
+			"bestName": "Roserade",
+			"mega": null,
+			"gmax": null
 		},
 		"316": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Swalot"
+			"bestName": "Swalot",
+			"mega": null,
+			"gmax": null
 		},
 		"317": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Swalot"
+			"bestName": "Swalot",
+			"mega": null,
+			"gmax": null
 		},
 		"318": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Sharpedo"
+			"bestName": "Sharpedo",
+			"mega": {
+				"tier": "UU",
+				"name": "Sharpedo-Mega"
+			},
+			"gmax": null
 		},
 		"319": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Sharpedo"
+			"bestName": "Sharpedo",
+			"mega": {
+				"tier": "UU",
+				"name": "Sharpedo-Mega"
+			},
+			"gmax": null
 		},
 		"320": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Wailord"
+			"bestName": "Wailord",
+			"mega": null,
+			"gmax": null
 		},
 		"321": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Wailord"
+			"bestName": "Wailord",
+			"mega": null,
+			"gmax": null
 		},
 		"322": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Camerupt"
+			"bestName": "Camerupt",
+			"mega": {
+				"tier": "NUBL",
+				"name": "Camerupt-Mega"
+			},
+			"gmax": null
 		},
 		"323": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Camerupt"
+			"bestName": "Camerupt",
+			"mega": {
+				"tier": "NUBL",
+				"name": "Camerupt-Mega"
+			},
+			"gmax": null
 		},
 		"324": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Torkoal"
+			"bestName": "Torkoal",
+			"mega": null,
+			"gmax": null
 		},
 		"325": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Grumpig"
+			"bestName": "Grumpig",
+			"mega": null,
+			"gmax": null
 		},
 		"326": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Grumpig"
+			"bestName": "Grumpig",
+			"mega": null,
+			"gmax": null
 		},
 		"327": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Spinda"
+			"bestName": "Spinda",
+			"mega": null,
+			"gmax": null
 		},
 		"328": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Flygon"
+			"bestName": "Flygon",
+			"mega": null,
+			"gmax": null
 		},
 		"329": {
 			"tier": "NFE",
 			"bestTier": "NU",
-			"bestName": "Flygon"
+			"bestName": "Flygon",
+			"mega": null,
+			"gmax": null
 		},
 		"330": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Flygon"
+			"bestName": "Flygon",
+			"mega": null,
+			"gmax": null
 		},
 		"331": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Cacturne"
+			"bestName": "Cacturne",
+			"mega": null,
+			"gmax": null
 		},
 		"332": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Cacturne"
+			"bestName": "Cacturne",
+			"mega": null,
+			"gmax": null
 		},
 		"333": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Altaria"
+			"bestName": "Altaria",
+			"mega": {
+				"tier": "UU",
+				"name": "Altaria-Mega"
+			},
+			"gmax": null
 		},
 		"334": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Altaria"
+			"bestName": "Altaria",
+			"mega": {
+				"tier": "UU",
+				"name": "Altaria-Mega"
+			},
+			"gmax": null
 		},
 		"335": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Zangoose"
+			"bestName": "Zangoose",
+			"mega": null,
+			"gmax": null
 		},
 		"336": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Seviper"
+			"bestName": "Seviper",
+			"mega": null,
+			"gmax": null
 		},
 		"337": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Lunatone"
+			"bestName": "Lunatone",
+			"mega": null,
+			"gmax": null
 		},
 		"338": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Solrock"
+			"bestName": "Solrock",
+			"mega": null,
+			"gmax": null
 		},
 		"339": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Whiscash"
+			"bestName": "Whiscash",
+			"mega": null,
+			"gmax": null
 		},
 		"340": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Whiscash"
+			"bestName": "Whiscash",
+			"mega": null,
+			"gmax": null
 		},
 		"341": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Crawdaunt"
+			"bestName": "Crawdaunt",
+			"mega": null,
+			"gmax": null
 		},
 		"342": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Crawdaunt"
+			"bestName": "Crawdaunt",
+			"mega": null,
+			"gmax": null
 		},
 		"343": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Claydol"
+			"bestName": "Claydol",
+			"mega": null,
+			"gmax": null
 		},
 		"344": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Claydol"
+			"bestName": "Claydol",
+			"mega": null,
+			"gmax": null
 		},
 		"345": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Cradily"
+			"bestName": "Cradily",
+			"mega": null,
+			"gmax": null
 		},
 		"346": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Cradily"
+			"bestName": "Cradily",
+			"mega": null,
+			"gmax": null
 		},
 		"347": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Armaldo"
+			"bestName": "Armaldo",
+			"mega": null,
+			"gmax": null
 		},
 		"348": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Armaldo"
+			"bestName": "Armaldo",
+			"mega": null,
+			"gmax": null
 		},
 		"349": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Milotic"
+			"bestName": "Milotic",
+			"mega": null,
+			"gmax": null
 		},
 		"350": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Milotic"
+			"bestName": "Milotic",
+			"mega": null,
+			"gmax": null
 		},
 		"351": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Castform"
+			"bestName": "Castform",
+			"mega": null,
+			"gmax": null
 		},
 		"352": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Kecleon"
+			"bestName": "Kecleon",
+			"mega": null,
+			"gmax": null
 		},
 		"353": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Banette"
+			"bestName": "Banette",
+			"mega": {
+				"tier": "RU",
+				"name": "Banette-Mega"
+			},
+			"gmax": null
 		},
 		"354": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Banette"
+			"bestName": "Banette",
+			"mega": {
+				"tier": "RU",
+				"name": "Banette-Mega"
+			},
+			"gmax": null
 		},
 		"355": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Dusknoir"
+			"bestName": "Dusknoir",
+			"mega": null,
+			"gmax": null
 		},
 		"356": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Dusknoir"
+			"bestName": "Dusknoir",
+			"mega": null,
+			"gmax": null
 		},
 		"357": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Tropius"
+			"bestName": "Tropius",
+			"mega": null,
+			"gmax": null
 		},
 		"358": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Chimecho"
+			"bestName": "Chimecho",
+			"mega": null,
+			"gmax": null
 		},
 		"359": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Absol"
+			"bestName": "Absol",
+			"mega": {
+				"tier": "RUBL",
+				"name": "Absol-Mega"
+			},
+			"gmax": null
 		},
 		"360": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Wobbuffet"
+			"bestName": "Wobbuffet",
+			"mega": null,
+			"gmax": null
 		},
 		"361": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Froslass"
+			"bestName": "Froslass",
+			"mega": {
+				"tier": "NU",
+				"name": "Glalie-Mega"
+			},
+			"gmax": null
 		},
 		"362": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Froslass"
+			"bestName": "Froslass",
+			"mega": {
+				"tier": "NU",
+				"name": "Glalie-Mega"
+			},
+			"gmax": null
 		},
 		"363": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Walrein"
+			"bestName": "Walrein",
+			"mega": null,
+			"gmax": null
 		},
 		"364": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Walrein"
+			"bestName": "Walrein",
+			"mega": null,
+			"gmax": null
 		},
 		"365": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Walrein"
+			"bestName": "Walrein",
+			"mega": null,
+			"gmax": null
 		},
 		"366": {
 			"tier": "LC",
 			"bestTier": "ZUBL",
-			"bestName": "Gorebyss"
+			"bestName": "Gorebyss",
+			"mega": null,
+			"gmax": null
 		},
 		"367": {
 			"tier": "ZU",
 			"bestTier": "ZUBL",
-			"bestName": "Gorebyss"
+			"bestName": "Gorebyss",
+			"mega": null,
+			"gmax": null
 		},
 		"368": {
 			"tier": "ZUBL",
 			"bestTier": "ZUBL",
-			"bestName": "Gorebyss"
+			"bestName": "Gorebyss",
+			"mega": null,
+			"gmax": null
 		},
 		"369": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Relicanth"
+			"bestName": "Relicanth",
+			"mega": null,
+			"gmax": null
 		},
 		"370": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Luvdisc"
+			"bestName": "Luvdisc",
+			"mega": null,
+			"gmax": null
 		},
 		"371": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Salamence"
+			"bestName": "Salamence",
+			"mega": {
+				"tier": "Uber",
+				"name": "Salamence-Mega"
+			},
+			"gmax": null
 		},
 		"372": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Salamence"
+			"bestName": "Salamence",
+			"mega": {
+				"tier": "Uber",
+				"name": "Salamence-Mega"
+			},
+			"gmax": null
 		},
 		"373": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Salamence"
+			"bestName": "Salamence",
+			"mega": {
+				"tier": "Uber",
+				"name": "Salamence-Mega"
+			},
+			"gmax": null
 		},
 		"374": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Metagross"
+			"bestName": "Metagross",
+			"mega": {
+				"tier": "Uber",
+				"name": "Metagross-Mega"
+			},
+			"gmax": null
 		},
 		"375": {
 			"tier": "NFE",
 			"bestTier": "UU",
-			"bestName": "Metagross"
+			"bestName": "Metagross",
+			"mega": {
+				"tier": "Uber",
+				"name": "Metagross-Mega"
+			},
+			"gmax": null
 		},
 		"376": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Metagross"
+			"bestName": "Metagross",
+			"mega": {
+				"tier": "Uber",
+				"name": "Metagross-Mega"
+			},
+			"gmax": null
 		},
 		"377": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Regirock"
+			"bestName": "Regirock",
+			"mega": null,
+			"gmax": null
 		},
 		"378": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Regice"
+			"bestName": "Regice",
+			"mega": null,
+			"gmax": null
 		},
 		"379": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Registeel"
+			"bestName": "Registeel",
+			"mega": null,
+			"gmax": null
 		},
 		"380": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Latias"
+			"bestName": "Latias",
+			"mega": {
+				"tier": "OU",
+				"name": "Latias-Mega"
+			},
+			"gmax": null
 		},
 		"381": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Latios"
+			"bestName": "Latios",
+			"mega": {
+				"tier": "UUBL",
+				"name": "Latios-Mega"
+			},
+			"gmax": null
 		},
 		"382": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Kyogre"
+			"bestName": "Kyogre",
+			"mega": null,
+			"gmax": null
 		},
 		"383": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Groudon"
+			"bestName": "Groudon",
+			"mega": null,
+			"gmax": null
 		},
 		"384": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Rayquaza"
+			"bestName": "Rayquaza",
+			"mega": {
+				"tier": "AG",
+				"name": "Rayquaza-Mega"
+			},
+			"gmax": null
 		},
 		"385": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Jirachi"
+			"bestName": "Jirachi",
+			"mega": null,
+			"gmax": null
 		},
 		"386": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Deoxys"
+			"bestName": "Deoxys",
+			"mega": null,
+			"gmax": null
 		},
 		"387": {
 			"tier": "LC",
 			"bestTier": "PUBL",
-			"bestName": "Torterra"
+			"bestName": "Torterra",
+			"mega": null,
+			"gmax": null
 		},
 		"388": {
 			"tier": "NFE",
 			"bestTier": "PUBL",
-			"bestName": "Torterra"
+			"bestName": "Torterra",
+			"mega": null,
+			"gmax": null
 		},
 		"389": {
 			"tier": "PUBL",
 			"bestTier": "PUBL",
-			"bestName": "Torterra"
+			"bestName": "Torterra",
+			"mega": null,
+			"gmax": null
 		},
 		"390": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Infernape"
+			"bestName": "Infernape",
+			"mega": null,
+			"gmax": null
 		},
 		"391": {
 			"tier": "NFE",
 			"bestTier": "NU",
-			"bestName": "Infernape"
+			"bestName": "Infernape",
+			"mega": null,
+			"gmax": null
 		},
 		"392": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Infernape"
+			"bestName": "Infernape",
+			"mega": null,
+			"gmax": null
 		},
 		"393": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Empoleon"
+			"bestName": "Empoleon",
+			"mega": null,
+			"gmax": null
 		},
 		"394": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Empoleon"
+			"bestName": "Empoleon",
+			"mega": null,
+			"gmax": null
 		},
 		"395": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Empoleon"
+			"bestName": "Empoleon",
+			"mega": null,
+			"gmax": null
 		},
 		"396": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Staraptor"
+			"bestName": "Staraptor",
+			"mega": null,
+			"gmax": null
 		},
 		"397": {
 			"tier": "NFE",
 			"bestTier": "NU",
-			"bestName": "Staraptor"
+			"bestName": "Staraptor",
+			"mega": null,
+			"gmax": null
 		},
 		"398": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Staraptor"
+			"bestName": "Staraptor",
+			"mega": null,
+			"gmax": null
 		},
 		"399": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Bibarel"
+			"bestName": "Bibarel",
+			"mega": null,
+			"gmax": null
 		},
 		"400": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Bibarel"
+			"bestName": "Bibarel",
+			"mega": null,
+			"gmax": null
 		},
 		"401": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Kricketune"
+			"bestName": "Kricketune",
+			"mega": null,
+			"gmax": null
 		},
 		"402": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Kricketune"
+			"bestName": "Kricketune",
+			"mega": null,
+			"gmax": null
 		},
 		"403": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Luxray"
+			"bestName": "Luxray",
+			"mega": null,
+			"gmax": null
 		},
 		"404": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Luxray"
+			"bestName": "Luxray",
+			"mega": null,
+			"gmax": null
 		},
 		"405": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Luxray"
+			"bestName": "Luxray",
+			"mega": null,
+			"gmax": null
 		},
 		"406": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Roserade"
+			"bestName": "Roserade",
+			"mega": null,
+			"gmax": null
 		},
 		"407": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Roserade"
+			"bestName": "Roserade",
+			"mega": null,
+			"gmax": null
 		},
 		"408": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Rampardos"
+			"bestName": "Rampardos",
+			"mega": null,
+			"gmax": null
 		},
 		"409": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Rampardos"
+			"bestName": "Rampardos",
+			"mega": null,
+			"gmax": null
 		},
 		"410": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Bastiodon"
+			"bestName": "Bastiodon",
+			"mega": null,
+			"gmax": null
 		},
 		"411": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Bastiodon"
+			"bestName": "Bastiodon",
+			"mega": null,
+			"gmax": null
 		},
 		"412": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Mothim"
+			"bestName": "Mothim",
+			"mega": null,
+			"gmax": null
 		},
 		"413": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Mothim"
+			"bestName": "Mothim",
+			"mega": null,
+			"gmax": null
 		},
 		"414": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Mothim"
+			"bestName": "Mothim",
+			"mega": null,
+			"gmax": null
 		},
 		"415": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Vespiquen"
+			"bestName": "Vespiquen",
+			"mega": null,
+			"gmax": null
 		},
 		"416": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Vespiquen"
+			"bestName": "Vespiquen",
+			"mega": null,
+			"gmax": null
 		},
 		"417": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Pachirisu"
+			"bestName": "Pachirisu",
+			"mega": null,
+			"gmax": null
 		},
 		"418": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Floatzel"
+			"bestName": "Floatzel",
+			"mega": null,
+			"gmax": null
 		},
 		"419": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Floatzel"
+			"bestName": "Floatzel",
+			"mega": null,
+			"gmax": null
 		},
 		"420": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Cherrim"
+			"bestName": "Cherrim",
+			"mega": null,
+			"gmax": null
 		},
 		"421": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Cherrim"
+			"bestName": "Cherrim",
+			"mega": null,
+			"gmax": null
 		},
 		"422": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Gastrodon"
+			"bestName": "Gastrodon",
+			"mega": null,
+			"gmax": null
 		},
 		"423": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Gastrodon"
+			"bestName": "Gastrodon",
+			"mega": null,
+			"gmax": null
 		},
 		"424": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Ambipom"
+			"bestName": "Ambipom",
+			"mega": null,
+			"gmax": null
 		},
 		"425": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Drifblim"
+			"bestName": "Drifblim",
+			"mega": null,
+			"gmax": null
 		},
 		"426": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Drifblim"
+			"bestName": "Drifblim",
+			"mega": null,
+			"gmax": null
 		},
 		"427": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Lopunny"
+			"bestName": "Lopunny",
+			"mega": {
+				"tier": "OU",
+				"name": "Lopunny-Mega"
+			},
+			"gmax": null
 		},
 		"428": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Lopunny"
+			"bestName": "Lopunny",
+			"mega": {
+				"tier": "OU",
+				"name": "Lopunny-Mega"
+			},
+			"gmax": null
 		},
 		"429": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Mismagius"
+			"bestName": "Mismagius",
+			"mega": null,
+			"gmax": null
 		},
 		"430": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Honchkrow"
+			"bestName": "Honchkrow",
+			"mega": null,
+			"gmax": null
 		},
 		"431": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Purugly"
+			"bestName": "Purugly",
+			"mega": null,
+			"gmax": null
 		},
 		"432": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Purugly"
+			"bestName": "Purugly",
+			"mega": null,
+			"gmax": null
 		},
 		"433": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Chimecho"
+			"bestName": "Chimecho",
+			"mega": null,
+			"gmax": null
 		},
 		"434": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Skuntank"
+			"bestName": "Skuntank",
+			"mega": null,
+			"gmax": null
 		},
 		"435": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Skuntank"
+			"bestName": "Skuntank",
+			"mega": null,
+			"gmax": null
 		},
 		"436": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Bronzong"
+			"bestName": "Bronzong",
+			"mega": null,
+			"gmax": null
 		},
 		"437": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Bronzong"
+			"bestName": "Bronzong",
+			"mega": null,
+			"gmax": null
 		},
 		"438": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Sudowoodo"
+			"bestName": "Sudowoodo",
+			"mega": null,
+			"gmax": null
 		},
 		"439": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Mr. Rime"
+			"bestName": "Mr. Rime",
+			"mega": null,
+			"gmax": null
 		},
 		"440": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Blissey"
+			"bestName": "Blissey",
+			"mega": null,
+			"gmax": null
 		},
 		"441": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Chatot"
+			"bestName": "Chatot",
+			"mega": null,
+			"gmax": null
 		},
 		"442": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Spiritomb"
+			"bestName": "Spiritomb",
+			"mega": null,
+			"gmax": null
 		},
 		"443": {
 			"tier": "LC",
 			"bestTier": "UUBL",
-			"bestName": "Garchomp"
+			"bestName": "Garchomp",
+			"mega": {
+				"tier": "OU",
+				"name": "Garchomp-Mega"
+			},
+			"gmax": null
 		},
 		"444": {
 			"tier": "NFE",
 			"bestTier": "UUBL",
-			"bestName": "Garchomp"
+			"bestName": "Garchomp",
+			"mega": {
+				"tier": "OU",
+				"name": "Garchomp-Mega"
+			},
+			"gmax": null
 		},
 		"445": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Garchomp"
+			"bestName": "Garchomp",
+			"mega": {
+				"tier": "OU",
+				"name": "Garchomp-Mega"
+			},
+			"gmax": null
 		},
 		"446": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Snorlax"
+			"bestName": "Snorlax",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Snorlax-Gmax"
+			}
 		},
 		"447": {
 			"tier": "LC",
 			"bestTier": "NUBL",
-			"bestName": "Lucario"
+			"bestName": "Lucario",
+			"mega": {
+				"tier": "Uber",
+				"name": "Lucario-Mega"
+			},
+			"gmax": null
 		},
 		"448": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Lucario"
+			"bestName": "Lucario",
+			"mega": {
+				"tier": "Uber",
+				"name": "Lucario-Mega"
+			},
+			"gmax": null
 		},
 		"449": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Hippowdon"
+			"bestName": "Hippowdon",
+			"mega": null,
+			"gmax": null
 		},
 		"450": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Hippowdon"
+			"bestName": "Hippowdon",
+			"mega": null,
+			"gmax": null
 		},
 		"451": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Drapion"
+			"bestName": "Drapion",
+			"mega": null,
+			"gmax": null
 		},
 		"452": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Drapion"
+			"bestName": "Drapion",
+			"mega": null,
+			"gmax": null
 		},
 		"453": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Toxicroak"
+			"bestName": "Toxicroak",
+			"mega": null,
+			"gmax": null
 		},
 		"454": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Toxicroak"
+			"bestName": "Toxicroak",
+			"mega": null,
+			"gmax": null
 		},
 		"455": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Carnivine"
+			"bestName": "Carnivine",
+			"mega": null,
+			"gmax": null
 		},
 		"456": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Lumineon"
+			"bestName": "Lumineon",
+			"mega": null,
+			"gmax": null
 		},
 		"457": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Lumineon"
+			"bestName": "Lumineon",
+			"mega": null,
+			"gmax": null
 		},
 		"458": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Mantine"
+			"bestName": "Mantine",
+			"mega": null,
+			"gmax": null
 		},
 		"459": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Abomasnow"
+			"bestName": "Abomasnow",
+			"mega": {
+				"tier": "NU",
+				"name": "Abomasnow-Mega"
+			},
+			"gmax": null
 		},
 		"460": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Abomasnow"
+			"bestName": "Abomasnow",
+			"mega": {
+				"tier": "NU",
+				"name": "Abomasnow-Mega"
+			},
+			"gmax": null
 		},
 		"461": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Weavile"
+			"bestName": "Weavile",
+			"mega": null,
+			"gmax": null
 		},
 		"462": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Magnezone"
+			"bestName": "Magnezone",
+			"mega": null,
+			"gmax": null
 		},
 		"463": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Lickilicky"
+			"bestName": "Lickilicky",
+			"mega": null,
+			"gmax": null
 		},
 		"464": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Rhyperior"
+			"bestName": "Rhyperior",
+			"mega": null,
+			"gmax": null
 		},
 		"465": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Tangrowth"
+			"bestName": "Tangrowth",
+			"mega": null,
+			"gmax": null
 		},
 		"466": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Electivire"
+			"bestName": "Electivire",
+			"mega": null,
+			"gmax": null
 		},
 		"467": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Magmortar"
+			"bestName": "Magmortar",
+			"mega": null,
+			"gmax": null
 		},
 		"468": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Togekiss"
+			"bestName": "Togekiss",
+			"mega": null,
+			"gmax": null
 		},
 		"469": {
 			"tier": "RUBL",
 			"bestTier": "RUBL",
-			"bestName": "Yanmega"
+			"bestName": "Yanmega",
+			"mega": null,
+			"gmax": null
 		},
 		"470": {
 			"tier": "ZU",
 			"bestTier": "RU",
-			"bestName": "Umbreon"
+			"bestName": "Umbreon",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Eevee-Gmax"
+			}
 		},
 		"471": {
 			"tier": "ZU",
 			"bestTier": "RU",
-			"bestName": "Umbreon"
+			"bestName": "Umbreon",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Eevee-Gmax"
+			}
 		},
 		"472": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Gliscor"
+			"bestName": "Gliscor",
+			"mega": null,
+			"gmax": null
 		},
 		"473": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Mamoswine"
+			"bestName": "Mamoswine",
+			"mega": null,
+			"gmax": null
 		},
 		"474": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Porygon-Z"
+			"bestName": "Porygon-Z",
+			"mega": null,
+			"gmax": null
 		},
 		"475": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Gallade"
+			"bestName": "Gallade",
+			"mega": {
+				"tier": "UUBL",
+				"name": "Gardevoir-Mega"
+			},
+			"gmax": null
 		},
 		"476": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Probopass"
+			"bestName": "Probopass",
+			"mega": null,
+			"gmax": null
 		},
 		"477": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Dusknoir"
+			"bestName": "Dusknoir",
+			"mega": null,
+			"gmax": null
 		},
 		"478": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Froslass"
+			"bestName": "Froslass",
+			"mega": {
+				"tier": "NU",
+				"name": "Glalie-Mega"
+			},
+			"gmax": null
 		},
 		"479": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Rotom"
+			"bestName": "Rotom",
+			"mega": null,
+			"gmax": null
 		},
 		"480": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Uxie"
+			"bestName": "Uxie",
+			"mega": null,
+			"gmax": null
 		},
 		"481": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Mesprit"
+			"bestName": "Mesprit",
+			"mega": null,
+			"gmax": null
 		},
 		"482": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Azelf"
+			"bestName": "Azelf",
+			"mega": null,
+			"gmax": null
 		},
 		"483": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Dialga"
+			"bestName": "Dialga",
+			"mega": null,
+			"gmax": null
 		},
 		"484": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Palkia"
+			"bestName": "Palkia",
+			"mega": null,
+			"gmax": null
 		},
 		"485": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Heatran"
+			"bestName": "Heatran",
+			"mega": null,
+			"gmax": null
 		},
 		"486": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Regigigas"
+			"bestName": "Regigigas",
+			"mega": null,
+			"gmax": null
 		},
 		"487": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Giratina"
+			"bestName": "Giratina",
+			"mega": null,
+			"gmax": null
 		},
 		"488": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Cresselia"
+			"bestName": "Cresselia",
+			"mega": null,
+			"gmax": null
 		},
 		"489": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Phione"
+			"bestName": "Phione",
+			"mega": null,
+			"gmax": null
 		},
 		"490": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Manaphy"
+			"bestName": "Manaphy",
+			"mega": null,
+			"gmax": null
 		},
 		"491": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Darkrai"
+			"bestName": "Darkrai",
+			"mega": null,
+			"gmax": null
 		},
 		"492": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Shaymin"
+			"bestName": "Shaymin",
+			"mega": null,
+			"gmax": null
 		},
 		"493": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Arceus"
+			"bestName": "Arceus",
+			"mega": null,
+			"gmax": null
 		},
 		"494": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Victini"
+			"bestName": "Victini",
+			"mega": null,
+			"gmax": null
 		},
 		"495": {
 			"tier": "NFE",
 			"bestTier": "RUBL",
-			"bestName": "Serperior"
+			"bestName": "Serperior",
+			"mega": null,
+			"gmax": null
 		},
 		"496": {
 			"tier": "NFE",
 			"bestTier": "RUBL",
-			"bestName": "Serperior"
+			"bestName": "Serperior",
+			"mega": null,
+			"gmax": null
 		},
 		"497": {
 			"tier": "RUBL",
 			"bestTier": "RUBL",
-			"bestName": "Serperior"
+			"bestName": "Serperior",
+			"mega": null,
+			"gmax": null
 		},
 		"498": {
 			"tier": "LC",
 			"bestTier": "ZUBL",
-			"bestName": "Emboar"
+			"bestName": "Emboar",
+			"mega": null,
+			"gmax": null
 		},
 		"499": {
 			"tier": "NFE",
 			"bestTier": "ZUBL",
-			"bestName": "Emboar"
+			"bestName": "Emboar",
+			"mega": null,
+			"gmax": null
 		},
 		"500": {
 			"tier": "ZUBL",
 			"bestTier": "ZUBL",
-			"bestName": "Emboar"
+			"bestName": "Emboar",
+			"mega": null,
+			"gmax": null
 		},
 		"501": {
 			"tier": "LC",
 			"bestTier": "OU",
-			"bestName": "Samurott-Hisui"
+			"bestName": "Samurott-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"502": {
 			"tier": "NFE",
 			"bestTier": "OU",
-			"bestName": "Samurott-Hisui"
+			"bestName": "Samurott-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"503": {
 			"tier": "ZU",
 			"bestTier": "OU",
-			"bestName": "Samurott-Hisui"
+			"bestName": "Samurott-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"504": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Watchog"
+			"bestName": "Watchog",
+			"mega": null,
+			"gmax": null
 		},
 		"505": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Watchog"
+			"bestName": "Watchog",
+			"mega": null,
+			"gmax": null
 		},
 		"506": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Stoutland"
+			"bestName": "Stoutland",
+			"mega": null,
+			"gmax": null
 		},
 		"507": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Stoutland"
+			"bestName": "Stoutland",
+			"mega": null,
+			"gmax": null
 		},
 		"508": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Stoutland"
+			"bestName": "Stoutland",
+			"mega": null,
+			"gmax": null
 		},
 		"509": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Liepard"
+			"bestName": "Liepard",
+			"mega": null,
+			"gmax": null
 		},
 		"510": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Liepard"
+			"bestName": "Liepard",
+			"mega": null,
+			"gmax": null
 		},
 		"511": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Simisage"
+			"bestName": "Simisage",
+			"mega": null,
+			"gmax": null
 		},
 		"512": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Simisage"
+			"bestName": "Simisage",
+			"mega": null,
+			"gmax": null
 		},
 		"513": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Simisear"
+			"bestName": "Simisear",
+			"mega": null,
+			"gmax": null
 		},
 		"514": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Simisear"
+			"bestName": "Simisear",
+			"mega": null,
+			"gmax": null
 		},
 		"515": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Simipour"
+			"bestName": "Simipour",
+			"mega": null,
+			"gmax": null
 		},
 		"516": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Simipour"
+			"bestName": "Simipour",
+			"mega": null,
+			"gmax": null
 		},
 		"517": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Musharna"
+			"bestName": "Musharna",
+			"mega": null,
+			"gmax": null
 		},
 		"518": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Musharna"
+			"bestName": "Musharna",
+			"mega": null,
+			"gmax": null
 		},
 		"519": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Unfezant"
+			"bestName": "Unfezant",
+			"mega": null,
+			"gmax": null
 		},
 		"520": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Unfezant"
+			"bestName": "Unfezant",
+			"mega": null,
+			"gmax": null
 		},
 		"521": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Unfezant"
+			"bestName": "Unfezant",
+			"mega": null,
+			"gmax": null
 		},
 		"522": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Zebstrika"
+			"bestName": "Zebstrika",
+			"mega": null,
+			"gmax": null
 		},
 		"523": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Zebstrika"
+			"bestName": "Zebstrika",
+			"mega": null,
+			"gmax": null
 		},
 		"524": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Gigalith"
+			"bestName": "Gigalith",
+			"mega": null,
+			"gmax": null
 		},
 		"525": {
 			"tier": "NFE",
 			"bestTier": "PU",
-			"bestName": "Gigalith"
+			"bestName": "Gigalith",
+			"mega": null,
+			"gmax": null
 		},
 		"526": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Gigalith"
+			"bestName": "Gigalith",
+			"mega": null,
+			"gmax": null
 		},
 		"527": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Swoobat"
+			"bestName": "Swoobat",
+			"mega": null,
+			"gmax": null
 		},
 		"528": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Swoobat"
+			"bestName": "Swoobat",
+			"mega": null,
+			"gmax": null
 		},
 		"529": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Excadrill"
+			"bestName": "Excadrill",
+			"mega": null,
+			"gmax": null
 		},
 		"530": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Excadrill"
+			"bestName": "Excadrill",
+			"mega": null,
+			"gmax": null
 		},
 		"531": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Audino"
+			"bestName": "Audino",
+			"mega": {
+				"tier": "NU",
+				"name": "Audino-Mega"
+			},
+			"gmax": null
 		},
 		"532": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Conkeldurr"
+			"bestName": "Conkeldurr",
+			"mega": null,
+			"gmax": null
 		},
 		"533": {
 			"tier": "NFE",
 			"bestTier": "UU",
-			"bestName": "Conkeldurr"
+			"bestName": "Conkeldurr",
+			"mega": null,
+			"gmax": null
 		},
 		"534": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Conkeldurr"
+			"bestName": "Conkeldurr",
+			"mega": null,
+			"gmax": null
 		},
 		"535": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Seismitoad"
+			"bestName": "Seismitoad",
+			"mega": null,
+			"gmax": null
 		},
 		"536": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Seismitoad"
+			"bestName": "Seismitoad",
+			"mega": null,
+			"gmax": null
 		},
 		"537": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Seismitoad"
+			"bestName": "Seismitoad",
+			"mega": null,
+			"gmax": null
 		},
 		"538": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Throh"
+			"bestName": "Throh",
+			"mega": null,
+			"gmax": null
 		},
 		"539": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Sawk"
+			"bestName": "Sawk",
+			"mega": null,
+			"gmax": null
 		},
 		"540": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Leavanny"
+			"bestName": "Leavanny",
+			"mega": null,
+			"gmax": null
 		},
 		"541": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Leavanny"
+			"bestName": "Leavanny",
+			"mega": null,
+			"gmax": null
 		},
 		"542": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Leavanny"
+			"bestName": "Leavanny",
+			"mega": null,
+			"gmax": null
 		},
 		"543": {
 			"tier": "LC",
 			"bestTier": "RUBL",
-			"bestName": "Scolipede"
+			"bestName": "Scolipede",
+			"mega": null,
+			"gmax": null
 		},
 		"544": {
 			"tier": "NFE",
 			"bestTier": "RUBL",
-			"bestName": "Scolipede"
+			"bestName": "Scolipede",
+			"mega": null,
+			"gmax": null
 		},
 		"545": {
 			"tier": "RUBL",
 			"bestTier": "RUBL",
-			"bestName": "Scolipede"
+			"bestName": "Scolipede",
+			"mega": null,
+			"gmax": null
 		},
 		"546": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Whimsicott"
+			"bestName": "Whimsicott",
+			"mega": null,
+			"gmax": null
 		},
 		"547": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Whimsicott"
+			"bestName": "Whimsicott",
+			"mega": null,
+			"gmax": null
 		},
 		"548": {
 			"tier": "LC",
 			"bestTier": "NUBL",
-			"bestName": "Lilligant-Hisui"
+			"bestName": "Lilligant-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"549": {
 			"tier": "ZU",
 			"bestTier": "NUBL",
-			"bestName": "Lilligant-Hisui"
+			"bestName": "Lilligant-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"550": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Basculin"
+			"bestName": "Basculin",
+			"mega": null,
+			"gmax": null
 		},
 		"551": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Krookodile"
+			"bestName": "Krookodile",
+			"mega": null,
+			"gmax": null
 		},
 		"552": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Krookodile"
+			"bestName": "Krookodile",
+			"mega": null,
+			"gmax": null
 		},
 		"553": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Krookodile"
+			"bestName": "Krookodile",
+			"mega": null,
+			"gmax": null
 		},
 		"554": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Darmanitan"
+			"bestName": "Darmanitan",
+			"mega": null,
+			"gmax": null
 		},
 		"555": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Darmanitan"
+			"bestName": "Darmanitan",
+			"mega": null,
+			"gmax": null
 		},
 		"556": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Maractus"
+			"bestName": "Maractus",
+			"mega": null,
+			"gmax": null
 		},
 		"557": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Crustle"
+			"bestName": "Crustle",
+			"mega": null,
+			"gmax": null
 		},
 		"558": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Crustle"
+			"bestName": "Crustle",
+			"mega": null,
+			"gmax": null
 		},
 		"559": {
 			"tier": "NFE",
 			"bestTier": "NU",
-			"bestName": "Scrafty"
+			"bestName": "Scrafty",
+			"mega": null,
+			"gmax": null
 		},
 		"560": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Scrafty"
+			"bestName": "Scrafty",
+			"mega": null,
+			"gmax": null
 		},
 		"561": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Sigilyph"
+			"bestName": "Sigilyph",
+			"mega": null,
+			"gmax": null
 		},
 		"562": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Cofagrigus"
+			"bestName": "Cofagrigus",
+			"mega": null,
+			"gmax": null
 		},
 		"563": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Cofagrigus"
+			"bestName": "Cofagrigus",
+			"mega": null,
+			"gmax": null
 		},
 		"564": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Carracosta"
+			"bestName": "Carracosta",
+			"mega": null,
+			"gmax": null
 		},
 		"565": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Carracosta"
+			"bestName": "Carracosta",
+			"mega": null,
+			"gmax": null
 		},
 		"566": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Archeops"
+			"bestName": "Archeops",
+			"mega": null,
+			"gmax": null
 		},
 		"567": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Archeops"
+			"bestName": "Archeops",
+			"mega": null,
+			"gmax": null
 		},
 		"568": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Garbodor"
+			"bestName": "Garbodor",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Garbodor-Gmax"
+			}
 		},
 		"569": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Garbodor"
+			"bestName": "Garbodor",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Garbodor-Gmax"
+			}
 		},
 		"570": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Zoroark"
+			"bestName": "Zoroark",
+			"mega": null,
+			"gmax": null
 		},
 		"571": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Zoroark"
+			"bestName": "Zoroark",
+			"mega": null,
+			"gmax": null
 		},
 		"572": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Cinccino"
+			"bestName": "Cinccino",
+			"mega": null,
+			"gmax": null
 		},
 		"573": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Cinccino"
+			"bestName": "Cinccino",
+			"mega": null,
+			"gmax": null
 		},
 		"574": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Gothitelle"
+			"bestName": "Gothitelle",
+			"mega": null,
+			"gmax": null
 		},
 		"575": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Gothitelle"
+			"bestName": "Gothitelle",
+			"mega": null,
+			"gmax": null
 		},
 		"576": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Gothitelle"
+			"bestName": "Gothitelle",
+			"mega": null,
+			"gmax": null
 		},
 		"577": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Reuniclus"
+			"bestName": "Reuniclus",
+			"mega": null,
+			"gmax": null
 		},
 		"578": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Reuniclus"
+			"bestName": "Reuniclus",
+			"mega": null,
+			"gmax": null
 		},
 		"579": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Reuniclus"
+			"bestName": "Reuniclus",
+			"mega": null,
+			"gmax": null
 		},
 		"580": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Swanna"
+			"bestName": "Swanna",
+			"mega": null,
+			"gmax": null
 		},
 		"581": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Swanna"
+			"bestName": "Swanna",
+			"mega": null,
+			"gmax": null
 		},
 		"582": {
 			"tier": "LC",
 			"bestTier": "PUBL",
-			"bestName": "Vanilluxe"
+			"bestName": "Vanilluxe",
+			"mega": null,
+			"gmax": null
 		},
 		"583": {
 			"tier": "NFE",
 			"bestTier": "PUBL",
-			"bestName": "Vanilluxe"
+			"bestName": "Vanilluxe",
+			"mega": null,
+			"gmax": null
 		},
 		"584": {
 			"tier": "PUBL",
 			"bestTier": "PUBL",
-			"bestName": "Vanilluxe"
+			"bestName": "Vanilluxe",
+			"mega": null,
+			"gmax": null
 		},
 		"585": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Sawsbuck"
+			"bestName": "Sawsbuck",
+			"mega": null,
+			"gmax": null
 		},
 		"586": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Sawsbuck"
+			"bestName": "Sawsbuck",
+			"mega": null,
+			"gmax": null
 		},
 		"587": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Emolga"
+			"bestName": "Emolga",
+			"mega": null,
+			"gmax": null
 		},
 		"588": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Escavalier"
+			"bestName": "Escavalier",
+			"mega": null,
+			"gmax": null
 		},
 		"589": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Escavalier"
+			"bestName": "Escavalier",
+			"mega": null,
+			"gmax": null
 		},
 		"590": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Amoonguss"
+			"bestName": "Amoonguss",
+			"mega": null,
+			"gmax": null
 		},
 		"591": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Amoonguss"
+			"bestName": "Amoonguss",
+			"mega": null,
+			"gmax": null
 		},
 		"592": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Jellicent"
+			"bestName": "Jellicent",
+			"mega": null,
+			"gmax": null
 		},
 		"593": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Jellicent"
+			"bestName": "Jellicent",
+			"mega": null,
+			"gmax": null
 		},
 		"594": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Alomomola"
+			"bestName": "Alomomola",
+			"mega": null,
+			"gmax": null
 		},
 		"595": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Galvantula"
+			"bestName": "Galvantula",
+			"mega": null,
+			"gmax": null
 		},
 		"596": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Galvantula"
+			"bestName": "Galvantula",
+			"mega": null,
+			"gmax": null
 		},
 		"597": {
 			"tier": "PU",
 			"bestTier": "OU",
-			"bestName": "Ferrothorn"
+			"bestName": "Ferrothorn",
+			"mega": null,
+			"gmax": null
 		},
 		"598": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Ferrothorn"
+			"bestName": "Ferrothorn",
+			"mega": null,
+			"gmax": null
 		},
 		"599": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Klinklang"
+			"bestName": "Klinklang",
+			"mega": null,
+			"gmax": null
 		},
 		"600": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Klinklang"
+			"bestName": "Klinklang",
+			"mega": null,
+			"gmax": null
 		},
 		"601": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Klinklang"
+			"bestName": "Klinklang",
+			"mega": null,
+			"gmax": null
 		},
 		"602": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Eelektross"
+			"bestName": "Eelektross",
+			"mega": null,
+			"gmax": null
 		},
 		"603": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Eelektross"
+			"bestName": "Eelektross",
+			"mega": null,
+			"gmax": null
 		},
 		"604": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Eelektross"
+			"bestName": "Eelektross",
+			"mega": null,
+			"gmax": null
 		},
 		"605": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Beheeyem"
+			"bestName": "Beheeyem",
+			"mega": null,
+			"gmax": null
 		},
 		"606": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Beheeyem"
+			"bestName": "Beheeyem",
+			"mega": null,
+			"gmax": null
 		},
 		"607": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Chandelure"
+			"bestName": "Chandelure",
+			"mega": null,
+			"gmax": null
 		},
 		"608": {
 			"tier": "NFE",
 			"bestTier": "NU",
-			"bestName": "Chandelure"
+			"bestName": "Chandelure",
+			"mega": null,
+			"gmax": null
 		},
 		"609": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Chandelure"
+			"bestName": "Chandelure",
+			"mega": null,
+			"gmax": null
 		},
 		"610": {
 			"tier": "LC",
 			"bestTier": "RUBL",
-			"bestName": "Haxorus"
+			"bestName": "Haxorus",
+			"mega": null,
+			"gmax": null
 		},
 		"611": {
 			"tier": "NFE",
 			"bestTier": "RUBL",
-			"bestName": "Haxorus"
+			"bestName": "Haxorus",
+			"mega": null,
+			"gmax": null
 		},
 		"612": {
 			"tier": "RUBL",
 			"bestTier": "RUBL",
-			"bestName": "Haxorus"
+			"bestName": "Haxorus",
+			"mega": null,
+			"gmax": null
 		},
 		"613": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Beartic"
+			"bestName": "Beartic",
+			"mega": null,
+			"gmax": null
 		},
 		"614": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Beartic"
+			"bestName": "Beartic",
+			"mega": null,
+			"gmax": null
 		},
 		"615": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Cryogonal"
+			"bestName": "Cryogonal",
+			"mega": null,
+			"gmax": null
 		},
 		"616": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Accelgor"
+			"bestName": "Accelgor",
+			"mega": null,
+			"gmax": null
 		},
 		"617": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Accelgor"
+			"bestName": "Accelgor",
+			"mega": null,
+			"gmax": null
 		},
 		"618": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Stunfisk"
+			"bestName": "Stunfisk",
+			"mega": null,
+			"gmax": null
 		},
 		"619": {
 			"tier": "LC",
 			"bestTier": "NUBL",
-			"bestName": "Mienshao"
+			"bestName": "Mienshao",
+			"mega": null,
+			"gmax": null
 		},
 		"620": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Mienshao"
+			"bestName": "Mienshao",
+			"mega": null,
+			"gmax": null
 		},
 		"621": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Druddigon"
+			"bestName": "Druddigon",
+			"mega": null,
+			"gmax": null
 		},
 		"622": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Golurk"
+			"bestName": "Golurk",
+			"mega": null,
+			"gmax": null
 		},
 		"623": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Golurk"
+			"bestName": "Golurk",
+			"mega": null,
+			"gmax": null
 		},
 		"624": {
 			"tier": "LC",
 			"bestTier": "OU",
-			"bestName": "Kingambit"
+			"bestName": "Kingambit",
+			"mega": null,
+			"gmax": null
 		},
 		"625": {
 			"tier": "RU",
 			"bestTier": "OU",
-			"bestName": "Kingambit"
+			"bestName": "Kingambit",
+			"mega": null,
+			"gmax": null
 		},
 		"626": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Bouffalant"
+			"bestName": "Bouffalant",
+			"mega": null,
+			"gmax": null
 		},
 		"627": {
 			"tier": "NFE",
 			"bestTier": "NU",
-			"bestName": "Braviary"
+			"bestName": "Braviary",
+			"mega": null,
+			"gmax": null
 		},
 		"628": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Braviary"
+			"bestName": "Braviary",
+			"mega": null,
+			"gmax": null
 		},
 		"629": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Mandibuzz"
+			"bestName": "Mandibuzz",
+			"mega": null,
+			"gmax": null
 		},
 		"630": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Mandibuzz"
+			"bestName": "Mandibuzz",
+			"mega": null,
+			"gmax": null
 		},
 		"631": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Heatmor"
+			"bestName": "Heatmor",
+			"mega": null,
+			"gmax": null
 		},
 		"632": {
 			"tier": "RUBL",
 			"bestTier": "RUBL",
-			"bestName": "Durant"
+			"bestName": "Durant",
+			"mega": null,
+			"gmax": null
 		},
 		"633": {
 			"tier": "LC",
 			"bestTier": "RUBL",
-			"bestName": "Hydreigon"
+			"bestName": "Hydreigon",
+			"mega": null,
+			"gmax": null
 		},
 		"634": {
 			"tier": "NFE",
 			"bestTier": "RUBL",
-			"bestName": "Hydreigon"
+			"bestName": "Hydreigon",
+			"mega": null,
+			"gmax": null
 		},
 		"635": {
 			"tier": "RUBL",
 			"bestTier": "RUBL",
-			"bestName": "Hydreigon"
+			"bestName": "Hydreigon",
+			"mega": null,
+			"gmax": null
 		},
 		"636": {
 			"tier": "LC",
 			"bestTier": "Uber",
-			"bestName": "Volcarona"
+			"bestName": "Volcarona",
+			"mega": null,
+			"gmax": null
 		},
 		"637": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Volcarona"
+			"bestName": "Volcarona",
+			"mega": null,
+			"gmax": null
 		},
 		"638": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Cobalion"
+			"bestName": "Cobalion",
+			"mega": null,
+			"gmax": null
 		},
 		"639": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Terrakion"
+			"bestName": "Terrakion",
+			"mega": null,
+			"gmax": null
 		},
 		"640": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Virizion"
+			"bestName": "Virizion",
+			"mega": null,
+			"gmax": null
 		},
 		"641": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Tornadus"
+			"bestName": "Tornadus",
+			"mega": null,
+			"gmax": null
 		},
 		"642": {
 			"tier": "RUBL",
 			"bestTier": "RUBL",
-			"bestName": "Thundurus"
+			"bestName": "Thundurus",
+			"mega": null,
+			"gmax": null
 		},
 		"643": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Reshiram"
+			"bestName": "Reshiram",
+			"mega": null,
+			"gmax": null
 		},
 		"644": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Zekrom"
+			"bestName": "Zekrom",
+			"mega": null,
+			"gmax": null
 		},
 		"645": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Landorus"
+			"bestName": "Landorus",
+			"mega": null,
+			"gmax": null
 		},
 		"646": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Kyurem"
+			"bestName": "Kyurem",
+			"mega": null,
+			"gmax": null
 		},
 		"647": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Keldeo"
+			"bestName": "Keldeo",
+			"mega": null,
+			"gmax": null
 		},
 		"648": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Meloetta"
+			"bestName": "Meloetta",
+			"mega": null,
+			"gmax": null
 		},
 		"649": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Genesect"
+			"bestName": "Genesect",
+			"mega": null,
+			"gmax": null
 		},
 		"650": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Chesnaught"
+			"bestName": "Chesnaught",
+			"mega": null,
+			"gmax": null
 		},
 		"651": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Chesnaught"
+			"bestName": "Chesnaught",
+			"mega": null,
+			"gmax": null
 		},
 		"652": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Chesnaught"
+			"bestName": "Chesnaught",
+			"mega": null,
+			"gmax": null
 		},
 		"653": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Delphox"
+			"bestName": "Delphox",
+			"mega": null,
+			"gmax": null
 		},
 		"654": {
 			"tier": "NFE",
 			"bestTier": "PU",
-			"bestName": "Delphox"
+			"bestName": "Delphox",
+			"mega": null,
+			"gmax": null
 		},
 		"655": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Delphox"
+			"bestName": "Delphox",
+			"mega": null,
+			"gmax": null
 		},
 		"656": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Greninja"
+			"bestName": "Greninja",
+			"mega": null,
+			"gmax": null
 		},
 		"657": {
 			"tier": "NFE",
 			"bestTier": "UU",
-			"bestName": "Greninja"
+			"bestName": "Greninja",
+			"mega": null,
+			"gmax": null
 		},
 		"658": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Greninja"
+			"bestName": "Greninja",
+			"mega": null,
+			"gmax": null
 		},
 		"659": {
 			"tier": "LC",
 			"bestTier": "RUBL",
-			"bestName": "Diggersby"
+			"bestName": "Diggersby",
+			"mega": null,
+			"gmax": null
 		},
 		"660": {
 			"tier": "RUBL",
 			"bestTier": "RUBL",
-			"bestName": "Diggersby"
+			"bestName": "Diggersby",
+			"mega": null,
+			"gmax": null
 		},
 		"661": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Talonflame"
+			"bestName": "Talonflame",
+			"mega": null,
+			"gmax": null
 		},
 		"662": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Talonflame"
+			"bestName": "Talonflame",
+			"mega": null,
+			"gmax": null
 		},
 		"663": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Talonflame"
+			"bestName": "Talonflame",
+			"mega": null,
+			"gmax": null
 		},
 		"664": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Vivillon-Fancy"
+			"bestName": "Vivillon-Fancy",
+			"mega": null,
+			"gmax": null
 		},
 		"665": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Vivillon-Fancy"
+			"bestName": "Vivillon-Fancy",
+			"mega": null,
+			"gmax": null
 		},
 		"666": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Vivillon-Fancy"
+			"bestName": "Vivillon-Fancy",
+			"mega": null,
+			"gmax": null
 		},
 		"667": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Pyroar"
+			"bestName": "Pyroar",
+			"mega": null,
+			"gmax": null
 		},
 		"668": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Pyroar"
+			"bestName": "Pyroar",
+			"mega": null,
+			"gmax": null
 		},
 		"669": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Florges"
+			"bestName": "Florges",
+			"mega": null,
+			"gmax": null
 		},
 		"670": {
 			"tier": "NFE",
 			"bestTier": "PU",
-			"bestName": "Florges"
+			"bestName": "Florges",
+			"mega": null,
+			"gmax": null
 		},
 		"671": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Florges"
+			"bestName": "Florges",
+			"mega": null,
+			"gmax": null
 		},
 		"672": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Gogoat"
+			"bestName": "Gogoat",
+			"mega": null,
+			"gmax": null
 		},
 		"673": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Gogoat"
+			"bestName": "Gogoat",
+			"mega": null,
+			"gmax": null
 		},
 		"674": {
 			"tier": "LC",
 			"bestTier": "NUBL",
-			"bestName": "Pangoro"
+			"bestName": "Pangoro",
+			"mega": null,
+			"gmax": null
 		},
 		"675": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Pangoro"
+			"bestName": "Pangoro",
+			"mega": null,
+			"gmax": null
 		},
 		"676": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Furfrou"
+			"bestName": "Furfrou",
+			"mega": null,
+			"gmax": null
 		},
 		"677": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Meowstic-F"
+			"bestName": "Meowstic-F",
+			"mega": null,
+			"gmax": null
 		},
 		"678": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Meowstic-F"
+			"bestName": "Meowstic-F",
+			"mega": null,
+			"gmax": null
 		},
 		"679": {
 			"tier": "LC",
 			"bestTier": "UUBL",
-			"bestName": "Aegislash"
+			"bestName": "Aegislash",
+			"mega": null,
+			"gmax": null
 		},
 		"680": {
 			"tier": "PU",
 			"bestTier": "UUBL",
-			"bestName": "Aegislash"
+			"bestName": "Aegislash",
+			"mega": null,
+			"gmax": null
 		},
 		"681": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Aegislash"
+			"bestName": "Aegislash",
+			"mega": null,
+			"gmax": null
 		},
 		"682": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Aromatisse"
+			"bestName": "Aromatisse",
+			"mega": null,
+			"gmax": null
 		},
 		"683": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Aromatisse"
+			"bestName": "Aromatisse",
+			"mega": null,
+			"gmax": null
 		},
 		"684": {
 			"tier": "NFE",
 			"bestTier": "NUBL",
-			"bestName": "Slurpuff"
+			"bestName": "Slurpuff",
+			"mega": null,
+			"gmax": null
 		},
 		"685": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Slurpuff"
+			"bestName": "Slurpuff",
+			"mega": null,
+			"gmax": null
 		},
 		"686": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Malamar"
+			"bestName": "Malamar",
+			"mega": null,
+			"gmax": null
 		},
 		"687": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Malamar"
+			"bestName": "Malamar",
+			"mega": null,
+			"gmax": null
 		},
 		"688": {
 			"tier": "LC",
 			"bestTier": "NUBL",
-			"bestName": "Barbaracle"
+			"bestName": "Barbaracle",
+			"mega": null,
+			"gmax": null
 		},
 		"689": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Barbaracle"
+			"bestName": "Barbaracle",
+			"mega": null,
+			"gmax": null
 		},
 		"690": {
 			"tier": "LC",
 			"bestTier": "PUBL",
-			"bestName": "Dragalge"
+			"bestName": "Dragalge",
+			"mega": null,
+			"gmax": null
 		},
 		"691": {
 			"tier": "PUBL",
 			"bestTier": "PUBL",
-			"bestName": "Dragalge"
+			"bestName": "Dragalge",
+			"mega": null,
+			"gmax": null
 		},
 		"692": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Clawitzer"
+			"bestName": "Clawitzer",
+			"mega": null,
+			"gmax": null
 		},
 		"693": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Clawitzer"
+			"bestName": "Clawitzer",
+			"mega": null,
+			"gmax": null
 		},
 		"694": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Heliolisk"
+			"bestName": "Heliolisk",
+			"mega": null,
+			"gmax": null
 		},
 		"695": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Heliolisk"
+			"bestName": "Heliolisk",
+			"mega": null,
+			"gmax": null
 		},
 		"696": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Tyrantrum"
+			"bestName": "Tyrantrum",
+			"mega": null,
+			"gmax": null
 		},
 		"697": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Tyrantrum"
+			"bestName": "Tyrantrum",
+			"mega": null,
+			"gmax": null
 		},
 		"698": {
 			"tier": "LC",
 			"bestTier": "ZUBL",
-			"bestName": "Aurorus"
+			"bestName": "Aurorus",
+			"mega": null,
+			"gmax": null
 		},
 		"699": {
 			"tier": "ZUBL",
 			"bestTier": "ZUBL",
-			"bestName": "Aurorus"
+			"bestName": "Aurorus",
+			"mega": null,
+			"gmax": null
 		},
 		"700": {
 			"tier": "NU",
 			"bestTier": "RU",
-			"bestName": "Umbreon"
+			"bestName": "Umbreon",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Eevee-Gmax"
+			}
 		},
 		"701": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Hawlucha"
+			"bestName": "Hawlucha",
+			"mega": null,
+			"gmax": null
 		},
 		"702": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Dedenne"
+			"bestName": "Dedenne",
+			"mega": null,
+			"gmax": null
 		},
 		"703": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Carbink"
+			"bestName": "Carbink",
+			"mega": null,
+			"gmax": null
 		},
 		"704": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Goodra-Hisui"
+			"bestName": "Goodra-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"705": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Goodra-Hisui"
+			"bestName": "Goodra-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"706": {
 			"tier": "PU",
 			"bestTier": "RU",
-			"bestName": "Goodra-Hisui"
+			"bestName": "Goodra-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"707": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Klefki"
+			"bestName": "Klefki",
+			"mega": null,
+			"gmax": null
 		},
 		"708": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Trevenant"
+			"bestName": "Trevenant",
+			"mega": null,
+			"gmax": null
 		},
 		"709": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Trevenant"
+			"bestName": "Trevenant",
+			"mega": null,
+			"gmax": null
 		},
 		"710": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Gourgeist"
+			"bestName": "Gourgeist",
+			"mega": null,
+			"gmax": null
 		},
 		"711": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Gourgeist"
+			"bestName": "Gourgeist",
+			"mega": null,
+			"gmax": null
 		},
 		"712": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Avalugg"
+			"bestName": "Avalugg",
+			"mega": null,
+			"gmax": null
 		},
 		"713": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Avalugg"
+			"bestName": "Avalugg",
+			"mega": null,
+			"gmax": null
 		},
 		"714": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Noivern"
+			"bestName": "Noivern",
+			"mega": null,
+			"gmax": null
 		},
 		"715": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Noivern"
+			"bestName": "Noivern",
+			"mega": null,
+			"gmax": null
 		},
 		"716": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Xerneas"
+			"bestName": "Xerneas",
+			"mega": null,
+			"gmax": null
 		},
 		"717": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Yveltal"
+			"bestName": "Yveltal",
+			"mega": null,
+			"gmax": null
 		},
 		"718": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Zygarde"
+			"bestName": "Zygarde",
+			"mega": null,
+			"gmax": null
 		},
 		"719": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Diancie"
+			"bestName": "Diancie",
+			"mega": {
+				"tier": "OU",
+				"name": "Diancie-Mega"
+			},
+			"gmax": null
 		},
 		"720": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Hoopa"
+			"bestName": "Hoopa",
+			"mega": null,
+			"gmax": null
 		},
 		"721": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Volcanion"
+			"bestName": "Volcanion",
+			"mega": null,
+			"gmax": null
 		},
 		"722": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Decidueye"
+			"bestName": "Decidueye",
+			"mega": null,
+			"gmax": null
 		},
 		"723": {
 			"tier": "NFE",
 			"bestTier": "NU",
-			"bestName": "Decidueye"
+			"bestName": "Decidueye",
+			"mega": null,
+			"gmax": null
 		},
 		"724": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Decidueye"
+			"bestName": "Decidueye",
+			"mega": null,
+			"gmax": null
 		},
 		"725": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Incineroar"
+			"bestName": "Incineroar",
+			"mega": null,
+			"gmax": null
 		},
 		"726": {
 			"tier": "NFE",
 			"bestTier": "NU",
-			"bestName": "Incineroar"
+			"bestName": "Incineroar",
+			"mega": null,
+			"gmax": null
 		},
 		"727": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Incineroar"
+			"bestName": "Incineroar",
+			"mega": null,
+			"gmax": null
 		},
 		"728": {
 			"tier": "LC",
 			"bestTier": "OU",
-			"bestName": "Primarina"
+			"bestName": "Primarina",
+			"mega": null,
+			"gmax": null
 		},
 		"729": {
 			"tier": "NFE",
 			"bestTier": "OU",
-			"bestName": "Primarina"
+			"bestName": "Primarina",
+			"mega": null,
+			"gmax": null
 		},
 		"730": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Primarina"
+			"bestName": "Primarina",
+			"mega": null,
+			"gmax": null
 		},
 		"731": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Toucannon"
+			"bestName": "Toucannon",
+			"mega": null,
+			"gmax": null
 		},
 		"732": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Toucannon"
+			"bestName": "Toucannon",
+			"mega": null,
+			"gmax": null
 		},
 		"733": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Toucannon"
+			"bestName": "Toucannon",
+			"mega": null,
+			"gmax": null
 		},
 		"734": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Gumshoos"
+			"bestName": "Gumshoos",
+			"mega": null,
+			"gmax": null
 		},
 		"735": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Gumshoos"
+			"bestName": "Gumshoos",
+			"mega": null,
+			"gmax": null
 		},
 		"736": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Vikavolt"
+			"bestName": "Vikavolt",
+			"mega": null,
+			"gmax": null
 		},
 		"737": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Vikavolt"
+			"bestName": "Vikavolt",
+			"mega": null,
+			"gmax": null
 		},
 		"738": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Vikavolt"
+			"bestName": "Vikavolt",
+			"mega": null,
+			"gmax": null
 		},
 		"739": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Crabominable"
+			"bestName": "Crabominable",
+			"mega": null,
+			"gmax": null
 		},
 		"740": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Crabominable"
+			"bestName": "Crabominable",
+			"mega": null,
+			"gmax": null
 		},
 		"741": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Oricorio"
+			"bestName": "Oricorio",
+			"mega": null,
+			"gmax": null
 		},
 		"742": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Ribombee"
+			"bestName": "Ribombee",
+			"mega": null,
+			"gmax": null
 		},
 		"743": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Ribombee"
+			"bestName": "Ribombee",
+			"mega": null,
+			"gmax": null
 		},
 		"744": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Lycanroc-Midnight"
+			"bestName": "Lycanroc-Midnight",
+			"mega": null,
+			"gmax": null
 		},
 		"745": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Lycanroc-Midnight"
+			"bestName": "Lycanroc-Midnight",
+			"mega": null,
+			"gmax": null
 		},
 		"746": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Wishiwashi"
+			"bestName": "Wishiwashi",
+			"mega": null,
+			"gmax": null
 		},
 		"747": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Toxapex"
+			"bestName": "Toxapex",
+			"mega": null,
+			"gmax": null
 		},
 		"748": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Toxapex"
+			"bestName": "Toxapex",
+			"mega": null,
+			"gmax": null
 		},
 		"749": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Mudsdale"
+			"bestName": "Mudsdale",
+			"mega": null,
+			"gmax": null
 		},
 		"750": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Mudsdale"
+			"bestName": "Mudsdale",
+			"mega": null,
+			"gmax": null
 		},
 		"751": {
 			"tier": "LC",
 			"bestTier": "OU",
-			"bestName": "Araquanid"
+			"bestName": "Araquanid",
+			"mega": null,
+			"gmax": null
 		},
 		"752": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Araquanid"
+			"bestName": "Araquanid",
+			"mega": null,
+			"gmax": null
 		},
 		"753": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Lurantis"
+			"bestName": "Lurantis",
+			"mega": null,
+			"gmax": null
 		},
 		"754": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Lurantis"
+			"bestName": "Lurantis",
+			"mega": null,
+			"gmax": null
 		},
 		"755": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Shiinotic"
+			"bestName": "Shiinotic",
+			"mega": null,
+			"gmax": null
 		},
 		"756": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Shiinotic"
+			"bestName": "Shiinotic",
+			"mega": null,
+			"gmax": null
 		},
 		"757": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Salazzle"
+			"bestName": "Salazzle",
+			"mega": null,
+			"gmax": null
 		},
 		"758": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Salazzle"
+			"bestName": "Salazzle",
+			"mega": null,
+			"gmax": null
 		},
 		"759": {
 			"tier": "LC",
 			"bestTier": "NUBL",
-			"bestName": "Bewear"
+			"bestName": "Bewear",
+			"mega": null,
+			"gmax": null
 		},
 		"760": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Bewear"
+			"bestName": "Bewear",
+			"mega": null,
+			"gmax": null
 		},
 		"761": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Tsareena"
+			"bestName": "Tsareena",
+			"mega": null,
+			"gmax": null
 		},
 		"762": {
 			"tier": "NFE",
 			"bestTier": "NU",
-			"bestName": "Tsareena"
+			"bestName": "Tsareena",
+			"mega": null,
+			"gmax": null
 		},
 		"763": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Tsareena"
+			"bestName": "Tsareena",
+			"mega": null,
+			"gmax": null
 		},
 		"764": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Comfey"
+			"bestName": "Comfey",
+			"mega": null,
+			"gmax": null
 		},
 		"765": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Oranguru"
+			"bestName": "Oranguru",
+			"mega": null,
+			"gmax": null
 		},
 		"766": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Passimian"
+			"bestName": "Passimian",
+			"mega": null,
+			"gmax": null
 		},
 		"767": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Golisopod"
+			"bestName": "Golisopod",
+			"mega": null,
+			"gmax": null
 		},
 		"768": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Golisopod"
+			"bestName": "Golisopod",
+			"mega": null,
+			"gmax": null
 		},
 		"769": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Palossand"
+			"bestName": "Palossand",
+			"mega": null,
+			"gmax": null
 		},
 		"770": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Palossand"
+			"bestName": "Palossand",
+			"mega": null,
+			"gmax": null
 		},
 		"771": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Pyukumuku"
+			"bestName": "Pyukumuku",
+			"mega": null,
+			"gmax": null
 		},
 		"772": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Silvally"
+			"bestName": "Silvally",
+			"mega": null,
+			"gmax": null
 		},
 		"773": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Silvally"
+			"bestName": "Silvally",
+			"mega": null,
+			"gmax": null
 		},
 		"774": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Minior"
+			"bestName": "Minior",
+			"mega": null,
+			"gmax": null
 		},
 		"775": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Komala"
+			"bestName": "Komala",
+			"mega": null,
+			"gmax": null
 		},
 		"776": {
 			"tier": "ZUBL",
 			"bestTier": "ZUBL",
-			"bestName": "Turtonator"
+			"bestName": "Turtonator",
+			"mega": null,
+			"gmax": null
 		},
 		"777": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Togedemaru"
+			"bestName": "Togedemaru",
+			"mega": null,
+			"gmax": null
 		},
 		"778": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Mimikyu"
+			"bestName": "Mimikyu",
+			"mega": null,
+			"gmax": null
 		},
 		"779": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Bruxish"
+			"bestName": "Bruxish",
+			"mega": null,
+			"gmax": null
 		},
 		"780": {
 			"tier": "PUBL",
 			"bestTier": "PUBL",
-			"bestName": "Drampa"
+			"bestName": "Drampa",
+			"mega": null,
+			"gmax": null
 		},
 		"781": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Dhelmise"
+			"bestName": "Dhelmise",
+			"mega": null,
+			"gmax": null
 		},
 		"782": {
 			"tier": "LC",
 			"bestTier": "UUBL",
-			"bestName": "Kommo-o"
+			"bestName": "Kommo-o",
+			"mega": null,
+			"gmax": null
 		},
 		"783": {
 			"tier": "NFE",
 			"bestTier": "UUBL",
-			"bestName": "Kommo-o"
+			"bestName": "Kommo-o",
+			"mega": null,
+			"gmax": null
 		},
 		"784": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Kommo-o"
+			"bestName": "Kommo-o",
+			"mega": null,
+			"gmax": null
 		},
 		"785": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Tapu Koko"
+			"bestName": "Tapu Koko",
+			"mega": null,
+			"gmax": null
 		},
 		"786": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Tapu Lele"
+			"bestName": "Tapu Lele",
+			"mega": null,
+			"gmax": null
 		},
 		"787": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Tapu Bulu"
+			"bestName": "Tapu Bulu",
+			"mega": null,
+			"gmax": null
 		},
 		"788": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Tapu Fini"
+			"bestName": "Tapu Fini",
+			"mega": null,
+			"gmax": null
 		},
 		"789": {
 			"tier": "LC",
 			"bestTier": "Uber",
-			"bestName": "Lunala"
+			"bestName": "Lunala",
+			"mega": null,
+			"gmax": null
 		},
 		"790": {
 			"tier": "NFE",
 			"bestTier": "Uber",
-			"bestName": "Lunala"
+			"bestName": "Lunala",
+			"mega": null,
+			"gmax": null
 		},
 		"791": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Lunala"
+			"bestName": "Lunala",
+			"mega": null,
+			"gmax": null
 		},
 		"792": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Lunala"
+			"bestName": "Lunala",
+			"mega": null,
+			"gmax": null
 		},
 		"793": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Nihilego"
+			"bestName": "Nihilego",
+			"mega": null,
+			"gmax": null
 		},
 		"794": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Buzzwole"
+			"bestName": "Buzzwole",
+			"mega": null,
+			"gmax": null
 		},
 		"795": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Pheromosa"
+			"bestName": "Pheromosa",
+			"mega": null,
+			"gmax": null
 		},
 		"796": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Xurkitree"
+			"bestName": "Xurkitree",
+			"mega": null,
+			"gmax": null
 		},
 		"797": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Celesteela"
+			"bestName": "Celesteela",
+			"mega": null,
+			"gmax": null
 		},
 		"798": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Kartana"
+			"bestName": "Kartana",
+			"mega": null,
+			"gmax": null
 		},
 		"799": {
 			"tier": "PUBL",
 			"bestTier": "PUBL",
-			"bestName": "Guzzlord"
+			"bestName": "Guzzlord",
+			"mega": null,
+			"gmax": null
 		},
 		"800": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Necrozma"
+			"bestName": "Necrozma",
+			"mega": null,
+			"gmax": null
 		},
 		"801": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Magearna"
+			"bestName": "Magearna",
+			"mega": null,
+			"gmax": null
 		},
 		"802": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Marshadow"
+			"bestName": "Marshadow",
+			"mega": null,
+			"gmax": null
 		},
 		"803": {
 			"tier": "NFE",
 			"bestTier": "Uber",
-			"bestName": "Naganadel"
+			"bestName": "Naganadel",
+			"mega": null,
+			"gmax": null
 		},
 		"804": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Naganadel"
+			"bestName": "Naganadel",
+			"mega": null,
+			"gmax": null
 		},
 		"805": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Stakataka"
+			"bestName": "Stakataka",
+			"mega": null,
+			"gmax": null
 		},
 		"806": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Blacephalon"
+			"bestName": "Blacephalon",
+			"mega": null,
+			"gmax": null
 		},
 		"807": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Zeraora"
+			"bestName": "Zeraora",
+			"mega": null,
+			"gmax": null
 		},
 		"808": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Meltan"
+			"bestName": "Meltan",
+			"mega": null,
+			"gmax": null
 		},
 		"809": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Melmetal"
+			"bestName": "Melmetal",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Melmetal-Gmax"
+			}
 		},
 		"810": {
 			"tier": "LC",
 			"bestTier": "UUBL",
-			"bestName": "Rillaboom"
+			"bestName": "Rillaboom",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Rillaboom-Gmax"
+			}
 		},
 		"811": {
 			"tier": "NFE",
 			"bestTier": "UUBL",
-			"bestName": "Rillaboom"
+			"bestName": "Rillaboom",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Rillaboom-Gmax"
+			}
 		},
 		"812": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Rillaboom"
+			"bestName": "Rillaboom",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Rillaboom-Gmax"
+			}
 		},
 		"813": {
 			"tier": "LC",
 			"bestTier": "OU",
-			"bestName": "Cinderace"
+			"bestName": "Cinderace",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Cinderace-Gmax"
+			}
 		},
 		"814": {
 			"tier": "NFE",
 			"bestTier": "OU",
-			"bestName": "Cinderace"
+			"bestName": "Cinderace",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Cinderace-Gmax"
+			}
 		},
 		"815": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Cinderace"
+			"bestName": "Cinderace",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Cinderace-Gmax"
+			}
 		},
 		"816": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Inteleon"
+			"bestName": "Inteleon",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Inteleon-Gmax"
+			}
 		},
 		"817": {
 			"tier": "NFE",
 			"bestTier": "NU",
-			"bestName": "Inteleon"
+			"bestName": "Inteleon",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Inteleon-Gmax"
+			}
 		},
 		"818": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Inteleon"
+			"bestName": "Inteleon",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Inteleon-Gmax"
+			}
 		},
 		"819": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Greedent"
+			"bestName": "Greedent",
+			"mega": null,
+			"gmax": null
 		},
 		"820": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Greedent"
+			"bestName": "Greedent",
+			"mega": null,
+			"gmax": null
 		},
 		"821": {
 			"tier": "LC",
 			"bestTier": "OU",
-			"bestName": "Corviknight"
+			"bestName": "Corviknight",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Corviknight-Gmax"
+			}
 		},
 		"822": {
 			"tier": "NFE",
 			"bestTier": "OU",
-			"bestName": "Corviknight"
+			"bestName": "Corviknight",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Corviknight-Gmax"
+			}
 		},
 		"823": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Corviknight"
+			"bestName": "Corviknight",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Corviknight-Gmax"
+			}
 		},
 		"824": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Orbeetle"
+			"bestName": "Orbeetle",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Orbeetle-Gmax"
+			}
 		},
 		"825": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Orbeetle"
+			"bestName": "Orbeetle",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Orbeetle-Gmax"
+			}
 		},
 		"826": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Orbeetle"
+			"bestName": "Orbeetle",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Orbeetle-Gmax"
+			}
 		},
 		"827": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Thievul"
+			"bestName": "Thievul",
+			"mega": null,
+			"gmax": null
 		},
 		"828": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Thievul"
+			"bestName": "Thievul",
+			"mega": null,
+			"gmax": null
 		},
 		"829": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Eldegoss"
+			"bestName": "Eldegoss",
+			"mega": null,
+			"gmax": null
 		},
 		"830": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Eldegoss"
+			"bestName": "Eldegoss",
+			"mega": null,
+			"gmax": null
 		},
 		"831": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Dubwool"
+			"bestName": "Dubwool",
+			"mega": null,
+			"gmax": null
 		},
 		"832": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Dubwool"
+			"bestName": "Dubwool",
+			"mega": null,
+			"gmax": null
 		},
 		"833": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Drednaw"
+			"bestName": "Drednaw",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Drednaw-Gmax"
+			}
 		},
 		"834": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Drednaw"
+			"bestName": "Drednaw",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Drednaw-Gmax"
+			}
 		},
 		"835": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Boltund"
+			"bestName": "Boltund",
+			"mega": null,
+			"gmax": null
 		},
 		"836": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Boltund"
+			"bestName": "Boltund",
+			"mega": null,
+			"gmax": null
 		},
 		"837": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Coalossal"
+			"bestName": "Coalossal",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Coalossal-Gmax"
+			}
 		},
 		"838": {
 			"tier": "NFE",
 			"bestTier": "PU",
-			"bestName": "Coalossal"
+			"bestName": "Coalossal",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Coalossal-Gmax"
+			}
 		},
 		"839": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Coalossal"
+			"bestName": "Coalossal",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Coalossal-Gmax"
+			}
 		},
 		"840": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Hydrapple"
+			"bestName": "Hydrapple",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Flapple-Gmax"
+			}
 		},
 		"841": {
 			"tier": "ZU",
 			"bestTier": "UU",
-			"bestName": "Hydrapple"
+			"bestName": "Hydrapple",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Flapple-Gmax"
+			}
 		},
 		"842": {
 			"tier": "ZU",
 			"bestTier": "UU",
-			"bestName": "Hydrapple"
+			"bestName": "Hydrapple",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Flapple-Gmax"
+			}
 		},
 		"843": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Sandaconda"
+			"bestName": "Sandaconda",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Sandaconda-Gmax"
+			}
 		},
 		"844": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Sandaconda"
+			"bestName": "Sandaconda",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Sandaconda-Gmax"
+			}
 		},
 		"845": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Cramorant"
+			"bestName": "Cramorant",
+			"mega": null,
+			"gmax": null
 		},
 		"846": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Barraskewda"
+			"bestName": "Barraskewda",
+			"mega": null,
+			"gmax": null
 		},
 		"847": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Barraskewda"
+			"bestName": "Barraskewda",
+			"mega": null,
+			"gmax": null
 		},
 		"848": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Toxtricity-Low-Key"
+			"bestName": "Toxtricity-Low-Key",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Toxtricity-Gmax"
+			}
 		},
 		"849": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Toxtricity-Low-Key"
+			"bestName": "Toxtricity-Low-Key",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Toxtricity-Gmax"
+			}
 		},
 		"850": {
 			"tier": "LC",
 			"bestTier": "ZUBL",
-			"bestName": "Centiskorch"
+			"bestName": "Centiskorch",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Centiskorch-Gmax"
+			}
 		},
 		"851": {
 			"tier": "ZUBL",
 			"bestTier": "ZUBL",
-			"bestName": "Centiskorch"
+			"bestName": "Centiskorch",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Centiskorch-Gmax"
+			}
 		},
 		"852": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Grapploct"
+			"bestName": "Grapploct",
+			"mega": null,
+			"gmax": null
 		},
 		"853": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Grapploct"
+			"bestName": "Grapploct",
+			"mega": null,
+			"gmax": null
 		},
 		"854": {
 			"tier": "LC",
 			"bestTier": "UUBL",
-			"bestName": "Polteageist"
+			"bestName": "Polteageist",
+			"mega": null,
+			"gmax": null
 		},
 		"855": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Polteageist"
+			"bestName": "Polteageist",
+			"mega": null,
+			"gmax": null
 		},
 		"856": {
 			"tier": "LC",
 			"bestTier": "OU",
-			"bestName": "Hatterene"
+			"bestName": "Hatterene",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Hatterene-Gmax"
+			}
 		},
 		"857": {
 			"tier": "ZU",
 			"bestTier": "OU",
-			"bestName": "Hatterene"
+			"bestName": "Hatterene",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Hatterene-Gmax"
+			}
 		},
 		"858": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Hatterene"
+			"bestName": "Hatterene",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Hatterene-Gmax"
+			}
 		},
 		"859": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Grimmsnarl"
+			"bestName": "Grimmsnarl",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Grimmsnarl-Gmax"
+			}
 		},
 		"860": {
 			"tier": "NFE",
 			"bestTier": "PU",
-			"bestName": "Grimmsnarl"
+			"bestName": "Grimmsnarl",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Grimmsnarl-Gmax"
+			}
 		},
 		"861": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Grimmsnarl"
+			"bestName": "Grimmsnarl",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Grimmsnarl-Gmax"
+			}
 		},
 		"862": {
 			"tier": "RUBL",
 			"bestTier": "RUBL",
-			"bestName": "Obstagoon"
+			"bestName": "Obstagoon",
+			"mega": null,
+			"gmax": null
 		},
 		"863": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Perrserker"
+			"bestName": "Perrserker",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Meowth-Gmax"
+			}
 		},
 		"864": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Cursola"
+			"bestName": "Cursola",
+			"mega": null,
+			"gmax": null
 		},
 		"865": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Sirfetch’d"
+			"bestName": "Sirfetch’d",
+			"mega": null,
+			"gmax": null
 		},
 		"866": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Mr. Rime"
+			"bestName": "Mr. Rime",
+			"mega": null,
+			"gmax": null
 		},
 		"867": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Runerigus"
+			"bestName": "Runerigus",
+			"mega": null,
+			"gmax": null
 		},
 		"868": {
 			"tier": "LC",
 			"bestTier": "ZUBL",
-			"bestName": "Alcremie"
+			"bestName": "Alcremie",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Alcremie-Gmax"
+			}
 		},
 		"869": {
 			"tier": "ZUBL",
 			"bestTier": "ZUBL",
-			"bestName": "Alcremie"
+			"bestName": "Alcremie",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Alcremie-Gmax"
+			}
 		},
 		"870": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Falinks"
+			"bestName": "Falinks",
+			"mega": null,
+			"gmax": null
 		},
 		"871": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Pincurchin"
+			"bestName": "Pincurchin",
+			"mega": null,
+			"gmax": null
 		},
 		"872": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Frosmoth"
+			"bestName": "Frosmoth",
+			"mega": null,
+			"gmax": null
 		},
 		"873": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Frosmoth"
+			"bestName": "Frosmoth",
+			"mega": null,
+			"gmax": null
 		},
 		"874": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Stonjourner"
+			"bestName": "Stonjourner",
+			"mega": null,
+			"gmax": null
 		},
 		"875": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Eiscue"
+			"bestName": "Eiscue",
+			"mega": null,
+			"gmax": null
 		},
 		"876": {
 			"tier": "PUBL",
 			"bestTier": "PUBL",
-			"bestName": "Indeedee"
+			"bestName": "Indeedee",
+			"mega": null,
+			"gmax": null
 		},
 		"877": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Morpeko"
+			"bestName": "Morpeko",
+			"mega": null,
+			"gmax": null
 		},
 		"878": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Copperajah"
+			"bestName": "Copperajah",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Copperajah-Gmax"
+			}
 		},
 		"879": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Copperajah"
+			"bestName": "Copperajah",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Copperajah-Gmax"
+			}
 		},
 		"880": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Dracozolt"
+			"bestName": "Dracozolt",
+			"mega": null,
+			"gmax": null
 		},
 		"881": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Arctozolt"
+			"bestName": "Arctozolt",
+			"mega": null,
+			"gmax": null
 		},
 		"882": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Dracovish"
+			"bestName": "Dracovish",
+			"mega": null,
+			"gmax": null
 		},
 		"883": {
 			"tier": "ZUBL",
 			"bestTier": "ZUBL",
-			"bestName": "Arctovish"
+			"bestName": "Arctovish",
+			"mega": null,
+			"gmax": null
 		},
 		"884": {
 			"tier": "PU",
 			"bestTier": "Uber",
-			"bestName": "Archaludon"
+			"bestName": "Archaludon",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Duraludon-Gmax"
+			}
 		},
 		"885": {
 			"tier": "LC",
 			"bestTier": "OU",
-			"bestName": "Dragapult"
+			"bestName": "Dragapult",
+			"mega": null,
+			"gmax": null
 		},
 		"886": {
 			"tier": "NFE",
 			"bestTier": "OU",
-			"bestName": "Dragapult"
+			"bestName": "Dragapult",
+			"mega": null,
+			"gmax": null
 		},
 		"887": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Dragapult"
+			"bestName": "Dragapult",
+			"mega": null,
+			"gmax": null
 		},
 		"888": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Zacian"
+			"bestName": "Zacian",
+			"mega": null,
+			"gmax": null
 		},
 		"889": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Zamazenta"
+			"bestName": "Zamazenta",
+			"mega": null,
+			"gmax": null
 		},
 		"890": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Eternatus"
+			"bestName": "Eternatus",
+			"mega": null,
+			"gmax": null
 		},
 		"891": {
 			"tier": "NFE",
 			"bestTier": "Uber",
-			"bestName": "Urshifu-Rapid-Strike"
+			"bestName": "Urshifu-Rapid-Strike",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Urshifu-Gmax"
+			}
 		},
 		"892": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Urshifu-Rapid-Strike"
+			"bestName": "Urshifu-Rapid-Strike",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Urshifu-Gmax"
+			}
 		},
 		"893": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Zarude"
+			"bestName": "Zarude",
+			"mega": null,
+			"gmax": null
 		},
 		"894": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Regieleki"
+			"bestName": "Regieleki",
+			"mega": null,
+			"gmax": null
 		},
 		"895": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Regidrago"
+			"bestName": "Regidrago",
+			"mega": null,
+			"gmax": null
 		},
 		"896": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Glastrier"
+			"bestName": "Glastrier",
+			"mega": null,
+			"gmax": null
 		},
 		"897": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Spectrier"
+			"bestName": "Spectrier",
+			"mega": null,
+			"gmax": null
 		},
 		"898": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Calyrex"
+			"bestName": "Calyrex",
+			"mega": null,
+			"gmax": null
 		},
 		"899": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Wyrdeer"
+			"bestName": "Wyrdeer",
+			"mega": null,
+			"gmax": null
 		},
 		"900": {
 			"tier": "RU",
 			"bestTier": "OU",
-			"bestName": "Scizor"
+			"bestName": "Scizor",
+			"mega": {
+				"tier": "OU",
+				"name": "Scizor-Mega"
+			},
+			"gmax": null
 		},
 		"901": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Ursaluna"
+			"bestName": "Ursaluna",
+			"mega": null,
+			"gmax": null
 		},
 		"902": {
 			"tier": "NU",
 			"bestTier": "RU",
-			"bestName": "Basculegion-F"
+			"bestName": "Basculegion-F",
+			"mega": null,
+			"gmax": null
 		},
 		"903": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Sneasler"
+			"bestName": "Sneasler",
+			"mega": null,
+			"gmax": null
 		},
 		"904": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Overqwil"
+			"bestName": "Overqwil",
+			"mega": null,
+			"gmax": null
 		},
 		"905": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Enamorus"
+			"bestName": "Enamorus",
+			"mega": null,
+			"gmax": null
 		},
 		"906": {
 			"tier": "LC",
 			"bestTier": "UUBL",
-			"bestName": "Meowscarada"
+			"bestName": "Meowscarada",
+			"mega": null,
+			"gmax": null
 		},
 		"907": {
 			"tier": "NFE",
 			"bestTier": "UUBL",
-			"bestName": "Meowscarada"
+			"bestName": "Meowscarada",
+			"mega": null,
+			"gmax": null
 		},
 		"908": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Meowscarada"
+			"bestName": "Meowscarada",
+			"mega": null,
+			"gmax": null
 		},
 		"909": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Skeledirge"
+			"bestName": "Skeledirge",
+			"mega": null,
+			"gmax": null
 		},
 		"910": {
 			"tier": "NFE",
 			"bestTier": "UU",
-			"bestName": "Skeledirge"
+			"bestName": "Skeledirge",
+			"mega": null,
+			"gmax": null
 		},
 		"911": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Skeledirge"
+			"bestName": "Skeledirge",
+			"mega": null,
+			"gmax": null
 		},
 		"912": {
 			"tier": "LC",
 			"bestTier": "UUBL",
-			"bestName": "Quaquaval"
+			"bestName": "Quaquaval",
+			"mega": null,
+			"gmax": null
 		},
 		"913": {
 			"tier": "NFE",
 			"bestTier": "UUBL",
-			"bestName": "Quaquaval"
+			"bestName": "Quaquaval",
+			"mega": null,
+			"gmax": null
 		},
 		"914": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Quaquaval"
+			"bestName": "Quaquaval",
+			"mega": null,
+			"gmax": null
 		},
 		"915": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Oinkologne-F"
+			"bestName": "Oinkologne-F",
+			"mega": null,
+			"gmax": null
 		},
 		"916": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Oinkologne-F"
+			"bestName": "Oinkologne-F",
+			"mega": null,
+			"gmax": null
 		},
 		"917": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Spidops"
+			"bestName": "Spidops",
+			"mega": null,
+			"gmax": null
 		},
 		"918": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Spidops"
+			"bestName": "Spidops",
+			"mega": null,
+			"gmax": null
 		},
 		"919": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Lokix"
+			"bestName": "Lokix",
+			"mega": null,
+			"gmax": null
 		},
 		"920": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Lokix"
+			"bestName": "Lokix",
+			"mega": null,
+			"gmax": null
 		},
 		"921": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Pawmot"
+			"bestName": "Pawmot",
+			"mega": null,
+			"gmax": null
 		},
 		"922": {
 			"tier": "NFE",
 			"bestTier": "PU",
-			"bestName": "Pawmot"
+			"bestName": "Pawmot",
+			"mega": null,
+			"gmax": null
 		},
 		"923": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Pawmot"
+			"bestName": "Pawmot",
+			"mega": null,
+			"gmax": null
 		},
 		"924": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Maushold-Four"
+			"bestName": "Maushold-Four",
+			"mega": null,
+			"gmax": null
 		},
 		"925": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Maushold-Four"
+			"bestName": "Maushold-Four",
+			"mega": null,
+			"gmax": null
 		},
 		"926": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Dachsbun"
+			"bestName": "Dachsbun",
+			"mega": null,
+			"gmax": null
 		},
 		"927": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Dachsbun"
+			"bestName": "Dachsbun",
+			"mega": null,
+			"gmax": null
 		},
 		"928": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Arboliva"
+			"bestName": "Arboliva",
+			"mega": null,
+			"gmax": null
 		},
 		"929": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Arboliva"
+			"bestName": "Arboliva",
+			"mega": null,
+			"gmax": null
 		},
 		"930": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Arboliva"
+			"bestName": "Arboliva",
+			"mega": null,
+			"gmax": null
 		},
 		"931": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Squawkabilly"
+			"bestName": "Squawkabilly",
+			"mega": null,
+			"gmax": null
 		},
 		"932": {
 			"tier": "LC",
 			"bestTier": "OU",
-			"bestName": "Garganacl"
+			"bestName": "Garganacl",
+			"mega": null,
+			"gmax": null
 		},
 		"933": {
 			"tier": "NFE",
 			"bestTier": "OU",
-			"bestName": "Garganacl"
+			"bestName": "Garganacl",
+			"mega": null,
+			"gmax": null
 		},
 		"934": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Garganacl"
+			"bestName": "Garganacl",
+			"mega": null,
+			"gmax": null
 		},
 		"935": {
 			"tier": "LC",
 			"bestTier": "OU",
-			"bestName": "Ceruledge"
+			"bestName": "Ceruledge",
+			"mega": null,
+			"gmax": null
 		},
 		"936": {
 			"tier": "RU",
 			"bestTier": "OU",
-			"bestName": "Ceruledge"
+			"bestName": "Ceruledge",
+			"mega": null,
+			"gmax": null
 		},
 		"937": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Ceruledge"
+			"bestName": "Ceruledge",
+			"mega": null,
+			"gmax": null
 		},
 		"938": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Bellibolt"
+			"bestName": "Bellibolt",
+			"mega": null,
+			"gmax": null
 		},
 		"939": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Bellibolt"
+			"bestName": "Bellibolt",
+			"mega": null,
+			"gmax": null
 		},
 		"940": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Kilowattrel"
+			"bestName": "Kilowattrel",
+			"mega": null,
+			"gmax": null
 		},
 		"941": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Kilowattrel"
+			"bestName": "Kilowattrel",
+			"mega": null,
+			"gmax": null
 		},
 		"942": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Mabosstiff"
+			"bestName": "Mabosstiff",
+			"mega": null,
+			"gmax": null
 		},
 		"943": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Mabosstiff"
+			"bestName": "Mabosstiff",
+			"mega": null,
+			"gmax": null
 		},
 		"944": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Grafaiai"
+			"bestName": "Grafaiai",
+			"mega": null,
+			"gmax": null
 		},
 		"945": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Grafaiai"
+			"bestName": "Grafaiai",
+			"mega": null,
+			"gmax": null
 		},
 		"946": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Brambleghast"
+			"bestName": "Brambleghast",
+			"mega": null,
+			"gmax": null
 		},
 		"947": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Brambleghast"
+			"bestName": "Brambleghast",
+			"mega": null,
+			"gmax": null
 		},
 		"948": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Toedscruel"
+			"bestName": "Toedscruel",
+			"mega": null,
+			"gmax": null
 		},
 		"949": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Toedscruel"
+			"bestName": "Toedscruel",
+			"mega": null,
+			"gmax": null
 		},
 		"950": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Klawf"
+			"bestName": "Klawf",
+			"mega": null,
+			"gmax": null
 		},
 		"951": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Scovillain"
+			"bestName": "Scovillain",
+			"mega": null,
+			"gmax": null
 		},
 		"952": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Scovillain"
+			"bestName": "Scovillain",
+			"mega": null,
+			"gmax": null
 		},
 		"953": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Rabsca"
+			"bestName": "Rabsca",
+			"mega": null,
+			"gmax": null
 		},
 		"954": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Rabsca"
+			"bestName": "Rabsca",
+			"mega": null,
+			"gmax": null
 		},
 		"955": {
 			"tier": "NFE",
 			"bestTier": "Uber",
-			"bestName": "Espathra"
+			"bestName": "Espathra",
+			"mega": null,
+			"gmax": null
 		},
 		"956": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Espathra"
+			"bestName": "Espathra",
+			"mega": null,
+			"gmax": null
 		},
 		"957": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Tinkaton"
+			"bestName": "Tinkaton",
+			"mega": null,
+			"gmax": null
 		},
 		"958": {
 			"tier": "NFE",
 			"bestTier": "UU",
-			"bestName": "Tinkaton"
+			"bestName": "Tinkaton",
+			"mega": null,
+			"gmax": null
 		},
 		"959": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Tinkaton"
+			"bestName": "Tinkaton",
+			"mega": null,
+			"gmax": null
 		},
 		"960": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Wugtrio"
+			"bestName": "Wugtrio",
+			"mega": null,
+			"gmax": null
 		},
 		"961": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Wugtrio"
+			"bestName": "Wugtrio",
+			"mega": null,
+			"gmax": null
 		},
 		"962": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Bombirdier"
+			"bestName": "Bombirdier",
+			"mega": null,
+			"gmax": null
 		},
 		"963": {
 			"tier": "LC",
 			"bestTier": "Uber",
-			"bestName": "Palafin"
+			"bestName": "Palafin",
+			"mega": null,
+			"gmax": null
 		},
 		"964": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Palafin"
+			"bestName": "Palafin",
+			"mega": null,
+			"gmax": null
 		},
 		"965": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Revavroom"
+			"bestName": "Revavroom",
+			"mega": null,
+			"gmax": null
 		},
 		"966": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Revavroom"
+			"bestName": "Revavroom",
+			"mega": null,
+			"gmax": null
 		},
 		"967": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Cyclizar"
+			"bestName": "Cyclizar",
+			"mega": null,
+			"gmax": null
 		},
 		"968": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Orthworm"
+			"bestName": "Orthworm",
+			"mega": null,
+			"gmax": null
 		},
 		"969": {
 			"tier": "LC",
 			"bestTier": "OU",
-			"bestName": "Glimmora"
+			"bestName": "Glimmora",
+			"mega": null,
+			"gmax": null
 		},
 		"970": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Glimmora"
+			"bestName": "Glimmora",
+			"mega": null,
+			"gmax": null
 		},
 		"971": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Houndstone"
+			"bestName": "Houndstone",
+			"mega": null,
+			"gmax": null
 		},
 		"972": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Houndstone"
+			"bestName": "Houndstone",
+			"mega": null,
+			"gmax": null
 		},
 		"973": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Flamigo"
+			"bestName": "Flamigo",
+			"mega": null,
+			"gmax": null
 		},
 		"974": {
 			"tier": "LC",
 			"bestTier": "NUBL",
-			"bestName": "Cetitan"
+			"bestName": "Cetitan",
+			"mega": null,
+			"gmax": null
 		},
 		"975": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Cetitan"
+			"bestName": "Cetitan",
+			"mega": null,
+			"gmax": null
 		},
 		"976": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Veluza"
+			"bestName": "Veluza",
+			"mega": null,
+			"gmax": null
 		},
 		"977": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Dondozo"
+			"bestName": "Dondozo",
+			"mega": null,
+			"gmax": null
 		},
 		"978": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Tatsugiri"
+			"bestName": "Tatsugiri",
+			"mega": null,
+			"gmax": null
 		},
 		"979": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Annihilape"
+			"bestName": "Annihilape",
+			"mega": null,
+			"gmax": null
 		},
 		"980": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Clodsire"
+			"bestName": "Clodsire",
+			"mega": null,
+			"gmax": null
 		},
 		"981": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Farigiraf"
+			"bestName": "Farigiraf",
+			"mega": null,
+			"gmax": null
 		},
 		"982": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Dudunsparce-Three-Segment"
+			"bestName": "Dudunsparce-Three-Segment",
+			"mega": null,
+			"gmax": null
 		},
 		"983": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Kingambit"
+			"bestName": "Kingambit",
+			"mega": null,
+			"gmax": null
 		},
 		"984": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Great Tusk"
+			"bestName": "Great Tusk",
+			"mega": null,
+			"gmax": null
 		},
 		"985": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Scream Tail"
+			"bestName": "Scream Tail",
+			"mega": null,
+			"gmax": null
 		},
 		"986": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Brute Bonnet"
+			"bestName": "Brute Bonnet",
+			"mega": null,
+			"gmax": null
 		},
 		"987": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Flutter Mane"
+			"bestName": "Flutter Mane",
+			"mega": null,
+			"gmax": null
 		},
 		"988": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Slither Wing"
+			"bestName": "Slither Wing",
+			"mega": null,
+			"gmax": null
 		},
 		"989": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Sandy Shocks"
+			"bestName": "Sandy Shocks",
+			"mega": null,
+			"gmax": null
 		},
 		"990": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Iron Treads"
+			"bestName": "Iron Treads",
+			"mega": null,
+			"gmax": null
 		},
 		"991": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Iron Bundle"
+			"bestName": "Iron Bundle",
+			"mega": null,
+			"gmax": null
 		},
 		"992": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Iron Hands"
+			"bestName": "Iron Hands",
+			"mega": null,
+			"gmax": null
 		},
 		"993": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Iron Jugulis"
+			"bestName": "Iron Jugulis",
+			"mega": null,
+			"gmax": null
 		},
 		"994": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Iron Moth"
+			"bestName": "Iron Moth",
+			"mega": null,
+			"gmax": null
 		},
 		"995": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Iron Thorns"
+			"bestName": "Iron Thorns",
+			"mega": null,
+			"gmax": null
 		},
 		"996": {
 			"tier": "LC",
 			"bestTier": "Uber",
-			"bestName": "Baxcalibur"
+			"bestName": "Baxcalibur",
+			"mega": null,
+			"gmax": null
 		},
 		"997": {
 			"tier": "NFE",
 			"bestTier": "Uber",
-			"bestName": "Baxcalibur"
+			"bestName": "Baxcalibur",
+			"mega": null,
+			"gmax": null
 		},
 		"998": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Baxcalibur"
+			"bestName": "Baxcalibur",
+			"mega": null,
+			"gmax": null
 		},
 		"999": {
 			"tier": "LC",
 			"bestTier": "OU",
-			"bestName": "Gholdengo"
+			"bestName": "Gholdengo",
+			"mega": null,
+			"gmax": null
 		},
 		"1000": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Gholdengo"
+			"bestName": "Gholdengo",
+			"mega": null,
+			"gmax": null
 		},
 		"1001": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Wo-Chien"
+			"bestName": "Wo-Chien",
+			"mega": null,
+			"gmax": null
 		},
 		"1002": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Chien-Pao"
+			"bestName": "Chien-Pao",
+			"mega": null,
+			"gmax": null
 		},
 		"1003": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Ting-Lu"
+			"bestName": "Ting-Lu",
+			"mega": null,
+			"gmax": null
 		},
 		"1004": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Chi-Yu"
+			"bestName": "Chi-Yu",
+			"mega": null,
+			"gmax": null
 		},
 		"1005": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Roaring Moon"
+			"bestName": "Roaring Moon",
+			"mega": null,
+			"gmax": null
 		},
 		"1006": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Iron Valiant"
+			"bestName": "Iron Valiant",
+			"mega": null,
+			"gmax": null
 		},
 		"1007": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Koraidon"
+			"bestName": "Koraidon",
+			"mega": null,
+			"gmax": null
 		},
 		"1008": {
 			"tier": "AG",
 			"bestTier": "AG",
-			"bestName": "Miraidon"
+			"bestName": "Miraidon",
+			"mega": null,
+			"gmax": null
 		},
 		"1009": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Walking Wake"
+			"bestName": "Walking Wake",
+			"mega": null,
+			"gmax": null
 		},
 		"1010": {
 			"tier": "RUBL",
 			"bestTier": "RUBL",
-			"bestName": "Iron Leaves"
+			"bestName": "Iron Leaves",
+			"mega": null,
+			"gmax": null
 		},
 		"1011": {
 			"tier": "ZU",
 			"bestTier": "UU",
-			"bestName": "Hydrapple"
+			"bestName": "Hydrapple",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Flapple-Gmax"
+			}
 		},
 		"1012": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Sinistcha"
+			"bestName": "Sinistcha",
+			"mega": null,
+			"gmax": null
 		},
 		"1013": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Sinistcha"
+			"bestName": "Sinistcha",
+			"mega": null,
+			"gmax": null
 		},
 		"1014": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Okidogi"
+			"bestName": "Okidogi",
+			"mega": null,
+			"gmax": null
 		},
 		"1015": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Munkidori"
+			"bestName": "Munkidori",
+			"mega": null,
+			"gmax": null
 		},
 		"1016": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Fezandipiti"
+			"bestName": "Fezandipiti",
+			"mega": null,
+			"gmax": null
 		},
 		"1017": {
 			"tier": "RUBL",
 			"bestTier": "RUBL",
-			"bestName": "Ogerpon"
+			"bestName": "Ogerpon",
+			"mega": null,
+			"gmax": null
 		},
 		"1018": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Archaludon"
+			"bestName": "Archaludon",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Duraludon-Gmax"
+			}
 		},
 		"1019": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Hydrapple"
+			"bestName": "Hydrapple",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Flapple-Gmax"
+			}
 		},
 		"1020": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Gouging Fire"
+			"bestName": "Gouging Fire",
+			"mega": null,
+			"gmax": null
 		},
 		"1021": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Raging Bolt"
+			"bestName": "Raging Bolt",
+			"mega": null,
+			"gmax": null
 		},
 		"1022": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Iron Boulder"
+			"bestName": "Iron Boulder",
+			"mega": null,
+			"gmax": null
 		},
 		"1023": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Iron Crown"
+			"bestName": "Iron Crown",
+			"mega": null,
+			"gmax": null
 		},
 		"1024": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Terapagos"
+			"bestName": "Terapagos",
+			"mega": null,
+			"gmax": null
 		},
 		"1025": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Pecharunt"
+			"bestName": "Pecharunt",
+			"mega": null,
+			"gmax": null
 		},
 		"19:alola": {
 			"tier": "LC",
 			"bestTier": "ZUBL",
-			"bestName": "Raticate-Alola"
+			"bestName": "Raticate-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"20:alola": {
 			"tier": "ZUBL",
 			"bestTier": "ZUBL",
-			"bestName": "Raticate-Alola"
+			"bestName": "Raticate-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"25:alola": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Pikachu-Alola"
+			"bestName": "Pikachu-Alola",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Pikachu-Gmax"
+			}
 		},
 		"26:alola": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Raichu-Alola"
+			"bestName": "Raichu-Alola",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Pikachu-Gmax"
+			}
 		},
 		"27:alola": {
 			"tier": "LC",
 			"bestTier": "PU",
-			"bestName": "Sandslash-Alola"
+			"bestName": "Sandslash-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"28:alola": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Sandslash-Alola"
+			"bestName": "Sandslash-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"37:alola": {
 			"tier": "NFE",
 			"bestTier": "NU",
-			"bestName": "Ninetales-Alola"
+			"bestName": "Ninetales-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"38:alola": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Ninetales-Alola"
+			"bestName": "Ninetales-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"50:alola": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Dugtrio-Alola"
+			"bestName": "Dugtrio-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"51:alola": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Dugtrio-Alola"
+			"bestName": "Dugtrio-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"52:alola": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Persian-Alola"
+			"bestName": "Persian-Alola",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Meowth-Gmax"
+			}
 		},
 		"52:galar": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Perrserker"
+			"bestName": "Perrserker",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Meowth-Gmax"
+			}
 		},
 		"53:alola": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Persian-Alola"
+			"bestName": "Persian-Alola",
+			"mega": null,
+			"gmax": {
+				"tier": "AG",
+				"name": "Meowth-Gmax"
+			}
 		},
 		"58:hisui": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Arcanine-Hisui"
+			"bestName": "Arcanine-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"59:hisui": {
 			"tier": "UU",
 			"bestTier": "UU",
-			"bestName": "Arcanine-Hisui"
+			"bestName": "Arcanine-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"74:alola": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Golem-Alola"
+			"bestName": "Golem-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"75:alola": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Golem-Alola"
+			"bestName": "Golem-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"76:alola": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Golem-Alola"
+			"bestName": "Golem-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"77:galar": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Rapidash-Galar"
+			"bestName": "Rapidash-Galar",
+			"mega": null,
+			"gmax": null
 		},
 		"78:galar": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Rapidash-Galar"
+			"bestName": "Rapidash-Galar",
+			"mega": null,
+			"gmax": null
 		},
 		"79:galar": {
 			"tier": "LC",
 			"bestTier": "OU",
-			"bestName": "Slowking-Galar"
+			"bestName": "Slowking-Galar",
+			"mega": {
+				"tier": "RUBL",
+				"name": "Slowbro-Mega"
+			},
+			"gmax": null
 		},
 		"80:galar": {
 			"tier": "PU",
 			"bestTier": "OU",
-			"bestName": "Slowking-Galar"
+			"bestName": "Slowking-Galar",
+			"mega": {
+				"tier": "RUBL",
+				"name": "Slowbro-Mega"
+			},
+			"gmax": null
 		},
 		"83:galar": {
 			"tier": "LC",
 			"bestTier": "NUBL",
-			"bestName": "Sirfetch’d"
+			"bestName": "Sirfetch’d",
+			"mega": null,
+			"gmax": null
 		},
 		"88:alola": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Muk-Alola"
+			"bestName": "Muk-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"89:alola": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Muk-Alola"
+			"bestName": "Muk-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"100:hisui": {
 			"tier": "NFE",
 			"bestTier": "ZUBL",
-			"bestName": "Electrode-Hisui"
+			"bestName": "Electrode-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"101:hisui": {
 			"tier": "ZUBL",
 			"bestTier": "ZUBL",
-			"bestName": "Electrode-Hisui"
+			"bestName": "Electrode-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"103:alola": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Exeggutor-Alola"
+			"bestName": "Exeggutor-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"105:alola": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Marowak-Alola"
+			"bestName": "Marowak-Alola",
+			"mega": null,
+			"gmax": null
 		},
 		"110:galar": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Weezing-Galar"
+			"bestName": "Weezing-Galar",
+			"mega": null,
+			"gmax": null
 		},
 		"122:galar": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Mr. Rime"
+			"bestName": "Mr. Rime",
+			"mega": null,
+			"gmax": null
 		},
 		"128:paldea": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Tauros-Paldea-Aqua"
+			"bestName": "Tauros-Paldea-Aqua",
+			"mega": null,
+			"gmax": null
 		},
 		"144:galar": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Articuno-Galar"
+			"bestName": "Articuno-Galar",
+			"mega": null,
+			"gmax": null
 		},
 		"145:galar": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Zapdos-Galar"
+			"bestName": "Zapdos-Galar",
+			"mega": null,
+			"gmax": null
 		},
 		"146:galar": {
 			"tier": "UUBL",
 			"bestTier": "UUBL",
-			"bestName": "Moltres-Galar"
+			"bestName": "Moltres-Galar",
+			"mega": null,
+			"gmax": null
 		},
 		"157:hisui": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Typhlosion-Hisui"
+			"bestName": "Typhlosion-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"194:paldea": {
 			"tier": "LC",
 			"bestTier": "UU",
-			"bestName": "Clodsire"
+			"bestName": "Clodsire",
+			"mega": null,
+			"gmax": null
 		},
 		"199:galar": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Slowking-Galar"
+			"bestName": "Slowking-Galar",
+			"mega": {
+				"tier": "RUBL",
+				"name": "Slowbro-Mega"
+			},
+			"gmax": null
 		},
 		"211:hisui": {
 			"tier": "PU",
 			"bestTier": "NU",
-			"bestName": "Overqwil"
+			"bestName": "Overqwil",
+			"mega": null,
+			"gmax": null
 		},
 		"215:hisui": {
 			"tier": "ZU",
 			"bestTier": "Uber",
-			"bestName": "Sneasler"
+			"bestName": "Sneasler",
+			"mega": null,
+			"gmax": null
 		},
 		"222:galar": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Cursola"
+			"bestName": "Cursola",
+			"mega": null,
+			"gmax": null
 		},
 		"263:galar": {
 			"tier": "LC",
 			"bestTier": "RUBL",
-			"bestName": "Obstagoon"
+			"bestName": "Obstagoon",
+			"mega": null,
+			"gmax": null
 		},
 		"264:galar": {
 			"tier": "NFE",
 			"bestTier": "RUBL",
-			"bestName": "Obstagoon"
+			"bestName": "Obstagoon",
+			"mega": null,
+			"gmax": null
 		},
 		"503:hisui": {
 			"tier": "OU",
 			"bestTier": "OU",
-			"bestName": "Samurott-Hisui"
+			"bestName": "Samurott-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"549:hisui": {
 			"tier": "NUBL",
 			"bestTier": "NUBL",
-			"bestName": "Lilligant-Hisui"
+			"bestName": "Lilligant-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"554:galar": {
 			"tier": "LC",
 			"bestTier": "Uber",
-			"bestName": "Darmanitan-Galar"
+			"bestName": "Darmanitan-Galar",
+			"mega": null,
+			"gmax": null
 		},
 		"555:galar": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Darmanitan-Galar"
+			"bestName": "Darmanitan-Galar",
+			"mega": null,
+			"gmax": null
 		},
 		"562:galar": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Runerigus"
+			"bestName": "Runerigus",
+			"mega": null,
+			"gmax": null
 		},
 		"570:hisui": {
 			"tier": "LC",
 			"bestTier": "RUBL",
-			"bestName": "Zoroark-Hisui"
+			"bestName": "Zoroark-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"571:hisui": {
 			"tier": "RUBL",
 			"bestTier": "RUBL",
-			"bestName": "Zoroark-Hisui"
+			"bestName": "Zoroark-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"618:galar": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Stunfisk-Galar"
+			"bestName": "Stunfisk-Galar",
+			"mega": null,
+			"gmax": null
 		},
 		"628:hisui": {
 			"tier": "PU",
 			"bestTier": "NU",
-			"bestName": "Braviary"
+			"bestName": "Braviary",
+			"mega": null,
+			"gmax": null
 		},
 		"705:hisui": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Goodra-Hisui"
+			"bestName": "Goodra-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"706:hisui": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Goodra-Hisui"
+			"bestName": "Goodra-Hisui",
+			"mega": null,
+			"gmax": null
 		},
 		"713:hisui": {
 			"tier": "PU",
 			"bestTier": "NU",
-			"bestName": "Avalugg"
+			"bestName": "Avalugg",
+			"mega": null,
+			"gmax": null
 		},
 		"724:hisui": {
 			"tier": "PU",
 			"bestTier": "NU",
-			"bestName": "Decidueye"
+			"bestName": "Decidueye",
+			"mega": null,
+			"gmax": null
 		}
 	};
 	function activeHandlerName(ui) {
@@ -5577,17 +8315,6 @@
 		if (!scene.currentBattle) return [];
 		return scene.getEnemyField().map(targetFor$1);
 	}
-	var UNKNOWN = "?";
-	function shortLabel(resolved) {
-		return resolved.bestTier ?? UNKNOWN;
-	}
-	function fullLabel(resolved) {
-		if (!resolved.bestTier) return UNKNOWN;
-		const current = resolved.tier ?? UNKNOWN;
-		if (resolved.tier === resolved.bestTier) return resolved.bestTier;
-		const evolution = resolved.bestName ? ` (${resolved.bestName})` : "";
-		return `${current} → ${resolved.bestTier}${evolution}`;
-	}
 	var RANK = new Map([
 		"AG",
 		"Uber",
@@ -5610,10 +8337,48 @@
 	function compareTier(a, b) {
 		return rankOf(a) - rankOf(b);
 	}
+	function bestReachable(entry) {
+		let best = {
+			tier: entry.bestTier,
+			name: entry.bestName,
+			source: "line"
+		};
+		for (const [source, form] of [["mega", entry.mega], ["gmax", entry.gmax]]) {
+			if (!form) continue;
+			if (best.tier !== null && compareTier(best.tier, form.tier) <= 0) continue;
+			best = {
+				tier: form.tier,
+				name: form.name,
+				source
+			};
+		}
+		return best;
+	}
+	var UNKNOWN = "?";
+	var MARKER = {
+		line: "",
+		mega: "+M",
+		gmax: "+G"
+	};
+	function shortLabel(resolved) {
+		const reachable = bestReachable(resolved);
+		if (!reachable.tier) return UNKNOWN;
+		return `${reachable.tier}${MARKER[reachable.source]}`;
+	}
+	function fullLabel(resolved) {
+		const reachable = bestReachable(resolved);
+		if (!reachable.tier) return UNKNOWN;
+		const current = resolved.tier ?? UNKNOWN;
+		if (current === reachable.tier && reachable.source === "line") return reachable.tier;
+		const via = reachable.name ? ` (${reachable.name})` : "";
+		return `${current} \u2192 ${reachable.tier}${via}`;
+	}
 	var EMPTY = {
 		tier: null,
 		bestTier: null,
-		bestName: null
+		bestName: null,
+		mega: null,
+		gmax: null
 	};
 	function lookup(table, ref) {
 		return table[keyFor(ref.speciesId, ref.formKey)] ?? table[keyFor(ref.speciesId, "")] ?? null;
@@ -5631,7 +8396,9 @@
 		return {
 			tier: entry.tier,
 			bestTier: entry.bestTier,
-			bestName: entry.bestName
+			bestName: entry.bestName,
+			mega: entry.mega,
+			gmax: entry.gmax
 		};
 	}
 	function badgeSpecsFor(targets, table, label) {

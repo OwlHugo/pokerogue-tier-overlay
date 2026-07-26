@@ -1,10 +1,17 @@
 import { keyFor, type SpeciesKey, type SpeciesRef } from './species-key';
 import { compareTier, type Tier } from './tier';
 
+export interface UnlockedForm {
+  tier: Tier;
+  name: string;
+}
+
 export interface TierEntry {
   tier: Tier | null;
   bestTier: Tier | null;
   bestName: string | null;
+  mega: UnlockedForm | null;
+  gmax: UnlockedForm | null;
 }
 
 export type TierTable = Readonly<Record<SpeciesKey, TierEntry>>;
@@ -13,9 +20,11 @@ export interface ResolvedTiers {
   tier: Tier | null;
   bestTier: Tier | null;
   bestName: string | null;
+  mega: UnlockedForm | null;
+  gmax: UnlockedForm | null;
 }
 
-const EMPTY: ResolvedTiers = { tier: null, bestTier: null, bestName: null };
+const EMPTY: ResolvedTiers = { tier: null, bestTier: null, bestName: null, mega: null, gmax: null };
 
 function lookup(table: TierTable, ref: SpeciesRef): TierEntry | null {
   return table[keyFor(ref.speciesId, ref.formKey)] ?? table[keyFor(ref.speciesId, '')] ?? null;
@@ -38,5 +47,11 @@ export function resolveTiers(
 
 function toResolved(entry: TierEntry | null): ResolvedTiers {
   if (!entry) return EMPTY;
-  return { tier: entry.tier, bestTier: entry.bestTier, bestName: entry.bestName };
+  return {
+    tier: entry.tier,
+    bestTier: entry.bestTier,
+    bestName: entry.bestName,
+    mega: entry.mega,
+    gmax: entry.gmax,
+  };
 }

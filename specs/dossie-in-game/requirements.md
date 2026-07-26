@@ -1,204 +1,204 @@
-# Requirements — dossiê in-game
+# Requirements — companion in-game
 
 Sucessora da spec `userscript-v2/`. A v2 entrega uma badge com o melhor tier da linha
-evolutiva. Esta spec entrega o **dossiê de batalha**: o resto do que o jogador precisa para
-decidir se gasta a Pokébola.
+evolutiva. Esta spec transforma o overlay em **companion**: uma badge discreta que, ao ser
+clicada, abre um hub com tudo que a decisão daquele momento precisa.
 
-Critérios desta spec usam o prefixo `AD-`. Referências a `CA-` apontam para
+Critérios usam o prefixo `AD-`. Referências a `CA-` apontam para
 `userscript-v2/requirements.md`.
 
 ## Objetivo
 
-Responder, no momento em que o Pokémon selvagem aparece, o que hoje exige abrir a wiki em
-outra aba: qual a hidden ability, quais os egg moves, quão raro ele é **no bioma atual**, e
-qual a catch rate.
+Responder, no momento de cada decisão irreversível da run, o que hoje exige sair do jogo:
+o que vale capturar, o que aquele Pokémon vira, quais formas ele alcança, e **para onde ir
+em seguida**.
 
-## Escopo
+## Padrão de interação, e por que ele é o requisito mais importante
 
-Slice A de uma decomposição maior. Fora desta spec, cada um com spec própria: busca
-instantânea in-game (Ctrl+K), calculadoras de catch e dano, site/wiki, API pública, login e
-sincronização de runs.
+O overlay **não despeja dado na tela**. A v2 já acertou ao usar uma badge mínima; esta spec
+mantém isso e adiciona profundidade atrás de um clique.
 
-## Decisões que moldam tudo abaixo
+- Estado fechado: a badge que a v2 já desenha, com o tier. Nada mais.
+- Um clique na badge abre o **hub**: painel com abas, ancorado no container do jogo.
+- Um clique fora, ou na mesma badge, fecha.
 
-Cada uma saiu de verificação no jogo rodando, não de suposição.
+Uma superfície de interação, reusada em todas as telas. Isso é o que impede a feature de
+virar HUD paralela — e é o que faz o slice B (busca) nascer sem UI nova.
 
-**A badge continua mínima.** O dossiê não cabe acima de um sprite em batalha dupla sem
-violar CA-15 e CA-16. Ele vive num painel que só existe quando o jogador pede.
+## Superfícies
 
-**O painel é só de batalha.** A tela de starter já mostra Ability, Passive, Nature, Growth
-Rate, tipos e os slots de egg move na coluna esquerda. Um painel ali repetiria o jogo. Na
-batalha o jogo mostra quase nada e a decisão é irreversível — é onde o dossiê vale.
+| Tela | Badge fechada | Hub aberto |
+|---|---|---|
+| Batalha | tier da linha (v2) | dossiê do inimigo: HA, egg moves, raridade aqui, catch rate, formas |
+| Seleção de starter | tier da linha (v2) | mesmas abas, mais as formas especiais que a espécie alcança |
+| Escolha de bioma | resumo por destino | o que cada bioma oferece, cruzado com o time atual |
 
-**O painel é factual.** Todo campo é fato verificável extraído do jogo ou do Smogon.
-Veredito de captura e nature recomendada são opinião e ficam fora — quando uma opinião erra,
-ela derruba a confiança nos fatos acima dela.
+## Decisões, e de onde saíram
 
-**Raridade é contextual, não uma lista.** Em vez de listar todos os biomas onde a espécie
-aparece, o painel diz a raridade dela no bioma em que o jogador está. É a informação que a
-decisão precisa, e reduz o que precisa ser exibido.
+Cada uma foi verificada no jogo rodando ou no código-fonte do PokéRogue, não suposta.
+
+**A fonte da verdade é o repositório do jogo, não wiki nem fórum.** Dado de comunidade
+envelhece e diverge entre páginas; o código é o que efetivamente roda na máquina do jogador.
+Onde os dois divergirem, o código vence, e o overlay não tenta reconciliar.
+
+**Mega, Gigantamax, Primal e Eternamax são legíveis em runtime.** Estão em
+`species.forms[].formKey`, com os valores do enum `SpeciesFormKey` do upstream (`mega`,
+`mega-x`, `mega-y`, `primal`, `gigantamax`, `eternamax`, entre outros). Não precisam de
+tabela gerada, e acompanham a versão que o jogador roda.
+
+**A escolha de bioma é um grafo que já existe no upstream.** Cada bioma exporta
+`biomeLinks: readonly (BiomeId | readonly [BiomeId, number])[]` — "os biomas para onde se
+pode viajar a partir daqui". Plains leva a Grass, Metropolis e Lake. É exatamente a tela de
+escolha, e sai da mesma geração que o índice de espécies.
+
+**O time do jogador entra como contexto, não como dado exibido.** Ele serve para responder
+"o que este bioma me oferece que eu ainda não tenho" — cobertura de tipos e espécies novas.
+Sem isso, listar 40 espécies por bioma é ruído.
+
+**O painel é factual.** Veredito de captura e nature recomendada continuam fora: são opinião,
+e opinião errada derruba a confiança nos fatos acima dela.
 
 **Egg moves aparecem, mesmo travados no save.** O jogo os esconde como `???` até o
-desbloqueio. Revelar contorna uma progressão deliberada dos desenvolvedores, e isso foi
-levantado e decidido conscientemente: o dado é público no repositório AGPL deles, e o
-overlay o trata como qualquer outro. Fica registrado aqui para que a decisão seja
-rastreável, não redebatida.
+desbloqueio. Revelar contorna progressão deliberada dos desenvolvedores; foi levantado e
+decidido conscientemente. Fica registrado para ser rastreável, não redebatido.
 
-**Runtime é a fonte quando alcança; tabela gerada só para o que ele não alcança.** Minimiza
-a superfície que envelhece quando o PokéRogue atualiza.
+**Runtime é a fonte quando alcança; tabela gerada só para o resto.** Minimiza a superfície
+que envelhece quando o PokéRogue atualiza.
 
 ## O que o runtime entrega, verificado em jogo
 
-Lido ao vivo do objeto de espécie do Ralts em `pokerogue.net`:
+Lido ao vivo em `pokerogue.net`, capturando o jogo pela mesma estratégia da v2:
 
-| Campo | Valor observado |
+| Campo | Observado |
 |---|---|
-| `abilityHidden` | `140` |
+| `abilityHidden` | `140` (Ralts) |
 | `catchRate` | `235` |
 | `type1`, `type2` | `13`, `17` |
 | `baseStats` | `[28,25,25,45,35,40]` |
 | `getEvolutionLevels()` | `[[281,20],[282,30],[475,1]]` |
+| `species.forms[].formKey` | chaves do enum `SpeciesFormKey` |
+| `StarterSelectUiHandler.allSpecies` | 572 espécies |
+| `scene.arena.biomeType` | id numérico do bioma atual |
 
-Também disponíveis: `ability1`, `ability2`, `baseTotal`, `growthRate`, `legendary`,
-`mythical`, `subLegendary`, `category`, `forms`. O dossiê usa apenas `abilityHidden` e
-`catchRate` — o resto fica anotado para slices futuros, e entrar agora seria escopo que
-ninguém pediu.
-
-`window.i18next` **não** existe. Confirma que nome de ability e de move só pode vir de
-tabela gerada.
+`window.i18next` **não** existe: nome de ability, move e bioma só sai de tabela gerada.
+`window.gameInfo` existe e expõe bioma, wave e party, mas como strings de exibição sob um
+`gameInfoVersion` próprio — contrato mais frágil que os objetos da cena, e por isso não é a
+fonte.
 
 ## Origem de cada dado
 
-| Dado | Fonte | Por quê |
-|---|---|---|
-| `catchRate`, `abilityHidden` (id) | runtime, via `pokemon.species` | já alcançado; acompanha a versão que o jogador roda, e reflete fusão e forma |
-| bioma atual | runtime, via `scene.arena.biomeType` | enum numérico, estável. `window.gameInfo.biome` também expõe, mas como string de exibição e sob um `gameInfoVersion` próprio — contrato menos estável |
-| egg moves por espécie | gerada de `pokerogue` | `src/data/balance/moves/egg-moves.ts` |
-| raridade por bioma e hora do dia | gerada de `pokerogue` | `src/data/balance/biomes/*.ts` |
-| nome de ability, move e bioma | gerada de `pokerogue-locales` | os nomes não estão em `src/data`: `allAbilities` e `allMoves` são module-scope, e o texto vive no repositório de locales como JSON |
-| tier Smogon da linha | gerada de `@pkmn/dex` | já é assim na v2 |
-
-São **duas** fontes upstream pinadas, `pagefaultgames/pokerogue` e
-`pagefaultgames/pokerogue-locales`, mais o `@pkmn/dex` que já era dependência.
+| Dado | Fonte |
+|---|---|
+| `catchRate`, `abilityHidden`, tipos, base stats, `forms[].formKey` | runtime, via `species` |
+| bioma atual | runtime, via `scene.arena.biomeType` |
+| time do jogador | runtime, via a party da cena |
+| egg moves por espécie | gerada de `pokerogue` |
+| raridade por bioma e hora do dia | gerada de `pokerogue` |
+| grafo de destinos entre biomas | gerada de `pokerogue` |
+| nome de ability, move e bioma | gerada de `pokerogue-locales` |
+| tier Smogon da linha | gerada de `@pkmn/dex` (já existente) |
 
 ## Licença
 
-Ambos os repositórios upstream são **AGPL-3.0-only**. Esta spec passa a embutir dados
-derivados deles no bundle distribuído, o que a v2 não fazia — o `@pkmn/dex` é MIT.
+`pagefaultgames/pokerogue` e `pagefaultgames/pokerogue-locales` são **AGPL-3.0-only**. Esta
+spec embute dados derivados deles no bundle distribuído, o que a v2 não fazia.
 
-Se a extração constitui obra derivada é ponto genuinamente contestado: fato isolado não tem
-copyright, mas a compilação (a seleção e o arranjo das pools de bioma e da lista de egg
-moves) tem proteção em várias jurisdições, e o gerador copia a compilação quase inteira. Em
-vez de apostar numa interpretação, o projeto adota AGPL-3.0-only e a questão deixa de
-existir. É coerente com ser companion de um jogo AGPL, e o Greasyfork aceita.
+Se a extração constitui obra derivada é ponto contestado: fato isolado não tem copyright, mas
+a compilação (a seleção e o arranjo das pools de bioma e da lista de egg moves) tem proteção
+em várias jurisdições, e o gerador copia a compilação quase inteira. Em vez de apostar numa
+interpretação, o projeto adota AGPL-3.0-only e a questão deixa de existir.
 
 ## User stories
 
-1. Como jogador em batalha, aperto uma tecla e vejo o dossiê do inimigo à minha frente, sem
-   trocar de aba.
-2. Como jogador em batalha dupla, alterno o dossiê entre os dois inimigos com a mesma tecla.
-3. Como jogador, vejo quão raro aquele Pokémon é **no bioma onde estou**, não uma lista de
-   biomas que eu teria que interpretar.
-4. Como jogador, o painel não me atrapalha: fechado não ocupa pixel nenhum, aberto não cobre
-   a HUD, e a tecla nunca rouba um comando do jogo.
+1. Como jogador em batalha, clico na badge do inimigo e vejo se vale a Pokébola, sem trocar
+   de aba.
+2. Como jogador escolhendo starter, vejo quais formas especiais aquela espécie alcança antes
+   de gastar um slot.
+3. Como jogador na escolha de bioma, vejo o que cada destino oferece **em relação ao time que
+   eu tenho**, e não uma lista crua.
+4. Como jogador, nada aparece na tela até eu pedir: fechado, o overlay é a badge da v2.
 5. Como jogador, se o overlay não sabe algo, ele **omite** — nunca preenche com palpite.
-6. Como mantenedor, quando o PokéRogue atualiza os dados, recebo um PR com a tabela nova em
-   vez de descobrir pelo relato de um usuário.
+6. Como mantenedor, quando o PokéRogue atualiza os dados, recebo um PR com a tabela nova.
 
 ## Critérios de aceite
 
 ### Geração de dados
 
-- AD-1: `npm run build:data` gera `data/names.generated.ts`, `data/egg-moves.generated.ts` e
-  `data/biome-index.generated.ts`, todos tipados, e `npm run typecheck` continua passando.
-- AD-2: O gerador lê de commits **pinados** dos dois repositórios upstream, registrados em
-  `data/pokerogue-source.json`. Rodar o gerador duas vezes sem mudar os pins produz arquivos
-  byte a byte idênticos.
-- AD-3: Se o gerador não conseguir resolver uma fonte upstream, ele **falha** com erro
-  explícito. Não emite tabela parcial e não reaproveita a tabela anterior.
-- AD-4: Testes de dados confirmam, para cada tabela gerada, cardinalidade mínima e formato
-  das chaves, no padrão de `test/tier-table-data.test.ts`.
-- AD-21: As tabelas de nome são **filtradas**: só entram nomes referenciados pelas outras
-  tabelas ou pelo runtime — hidden abilities, moves que são egg move, e biomas. `move.json`
-  tem 179 KB e usaríamos uma fração.
-- AD-22: Módulos upstream que arrastam `i18next` ou Phaser por transitividade são resolvidos
-  por stubs locais declarados em um único lugar. Passando de cinco entradas, o gerador troca
-  importação por leitura de AST — o teto existe para a gambiarra não crescer sem alguém
-  decidir que ela cresceu.
+- AD-1: `npm run build:data` gera `data/egg-moves.generated.ts`,
+  `data/biome-index.generated.ts`, `data/biome-links.generated.ts` e `data/names.generated.ts`,
+  todos tipados, com `npm run typecheck` passando.
+- AD-2: O gerador lê de commits **pinados** dos dois upstreams, em
+  `data/pokerogue-source.json`. Duas execuções sem mudar os pins produzem arquivos idênticos.
+- AD-3: Falha ao resolver uma fonte **aborta** o gerador com erro explícito. Sem tabela
+  parcial, sem reaproveitar a anterior.
+- AD-4: Testes confirmam, por tabela, cardinalidade mínima e formato de chave, no padrão de
+  `test/tier-table-data.test.ts`.
+- AD-5: As tabelas de nome são filtradas: só entram nomes referenciados pelas outras tabelas.
+- AD-6: Módulos upstream que arrastam `i18next` ou Phaser por transitividade são resolvidos
+  por stubs locais num único lugar. Passando de cinco, o gerador troca importação por AST.
 
 ### Empacotamento e licença
 
-- AD-5: O bundle continua único e autocontido, sem `@require` e sem fetch em runtime
-  (mantém CA-2).
-- AD-6: O `.user.js` gerado permanece abaixo de 500 KB. O build é `minify: false`, então a
-  medida é do arquivo como distribuído, sem contar com compressão.
-- AD-23: `LICENSE` passa a AGPL-3.0-only, o campo `license` do bloco de metadados do
-  userscript acompanha, e o README credita `pagefaultgames/pokerogue` e
-  `pagefaultgames/pokerogue-locales` como origem dos dados, com a licença deles.
+- AD-7: Bundle único e autocontido, sem `@require` e sem fetch em runtime (mantém CA-2).
+- AD-8: O `.user.js` permanece abaixo de 500 KB. O build é `minify: false`, então a medida é
+  do arquivo como distribuído.
+- AD-9: `LICENSE` passa a AGPL-3.0-only, o campo `license` do userscript acompanha, e o
+  README credita os dois repositórios upstream com a licença deles.
 
 ### Domínio
 
-- AD-7: `dossier.ts` não importa nada de `render/`, `game/` ou Phaser. Recebe fatos de
-  runtime mais tabelas, devolve struct.
-- AD-8: Quando um dado não existe para a espécie, o campo vem vazio e a linha **não é
-  renderizada**. Não existe texto de preenchimento como "desconhecido". A ausência de tier
-  Smogon continua exibindo `?`, como na v2.
-- AD-9: Para um Pokémon fundido, o painel mostra os dois nomes, resolve o tier entre as duas
-  linhas como a v2 já faz, e exibe os campos factuais da espécie primária — que é o que o
-  objeto de runtime entrega.
-- AD-10: Dado o bioma atual e a espécie, o índice devolve a raridade e a hora do dia, ou
-  nada. Espécie que não aparece naquele bioma não produz linha, e isso não é erro — pode ser
-  encontro de evento, de fusão ou de troca de bioma.
-- AD-24: Se o bioma atual não puder ser lido, a linha de raridade é omitida. O painel
-  continua exibindo os demais campos.
+- AD-10: `src/domain/` não importa nada de `render/`, `game/` ou Phaser, exceto `type`.
+- AD-11: Dado ausente produz campo vazio e **linha não renderizada**. Não existe texto de
+  preenchimento. A ausência de tier Smogon continua exibindo `?`, como na v2.
+- AD-12: Pokémon fundido mostra os dois nomes, resolve o tier entre as duas linhas como a v2
+  faz, e exibe os fatos da espécie primária.
+- AD-13: Dado bioma e espécie, o índice devolve raridade e hora do dia, ou nada. Espécie
+  ausente daquele bioma não produz linha, e isso não é erro.
+- AD-14: Bioma ilegível omite só a linha de raridade; o resto do hub continua.
+- AD-15: `formsOf(species)` devolve apenas as formas especiais reconhecidas pelo enum
+  `SpeciesFormKey`, com o rótulo legível. Espécie sem forma especial devolve lista vazia.
+- AD-16: `biomeAdvice(destino, time, tabelas)` devolve, para um bioma de destino: as espécies
+  capturáveis por raridade, quais delas são novas para o time, e quais tipos o time ainda não
+  cobre. Time vazio devolve o mesmo conteúdo sem a parte comparativa, sem lançar.
 
-### Painel
+### Hub e badge
 
-- AD-11: Com o painel fechado, nenhum objeto do painel existe na cena — verificável por
-  `size === 0`, no padrão de CA-19.
-- AD-12: A tecla que abre o painel **não é consumida pelo jogo** em batalha. O requisito é a
-  ausência de conflito, não uma tecla específica; qual tecla satisfaz isso é determinado por
-  verificação em jogo na tarefa A5. Já se sabe que `C`, `G`, `N` e `U` estão ocupadas na
-  tela de starter, além de setas, Enter e Esc.
-- AD-13: Em batalha dupla, acionar a tecla de novo alterna o painel para o outro inimigo, e
-  uma terceira vez o fecha. O ciclo pula alvos já derrotados.
-- AD-15: O painel aberto não cobre a HUD de batalha nem o texto de diálogo do jogo, em
-  batalha simples e dupla (estende CA-15 e CA-16).
-- AD-16: O painel é legível em viewport de celular, sem código de layout específico para
-  mobile — herda escala do container do jogo, como as badges já fazem.
-- AD-17: Sair da batalha com o painel aberto limpa o painel exatamente uma vez, no padrão de
-  CA-18.
-- AD-25: A tela de seleção de starter permanece **inalterada** — só a badge de tier que a v2
-  já entrega. Nenhum painel, nenhuma tecla nova ali.
+- AD-17: Com o hub fechado, nenhum objeto do hub existe na cena — `size === 0`, no padrão de
+  CA-19. As badges da v2 continuam sendo o único desenho.
+- AD-18: Clique na badge abre o hub; clique na mesma badge ou fora dele fecha. Nenhuma tecla
+  nova é registrada, e o overlay não consome input que o jogo esperava.
+- AD-19: O hub tem abas, e trocar de aba não recria os objetos das outras.
+- AD-20: Em batalha dupla, cada inimigo tem a própria badge, e abrir uma fecha a outra.
+- AD-21: O hub aberto não cobre a HUD de batalha nem o texto de diálogo (estende CA-15,
+  CA-16).
+- AD-22: O hub é legível em viewport de celular sem código de layout específico — herda escala
+  do container do jogo, como as badges já fazem.
+- AD-23: Sair da tela com o hub aberto limpa o hub exatamente uma vez, no padrão de CA-18.
 
 ### Manutenção
 
-- AD-18: Um workflow agendado semanalmente roda o gerador contra a HEAD dos dois upstreams
-  e, se as tabelas mudarem, abre um PR com o diff e os pins atualizados.
-- AD-19: O PR aberto pelo workflow passa por typecheck, lint, test e build antes de ser
-  mergeável — reusa o CI de CA-6.
-- AD-20: `npm test`, `npm run typecheck` e `npm run lint` passam.
+- AD-24: Workflow semanal roda o gerador contra a HEAD dos dois upstreams e abre PR se as
+  tabelas mudarem.
+- AD-25: O PR passa por typecheck, lint, test e build antes de ser mergeável (reusa CA-6).
+- AD-26: `npm test`, `npm run typecheck` e `npm run lint` passam.
 
 ## Edge cases
 
-| Caso | Comportamento esperado |
+| Caso | Comportamento |
 |---|---|
-| Espécie sem hidden ability | linha de HA ausente |
-| Espécie sem egg move | linha de egg moves ausente |
-| Espécie que não aparece no bioma atual | linha de raridade ausente (AD-10) |
-| Bioma atual ilegível | linha de raridade ausente, resto do painel intacto (AD-24) |
-| Pokémon fundido | dois nomes, tier resolvido entre as linhas, fatos da primária (AD-9) |
-| Forma regional | chave espécie+forma resolve normal; sem entrada, cai para a espécie base, como `tier-table.ts` já faz |
-| Tecla pressionada durante diálogo do jogo | painel não abre e a tecla é repassada ao jogo |
-| Espécie nova, ausente da tabela gerada | campos gerados ausentes; campos de runtime continuam aparecendo |
-| Batalha dupla com um inimigo derrotado | o ciclo só alterna entre alvos vivos (AD-13) |
+| Espécie sem hidden ability, sem egg move, ou fora do bioma | linha ausente, sem preenchimento |
+| Bioma atual ilegível | só a linha de raridade some (AD-14) |
+| Pokémon fundido | dois nomes, tier entre as linhas, fatos da primária (AD-12) |
+| Forma regional | chave espécie+forma resolve; sem entrada, cai para a espécie base |
+| Espécie sem forma especial | aba de formas vazia, e a aba não é oferecida (AD-15) |
+| Time vazio na escolha de bioma | conteúdo do bioma sem comparação (AD-16) |
+| Bioma de destino sem link no grafo | nenhuma badge de destino; a tela do jogo segue intacta |
+| Espécie nova, ausente da tabela gerada | campos gerados somem; os de runtime permanecem |
+| Clique na badge durante diálogo do jogo | hub não abre e o clique segue para o jogo |
 
 ## Fora de escopo
 
-- Veredito de captura, nature recomendada, IVs recomendados, builds, sinergias.
-- Tipos, base stats e níveis de evolução: alcançáveis em runtime, mas ninguém pediu. Anotados
-  para slices futuros.
-- Qualquer alteração na tela de starter (AD-25).
-- Calculadora de catch e de dano — dependem deste dossiê e vêm no slice C.
-- Busca por tecla (Ctrl+K) — slice B, reusa `panel.ts` e `dossier.ts` sem alteração.
-- Qualquer backend, conta de usuário ou sincronização.
+- Veredito de captura, nature recomendada, IVs, builds, sinergias — opinião, não fato.
+- Calculadora de dano e de catch: slice C, depende deste domínio.
+- Busca por atalho (Ctrl+K): slice B, reusa o hub sem UI nova.
+- Backend, conta de usuário, sincronização de runs: slice E.

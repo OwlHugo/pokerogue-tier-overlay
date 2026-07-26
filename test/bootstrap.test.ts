@@ -1,16 +1,12 @@
 import { describe, expect, test, vi } from 'vitest';
 import { startOverlay } from '../src/bootstrap';
+import type { TierTable } from '../src/domain/tier-table';
 import type { PhaserGame } from '../src/game/phaser';
 import { fakeBattleScene, fakePokemon } from './support/fake-pokerogue';
 
-const table = {
-  '129': {
-    tier: 'LC',
-    bestTier: 'RU',
-    bestName: 'Gyarados',
-    line: ['Magikarp', 'Gyarados'],
-  },
-} as const;
+const table: TierTable = {
+  '129': { tier: 'LC', bestTier: 'RU', bestName: 'Gyarados', mega: null, gmax: null },
+};
 
 function fakeGame(scene: unknown): PhaserGame {
   return { scene: { getScene: () => scene } };

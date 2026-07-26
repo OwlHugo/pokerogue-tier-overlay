@@ -3,15 +3,11 @@ import { keyFor } from '../src/domain/species-key';
 import { resolveTiers, type TierTable } from '../src/domain/tier-table';
 
 const table: TierTable = {
-  '129': { tier: 'LC', bestTier: 'RU', bestName: 'Gyarados' },
-  '10': { tier: 'LC', bestTier: 'ZU', bestName: 'Butterfree' },
-  '26': { tier: 'ZU', bestTier: 'ZU', bestName: 'Raichu' },
-  '26:alola': {
-    tier: 'NU',
-    bestTier: 'NU',
-    bestName: 'Raichu-Alola',
-  },
-  '163': { tier: 'LC', bestTier: 'ZU', bestName: 'Noctowl' },
+  '129': { tier: 'LC', bestTier: 'RU', bestName: 'Gyarados', mega: null, gmax: null },
+  '10': { tier: 'LC', bestTier: 'ZU', bestName: 'Butterfree', mega: null, gmax: null },
+  '26': { tier: 'ZU', bestTier: 'ZU', bestName: 'Raichu', mega: null, gmax: null },
+  '26:alola': { tier: 'NU', bestTier: 'NU', bestName: 'Raichu-Alola', mega: null, gmax: null },
+  '163': { tier: 'LC', bestTier: 'ZU', bestName: 'Noctowl', mega: null, gmax: null },
 };
 
 describe('keyFor', () => {
@@ -30,6 +26,8 @@ describe('resolveTiers', () => {
       tier: 'LC',
       bestTier: 'ZU',
       bestName: 'Noctowl',
+      mega: null,
+      gmax: null,
     });
   });
 
@@ -66,6 +64,8 @@ describe('resolveTiers', () => {
       tier: null,
       bestTier: null,
       bestName: null,
+      mega: null,
+      gmax: null,
     });
   });
 });
