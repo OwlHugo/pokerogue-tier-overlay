@@ -1,7 +1,9 @@
+import type { BiomeTable } from './domain/biome';
 import type { TierTable } from './domain/tier-table';
 import { contextOf } from './game/context';
 import type { PhaserGame } from './game/phaser';
 import type { BattleScene } from './game/pokerogue';
+import { Hud } from './hud/hud';
 import { Overlay } from './overlay';
 import { BadgeLayer } from './render/badge-layer';
 import { BattleSurface } from './surfaces/battle-surface';
@@ -29,8 +31,13 @@ function battleSceneOf(game: PhaserGame): BattleScene | null {
   return (game.scene.getScene(BATTLE_SCENE_KEY) as BattleScene | null) ?? null;
 }
 
-export function startOverlay(game: PhaserGame, table: TierTable): OverlayRunner {
+export function startOverlay(
+  game: PhaserGame,
+  table: TierTable,
+  biomes: BiomeTable = {},
+): OverlayRunner {
   let overlay: Overlay | null = null;
+  let hud: Hud | null = null;
 
   return {
     get started() {
@@ -41,10 +48,14 @@ export function startOverlay(game: PhaserGame, table: TierTable): OverlayRunner 
       if (!scene) return;
       overlay ??= overlayFor(scene, table);
       overlay.tick();
+      hud ??= new Hud(table, biomes);
+      hud.sync(scene);
     },
     destroy() {
       overlay?.destroy();
+      hud?.destroy();
       overlay = null;
+      hud = null;
     },
   };
 }

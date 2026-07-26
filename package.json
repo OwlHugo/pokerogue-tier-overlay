@@ -19,6 +19,7 @@
     "@biomejs/biome": "^2.3.14",
     "@pkmn/dex": "^0.9.36",
     "@types/node": "^24.0.0",
+    "happy-dom": "^20.11.1",
     "puppeteer": "^24.10.0",
     "terser": "^5.49.0",
     "tsx": "^4.19.2",

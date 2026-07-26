@@ -1,3 +1,4 @@
+import { BIOME_TABLE } from '../data/biome-table.generated';
 import { TIER_TABLE } from '../data/tier-table.generated';
 import { startOverlay } from './bootstrap';
 import { armCapture } from './game/capture';
@@ -9,7 +10,7 @@ const CAPTURE_TIMEOUT_MS = 20_000;
 
 const armed = armCapture(window as PhaserHost, ({ game }) => {
   window.clearTimeout(timeout);
-  const runner = startOverlay(game, TIER_TABLE);
+  const runner = startOverlay(game, TIER_TABLE, BIOME_TABLE);
   window.setInterval(() => runner.tick(), TICK_INTERVAL_MS);
 });
 
