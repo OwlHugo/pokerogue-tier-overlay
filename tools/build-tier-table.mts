@@ -3,7 +3,8 @@ import type { Species } from '@pkmn/dex';
 import { Dex } from '@pkmn/dex';
 import { bestOfLine, evolutionLine, type SpeciesSource } from '../src/domain/evolution';
 import { keyFor, type SpeciesKey } from '../src/domain/species-key';
-import { compareTier, normalizeTier } from '../src/domain/tier';
+import { compareTier } from '../src/domain/tier';
+import { type GenerationSource, tierAcrossGenerations } from '../src/domain/tier-cascade';
 import type { TierEntry } from '../src/domain/tier-table';
 
 const REGIONAL_FORMS = new Set(['alola', 'galar', 'hisui', 'paldea']);
@@ -11,6 +12,14 @@ const GENERATION = 9;
 
 const dex = Dex.forGen(GENERATION);
 const species: SpeciesSource = { get: (name) => dex.species.get(name) };
+
+const generations: GenerationSource[] = Array.from({ length: GENERATION }, (_, index) => {
+  const gen = GENERATION - index;
+  const genDex = Dex.forGen(gen);
+  return { gen, source: { get: (name) => genDex.species.get(name) } };
+});
+
+const tierOf = (name: string) => tierAcrossGenerations(generations, name)?.tier ?? null;
 
 function regionOf(entry: Species): string {
   if (!entry.forme) return '';
@@ -26,8 +35,8 @@ function keyOf(entry: Species): SpeciesKey | null {
 
 function entryFor(entry: Species): TierEntry {
   return {
-    tier: normalizeTier(entry.tier),
-    ...bestOfLine(species, evolutionLine(species, entry)),
+    tier: tierOf(entry.name),
+    ...bestOfLine(evolutionLine(species, entry), tierOf),
   };
 }
 

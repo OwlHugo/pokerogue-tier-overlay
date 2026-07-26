@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import { bestOfLine, evolutionLine, type SpeciesSource } from '../src/domain/evolution';
+import { normalizeTier } from '../src/domain/tier';
 
 const source = (nodes: Record<string, { prevo?: string; evos?: string[]; tier?: string }>) =>
   ({
@@ -33,16 +34,18 @@ describe('evolutionLine', () => {
   });
 });
 
+const tierOf = (from: SpeciesSource) => (name: string) => normalizeTier(from.get(name).tier);
+
 describe('bestOfLine', () => {
   test('devolve o melhor tier da linha e quem o alcanca', () => {
-    expect(bestOfLine(karp, ['Magikarp', 'Gyarados'])).toEqual({
+    expect(bestOfLine(['Magikarp', 'Gyarados'], tierOf(karp))).toEqual({
       bestTier: 'RU',
       bestName: 'Gyarados',
     });
   });
 
   test('escolhe o melhor entre os ramos', () => {
-    expect(bestOfLine(eevee, ['Eevee', 'Vaporeon', 'Jolteon'])).toEqual({
+    expect(bestOfLine(['Eevee', 'Vaporeon', 'Jolteon'], tierOf(eevee))).toEqual({
       bestTier: 'OU',
       bestName: 'Jolteon',
     });
@@ -50,11 +53,11 @@ describe('bestOfLine', () => {
 
   test('ignora tier que o smogon nao cataloga', () => {
     const odd = source({ A: { tier: 'Illegal' }, B: { prevo: 'A', tier: 'Unreleased' } });
-    expect(bestOfLine(odd, ['A', 'B'])).toEqual({ bestTier: null, bestName: null });
+    expect(bestOfLine(['A', 'B'], tierOf(odd))).toEqual({ bestTier: null, bestName: null });
   });
 
   test('empate aponta o estagio mais evoluido, que e ate onde vale evoluir', () => {
     const tie = source({ A: { evos: ['B'], tier: 'NU' }, B: { prevo: 'A', tier: 'NU' } });
-    expect(bestOfLine(tie, ['A', 'B'])).toEqual({ bestTier: 'NU', bestName: 'B' });
+    expect(bestOfLine(['A', 'B'], tierOf(tie))).toEqual({ bestTier: 'NU', bestName: 'B' });
   });
 });

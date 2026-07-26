@@ -1,4 +1,4 @@
-import { compareTier, normalizeTier, type Tier } from './tier';
+import { compareTier, type Tier } from './tier';
 
 export interface SpeciesNode {
   name: string;
@@ -34,12 +34,14 @@ export function evolutionLine(source: SpeciesSource, species: SpeciesNode): stri
   return collect(source, rootOf(source, species), []);
 }
 
-export function bestOfLine(source: SpeciesSource, line: readonly string[]): BestOfLine {
+export type TierResolver = (name: string) => Tier | null;
+
+export function bestOfLine(line: readonly string[], tierOf: TierResolver): BestOfLine {
   let bestTier: Tier | null = null;
   let bestName: string | null = null;
 
   for (const name of line) {
-    const tier = normalizeTier(source.get(name).tier);
+    const tier = tierOf(name);
     if (tier === null || compareTier(tier, bestTier) > 0) continue;
     bestTier = tier;
     bestName = name;

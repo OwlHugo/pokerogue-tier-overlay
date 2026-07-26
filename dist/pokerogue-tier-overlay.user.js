@@ -61,69 +61,69 @@
 			"bestName": "Blastoise"
 		},
 		"10": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Butterfree"
 		},
 		"11": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "ZU",
+			"bestName": "Butterfree"
 		},
 		"12": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Butterfree"
 		},
 		"13": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Beedrill"
 		},
 		"14": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "ZU",
+			"bestName": "Beedrill"
 		},
 		"15": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Beedrill"
 		},
 		"16": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Pidgeot"
 		},
 		"17": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "ZU",
+			"bestName": "Pidgeot"
 		},
 		"18": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Pidgeot"
 		},
 		"19": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Raticate"
 		},
 		"20": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Raticate"
 		},
 		"21": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Fearow"
 		},
 		"22": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Fearow"
 		},
 		"23": {
 			"tier": "LC",
@@ -138,12 +138,12 @@
 		"25": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Pikachu"
+			"bestName": "Raichu-Alola"
 		},
 		"26": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Pikachu"
+			"bestName": "Raichu-Alola"
 		},
 		"27": {
 			"tier": "LC",
@@ -156,34 +156,34 @@
 			"bestName": "Sandslash"
 		},
 		"29": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "RU",
+			"bestName": "Nidoqueen"
 		},
 		"30": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "RU",
+			"bestName": "Nidoqueen"
 		},
 		"31": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "RU",
+			"bestTier": "RU",
+			"bestName": "Nidoqueen"
 		},
 		"32": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "UU",
+			"bestName": "Nidoking"
 		},
 		"33": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "UU",
+			"bestName": "Nidoking"
 		},
 		"34": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "UU",
+			"bestTier": "UU",
+			"bestName": "Nidoking"
 		},
 		"35": {
 			"tier": "NFE",
@@ -216,14 +216,14 @@
 			"bestName": "Wigglytuff"
 		},
 		"41": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "RU",
+			"bestName": "Crobat"
 		},
 		"42": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "RU",
+			"bestName": "Crobat"
 		},
 		"43": {
 			"tier": "LC",
@@ -241,14 +241,14 @@
 			"bestName": "Vileplume"
 		},
 		"46": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Parasect"
 		},
 		"47": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Parasect"
 		},
 		"48": {
 			"tier": "LC",
@@ -326,34 +326,34 @@
 			"bestName": "Politoed"
 		},
 		"63": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "UUBL",
+			"bestName": "Alakazam"
 		},
 		"64": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "UUBL",
+			"bestName": "Alakazam"
 		},
 		"65": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "UUBL",
+			"bestTier": "UUBL",
+			"bestName": "Alakazam"
 		},
 		"66": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "NUBL",
+			"bestName": "Machamp"
 		},
 		"67": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "NUBL",
+			"bestName": "Machamp"
 		},
 		"68": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NUBL",
+			"bestTier": "NUBL",
+			"bestName": "Machamp"
 		},
 		"69": {
 			"tier": "LC",
@@ -396,14 +396,14 @@
 			"bestName": "Golem"
 		},
 		"77": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Rapidash"
 		},
 		"78": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Rapidash"
 		},
 		"79": {
 			"tier": "LC",
@@ -426,9 +426,9 @@
 			"bestName": "Magnezone"
 		},
 		"83": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Farfetch’d"
 		},
 		"84": {
 			"tier": "LC",
@@ -486,9 +486,9 @@
 			"bestName": "Gengar"
 		},
 		"95": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "RU",
+			"bestName": "Steelix"
 		},
 		"96": {
 			"tier": "LC",
@@ -501,14 +501,14 @@
 			"bestName": "Hypno"
 		},
 		"98": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "PUBL",
+			"bestName": "Kingler"
 		},
 		"99": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PUBL",
+			"bestTier": "PUBL",
+			"bestName": "Kingler"
 		},
 		"100": {
 			"tier": "LC",
@@ -523,22 +523,22 @@
 		"102": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Exeggutor"
+			"bestName": "Exeggutor-Alola"
 		},
 		"103": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Exeggutor"
+			"bestName": "Exeggutor-Alola"
 		},
 		"104": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "RU",
+			"bestName": "Marowak-Alola"
 		},
 		"105": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "RU",
+			"bestName": "Marowak-Alola"
 		},
 		"106": {
 			"tier": "PU",
@@ -551,9 +551,9 @@
 			"bestName": "Hitmonlee"
 		},
 		"108": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Lickilicky"
 		},
 		"109": {
 			"tier": "LC",
@@ -578,17 +578,17 @@
 		"113": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Chansey"
+			"bestName": "Blissey"
 		},
 		"114": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "UU",
+			"bestName": "Tangrowth"
 		},
 		"115": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Kangaskhan"
 		},
 		"116": {
 			"tier": "LC",
@@ -601,29 +601,29 @@
 			"bestName": "Kingdra"
 		},
 		"118": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Seaking"
 		},
 		"119": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Seaking"
 		},
 		"120": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "NU",
+			"bestName": "Starmie"
 		},
 		"121": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NU",
+			"bestTier": "NU",
+			"bestName": "Starmie"
 		},
 		"122": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Mr. Rime"
 		},
 		"123": {
 			"tier": "NU",
@@ -631,9 +631,9 @@
 			"bestName": "Scizor"
 		},
 		"124": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Jynx"
 		},
 		"125": {
 			"tier": "NFE",
@@ -646,9 +646,9 @@
 			"bestName": "Magmortar"
 		},
 		"127": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Pinsir"
 		},
 		"128": {
 			"tier": "ZU",
@@ -701,29 +701,29 @@
 			"bestName": "Porygon-Z"
 		},
 		"138": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "PUBL",
+			"bestName": "Omastar"
 		},
 		"139": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PUBL",
+			"bestTier": "PUBL",
+			"bestName": "Omastar"
 		},
 		"140": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Kabutops"
 		},
 		"141": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Kabutops"
 		},
 		"142": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NU",
+			"bestTier": "NU",
+			"bestName": "Aerodactyl"
 		},
 		"143": {
 			"tier": "ZU",
@@ -836,14 +836,14 @@
 			"bestName": "Noctowl"
 		},
 		"165": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Ledian"
 		},
 		"166": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Ledian"
 		},
 		"167": {
 			"tier": "LC",
@@ -856,9 +856,9 @@
 			"bestName": "Ariados"
 		},
 		"169": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "RU",
+			"bestTier": "RU",
+			"bestName": "Crobat"
 		},
 		"170": {
 			"tier": "LC",
@@ -873,7 +873,7 @@
 		"172": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Pikachu"
+			"bestName": "Raichu-Alola"
 		},
 		"173": {
 			"tier": "LC",
@@ -886,24 +886,24 @@
 			"bestName": "Wigglytuff"
 		},
 		"175": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "RU",
+			"bestName": "Togekiss"
 		},
 		"176": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "RU",
+			"bestName": "Togekiss"
 		},
 		"177": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "NU",
+			"bestName": "Xatu"
 		},
 		"178": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NU",
+			"bestTier": "NU",
+			"bestName": "Xatu"
 		},
 		"179": {
 			"tier": "LC",
@@ -1016,14 +1016,14 @@
 			"bestName": "Mismagius"
 		},
 		"201": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Unown"
 		},
 		"202": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Wobbuffet"
 		},
 		"203": {
 			"tier": "NFE",
@@ -1043,7 +1043,7 @@
 		"206": {
 			"tier": "NFE",
 			"bestTier": "PU",
-			"bestName": "Dudunsparce"
+			"bestName": "Dudunsparce-Three-Segment"
 		},
 		"207": {
 			"tier": "NU",
@@ -1051,9 +1051,9 @@
 			"bestName": "Gliscor"
 		},
 		"208": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "RU",
+			"bestTier": "RU",
+			"bestName": "Steelix"
 		},
 		"209": {
 			"tier": "LC",
@@ -1076,9 +1076,9 @@
 			"bestName": "Scizor"
 		},
 		"213": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Shuckle"
 		},
 		"214": {
 			"tier": "NU",
@@ -1121,19 +1121,19 @@
 			"bestName": "Mamoswine"
 		},
 		"222": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Corsola"
 		},
 		"223": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Octillery"
 		},
 		"224": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Octillery"
 		},
 		"225": {
 			"tier": "ZU",
@@ -1141,9 +1141,9 @@
 			"bestName": "Delibird"
 		},
 		"226": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NU",
+			"bestTier": "NU",
+			"bestName": "Mantine"
 		},
 		"227": {
 			"tier": "UU",
@@ -1201,9 +1201,9 @@
 			"bestName": "Hitmonlee"
 		},
 		"238": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Jynx"
 		},
 		"239": {
 			"tier": "LC",
@@ -1216,14 +1216,14 @@
 			"bestName": "Magmortar"
 		},
 		"241": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Miltank"
 		},
 		"242": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Chansey"
+			"bestName": "Blissey"
 		},
 		"243": {
 			"tier": "NU",
@@ -1266,9 +1266,9 @@
 			"bestName": "Ho-Oh"
 		},
 		"251": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "RU",
+			"bestTier": "RU",
+			"bestName": "Celebi"
 		},
 		"252": {
 			"tier": "LC",
@@ -1326,39 +1326,39 @@
 			"bestName": "Mightyena"
 		},
 		"263": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "NUBL",
+			"bestName": "Linoone"
 		},
 		"264": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NUBL",
+			"bestTier": "NUBL",
+			"bestName": "Linoone"
 		},
 		"265": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Dustox"
 		},
 		"266": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "ZU",
+			"bestName": "Dustox"
 		},
 		"267": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Dustox"
 		},
 		"268": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "ZU",
+			"bestName": "Dustox"
 		},
 		"269": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Dustox"
 		},
 		"270": {
 			"tier": "LC",
@@ -1391,14 +1391,14 @@
 			"bestName": "Shiftry"
 		},
 		"276": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "RU",
+			"bestName": "Swellow"
 		},
 		"277": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "RU",
+			"bestTier": "RU",
+			"bestName": "Swellow"
 		},
 		"278": {
 			"tier": "LC",
@@ -1413,17 +1413,17 @@
 		"280": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Gardevoir"
+			"bestName": "Gallade"
 		},
 		"281": {
 			"tier": "NFE",
 			"bestTier": "RU",
-			"bestName": "Gardevoir"
+			"bestName": "Gallade"
 		},
 		"282": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Gardevoir"
+			"bestName": "Gallade"
 		},
 		"283": {
 			"tier": "LC",
@@ -1461,34 +1461,34 @@
 			"bestName": "Slaking"
 		},
 		"290": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZUBL",
+			"bestName": "Ninjask"
 		},
 		"291": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZUBL",
+			"bestTier": "ZUBL",
+			"bestName": "Ninjask"
 		},
 		"292": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZUBL",
+			"bestName": "Ninjask"
 		},
 		"293": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "NU",
+			"bestName": "Exploud"
 		},
 		"294": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "NU",
+			"bestName": "Exploud"
 		},
 		"295": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NU",
+			"bestTier": "NU",
+			"bestName": "Exploud"
 		},
 		"296": {
 			"tier": "LC",
@@ -1511,14 +1511,14 @@
 			"bestName": "Probopass"
 		},
 		"300": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Delcatty"
 		},
 		"301": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Delcatty"
 		},
 		"302": {
 			"tier": "ZU",
@@ -1526,24 +1526,24 @@
 			"bestName": "Sableye"
 		},
 		"303": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Mawile"
 		},
 		"304": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "PU",
+			"bestName": "Aggron"
 		},
 		"305": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "PU",
+			"bestName": "Aggron"
 		},
 		"306": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PU",
+			"bestTier": "PU",
+			"bestName": "Aggron"
 		},
 		"307": {
 			"tier": "NFE",
@@ -1556,14 +1556,14 @@
 			"bestName": "Medicham"
 		},
 		"309": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Manectric"
 		},
 		"310": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Manectric"
 		},
 		"311": {
 			"tier": "ZU",
@@ -1586,9 +1586,9 @@
 			"bestName": "Illumise"
 		},
 		"315": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "RU",
+			"bestName": "Roserade"
 		},
 		"316": {
 			"tier": "LC",
@@ -1601,24 +1601,24 @@
 			"bestName": "Swalot"
 		},
 		"318": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "RU",
+			"bestName": "Sharpedo"
 		},
 		"319": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "RU",
+			"bestTier": "RU",
+			"bestName": "Sharpedo"
 		},
 		"320": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Wailord"
 		},
 		"321": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Wailord"
 		},
 		"322": {
 			"tier": "LC",
@@ -1646,9 +1646,9 @@
 			"bestName": "Grumpig"
 		},
 		"327": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Spinda"
 		},
 		"328": {
 			"tier": "LC",
@@ -1696,14 +1696,14 @@
 			"bestName": "Seviper"
 		},
 		"337": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Lunatone"
 		},
 		"338": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Solrock"
 		},
 		"339": {
 			"tier": "LC",
@@ -1726,34 +1726,34 @@
 			"bestName": "Crawdaunt"
 		},
 		"343": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "PU",
+			"bestName": "Claydol"
 		},
 		"344": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PU",
+			"bestTier": "PU",
+			"bestName": "Claydol"
 		},
 		"345": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Cradily"
 		},
 		"346": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Cradily"
 		},
 		"347": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Armaldo"
 		},
 		"348": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Armaldo"
 		},
 		"349": {
 			"tier": "LC",
@@ -1766,14 +1766,14 @@
 			"bestName": "Milotic"
 		},
 		"351": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Castform"
 		},
 		"352": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Kecleon"
 		},
 		"353": {
 			"tier": "LC",
@@ -1806,59 +1806,59 @@
 			"bestName": "Chimecho"
 		},
 		"359": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PU",
+			"bestTier": "PU",
+			"bestName": "Absol"
 		},
 		"360": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Wobbuffet"
 		},
 		"361": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Glalie"
+			"bestName": "Froslass"
 		},
 		"362": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Glalie"
+			"bestName": "Froslass"
 		},
 		"363": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Walrein"
 		},
 		"364": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "ZU",
+			"bestName": "Walrein"
 		},
 		"365": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Walrein"
 		},
 		"366": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZUBL",
+			"bestName": "Gorebyss"
 		},
 		"367": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZUBL",
+			"bestName": "Gorebyss"
 		},
 		"368": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZUBL",
+			"bestTier": "ZUBL",
+			"bestName": "Gorebyss"
 		},
 		"369": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Relicanth"
 		},
 		"370": {
 			"tier": "ZU",
@@ -2006,14 +2006,14 @@
 			"bestName": "Staraptor"
 		},
 		"399": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Bibarel"
 		},
 		"400": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Bibarel"
 		},
 		"401": {
 			"tier": "LC",
@@ -2041,14 +2041,14 @@
 			"bestName": "Luxray"
 		},
 		"406": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "RU",
+			"bestName": "Roserade"
 		},
 		"407": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "RU",
+			"bestTier": "RU",
+			"bestName": "Roserade"
 		},
 		"408": {
 			"tier": "LC",
@@ -2071,19 +2071,19 @@
 			"bestName": "Bastiodon"
 		},
 		"412": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Mothim"
 		},
 		"413": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Mothim"
 		},
 		"414": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Mothim"
 		},
 		"415": {
 			"tier": "LC",
@@ -2111,14 +2111,14 @@
 			"bestName": "Floatzel"
 		},
 		"420": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "ZU",
+			"bestName": "Cherrim"
 		},
 		"421": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Cherrim"
 		},
 		"422": {
 			"tier": "LC",
@@ -2146,14 +2146,14 @@
 			"bestName": "Drifblim"
 		},
 		"427": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Lopunny"
 		},
 		"428": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Lopunny"
 		},
 		"429": {
 			"tier": "ZU",
@@ -2166,14 +2166,14 @@
 			"bestName": "Honchkrow"
 		},
 		"431": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Purugly"
 		},
 		"432": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Purugly"
 		},
 		"433": {
 			"tier": "LC",
@@ -2206,19 +2206,19 @@
 			"bestName": "Sudowoodo"
 		},
 		"439": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Mr. Rime"
 		},
 		"440": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Chansey"
+			"bestName": "Blissey"
 		},
 		"441": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Chatot"
 		},
 		"442": {
 			"tier": "ZU",
@@ -2266,14 +2266,14 @@
 			"bestName": "Hippowdon"
 		},
 		"451": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "NU",
+			"bestName": "Drapion"
 		},
 		"452": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NU",
+			"bestTier": "NU",
+			"bestName": "Drapion"
 		},
 		"453": {
 			"tier": "LC",
@@ -2286,9 +2286,9 @@
 			"bestName": "Toxicroak"
 		},
 		"455": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Carnivine"
 		},
 		"456": {
 			"tier": "LC",
@@ -2301,9 +2301,9 @@
 			"bestName": "Lumineon"
 		},
 		"458": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "NU",
+			"bestName": "Mantine"
 		},
 		"459": {
 			"tier": "LC",
@@ -2326,9 +2326,9 @@
 			"bestName": "Magnezone"
 		},
 		"463": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Lickilicky"
 		},
 		"464": {
 			"tier": "NU",
@@ -2336,9 +2336,9 @@
 			"bestName": "Rhyperior"
 		},
 		"465": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "UU",
+			"bestTier": "UU",
+			"bestName": "Tangrowth"
 		},
 		"466": {
 			"tier": "ZU",
@@ -2351,9 +2351,9 @@
 			"bestName": "Magmortar"
 		},
 		"468": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "RU",
+			"bestTier": "RU",
+			"bestName": "Togekiss"
 		},
 		"469": {
 			"tier": "RUBL",
@@ -2388,7 +2388,7 @@
 		"475": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Gardevoir"
+			"bestName": "Gallade"
 		},
 		"476": {
 			"tier": "ZU",
@@ -2403,7 +2403,7 @@
 		"478": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Glalie"
+			"bestName": "Froslass"
 		},
 		"479": {
 			"tier": "ZU",
@@ -2481,9 +2481,9 @@
 			"bestName": "Arceus"
 		},
 		"494": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "OU",
+			"bestTier": "OU",
+			"bestName": "Victini"
 		},
 		"495": {
 			"tier": "NFE",
@@ -2531,94 +2531,94 @@
 			"bestName": "Samurott-Hisui"
 		},
 		"504": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Watchog"
 		},
 		"505": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Watchog"
 		},
 		"506": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Stoutland"
 		},
 		"507": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "ZU",
+			"bestName": "Stoutland"
 		},
 		"508": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Stoutland"
 		},
 		"509": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Liepard"
 		},
 		"510": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Liepard"
 		},
 		"511": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Simisage"
 		},
 		"512": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Simisage"
 		},
 		"513": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Simisear"
 		},
 		"514": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Simisear"
 		},
 		"515": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Simipour"
 		},
 		"516": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Simipour"
 		},
 		"517": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Musharna"
 		},
 		"518": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Musharna"
 		},
 		"519": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Unfezant"
 		},
 		"520": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "ZU",
+			"bestName": "Unfezant"
 		},
 		"521": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Unfezant"
 		},
 		"522": {
 			"tier": "LC",
@@ -2631,29 +2631,29 @@
 			"bestName": "Zebstrika"
 		},
 		"524": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "PU",
+			"bestName": "Gigalith"
 		},
 		"525": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "PU",
+			"bestName": "Gigalith"
 		},
 		"526": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PU",
+			"bestTier": "PU",
+			"bestName": "Gigalith"
 		},
 		"527": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "ZU",
+			"bestName": "Swoobat"
 		},
 		"528": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Swoobat"
 		},
 		"529": {
 			"tier": "LC",
@@ -2666,9 +2666,9 @@
 			"bestName": "Excadrill"
 		},
 		"531": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PU",
+			"bestTier": "PU",
+			"bestName": "Audino"
 		},
 		"532": {
 			"tier": "LC",
@@ -2686,29 +2686,29 @@
 			"bestName": "Conkeldurr"
 		},
 		"535": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "RU",
+			"bestName": "Seismitoad"
 		},
 		"536": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "RU",
+			"bestName": "Seismitoad"
 		},
 		"537": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "RU",
+			"bestTier": "RU",
+			"bestName": "Seismitoad"
 		},
 		"538": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Throh"
 		},
 		"539": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Sawk"
 		},
 		"540": {
 			"tier": "LC",
@@ -2726,19 +2726,19 @@
 			"bestName": "Leavanny"
 		},
 		"543": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "RUBL",
+			"bestName": "Scolipede"
 		},
 		"544": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "RUBL",
+			"bestName": "Scolipede"
 		},
 		"545": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "RUBL",
+			"bestTier": "RUBL",
+			"bestName": "Scolipede"
 		},
 		"546": {
 			"tier": "LC",
@@ -2781,29 +2781,29 @@
 			"bestName": "Krookodile"
 		},
 		"554": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "UU",
+			"bestName": "Darmanitan"
 		},
 		"555": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "UU",
+			"bestTier": "UU",
+			"bestName": "Darmanitan"
 		},
 		"556": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Maractus"
 		},
 		"557": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Crustle"
 		},
 		"558": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Crustle"
 		},
 		"559": {
 			"tier": "NFE",
@@ -2816,49 +2816,49 @@
 			"bestName": "Scrafty"
 		},
 		"561": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NUBL",
+			"bestTier": "NUBL",
+			"bestName": "Sigilyph"
 		},
 		"562": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Cofagrigus"
 		},
 		"563": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Cofagrigus"
 		},
 		"564": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Carracosta"
 		},
 		"565": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Carracosta"
 		},
 		"566": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "PU",
+			"bestName": "Archeops"
 		},
 		"567": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PU",
+			"bestTier": "PU",
+			"bestName": "Archeops"
 		},
 		"568": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "PU",
+			"bestName": "Garbodor"
 		},
 		"569": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PU",
+			"bestTier": "PU",
+			"bestName": "Garbodor"
 		},
 		"570": {
 			"tier": "LC",
@@ -2921,19 +2921,19 @@
 			"bestName": "Swanna"
 		},
 		"582": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "PUBL",
+			"bestName": "Vanilluxe"
 		},
 		"583": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "PUBL",
+			"bestName": "Vanilluxe"
 		},
 		"584": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PUBL",
+			"bestTier": "PUBL",
+			"bestName": "Vanilluxe"
 		},
 		"585": {
 			"tier": "LC",
@@ -2946,19 +2946,19 @@
 			"bestName": "Sawsbuck"
 		},
 		"587": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Emolga"
 		},
 		"588": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "NU",
+			"bestName": "Escavalier"
 		},
 		"589": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NU",
+			"bestTier": "NU",
+			"bestName": "Escavalier"
 		},
 		"590": {
 			"tier": "LC",
@@ -2971,14 +2971,14 @@
 			"bestName": "Amoonguss"
 		},
 		"592": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "PU",
+			"bestName": "Jellicent"
 		},
 		"593": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PU",
+			"bestTier": "PU",
+			"bestName": "Jellicent"
 		},
 		"594": {
 			"tier": "OU",
@@ -2996,29 +2996,29 @@
 			"bestName": "Galvantula"
 		},
 		"597": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PU",
+			"bestTier": "OU",
+			"bestName": "Ferrothorn"
 		},
 		"598": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "OU",
+			"bestTier": "OU",
+			"bestName": "Ferrothorn"
 		},
 		"599": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Klinklang"
 		},
 		"600": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "ZU",
+			"bestName": "Klinklang"
 		},
 		"601": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Klinklang"
 		},
 		"602": {
 			"tier": "LC",
@@ -3036,14 +3036,14 @@
 			"bestName": "Eelektross"
 		},
 		"605": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Beheeyem"
 		},
 		"606": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Beheeyem"
 		},
 		"607": {
 			"tier": "LC",
@@ -3091,19 +3091,19 @@
 			"bestName": "Cryogonal"
 		},
 		"616": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Accelgor"
 		},
 		"617": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Accelgor"
 		},
 		"618": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Stunfisk"
 		},
 		"619": {
 			"tier": "LC",
@@ -3116,9 +3116,9 @@
 			"bestName": "Mienshao"
 		},
 		"621": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PU",
+			"bestTier": "PU",
+			"bestName": "Druddigon"
 		},
 		"622": {
 			"tier": "LC",
@@ -3141,9 +3141,9 @@
 			"bestName": "Kingambit"
 		},
 		"626": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Bouffalant"
 		},
 		"627": {
 			"tier": "NFE",
@@ -3166,14 +3166,14 @@
 			"bestName": "Mandibuzz"
 		},
 		"631": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Heatmor"
 		},
 		"632": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "RUBL",
+			"bestTier": "RUBL",
+			"bestName": "Durant"
 		},
 		"633": {
 			"tier": "LC",
@@ -3256,9 +3256,9 @@
 			"bestName": "Meloetta"
 		},
 		"649": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "Uber",
+			"bestTier": "Uber",
+			"bestName": "Genesect"
 		},
 		"650": {
 			"tier": "LC",
@@ -3306,14 +3306,14 @@
 			"bestName": "Greninja"
 		},
 		"659": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "RUBL",
+			"bestName": "Diggersby"
 		},
 		"660": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "RUBL",
+			"bestTier": "RUBL",
+			"bestName": "Diggersby"
 		},
 		"661": {
 			"tier": "LC",
@@ -3333,17 +3333,17 @@
 		"664": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Vivillon"
+			"bestName": "Vivillon-Fancy"
 		},
 		"665": {
 			"tier": "NFE",
 			"bestTier": "ZU",
-			"bestName": "Vivillon"
+			"bestName": "Vivillon-Fancy"
 		},
 		"666": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Vivillon"
+			"bestName": "Vivillon-Fancy"
 		},
 		"667": {
 			"tier": "LC",
@@ -3381,64 +3381,64 @@
 			"bestName": "Gogoat"
 		},
 		"674": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "NUBL",
+			"bestName": "Pangoro"
 		},
 		"675": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NUBL",
+			"bestTier": "NUBL",
+			"bestName": "Pangoro"
 		},
 		"676": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Furfrou"
 		},
 		"677": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Meowstic"
+			"bestName": "Meowstic-F"
 		},
 		"678": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Meowstic"
+			"bestName": "Meowstic-F"
 		},
 		"679": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "UUBL",
+			"bestName": "Aegislash"
 		},
 		"680": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PU",
+			"bestTier": "UUBL",
+			"bestName": "Aegislash"
 		},
 		"681": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "UUBL",
+			"bestTier": "UUBL",
+			"bestName": "Aegislash"
 		},
 		"682": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "PU",
+			"bestName": "Aromatisse"
 		},
 		"683": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PU",
+			"bestTier": "PU",
+			"bestName": "Aromatisse"
 		},
 		"684": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "NUBL",
+			"bestName": "Slurpuff"
 		},
 		"685": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NUBL",
+			"bestTier": "NUBL",
+			"bestName": "Slurpuff"
 		},
 		"686": {
 			"tier": "LC",
@@ -3451,14 +3451,14 @@
 			"bestName": "Malamar"
 		},
 		"688": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "NUBL",
+			"bestName": "Barbaracle"
 		},
 		"689": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NUBL",
+			"bestTier": "NUBL",
+			"bestName": "Barbaracle"
 		},
 		"690": {
 			"tier": "LC",
@@ -3481,34 +3481,34 @@
 			"bestName": "Clawitzer"
 		},
 		"694": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "NU",
+			"bestName": "Heliolisk"
 		},
 		"695": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NU",
+			"bestTier": "NU",
+			"bestName": "Heliolisk"
 		},
 		"696": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "NU",
+			"bestName": "Tyrantrum"
 		},
 		"697": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NU",
+			"bestTier": "NU",
+			"bestName": "Tyrantrum"
 		},
 		"698": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZUBL",
+			"bestName": "Aurorus"
 		},
 		"699": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZUBL",
+			"bestTier": "ZUBL",
+			"bestName": "Aurorus"
 		},
 		"700": {
 			"tier": "NU",
@@ -3561,14 +3561,14 @@
 			"bestName": "Trevenant"
 		},
 		"710": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Gourgeist"
 		},
 		"711": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Gourgeist"
 		},
 		"712": {
 			"tier": "LC",
@@ -3591,19 +3591,19 @@
 			"bestName": "Noivern"
 		},
 		"716": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "Uber",
+			"bestTier": "Uber",
+			"bestName": "Xerneas"
 		},
 		"717": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "Uber",
+			"bestTier": "Uber",
+			"bestName": "Yveltal"
 		},
 		"718": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "Uber",
+			"bestTier": "Uber",
+			"bestName": "Zygarde"
 		},
 		"719": {
 			"tier": "NU",
@@ -3733,17 +3733,17 @@
 		"744": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Lycanroc"
+			"bestName": "Lycanroc-Midnight"
 		},
 		"745": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Lycanroc"
+			"bestName": "Lycanroc-Midnight"
 		},
 		"746": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PU",
+			"bestTier": "PU",
+			"bestName": "Wishiwashi"
 		},
 		"747": {
 			"tier": "LC",
@@ -3786,14 +3786,14 @@
 			"bestName": "Lurantis"
 		},
 		"755": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Shiinotic"
 		},
 		"756": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Shiinotic"
 		},
 		"757": {
 			"tier": "LC",
@@ -3806,14 +3806,14 @@
 			"bestName": "Salazzle"
 		},
 		"759": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "NUBL",
+			"bestName": "Bewear"
 		},
 		"760": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NUBL",
+			"bestTier": "NUBL",
+			"bestName": "Bewear"
 		},
 		"761": {
 			"tier": "LC",
@@ -3846,14 +3846,14 @@
 			"bestName": "Passimian"
 		},
 		"767": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "RU",
+			"bestName": "Golisopod"
 		},
 		"768": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "RU",
+			"bestTier": "RU",
+			"bestName": "Golisopod"
 		},
 		"769": {
 			"tier": "LC",
@@ -3866,19 +3866,19 @@
 			"bestName": "Palossand"
 		},
 		"771": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Pyukumuku"
 		},
 		"772": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "ZU",
+			"bestName": "Silvally"
 		},
 		"773": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Silvally"
 		},
 		"774": {
 			"tier": "ZU",
@@ -3891,14 +3891,14 @@
 			"bestName": "Komala"
 		},
 		"776": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZUBL",
+			"bestTier": "ZUBL",
+			"bestName": "Turtonator"
 		},
 		"777": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PU",
+			"bestTier": "PU",
+			"bestName": "Togedemaru"
 		},
 		"778": {
 			"tier": "RU",
@@ -3911,14 +3911,14 @@
 			"bestName": "Bruxish"
 		},
 		"780": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PUBL",
+			"bestTier": "PUBL",
+			"bestName": "Drampa"
 		},
 		"781": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NU",
+			"bestTier": "NU",
+			"bestName": "Dhelmise"
 		},
 		"782": {
 			"tier": "LC",
@@ -3936,79 +3936,79 @@
 			"bestName": "Kommo-o"
 		},
 		"785": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "OU",
+			"bestTier": "OU",
+			"bestName": "Tapu Koko"
 		},
 		"786": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "OU",
+			"bestTier": "OU",
+			"bestName": "Tapu Lele"
 		},
 		"787": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "UU",
+			"bestTier": "UU",
+			"bestName": "Tapu Bulu"
 		},
 		"788": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "OU",
+			"bestTier": "OU",
+			"bestName": "Tapu Fini"
 		},
 		"789": {
 			"tier": "LC",
 			"bestTier": "Uber",
-			"bestName": "Solgaleo"
+			"bestName": "Lunala"
 		},
 		"790": {
 			"tier": "NFE",
 			"bestTier": "Uber",
-			"bestName": "Solgaleo"
+			"bestName": "Lunala"
 		},
 		"791": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Solgaleo"
+			"bestName": "Lunala"
 		},
 		"792": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Solgaleo"
+			"bestName": "Lunala"
 		},
 		"793": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "UU",
+			"bestTier": "UU",
+			"bestName": "Nihilego"
 		},
 		"794": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "OU",
+			"bestTier": "OU",
+			"bestName": "Buzzwole"
 		},
 		"795": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "Uber",
+			"bestTier": "Uber",
+			"bestName": "Pheromosa"
 		},
 		"796": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "RU",
+			"bestTier": "RU",
+			"bestName": "Xurkitree"
 		},
 		"797": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "UU",
+			"bestTier": "UU",
+			"bestName": "Celesteela"
 		},
 		"798": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "OU",
+			"bestTier": "OU",
+			"bestName": "Kartana"
 		},
 		"799": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PUBL",
+			"bestTier": "PUBL",
+			"bestName": "Guzzlord"
 		},
 		"800": {
 			"tier": "NUBL",
@@ -4021,44 +4021,44 @@
 			"bestName": "Magearna"
 		},
 		"802": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "Uber",
+			"bestTier": "Uber",
+			"bestName": "Marshadow"
 		},
 		"803": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "Uber",
+			"bestName": "Naganadel"
 		},
 		"804": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "Uber",
+			"bestTier": "Uber",
+			"bestName": "Naganadel"
 		},
 		"805": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NU",
+			"bestTier": "NU",
+			"bestName": "Stakataka"
 		},
 		"806": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "OU",
+			"bestTier": "OU",
+			"bestName": "Blacephalon"
 		},
 		"807": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "OU",
+			"bestTier": "OU",
+			"bestName": "Zeraora"
 		},
 		"808": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Meltan"
 		},
 		"809": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "OU",
+			"bestTier": "OU",
+			"bestName": "Melmetal"
 		},
 		"810": {
 			"tier": "LC",
@@ -4131,49 +4131,49 @@
 			"bestName": "Corviknight"
 		},
 		"824": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Orbeetle"
 		},
 		"825": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "ZU",
+			"bestName": "Orbeetle"
 		},
 		"826": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Orbeetle"
 		},
 		"827": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Thievul"
 		},
 		"828": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Thievul"
 		},
 		"829": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "PU",
+			"bestName": "Eldegoss"
 		},
 		"830": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "PU",
+			"bestTier": "PU",
+			"bestName": "Eldegoss"
 		},
 		"831": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Dubwool"
 		},
 		"832": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Dubwool"
 		},
 		"833": {
 			"tier": "LC",
@@ -4186,14 +4186,14 @@
 			"bestName": "Drednaw"
 		},
 		"835": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Boltund"
 		},
 		"836": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Boltund"
 		},
 		"837": {
 			"tier": "LC",
@@ -4253,32 +4253,32 @@
 		"848": {
 			"tier": "LC",
 			"bestTier": "NU",
-			"bestName": "Toxtricity"
+			"bestName": "Toxtricity-Low-Key"
 		},
 		"849": {
 			"tier": "NU",
 			"bestTier": "NU",
-			"bestName": "Toxtricity"
+			"bestName": "Toxtricity-Low-Key"
 		},
 		"850": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZUBL",
+			"bestName": "Centiskorch"
 		},
 		"851": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZUBL",
+			"bestTier": "ZUBL",
+			"bestName": "Centiskorch"
 		},
 		"852": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Grapploct"
 		},
 		"853": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Grapploct"
 		},
 		"854": {
 			"tier": "LC",
@@ -4321,9 +4321,9 @@
 			"bestName": "Grimmsnarl"
 		},
 		"862": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "RUBL",
+			"bestTier": "RUBL",
+			"bestName": "Obstagoon"
 		},
 		"863": {
 			"tier": "ZU",
@@ -4331,24 +4331,24 @@
 			"bestName": "Perrserker"
 		},
 		"864": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Cursola"
 		},
 		"865": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NUBL",
+			"bestTier": "NUBL",
+			"bestName": "Sirfetch’d"
 		},
 		"866": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Mr. Rime"
 		},
 		"867": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Runerigus"
 		},
 		"868": {
 			"tier": "LC",
@@ -4411,24 +4411,24 @@
 			"bestName": "Copperajah"
 		},
 		"880": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "UUBL",
+			"bestTier": "UUBL",
+			"bestName": "Dracozolt"
 		},
 		"881": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "UUBL",
+			"bestTier": "UUBL",
+			"bestName": "Arctozolt"
 		},
 		"882": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "Uber",
+			"bestTier": "Uber",
+			"bestName": "Dracovish"
 		},
 		"883": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZUBL",
+			"bestTier": "ZUBL",
+			"bestName": "Arctovish"
 		},
 		"884": {
 			"tier": "PU",
@@ -4468,12 +4468,12 @@
 		"891": {
 			"tier": "NFE",
 			"bestTier": "Uber",
-			"bestName": "Urshifu"
+			"bestName": "Urshifu-Rapid-Strike"
 		},
 		"892": {
 			"tier": "Uber",
 			"bestTier": "Uber",
-			"bestName": "Urshifu"
+			"bestName": "Urshifu-Rapid-Strike"
 		},
 		"893": {
 			"tier": "UU",
@@ -4588,12 +4588,12 @@
 		"915": {
 			"tier": "LC",
 			"bestTier": "ZU",
-			"bestName": "Oinkologne"
+			"bestName": "Oinkologne-F"
 		},
 		"916": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Oinkologne"
+			"bestName": "Oinkologne-F"
 		},
 		"917": {
 			"tier": "LC",
@@ -4633,12 +4633,12 @@
 		"924": {
 			"tier": "LC",
 			"bestTier": "RU",
-			"bestName": "Maushold"
+			"bestName": "Maushold-Four"
 		},
 		"925": {
 			"tier": "RU",
 			"bestTier": "RU",
-			"bestName": "Maushold"
+			"bestName": "Maushold-Four"
 		},
 		"926": {
 			"tier": "LC",
@@ -4923,7 +4923,7 @@
 		"982": {
 			"tier": "PU",
 			"bestTier": "PU",
-			"bestName": "Dudunsparce"
+			"bestName": "Dudunsparce-Three-Segment"
 		},
 		"983": {
 			"tier": "OU",
@@ -5141,14 +5141,14 @@
 			"bestName": "Pecharunt"
 		},
 		"19:alola": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZUBL",
+			"bestName": "Raticate-Alola"
 		},
 		"20:alola": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZUBL",
+			"bestTier": "ZUBL",
+			"bestName": "Raticate-Alola"
 		},
 		"25:alola": {
 			"tier": "ZU",
@@ -5158,7 +5158,7 @@
 		"26:alola": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Pikachu"
+			"bestName": "Raichu-Alola"
 		},
 		"27:alola": {
 			"tier": "LC",
@@ -5231,14 +5231,14 @@
 			"bestName": "Golem-Alola"
 		},
 		"77:galar": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Rapidash-Galar"
 		},
 		"78:galar": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Rapidash-Galar"
 		},
 		"79:galar": {
 			"tier": "LC",
@@ -5251,9 +5251,9 @@
 			"bestName": "Slowking-Galar"
 		},
 		"83:galar": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "NUBL",
+			"bestName": "Sirfetch’d"
 		},
 		"88:alola": {
 			"tier": "LC",
@@ -5278,12 +5278,12 @@
 		"103:alola": {
 			"tier": "ZU",
 			"bestTier": "ZU",
-			"bestName": "Exeggutor"
+			"bestName": "Exeggutor-Alola"
 		},
 		"105:alola": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "RU",
+			"bestTier": "RU",
+			"bestName": "Marowak-Alola"
 		},
 		"110:galar": {
 			"tier": "OU",
@@ -5291,9 +5291,9 @@
 			"bestName": "Weezing-Galar"
 		},
 		"122:galar": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "ZU",
+			"bestName": "Mr. Rime"
 		},
 		"128:paldea": {
 			"tier": "NU",
@@ -5341,19 +5341,19 @@
 			"bestName": "Sneasler"
 		},
 		"222:galar": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "ZU",
+			"bestName": "Cursola"
 		},
 		"263:galar": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "RUBL",
+			"bestName": "Obstagoon"
 		},
 		"264:galar": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "NFE",
+			"bestTier": "RUBL",
+			"bestName": "Obstagoon"
 		},
 		"503:hisui": {
 			"tier": "OU",
@@ -5366,19 +5366,19 @@
 			"bestName": "Lilligant-Hisui"
 		},
 		"554:galar": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "Uber",
+			"bestName": "Darmanitan-Galar"
 		},
 		"555:galar": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "Uber",
+			"bestTier": "Uber",
+			"bestName": "Darmanitan-Galar"
 		},
 		"562:galar": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "LC",
+			"bestTier": "ZU",
+			"bestName": "Runerigus"
 		},
 		"570:hisui": {
 			"tier": "LC",
@@ -5391,9 +5391,9 @@
 			"bestName": "Zoroark-Hisui"
 		},
 		"618:galar": {
-			"tier": null,
-			"bestTier": null,
-			"bestName": null
+			"tier": "ZU",
+			"bestTier": "ZU",
+			"bestName": "Stunfisk-Galar"
 		},
 		"628:hisui": {
 			"tier": "PU",
