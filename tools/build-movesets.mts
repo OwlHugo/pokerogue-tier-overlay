@@ -1,7 +1,7 @@
 import { writeFileSync } from 'node:fs';
 import { Dex } from '@pkmn/dex';
-import { keyFor, type SpeciesKey } from '../src/domain/species-key';
 import type { MovesetTable } from '../src/domain/moveset';
+import { keyFor, type SpeciesKey } from '../src/domain/species-key';
 
 const SOURCE = 'https://data.pkmn.cc/sets';
 const GENERATIONS = [9, 8, 7, 6, 5, 4, 3, 2, 1];

@@ -37,6 +37,7 @@ export function startOverlay(
   table: TierTable,
   biomes: BiomeTable = {},
   movesets: MovesetTable = {},
+  biomeNames: Record<number, string> = {},
 ): OverlayRunner {
   let overlay: Overlay | null = null;
   let hud: Hud | null = null;
@@ -50,7 +51,7 @@ export function startOverlay(
       if (!scene) return;
       overlay ??= overlayFor(scene, table);
       overlay.tick();
-      hud ??= new Hud(table, biomes, movesets);
+      hud ??= new Hud(table, biomes, movesets, biomeNames);
       hud.sync(scene);
     },
     destroy() {

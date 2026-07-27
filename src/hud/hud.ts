@@ -6,44 +6,6 @@ import type { BattleScene } from '../game/pokerogue';
 import { Panel } from './panel';
 import { biomeView, coverageView, destinationsView, fieldView, partyView } from './views';
 
-const BIOME_LABELS = new Map<string, string>([
-  ['TOWN', 'Cidade'],
-  ['PLAINS', 'Planície'],
-  ['GRASS', 'Campo'],
-  ['TALL_GRASS', 'Mato alto'],
-  ['METROPOLIS', 'Metrópole'],
-  ['FOREST', 'Floresta'],
-  ['SEA', 'Mar'],
-  ['SWAMP', 'Pântano'],
-  ['BEACH', 'Praia'],
-  ['LAKE', 'Lago'],
-  ['SEABED', 'Fundo do mar'],
-  ['MOUNTAIN', 'Montanha'],
-  ['BADLANDS', 'Terra devastada'],
-  ['CAVE', 'Caverna'],
-  ['DESERT', 'Deserto'],
-  ['ICE_CAVE', 'Caverna de gelo'],
-  ['MEADOW', 'Prado'],
-  ['POWER_PLANT', 'Usina'],
-  ['VOLCANO', 'Vulcão'],
-  ['GRAVEYARD', 'Cemitério'],
-  ['DOJO', 'Dojo'],
-  ['FACTORY', 'Fábrica'],
-  ['RUINS', 'Ruínas'],
-  ['WASTELAND', 'Devastação'],
-  ['ABYSS', 'Abismo'],
-  ['SPACE', 'Espaço'],
-  ['CONSTRUCTION_SITE', 'Construção'],
-  ['JUNGLE', 'Selva'],
-  ['FAIRY_CAVE', 'Caverna das fadas'],
-  ['TEMPLE', 'Templo'],
-  ['SLUM', 'Favela'],
-  ['SNOWY_FOREST', 'Floresta nevada'],
-  ['ISLAND', 'Ilha'],
-  ['LABORATORY', 'Laboratório'],
-  ['END', 'Fim'],
-]);
-
 export class Hud {
   private readonly panel = new Panel();
 
@@ -51,6 +13,7 @@ export class Hud {
     private readonly tiers: TierTable,
     private readonly biomes: BiomeTable,
     private readonly movesets: MovesetTable = {},
+    private readonly biomeNames: Record<number, string> = {},
   ) {}
 
   sync(scene: BattleScene): void {
@@ -65,12 +28,12 @@ export class Hud {
       party: partyView(scene, this.tiers, this.movesets),
       biome: biome
         ? {
-            name: BIOME_LABELS.get(biome.name) ?? biome.name,
+            name: this.biomeNames[biomeId as number] ?? biome.name,
             groups: biomeView(biomeId as number, this.biomes, this.tiers, this.movesets),
           }
         : null,
       destinations: destinationsView(biomeId ?? null, this.biomes, this.tiers, this.movesets).map(
-        (group) => ({ ...group, name: BIOME_LABELS.get(group.name) ?? group.name }),
+        (group) => ({ ...group, name: this.biomeNames[group.biome] ?? group.name }),
       ),
       missingTypes: coverageView(scene).flatMap((type) => typeNameOf(type) ?? []),
     });
