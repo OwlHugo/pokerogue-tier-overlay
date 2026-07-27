@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PokéRogue Tier Overlay — veja no que ele vira, antes de gastar a bola</title>
-<meta name="description" content="Userscript que mostra o melhor tier do Smogon que cada Pokémon alcança no PokéRogue — evolução, Mega e Gigantamax — dentro do jogo.">
+<meta name="description" content="Userscript que lê a linha evolutiva inteira de cada Pokémon no PokéRogue — evolução, Mega e Gigantamax — e diz se ele vale a bola deste encontro em diante.">
 <link rel="alternate" hreflang="en" href="./index.html">
 <link rel="alternate" hreflang="pt-BR" href="./pt-BR.html">
 <link rel="stylesheet" href="./style.css">
@@ -20,27 +20,40 @@
     </nav>
 
     <header class="hero">
-      <div class="ladder" aria-hidden="true">
-        <div class="rung" data-hue="lc"   data-step="0"><span class="pip"></span>LC<span class="who">Magikarp</span></div>
-        <div class="rung" data-hue="lc"   data-step="1"><span class="pip"></span>NFE</div>
-        <div class="rung" data-hue="low"  data-step="2"><span class="pip"></span>ZU</div>
-        <div class="rung" data-hue="low"  data-step="3"><span class="pip"></span>PU</div>
-        <div class="rung" data-hue="low"  data-step="4"><span class="pip"></span>NU</div>
-        <div class="rung" data-hue="mid"  data-step="5"><span class="pip"></span>RU<span class="who">Gyarados</span></div>
-        <div class="rung" data-hue="mid"  data-step="6"><span class="pip"></span>UU</div>
-        <div class="rung" data-hue="ou"   data-step="7"><span class="pip"></span>OU<span class="who">Mega</span></div>
-        <div class="rung" data-hue="uber" data-step="8"><span class="pip"></span>Uber</div>
-        <div class="rung" data-hue="ag"   data-step="9"><span class="pip"></span>AG</div>
-      </div>
-
       <div>
         <p class="eyebrow">Userscript · pokerogue.net</p>
         <h1>Ele é forte <em>daqui pra frente</em>?</h1>
         <p class="lede">
-          Tier é o atalho, não o ponto. Um Magikarp aparece como LC — lixo agora — e vira
-          Gyarados em RU, com Mega em OU. O overlay responde o que a espécie vale deste
-          encontro em diante, com a bola ainda na mochila.
+          O Magikarp na sua frente não serve pra nada. O Gyarados em que ele vira serve, e a
+          Mega que ele alcança serve mais ainda. O overlay lê a linha inteira antes de você
+          decidir, com a bola ainda na mochila.
         </p>
+
+        <ol class="arc">
+          <li class="node" data-hue="now" data-step="0">
+            <span class="when">O que você encontrou</span>
+            <span class="who">Magikarp</span>
+            <span class="score">Splash e mais nada</span>
+          </li>
+          <li class="node" data-hue="reach" data-step="1">
+            <span class="when">No que ele vira</span>
+            <span class="who">Gyarados</span>
+            <span class="score">Vale a vaga</span>
+          </li>
+          <li class="node" data-hue="ceiling" data-step="2">
+            <span class="when">Até onde chega</span>
+            <span class="who">Gyarados-Mega</span>
+            <span class="score">Carrega uma run</span>
+          </li>
+        </ol>
+
+        <p class="arc-note">
+          A nota por trás disso é o ranking de espécie do Smogon — a melhor medida pública de
+          quão bom um Pokémon crescido é. O PokéRogue não tem ranking próprio, então o overlay
+          empresta esse e mostra pelo que ele é: uma pista forte sobre o fim da linha, não um
+          stat que o jogo acompanhe.
+        </p>
+
         <div class="cta-row">
           <a class="btn btn-primary" id="install" data-nolink="Pegar no GitHub"
              href="https://github.com/OwlHugo/pokerogue-tier-overlay">Instalar</a>
@@ -73,36 +86,6 @@
           <p>Abas para o inimigo, seu time, o bioma atual e para onde esse bioma leva. Fechado até você abrir.</p>
         </article>
       </div>
-    </section>
-
-    <section>
-      <p class="eyebrow">Linha editorial</p>
-      <h2>O que um set do Smogon perde no caminho</h2>
-      <p class="section-lede">
-        O Smogon descreve um formato que o PokéRogue não roda. Parte do set sobrevive à
-        viagem; parte viraria trivia. O que fica de fora, e por quê:
-      </p>
-
-      <dl class="refusals">
-        <div class="refusal">
-          <dt>Spread de EVs</dt>
-          <dd>A fórmula de stat do jogo é base, IV e nível — não há termo de EV nela. Stats crescem por vitaminas que caem como recompensa, então um spread do Smogon não tem onde encaixar.</dd>
-        </div>
-        <div class="refusal">
-          <dt>Item segurado</dt>
-          <dd>Eviolite, Focus Band e Quick Claw estão no PokéRogue. Você é que não escolhe — item vem de pool de recompensa, então apontar o competitivo não é uma decisão que esteja na sua mão.</dd>
-        </div>
-        <div class="refusal">
-          <dt>Sets de Z-move</dt>
-          <dd>A única mecânica aqui que o PokéRogue realmente não tem: não existe Z-crystal na lista de itens dele.</dd>
-        </div>
-      </dl>
-
-      <p class="keeper">
-        <strong>Nature fica</strong>, porque Mint existe no pool de recompensa — é a única parte
-        do set em que você ainda pode agir. <strong>Mega e Gigantamax não saem</strong>: os dois
-        estão no jogo, e alcançá-los é exatamente o que a badge mede.
-      </p>
     </section>
 
     <section>

@@ -73,74 +73,6 @@ p a:not(.btn):hover { color: var(--t-mid); }
   padding: clamp(3rem, 8vw, 6rem) 0 var(--gap);
 }
 
-.ladder {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 0.3rem;
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  border-left: 1px solid var(--line);
-  padding-left: 0.9rem;
-}
-
-.rung {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  color: var(--dim);
-  position: relative;
-}
-
-.rung::before {
-  content: "";
-  position: absolute;
-  left: -0.9rem;
-  width: 0.45rem;
-  height: 1px;
-  background: var(--line);
-}
-
-.rung[data-hue="lc"]   { --hue: var(--t-lc); }
-.rung[data-hue="low"]  { --hue: var(--t-low); }
-.rung[data-hue="mid"]  { --hue: var(--t-mid); }
-.rung[data-hue="ou"]   { --hue: var(--t-ou); }
-.rung[data-hue="uber"] { --hue: var(--t-uber); }
-.rung[data-hue="ag"]   { --hue: var(--t-ag); }
-
-.rung.is-marked {
-  color: var(--hue);
-}
-
-.rung.is-marked::before {
-  background: var(--hue);
-  width: 0.9rem;
-  left: -0.9rem;
-}
-
-.pip {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-  background: transparent;
-  border: 1px solid currentColor;
-  opacity: 0.25;
-}
-
-.rung.is-marked .pip {
-  background: currentColor;
-  opacity: 1;
-}
-
-.rung .who {
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  opacity: 0;
-  transform: translateX(-0.35rem);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.rung.is-marked .who { opacity: 1; transform: none; }
-
 h1 {
   font-size: clamp(2.4rem, 6.5vw, 4.1rem);
   line-height: 1.02;
@@ -247,42 +179,6 @@ h2 {
 
 .surface p { margin: 0; color: var(--muted); font-size: 0.95rem; }
 
-/* ---------- refusals ---------- */
-
-.refusals {
-  border: 1px solid var(--line);
-  background: var(--panel-2);
-}
-
-.refusal {
-  display: grid;
-  grid-template-columns: 9rem 1fr;
-  gap: 1.2rem;
-  padding: 1.1rem 1.4rem;
-  border-bottom: 1px solid var(--line);
-  font-size: 0.95rem;
-}
-
-.refusal:last-child { border-bottom: 0; }
-
-.refusal dt {
-  font-family: var(--mono);
-  font-size: 0.82rem;
-  color: var(--t-uber);
-}
-
-.refusal dd { margin: 0; color: var(--muted); }
-
-.keeper {
-  margin-top: 1.4rem;
-  padding-left: 1rem;
-  border-left: 2px solid var(--t-mid);
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.keeper strong { color: var(--ink); font-weight: 650; }
-
 /* ---------- install ---------- */
 
 .steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
@@ -343,11 +239,7 @@ footer a { color: var(--muted); }
 footer p { margin: 0 0 0.7rem; max-width: 60ch; }
 
 @media (max-width: 640px) {
-  .hero { grid-template-columns: 1fr; }
-  .ladder { flex-direction: row; overflow-x: auto; border-left: 0; padding-left: 0; }
-  .rung::before { display: none; }
-  .rung .who { display: none; }
-  .refusal { grid-template-columns: 1fr; gap: 0.3rem; }
+  .node { flex-basis: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -379,3 +271,80 @@ footer p { margin: 0 0 0.7rem; max-width: 60ch; }
 }
 
 .hero { padding-top: clamp(2rem, 6vw, 4rem); }
+
+/* ---------- evolution arc (hero) ---------- */
+
+.arc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  list-style: none;
+  margin: 2.4rem 0 0;
+  padding: 0;
+}
+
+.node {
+  flex: 1 1 11rem;
+  padding: 1rem 1.2rem 0 0;
+  border-top: 2px solid var(--line);
+  position: relative;
+  border-top-color: var(--hue);
+  animation: node-rise 0.55s ease both;
+}
+
+.node:nth-child(2) { animation-delay: 0.18s; }
+.node:nth-child(3) { animation-delay: 0.36s; }
+
+@keyframes node-rise {
+  from { opacity: 0; transform: translateY(0.4rem); border-top-color: var(--line); }
+  to   { opacity: 1; transform: none; border-top-color: var(--hue); }
+}
+
+.node[data-hue="now"]     { --hue: var(--t-lc); }
+.node[data-hue="reach"]   { --hue: var(--t-mid); }
+.node[data-hue="ceiling"] { --hue: var(--t-ou); }
+
+.node::before {
+  content: "";
+  position: absolute;
+  top: -0.35rem;
+  left: 0;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--hue);
+}
+
+.node .when {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.node .who {
+  display: block;
+  font-size: 1.12rem;
+  font-weight: 680;
+  letter-spacing: -0.01em;
+  margin-top: 0.35rem;
+}
+
+.node .score {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--hue);
+  margin-top: 0.2rem;
+}
+
+.arc-note {
+  margin: 1.3rem 0 0;
+  font-size: 0.88rem;
+  color: var(--dim);
+  max-width: 56ch;
+}
+
+.hero { display: block; }

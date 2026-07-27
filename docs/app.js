@@ -11,11 +11,3 @@ if (GREASYFORK_URL) {
   }
 }
 
-const marked = ['0', '5', '7'];
-const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-for (const rung of document.querySelectorAll('.rung')) {
-  if (!marked.includes(rung.dataset.step)) continue;
-  const delay = still ? 0 : 350 + Number(rung.dataset.step) * 110;
-  setTimeout(() => rung.classList.add('is-marked'), delay);
-}

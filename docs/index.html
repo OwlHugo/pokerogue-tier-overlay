@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PokéRogue Tier Overlay — see what it becomes, before you spend the ball</title>
-<meta name="description" content="A userscript that shows the best Smogon tier each Pokémon can reach in PokéRogue — evolution, Mega and Gigantamax — inside the game.">
+<meta name="description" content="A userscript that reads a Pokémon's whole evolution line in PokéRogue — evolution, Mega and Gigantamax — and tells you whether it is worth the ball from this encounter onward.">
 <link rel="alternate" hreflang="en" href="./index.html">
 <link rel="alternate" hreflang="pt-BR" href="./pt-BR.html">
 <link rel="stylesheet" href="./style.css">
@@ -20,27 +20,40 @@
     </nav>
 
     <header class="hero">
-      <div class="ladder" aria-hidden="true">
-        <div class="rung" data-hue="lc"   data-step="0"><span class="pip"></span>LC<span class="who">Magikarp</span></div>
-        <div class="rung" data-hue="lc"   data-step="1"><span class="pip"></span>NFE</div>
-        <div class="rung" data-hue="low"  data-step="2"><span class="pip"></span>ZU</div>
-        <div class="rung" data-hue="low"  data-step="3"><span class="pip"></span>PU</div>
-        <div class="rung" data-hue="low"  data-step="4"><span class="pip"></span>NU</div>
-        <div class="rung" data-hue="mid"  data-step="5"><span class="pip"></span>RU<span class="who">Gyarados</span></div>
-        <div class="rung" data-hue="mid"  data-step="6"><span class="pip"></span>UU</div>
-        <div class="rung" data-hue="ou"   data-step="7"><span class="pip"></span>OU<span class="who">Mega</span></div>
-        <div class="rung" data-hue="uber" data-step="8"><span class="pip"></span>Uber</div>
-        <div class="rung" data-hue="ag"   data-step="9"><span class="pip"></span>AG</div>
-      </div>
-
       <div>
         <p class="eyebrow">Userscript · pokerogue.net</p>
         <h1>Is it strong <em>from here</em>?</h1>
         <p class="lede">
-          Tier is the shorthand, not the point. A Magikarp reads LC — worthless right now —
-          and becomes Gyarados at RU, with a Mega at OU. The overlay answers what a species
-          is worth from this encounter onward, while the ball is still in your bag.
+          The Magikarp in front of you is useless. The Gyarados it turns into is not, and the
+          Mega it can reach even less so. The overlay reads the whole line before you decide,
+          while the ball is still in your bag.
         </p>
+
+        <ol class="arc">
+          <li class="node" data-hue="now" data-step="0">
+            <span class="when">What you met</span>
+            <span class="who">Magikarp</span>
+            <span class="score">Splash and nothing else</span>
+          </li>
+          <li class="node" data-hue="reach" data-step="1">
+            <span class="when">What it becomes</span>
+            <span class="who">Gyarados</span>
+            <span class="score">Worth the slot</span>
+          </li>
+          <li class="node" data-hue="ceiling" data-step="2">
+            <span class="when">Its ceiling</span>
+            <span class="who">Gyarados-Mega</span>
+            <span class="score">Carries a run</span>
+          </li>
+        </ol>
+
+        <p class="arc-note">
+          The scoring underneath is Smogon's species ranking — the best public measure of how
+          good a fully grown Pokémon is. PokéRogue has no ranking of its own, so the overlay
+          borrows that one and shows it for what it is: a strong hint about the end of the line,
+          not a stat the game tracks.
+        </p>
+
         <div class="cta-row">
           <a class="btn btn-primary" id="install" data-nolink="Get it on GitHub"
              href="https://github.com/OwlHugo/pokerogue-tier-overlay">Install</a>
@@ -73,36 +86,6 @@
           <p>Tabs for the enemy, your team, the current biome and where that biome leads. Closed until you open it.</p>
         </article>
       </div>
-    </section>
-
-    <section>
-      <p class="eyebrow">Editorial line</p>
-      <h2>What a Smogon set loses on the way in</h2>
-      <p class="section-lede">
-        Smogon describes a format PokéRogue does not run. Part of a set survives the trip; part
-        of it would be trivia. What gets dropped, and why:
-      </p>
-
-      <dl class="refusals">
-        <div class="refusal">
-          <dt>EV spreads</dt>
-          <dd>The game's stat formula is base, IV and level — there is no EV term in it. Stats grow through vitamins that arrive as rewards, so a Smogon spread has nothing to map onto.</dd>
-        </div>
-        <div class="refusal">
-          <dt>Held item</dt>
-          <dd>Eviolite, Focus Band and Quick Claw are all in PokéRogue. You just do not pick them — items come from reward pools, so naming the competitive one is not a choice you get to make.</dd>
-        </div>
-        <div class="refusal">
-          <dt>Z-move sets</dt>
-          <dd>The one mechanic here PokéRogue genuinely does not have: there is no Z-crystal anywhere in its item list.</dd>
-        </div>
-      </dl>
-
-      <p class="keeper">
-        <strong>Nature stays</strong>, because Mints exist in the reward pool — it is the one part
-        of a set you can still act on. <strong>Mega and Gigantamax are not dropped at all</strong>:
-        both are in the game, and reaching them is exactly what the badge is measuring.
-      </p>
     </section>
 
     <section>
