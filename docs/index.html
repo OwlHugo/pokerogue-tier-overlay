@@ -35,11 +35,11 @@
 
       <div>
         <p class="eyebrow">Userscript · pokerogue.net</p>
-        <h1>The ball is the <em>decision</em>.</h1>
+        <h1>Is it strong <em>from here</em>?</h1>
         <p class="lede">
-          A Magikarp is LC and looks like trash. It becomes Gyarados, which is RU —
-          and Mega Gyarados is OU. The overlay tells you that while the ball is still
-          in your bag.
+          Tier is the shorthand, not the point. A Magikarp reads LC — worthless right now —
+          and becomes Gyarados at RU, with a Mega at OU. The overlay answers what a species
+          is worth from this encounter onward, while the ball is still in your bag.
         </p>
         <div class="cta-row">
           <a class="btn btn-primary" id="install" data-nolink="Get it on GitHub"
@@ -66,7 +66,7 @@
         </article>
         <article class="surface">
           <h3>Starter select</h3>
-          <p>The best reachable tier on all 572 icons in the grid, following filters and scroll, because it is drawn by the game itself.</p>
+          <p>The best reachable tier on every icon in the grid, following filters and scroll, because it is drawn by the game itself.</p>
         </article>
         <article class="surface">
           <h3>Guide panel</h3>
@@ -77,34 +77,31 @@
 
     <section>
       <p class="eyebrow">Editorial line</p>
-      <h2>What it refuses to show</h2>
+      <h2>What a Smogon set loses on the way in</h2>
       <p class="section-lede">
-        A Smogon set carries data PokéRogue does not have. Showing all of it would look thorough
-        and help nobody.
+        Smogon describes a format PokéRogue does not run. Part of a set survives the trip; part
+        of it would be trivia. What gets dropped, and why:
       </p>
 
       <dl class="refusals">
         <div class="refusal">
-          <dt>EVs</dt>
-          <dd>PokéRogue has no EVs. Stats rise through vitamins, which are reward modifiers.</dd>
-        </div>
-        <div class="refusal">
-          <dt>IVs</dt>
-          <dd>They exist, but are rolled at the encounter. You do not choose them.</dd>
+          <dt>EV spreads</dt>
+          <dd>The game's stat formula is base, IV and level — there is no EV term in it. Stats grow through vitamins that arrive as rewards, so a Smogon spread has nothing to map onto.</dd>
         </div>
         <div class="refusal">
           <dt>Held item</dt>
-          <dd>Items come from a pool per modifier tier, not the competitive catalog. There are no Z-crystals.</dd>
+          <dd>Eviolite, Focus Band and Quick Claw are all in PokéRogue. You just do not pick them — items come from reward pools, so naming the competitive one is not a choice you get to make.</dd>
         </div>
         <div class="refusal">
-          <dt>Z / Dynamax sets</dt>
-          <dd>Mechanics the game does not implement.</dd>
+          <dt>Z-move sets</dt>
+          <dd>The one mechanic here PokéRogue genuinely does not have: there is no Z-crystal anywhere in its item list.</dd>
         </div>
       </dl>
 
       <p class="keeper">
-        <strong>Nature stays</strong>, because it is the only one you can act on — PokéRogue has
-        Mints in the modifier pool.
+        <strong>Nature stays</strong>, because Mints exist in the reward pool — it is the one part
+        of a set you can still act on. <strong>Mega and Gigantamax are not dropped at all</strong>:
+        both are in the game, and reaching them is exactly what the badge is measuring.
       </p>
     </section>
 
@@ -130,9 +127,11 @@
       </ol>
 
       <p class="chrome-note">
-        On Chrome you also have to switch on <strong>Developer mode</strong> at
-        <code>chrome://extensions</code> — since Manifest V3, userscript managers cannot run
-        without it. Firefox needs nothing extra.
+        On Chrome you also have to allow user scripts. Since Chrome 138 that switch lives on the
+        manager's own entry in <code>chrome://extensions</code>, as
+        <strong>Allow user scripts</strong> — and it starts off for anything installed after that
+        change. Older Chrome builds use the global <strong>Developer mode</strong> toggle instead.
+        Firefox needs neither.
       </p>
     </section>
 
@@ -146,9 +145,14 @@
       </p>
       <p class="section-lede">
         It does not calculate damage, does not compute weaknesses, and does not tell you which
-        Pokémon to release. When a species is not in Smogon's catalog it shows
-        <code>?</code> rather than inventing a tier. When it cannot find the game, it says so in
-        red instead of showing a number it does not have.
+        Pokémon to release. It says nothing about Terastallization, which PokéRogue does have.
+        It ignores your Pokédex IVs, even though catching more of a species raises the IVs its
+        starter inherits — a long game the badge does not play.
+      </p>
+      <p class="section-lede">
+        When a species is not in Smogon's catalog it shows <code>?</code> rather than inventing a
+        tier. When it cannot find the game, it says so in red instead of showing a number it does
+        not have.
       </p>
     </section>
 
