@@ -9,7 +9,7 @@ Um Magikarp é LC e parece lixo. Ele vira Gyarados. O overlay diz isso antes de 
 gastar a Pokébola.
 
 ```
-Hoothoot   LC → RU (Noctowl)
+Magikarp   LC → RU (Gyarados)
 ```
 
 ## Instalar

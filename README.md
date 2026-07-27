@@ -9,7 +9,7 @@ A Magikarp is LC and looks like trash. It becomes Gyarados. The overlay tells yo
 you decide to spend the ball.
 
 ```
-Hoothoot   LC → RU (Noctowl)
+Magikarp   LC → RU (Gyarados)
 ```
 
 ## Install

@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PokéRogue Tier Overlay — see what it becomes, before you spend the ball</title>
+<meta name="description" content="A userscript that shows the best Smogon tier each Pokémon can reach in PokéRogue — evolution, Mega and Gigantamax — inside the game.">
+<style>
+:root {
+  --bg: #0B0F14;
+  --panel: #131A22;
+  --panel-2: #0F151C;
+  --line: #1F2A36;
+  --ink: #E8EEF4;
+  --muted: #93A1AE;
+  --dim: #64748B;
+
+  --t-lc: #6B7A8A;
+  --t-low: #3FA7D6;
+  --t-mid: #46C3A0;
+  --t-ou: #F2A93B;
+  --t-uber: #E5484D;
+  --t-ag: #C86DD7;
+
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --gap: clamp(3.5rem, 9vw, 7rem);
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+a { color: inherit; }
+
+p a:not(.btn) {
+  color: var(--ink);
+  text-decoration-color: var(--t-mid);
+  text-underline-offset: 0.2em;
+}
+
+p a:not(.btn):hover { color: var(--t-mid); }
+
+:focus-visible {
+  outline: 2px solid var(--t-ou);
+  outline-offset: 3px;
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: clamp(1.5rem, 5vw, 3.5rem);
+  align-items: center;
+  padding: clamp(3rem, 8vw, 6rem) 0 var(--gap);
+}
+
+.ladder {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.3rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  border-left: 1px solid var(--line);
+  padding-left: 0.9rem;
+}
+
+.rung {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--dim);
+  position: relative;
+}
+
+.rung::before {
+  content: "";
+  position: absolute;
+  left: -0.9rem;
+  width: 0.45rem;
+  height: 1px;
+  background: var(--line);
+}
+
+.rung[data-hue="lc"]   { --hue: var(--t-lc); }
+.rung[data-hue="low"]  { --hue: var(--t-low); }
+.rung[data-hue="mid"]  { --hue: var(--t-mid); }
+.rung[data-hue="ou"]   { --hue: var(--t-ou); }
+.rung[data-hue="uber"] { --hue: var(--t-uber); }
+.rung[data-hue="ag"]   { --hue: var(--t-ag); }
+
+.rung.is-marked {
+  color: var(--hue);
+}
+
+.rung.is-marked::before {
+  background: var(--hue);
+  width: 0.9rem;
+  left: -0.9rem;
+}
+
+.pip {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid currentColor;
+  opacity: 0.25;
+}
+
+.rung.is-marked .pip {
+  background: currentColor;
+  opacity: 1;
+}
+
+.rung .who {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transform: translateX(-0.35rem);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.rung.is-marked .who { opacity: 1; transform: none; }
+
+h1 {
+  font-size: clamp(2.4rem, 6.5vw, 4.1rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 800;
+  margin: 1.1rem 0 0;
+  text-wrap: balance;
+}
+
+h1 em {
+  font-style: normal;
+  color: var(--t-ou);
+}
+
+.lede {
+  color: var(--muted);
+  font-size: clamp(1.02rem, 2vw, 1.18rem);
+  max-width: 34ch;
+  margin: 1.1rem 0 0;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.72rem 1.35rem;
+  border-radius: 2px;
+  font-weight: 650;
+  font-size: 0.94rem;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+
+.btn:hover { border-color: var(--dim); }
+
+.btn-primary {
+  background: var(--t-ou);
+  border-color: var(--t-ou);
+  color: #14100A;
+}
+
+.btn-primary:hover {
+  background: #FFC152;
+  border-color: #FFC152;
+}
+
+.btn-note {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--dim);
+  margin-top: 0.9rem;
+}
+
+/* ---------- sections ---------- */
+
+section { padding-bottom: var(--gap); }
+
+h2 {
+  font-size: clamp(1.5rem, 3.4vw, 2rem);
+  letter-spacing: -0.02em;
+  font-weight: 750;
+  margin: 0.7rem 0 0;
+}
+
+.section-lede {
+  color: var(--muted);
+  margin: 0.7rem 0 2.2rem;
+  max-width: 52ch;
+}
+
+.surfaces {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+@media (max-width: 860px) {
+  .surfaces { grid-template-columns: 1fr; }
+}
+
+.surface {
+  background: var(--panel);
+  padding: 1.5rem 1.4rem;
+}
+
+.surface h3 {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--t-mid);
+  margin: 0 0 0.7rem;
+  font-weight: 600;
+}
+
+.surface p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+/* ---------- refusals ---------- */
+
+.refusals {
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+}
+
+.refusal {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 1.2rem;
+  padding: 1.1rem 1.4rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.95rem;
+}
+
+.refusal:last-child { border-bottom: 0; }
+
+.refusal dt {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--t-uber);
+}
+
+.refusal dd { margin: 0; color: var(--muted); }
+
+.keeper {
+  margin-top: 1.4rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--t-mid);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.keeper strong { color: var(--ink); font-weight: 650; }
+
+/* ---------- install ---------- */
+
+.steps { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+
+.step {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.step:last-child { border-bottom: 1px solid var(--line); }
+
+.step::before {
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--dim);
+  padding-top: 0.15rem;
+}
+
+.step p { margin: 0.35rem 0 0; color: var(--muted); font-size: 0.94rem; }
+
+.step strong { font-weight: 650; }
+
+.chrome-note {
+  margin-top: 1.6rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--t-ou);
+  padding: 1rem 1.2rem;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.86em;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  padding: 0.1em 0.4em;
+  border-radius: 2px;
+}
+
+/* ---------- footer ---------- */
+
+footer {
+  border-top: 1px solid var(--line);
+  padding: 2.5rem 0 4rem;
+  color: var(--dim);
+  font-size: 0.88rem;
+}
+
+footer a { color: var(--muted); }
+
+footer p { margin: 0 0 0.7rem; max-width: 60ch; }
+
+@media (max-width: 640px) {
+  .hero { grid-template-columns: 1fr; }
+  .ladder { flex-direction: row; overflow-x: auto; border-left: 0; padding-left: 0; }
+  .rung::before { display: none; }
+  .rung .who { display: none; }
+  .refusal { grid-template-columns: 1fr; gap: 0.3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<main>
+  <div class="wrap">
+
+    <header class="hero">
+      <div class="ladder" aria-hidden="true">
+        <div class="rung" data-hue="lc"   data-step="0"><span class="pip"></span>LC<span class="who">Magikarp</span></div>
+        <div class="rung" data-hue="lc"   data-step="1"><span class="pip"></span>NFE</div>
+        <div class="rung" data-hue="low"  data-step="2"><span class="pip"></span>ZU</div>
+        <div class="rung" data-hue="low"  data-step="3"><span class="pip"></span>PU</div>
+        <div class="rung" data-hue="low"  data-step="4"><span class="pip"></span>NU</div>
+        <div class="rung" data-hue="mid"  data-step="5"><span class="pip"></span>RU<span class="who">Gyarados</span></div>
+        <div class="rung" data-hue="mid"  data-step="6"><span class="pip"></span>UU</div>
+        <div class="rung" data-hue="ou"   data-step="7"><span class="pip"></span>OU<span class="who">Mega</span></div>
+        <div class="rung" data-hue="uber" data-step="8"><span class="pip"></span>Uber</div>
+        <div class="rung" data-hue="ag"   data-step="9"><span class="pip"></span>AG</div>
+      </div>
+
+      <div>
+        <p class="eyebrow">Userscript · pokerogue.net</p>
+        <h1>The ball is the <em>decision</em>.</h1>
+        <p class="lede">
+          A Magikarp is LC and looks like trash. It becomes Gyarados, which is RU —
+          and Mega Gyarados is OU. The overlay tells you that while the ball is still
+          in your bag.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" id="install" href="https://github.com/OwlHugo/pokerogue-tier-overlay">Install</a>
+          <a class="btn" href="https://github.com/OwlHugo/pokerogue-tier-overlay">Read the source</a>
+        </div>
+        <p class="btn-note" id="install-note">Free · AGPL-3.0 · no network calls</p>
+      </div>
+    </header>
+
+    <section>
+      <p class="eyebrow">Where it shows up</p>
+      <h2>Three screens, one question</h2>
+      <p class="section-lede">
+        Every surface answers the same thing: is this worth the ball, and where does it lead?
+      </p>
+
+      <div class="surfaces">
+        <article class="surface">
+          <h3>Battle</h3>
+          <p>A badge above each enemy, with its current tier and the best tier anything in its line can reach — evolution, Mega and Gigantamax included.</p>
+        </article>
+        <article class="surface">
+          <h3>Starter select</h3>
+          <p>The best reachable tier on all 572 icons in the grid, following filters and scroll, because it is drawn by the game itself.</p>
+        </article>
+        <article class="surface">
+          <h3>Guide panel</h3>
+          <p>Tabs for the enemy, your team, the current biome and where that biome leads. Closed until you open it.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Editorial line</p>
+      <h2>What it refuses to show</h2>
+      <p class="section-lede">
+        A Smogon set carries data PokéRogue does not have. Showing all of it would look thorough
+        and help nobody.
+      </p>
+
+      <dl class="refusals">
+        <div class="refusal">
+          <dt>EVs</dt>
+          <dd>PokéRogue has no EVs. Stats rise through vitamins, which are reward modifiers.</dd>
+        </div>
+        <div class="refusal">
+          <dt>IVs</dt>
+          <dd>They exist, but are rolled at the encounter. You do not choose them.</dd>
+        </div>
+        <div class="refusal">
+          <dt>Held item</dt>
+          <dd>Items come from a pool per modifier tier, not the competitive catalog. There are no Z-crystals.</dd>
+        </div>
+        <div class="refusal">
+          <dt>Z / Dynamax sets</dt>
+          <dd>Mechanics the game does not implement.</dd>
+        </div>
+      </dl>
+
+      <p class="keeper">
+        <strong>Nature stays</strong>, because it is the only one you can act on — PokéRogue has
+        Mints in the modifier pool.
+      </p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Install</p>
+      <h2>Two things, once</h2>
+
+      <ol class="steps">
+        <li class="step">
+          <div>
+            <strong>Install a userscript manager</strong>
+            <p><a href="https://www.tampermonkey.net/">Tampermonkey</a> or <a href="https://violentmonkey.github.io/">Violentmonkey</a>. Chrome, Firefox, Edge and Safari on desktop, Firefox on Android.</p>
+          </div>
+        </li>
+        <li class="step">
+          <div>
+            <strong>Add the overlay</strong>
+            <p id="step-two">Install the script, then open pokerogue.net. The badge appears on the next encounter.</p>
+          </div>
+        </li>
+      </ol>
+
+      <p class="chrome-note">
+        On Chrome you also have to switch on <strong>Developer mode</strong> at
+        <code>chrome://extensions</code> — since Manifest V3, userscript managers cannot run
+        without it. Firefox needs nothing extra.
+      </p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Honest limits</p>
+      <h2>What it will not do for you</h2>
+      <p class="section-lede">
+        Tier measures strength in Smogon's competitive metagame, which is not the same thing as
+        strength in PokéRogue — the game has passives, fusions and items Smogon does not model.
+        It is a signal, not a verdict.
+      </p>
+      <p class="section-lede">
+        It does not calculate damage, does not compute weaknesses, and does not tell you which
+        Pokémon to release. When a species is not in Smogon's catalog it shows
+        <code>?</code> rather than inventing a tier. When it cannot find the game, it says so in
+        red instead of showing a number it does not have.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>
+      Tier data from <a href="https://github.com/pkmn/ps">@pkmn/dex</a> (MIT). Biome encounter
+      pools generated from <a href="https://github.com/pagefaultgames/pokerogue">pagefaultgames/pokerogue</a>
+      (AGPL-3.0) at a pinned commit.
+    </p>
+    <p>
+      Everything ships inside the script: no <code>@require</code>, no fetch, no telemetry.
+      Released under AGPL-3.0 — <a href="https://github.com/OwlHugo/pokerogue-tier-overlay">read it</a>.
+    </p>
+    <p>
+      A fan project, not affiliated with Nintendo, The Pokémon Company, Smogon or PokéRogue.
+    </p>
+  </div>
+</footer>
+
+<script>
+// Swap for the Greasyfork URL once the script is published there.
+const GREASYFORK_URL = '';
+
+const install = document.getElementById('install');
+if (GREASYFORK_URL) {
+  install.href = GREASYFORK_URL;
+} else {
+  install.textContent = 'Get it on GitHub';
+  document.getElementById('install-note').textContent = 'Greasyfork listing on the way · AGPL-3.0 · no network calls';
+  document.getElementById('step-two').textContent =
+    'Grab the .user.js from the repository and open it — your manager will offer to install. Then open pokerogue.net.';
+}
+
+const rungs = [...document.querySelectorAll('.rung')];
+const marked = ['0', '5', '7'];
+const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+for (const rung of rungs) {
+  if (!marked.includes(rung.dataset.step)) continue;
+  const delay = still ? 0 : 350 + Number(rung.dataset.step) * 110;
+  setTimeout(() => rung.classList.add('is-marked'), delay);
+}
+</script>
+
+</body>
+</html>
