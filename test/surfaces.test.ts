@@ -85,13 +85,13 @@ describe('StarterSurface', () => {
     expect(surface.matches(contextOf(scene, 'CommandUiHandler'))).toBe(false);
   });
 
-  test('marca cada icone visivel com a sigla do melhor tier', () => {
+  test('marca cada icone visivel com a nota compacta', () => {
     const { scene } = starterScene(true);
     const layer = new BadgeLayer(scene);
     new StarterSurface(layer, table).sync(contextOf(scene, 'StarterSelectUiHandler'));
 
     expect(layer.size).toBe(1);
-    expect(scene.created[0]?.text).toBe('OU');
+    expect(scene.created[0]?.text).toBe('A');
   });
 
   test('nao marca icone escondido pelo filtro', () => {

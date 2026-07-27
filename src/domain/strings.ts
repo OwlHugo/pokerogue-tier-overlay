@@ -34,7 +34,10 @@ const STRINGS: Record<StringKey, Record<Locale, string>> = {
   tabParty: { pt: 'Time', en: 'Team' },
   tabBiome: { pt: 'Bioma', en: 'Biome' },
   tabDestinations: { pt: 'Destinos', en: 'Routes' },
-  hintField: { pt: 'Quem está na sua frente agora.', en: 'What you are facing right now.' },
+  hintField: {
+    pt: 'Quem está na sua frente, ou o que você está selecionando.',
+    en: 'What you are facing, or what you are selecting.',
+  },
   hintParty: {
     pt: 'Os seis que você carrega, e o que falta neles.',
     en: 'The six you carry, and what they lack.',
@@ -54,7 +57,10 @@ const STRINGS: Record<StringKey, Record<Locale, string>> = {
   smogonBuilds: { pt: 'Como o Smogon monta', en: 'How Smogon builds it' },
   topMoves: { pt: 'Golpes mais usados', en: 'Most used moves' },
   noSets: { pt: 'Sem sets catalogados pelo Smogon', en: 'No Smogon sets on record' },
-  noEnemy: { pt: 'Nenhum inimigo em campo', en: 'No enemy on the field' },
+  noEnemy: {
+    pt: 'Nada em campo. Passe o cursor num Pokémon da grade.',
+    en: 'Nothing on the field. Hover a Pokémon in the grid.',
+  },
   emptyTeam: { pt: 'Time vazio', en: 'Empty team' },
   noBiome: { pt: 'Entre numa run para ver o bioma', en: 'Start a run to see the biome' },
   noRoutes: { pt: 'Nenhuma rota a partir daqui', en: 'No route from here' },

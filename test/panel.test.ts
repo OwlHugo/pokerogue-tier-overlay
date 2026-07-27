@@ -126,7 +126,7 @@ describe('Panel', () => {
     panel.update({ field: [], party: [], biome: null, destinations: [], missingTypes: [] });
     toggle()?.click();
 
-    expect(document.body.textContent).toContain('Nenhum inimigo em campo');
+    expect(document.body.textContent).toContain('Nada em campo');
   });
 
   test('agrupa o bioma por raridade', () => {

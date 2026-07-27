@@ -1,5 +1,5 @@
 import type { Locale } from '../domain/names';
-import { ratingLabel, ratingOf } from '../domain/rating';
+import { ratingLabel, ratingOf, ratingShort } from '../domain/rating';
 import { bestReachable } from '../domain/reachable';
 import type { ResolvedTiers } from '../domain/tier-table';
 
@@ -10,7 +10,7 @@ const MARKER = { line: '', mega: '+M', gmax: '+G' } as const;
 export function shortLabel(resolved: ResolvedTiers): string {
   const reachable = bestReachable(resolved);
   if (!reachable.tier) return UNKNOWN;
-  return `${reachable.tier}${MARKER[reachable.source]}`;
+  return `${ratingShort(ratingOf(reachable.tier))}${MARKER[reachable.source]}`;
 }
 
 export function fullLabel(resolved: ResolvedTiers, locale: Locale, atual: string): string {

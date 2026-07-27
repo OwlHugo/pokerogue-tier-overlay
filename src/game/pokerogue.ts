@@ -31,6 +31,7 @@ export interface StarterContainer extends DisplayContainer {
 
 export interface StarterSelectHandler {
   starterContainers: readonly StarterContainer[];
+  lastSpecies?: PokeRogueSpecies;
 }
 
 export interface Ui {

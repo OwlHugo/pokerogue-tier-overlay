@@ -6,7 +6,16 @@ import type { NamesByLocale } from '../domain/names';
 import type { TierTable } from '../domain/tier-table';
 import type { BattleScene } from '../game/pokerogue';
 import { Panel } from './panel';
-import { biomeView, coverageView, destinationsView, fieldView, partyView, teamOf } from './views';
+import {
+  biomeView,
+  coverageView,
+  destinationsView,
+  fieldView,
+  type PokemonRow,
+  partyView,
+  starterFocusView,
+  teamOf,
+} from './views';
 
 export class Hud {
   private readonly panel: Panel;
@@ -31,7 +40,7 @@ export class Hud {
     const biome = biomeId === undefined ? null : this.biomes[biomeId];
 
     this.panel.update({
-      field: fieldView(scene, this.tiers, this.movesets),
+      field: this.fieldRows(scene),
       party: partyView(scene, this.tiers, this.movesets),
       biome: biome
         ? {
@@ -50,6 +59,15 @@ export class Hud {
         (type) => typeNameOf(type, this.localeRef.current) ?? [],
       ),
     });
+  }
+
+  private fieldRows(scene: BattleScene): PokemonRow[] {
+    const emCampo = fieldView(scene, this.tiers, this.movesets);
+    if (emCampo.length) return emCampo;
+
+    const ui = scene.ui;
+    const handler = ui.handlers[ui.mode] as { lastSpecies?: never } | undefined;
+    return starterFocusView(handler ?? null, this.tiers, this.movesets);
   }
 
   destroy(): void {

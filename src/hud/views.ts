@@ -162,6 +162,26 @@ export function teamOf(scene: BattleScene): TeamSpecies {
   return teamSpeciesOf((scene.party ?? []).map((p) => ({ speciesId: p.species.speciesId })));
 }
 
+export function starterFocusView(
+  handler: { lastSpecies?: PokeRoguePokemon['species'] } | null,
+  table: TierTable,
+  movesets: MovesetTable = {},
+): PokemonRow[] {
+  const species = handler?.lastSpecies;
+  if (!species) return [];
+
+  const base = rowFor(species.name, species.speciesId, null, table, movesets);
+
+  return [
+    {
+      ...base,
+      abilities: abilitiesOf(species),
+      catchRate: species.catchRate ?? null,
+      types: [species.type1, species.type2].filter((t): t is number => typeof t === 'number'),
+    },
+  ];
+}
+
 export function coverageView(scene: BattleScene): readonly number[] {
   const team = (scene.party ?? []).map((pokemon) => ({
     types: [pokemon.species.type1, pokemon.species.type2].filter(

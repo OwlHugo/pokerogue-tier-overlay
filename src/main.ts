@@ -6,11 +6,14 @@ import { startOverlay } from './bootstrap';
 import { detectLocale } from './domain/strings';
 import { armCapture } from './game/capture';
 import type { PhaserHost } from './game/phaser';
+import { repairStarterPrefs } from './game/repair';
 import { reportFailure } from './render/diagnostics';
 
 const LOCALE = detectLocale(navigator.language);
 const TICK_INTERVAL_MS = 400;
 const CAPTURE_TIMEOUT_MS = 20_000;
+
+repairStarterPrefs(window.localStorage);
 
 const armed = armCapture(window as PhaserHost, ({ game }) => {
   window.clearTimeout(timeout);

@@ -39,6 +39,19 @@ const COLORS: Record<Rating, string> = {
   cresce: '#22c55e',
 };
 
+const SHORT: Record<Rating, string> = {
+  excepcional: 'S',
+  muitoBom: 'A',
+  bom: 'B',
+  mediano: 'C',
+  fraco: 'D',
+  cresce: 'E',
+};
+
+export function ratingShort(rating: Rating | null): string {
+  return rating === null ? '?' : SHORT[rating];
+}
+
 export function ratingOf(tier: Tier | null): Rating | null {
   return tier === null ? null : BY_TIER[tier];
 }
