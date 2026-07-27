@@ -4,7 +4,7 @@ import type { MovesetTable } from '../domain/moveset';
 import type { TierTable } from '../domain/tier-table';
 import type { BattleScene } from '../game/pokerogue';
 import { Panel } from './panel';
-import { biomeView, coverageView, destinationsView, fieldView, partyView } from './views';
+import { biomeView, coverageView, destinationsView, fieldView, partyView, teamOf } from './views';
 
 export class Hud {
   private readonly panel = new Panel();
@@ -21,7 +21,8 @@ export class Hud {
     this.place();
     if (!this.panel.isOpen) return;
 
-    const biomeId = scene.arena?.biomeId;
+    const biomeId = scene.currentBattle ? scene.arena?.biomeId : undefined;
+    const noTime = teamOf(scene);
     const biome = biomeId === undefined ? null : this.biomes[biomeId];
 
     this.panel.update({
@@ -30,12 +31,16 @@ export class Hud {
       biome: biome
         ? {
             name: this.biomeNames[biomeId as number] ?? biome.name,
-            groups: biomeView(biomeId as number, this.biomes, this.tiers, this.movesets),
+            groups: biomeView(biomeId as number, this.biomes, this.tiers, this.movesets, noTime),
           }
         : null,
-      destinations: destinationsView(biomeId ?? null, this.biomes, this.tiers, this.movesets).map(
-        (group) => ({ ...group, name: this.biomeNames[group.biome] ?? group.name }),
-      ),
+      destinations: destinationsView(
+        biomeId ?? null,
+        this.biomes,
+        this.tiers,
+        this.movesets,
+        noTime,
+      ).map((group) => ({ ...group, name: this.biomeNames[group.biome] ?? group.name })),
       missingTypes: coverageView(scene).flatMap((type) => typeNameOf(type) ?? []),
     });
   }

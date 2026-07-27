@@ -38,6 +38,8 @@ describe('destinationsView', () => {
     expect(destinationsView(1, biomes, table)[1]).toEqual({
       biome: 9,
       name: 'LAKE',
+      novos: 0,
+      total: 0,
       highlights: [],
     });
   });
@@ -54,9 +56,33 @@ describe('destinationsView', () => {
     expect(destinationsView(null, biomes, table)).toEqual([]);
   });
 
-  test('destaques vem ordenados pelo melhor alcance', () => {
+  test('destaques vem ordenados por raridade, do mais raro ao comum', () => {
     const highlights = destinationsView(1, biomes, table)[0]?.highlights ?? [];
-    expect(highlights.map((row) => row.name)).toEqual(['Ivysaur', 'Bulbasaur', 'Venusaur']);
+    expect(highlights.map((row) => row.rarity)).toEqual(['BOSS', 'COMMON', 'COMMON']);
+  });
+
+  test('nao repete a especie que aparece em duas raridades', () => {
+    const repetida = {
+      1: { name: 'PLAINS', pools: {}, links: [2] },
+      2: { name: 'GRASS', pools: { COMMON: [1], BOSS: [1] }, links: [] },
+    };
+    const grupo = destinationsView(1, repetida, table)[0];
+    expect(grupo?.highlights).toHaveLength(1);
+    expect(grupo?.total).toBe(1);
+  });
+
+  test('esconde o que o jogador ja capturou e conta quantos sobraram', () => {
+    const grupo = destinationsView(1, biomes, table, {}, new Set([1, 2]))[0];
+    expect(grupo?.highlights.map((row) => row.name)).toEqual(['Venusaur']);
+    expect(grupo?.novos).toBe(1);
+    expect(grupo?.total).toBe(3);
+  });
+
+  test('destino inteiro ja capturado devolve destaques vazios, mas o total continua', () => {
+    const grupo = destinationsView(1, biomes, table, {}, new Set([1, 2, 3]))[0];
+    expect(grupo?.highlights).toEqual([]);
+    expect(grupo?.novos).toBe(0);
+    expect(grupo?.total).toBe(3);
   });
 
   test('link para bioma ausente da tabela nao vira grupo', () => {

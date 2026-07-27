@@ -3,6 +3,7 @@ import { missingTypes } from '../domain/coverage';
 import type { MovesetTable } from '../domain/moveset';
 import { bestReachable, type ReachableSource } from '../domain/reachable';
 import { keyFor } from '../domain/species-key';
+import { type TeamSpecies, teamSpeciesOf } from '../domain/team-species';
 import { compareTier, type Tier } from '../domain/tier';
 import { resolveTiers, type TierTable } from '../domain/tier-table';
 import type { BattleScene, PokeRoguePokemon } from '../game/pokerogue';
@@ -19,6 +20,10 @@ export interface PokemonRow {
   moves: readonly string[];
   hiddenAbility: string | null;
   catchRate: number | null;
+  owned: boolean;
+  rarity: PoolTier | null;
+  types: readonly number[];
+  evolutions: readonly { name: string; level: number }[];
 }
 
 export interface BiomeGroup {
@@ -29,6 +34,8 @@ export interface BiomeGroup {
 export interface DestinationGroup {
   biome: number;
   name: string;
+  novos: number;
+  total: number;
   highlights: PokemonRow[];
 }
 
@@ -57,19 +64,38 @@ function rowFor(
     moves: moves ?? [],
     hiddenAbility: null,
     catchRate: null,
+    owned: false,
+    rarity: null,
+    types: [],
+    evolutions: [],
   };
+}
+
+function evolutionsOf(
+  pokemon: PokeRoguePokemon,
+  table: TierTable,
+): readonly { name: string; level: number }[] {
+  const steps = pokemon.species.getEvolutionLevels?.() ?? [];
+
+  return steps
+    .map(([speciesId, level]) => ({
+      name: table[`${speciesId}`]?.name ?? `#${speciesId}`,
+      level,
+    }))
+    .sort((a, b) => a.level - b.level);
 }
 
 function detailsOf(
   pokemon: PokeRoguePokemon,
   abilityNames: Record<number, string>,
-): Pick<PokemonRow, 'hiddenAbility' | 'catchRate'> {
+): Pick<PokemonRow, 'hiddenAbility' | 'catchRate' | 'types'> {
   const species = pokemon.species;
   const hidden = species.abilityHidden;
 
   return {
     hiddenAbility: hidden ? (abilityNames[hidden] ?? null) : null,
     catchRate: species.catchRate ?? null,
+    types: [species.type1, species.type2].filter((t): t is number => typeof t === 'number'),
   };
 }
 
@@ -87,6 +113,7 @@ const rowForPokemon = (
     movesets,
   ),
   ...detailsOf(pokemon, abilityNames),
+  evolutions: evolutionsOf(pokemon, table),
 });
 
 const byReach = (a: PokemonRow, b: PokemonRow) => compareTier(a.reachTier, b.reachTier);
@@ -114,6 +141,10 @@ export function partyView(
   );
 }
 
+export function teamOf(scene: BattleScene): TeamSpecies {
+  return teamSpeciesOf((scene.party ?? []).map((p) => ({ speciesId: p.species.speciesId })));
+}
+
 export function coverageView(scene: BattleScene): readonly number[] {
   const team = (scene.party ?? []).map((pokemon) => ({
     types: [pokemon.species.type1, pokemon.species.type2].filter(
@@ -129,6 +160,7 @@ export function destinationsView(
   biomes: BiomeTable,
   table: TierTable,
   movesets: MovesetTable = {},
+  caught: TeamSpecies = new Set(),
 ): DestinationGroup[] {
   const current = biomeId === null ? undefined : biomes[biomeId];
   if (!current) return [];
@@ -137,17 +169,44 @@ export function destinationsView(
     const entry = biomes[destination];
     if (!entry) return [];
 
-    const highlights = Object.values(entry.pools)
-      .flat()
-      .map((speciesId) => {
-        const known = table[`${speciesId}`];
-        return rowFor(known?.name ?? `#${speciesId}`, speciesId, null, table, movesets);
-      })
-      .sort(byReach)
-      .slice(0, HIGHLIGHT_LIMIT);
+    const vistos = new Set<number>();
+    const todos: PokemonRow[] = [];
 
-    return [{ biome: destination, name: entry.name, highlights }];
+    for (const poolTier of POOL_TIER_ORDER) {
+      for (const speciesId of entry.pools[poolTier] ?? []) {
+        if (vistos.has(speciesId)) continue;
+        vistos.add(speciesId);
+        todos.push(speciesRow(speciesId, table, movesets, caught, poolTier));
+      }
+    }
+
+    const novos = todos.filter((row) => !row.owned);
+
+    return [
+      {
+        biome: destination,
+        name: entry.name,
+        novos: novos.length,
+        total: todos.length,
+        highlights: novos.slice(0, HIGHLIGHT_LIMIT),
+      },
+    ];
   });
+}
+
+function speciesRow(
+  speciesId: number,
+  table: TierTable,
+  movesets: MovesetTable,
+  caught: TeamSpecies,
+  rarity: PoolTier,
+): PokemonRow {
+  const known = table[`${speciesRefOf(speciesId, '').speciesId}`];
+  return {
+    ...rowFor(known?.name ?? `#${speciesId}`, speciesId, null, table, movesets),
+    owned: caught.has(speciesId),
+    rarity,
+  };
 }
 
 export function biomeView(
@@ -155,6 +214,7 @@ export function biomeView(
   biomes: BiomeTable,
   table: TierTable,
   movesets: MovesetTable = {},
+  caught: TeamSpecies = new Set(),
 ): BiomeGroup[] {
   const biome = biomes[biomeId];
   if (!biome) return [];
@@ -166,12 +226,8 @@ export function biomeView(
     if (!ids?.length) continue;
 
     const entries = ids
-      .map((speciesId) => {
-        const key = speciesRefOf(speciesId, '');
-        const known = table[`${key.speciesId}`];
-        return rowFor(known?.name ?? `#${speciesId}`, speciesId, null, table, movesets);
-      })
-      .sort(byReach);
+      .map((speciesId) => speciesRow(speciesId, table, movesets, caught, poolTier))
+      .sort((a, b) => Number(a.owned) - Number(b.owned) || byReach(a, b));
 
     groups.push({ tier: poolTier, entries });
   }

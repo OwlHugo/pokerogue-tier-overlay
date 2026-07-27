@@ -13,6 +13,10 @@ const row = (over: Partial<PokemonRow> = {}): PokemonRow => ({
   source: 'line',
   hiddenAbility: null,
   catchRate: null,
+  owned: false,
+  rarity: null,
+  types: [],
+  evolutions: [],
   ...over,
 });
 
@@ -153,8 +157,8 @@ describe('Panel', () => {
       party: [],
       biome: null,
       destinations: [
-        { biome: 2, name: 'Campo', highlights: [row({ name: 'Ivysaur' })] },
-        { biome: 9, name: 'Lago', highlights: [] },
+        { biome: 2, name: 'Campo', novos: 1, total: 3, highlights: [row({ name: 'Ivysaur' })] },
+        { biome: 9, name: 'Lago', novos: 0, total: 0, highlights: [] },
       ],
       missingTypes: [],
     });

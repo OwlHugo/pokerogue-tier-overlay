@@ -12,6 +12,7 @@ export interface PokeRogueSpecies {
   catchRate?: number;
   abilityHidden?: number;
   forms?: readonly SpeciesForm[];
+  getEvolutionLevels?(): readonly (readonly [number, number])[];
 }
 
 export interface PokeRoguePokemon extends DisplayContainer {
@@ -39,7 +40,16 @@ export interface Arena {
   biomeId: number;
 }
 
+export interface DexEntry {
+  caughtAttr?: bigint | number;
+}
+
+export interface GameData {
+  dexData?: Record<number, DexEntry>;
+}
+
 export interface BattleScene extends Scene {
+  gameData?: GameData;
   currentBattle: object | null;
   getEnemyField(): readonly PokeRoguePokemon[];
   party?: readonly PokeRoguePokemon[];
