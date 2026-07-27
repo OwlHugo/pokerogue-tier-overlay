@@ -204,7 +204,8 @@ function rowElement(row: PokemonRow, locale: Locale): HTMLElement {
 
   const note = SOURCE_NOTE[row.source];
   if (row.reachName && row.reachName !== row.name) {
-    const texto = note ? `vira ${row.reachName} (${note})` : `vira ${row.reachName}`;
+    const vira = t('becomes', locale);
+    const texto = note ? `${vira} ${row.reachName} (${note})` : `${vira} ${row.reachName}`;
     under.append(span('ptr-reach', texto));
   }
 
