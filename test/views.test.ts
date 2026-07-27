@@ -83,7 +83,9 @@ describe('biomeView', () => {
   });
 
   test('ordena cada grupo pelo melhor tier alcancavel', () => {
-    const table: BiomeTable = { 1: { name: 'PLAINS', pools: { COMMON: [163, 303, 129] }, links: [] } };
+    const table: BiomeTable = {
+      1: { name: 'PLAINS', pools: { COMMON: [163, 303, 129] }, links: [] },
+    };
     const [group] = biomeView(1, table, tiers);
 
     expect(group?.entries.map((e) => e.name)).toEqual(['Mawile', 'Magikarp', 'Hoothoot']);

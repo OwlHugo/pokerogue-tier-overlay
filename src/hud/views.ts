@@ -1,10 +1,10 @@
 import { type BiomeTable, POOL_TIER_ORDER, type PoolTier } from '../domain/biome';
 import { missingTypes } from '../domain/coverage';
-import { bestReachable, type ReachableSource } from '../domain/reachable';
-import { compareTier, type Tier } from '../domain/tier';
-import { keyFor } from '../domain/species-key';
-import { resolveTiers, type TierTable } from '../domain/tier-table';
 import type { MovesetTable } from '../domain/moveset';
+import { bestReachable, type ReachableSource } from '../domain/reachable';
+import { keyFor } from '../domain/species-key';
+import { compareTier, type Tier } from '../domain/tier';
+import { resolveTiers, type TierTable } from '../domain/tier-table';
 import type { BattleScene, PokeRoguePokemon } from '../game/pokerogue';
 import { speciesRefOf } from '../game/species-ref';
 

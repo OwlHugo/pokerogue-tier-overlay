@@ -1,9 +1,9 @@
 import type { BiomeTable } from '../domain/biome';
+import { typeNameOf } from '../domain/coverage';
 import type { MovesetTable } from '../domain/moveset';
 import type { TierTable } from '../domain/tier-table';
 import type { BattleScene } from '../game/pokerogue';
 import { Panel } from './panel';
-import { typeNameOf } from '../domain/coverage';
 import { biomeView, coverageView, destinationsView, fieldView, partyView } from './views';
 
 const BIOME_LABELS = new Map<string, string>([
