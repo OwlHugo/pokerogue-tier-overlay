@@ -41,8 +41,6 @@ export interface DestinationGroup {
   highlights: PokemonRow[];
 }
 
-const HIGHLIGHT_LIMIT = 6;
-
 function rowFor(
   name: string,
   speciesId: number,
@@ -199,7 +197,7 @@ export function destinationsView(
       }
     }
 
-    const novos = todos.filter((row) => !row.owned);
+    const novos = todos.filter((row) => !row.owned).sort(byReach);
 
     return [
       {
@@ -207,7 +205,7 @@ export function destinationsView(
         name: entry.name,
         novos: novos.length,
         total: todos.length,
-        highlights: novos.slice(0, HIGHLIGHT_LIMIT),
+        highlights: novos,
       },
     ];
   });
@@ -238,18 +236,20 @@ export function biomeView(
   const biome = biomes[biomeId];
   if (!biome) return [];
 
-  const groups: BiomeGroup[] = [];
+  const vistos = new Set<number>();
+  const entries: PokemonRow[] = [];
 
   for (const poolTier of POOL_TIER_ORDER) {
-    const ids = biome.pools[poolTier];
-    if (!ids?.length) continue;
-
-    const entries = ids
-      .map((speciesId) => speciesRow(speciesId, table, movesets, caught, poolTier))
-      .sort((a, b) => Number(a.owned) - Number(b.owned) || byReach(a, b));
-
-    groups.push({ tier: poolTier, entries });
+    for (const speciesId of biome.pools[poolTier] ?? []) {
+      if (vistos.has(speciesId)) continue;
+      vistos.add(speciesId);
+      entries.push(speciesRow(speciesId, table, movesets, caught, poolTier));
+    }
   }
 
-  return groups;
+  if (!entries.length) return [];
+
+  entries.sort((a, b) => Number(a.owned) - Number(b.owned) || byReach(a, b));
+
+  return [{ tier: 'BOSS', entries }];
 }

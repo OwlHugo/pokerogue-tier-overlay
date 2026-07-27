@@ -71,11 +71,19 @@ describe('partyView', () => {
 });
 
 describe('biomeView', () => {
-  test('agrupa os encontros do bioma por raridade, do mais raro ao mais comum', () => {
+  test('lista o bioma inteiro numa lista so, com o melhor alcance no topo', () => {
     const groups = biomeView(9, biomes, tiers);
 
-    expect(groups.map((g) => g.tier)).toEqual(['BOSS', 'COMMON']);
+    expect(groups).toHaveLength(1);
     expect(groups[0]?.entries[0]).toMatchObject({ name: 'Mawile', reachTier: 'OU' });
+  });
+
+  test('nao repete a especie que aparece em duas raridades', () => {
+    const repetido: BiomeTable = {
+      9: { name: 'LAKE', pools: { COMMON: [129], BOSS: [129] }, links: [] },
+    };
+
+    expect(biomeView(9, repetido, tiers)[0]?.entries).toHaveLength(1);
   });
 
   test('bioma desconhecido devolve lista vazia em vez de inventar', () => {

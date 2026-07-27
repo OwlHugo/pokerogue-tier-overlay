@@ -78,7 +78,9 @@ const css = `
 .ptr-head{display:flex;align-items:baseline;gap:8px;padding:8px 13px;
   background:linear-gradient(180deg,#2a2a31,#1e1e24);border-bottom:2px solid #0c0c0f}
 .ptr-title{flex:1;font-size:12.5px;color:#f0b429;letter-spacing:.05em;text-transform:uppercase}
-.ptr-sub{font-size:10.5px;color:#8d8a83;font-weight:600}
+.ptr-lang{cursor:pointer;padding:2px 8px;border-radius:6px;background:#2a2a31;border:1px solid #3c3c46;
+  color:#8d8a83;font-size:10px;font-weight:800;letter-spacing:.08em}
+.ptr-lang:hover{color:#f0b429;border-color:#f0b429}
 
 .ptr-tabs{display:flex;gap:4px;padding:6px;background:#191920;border-bottom:1px solid #0c0c0f}
 .ptr-tab{flex:1;padding:6px 4px;text-align:center;cursor:pointer;font-size:11.5px;color:#9a968d;
@@ -95,8 +97,8 @@ const css = `
 
 .ptr-row{display:flex;flex-direction:column;gap:3px;padding:7px 9px;margin-bottom:4px;cursor:pointer;
   background:#202026;border:1px solid #31313a;border-left:4px solid #4d4d59;border-radius:8px;
-  transition:transform .08s,border-color .1s,background .1s}
-.ptr-row:hover{transform:translateX(2px);border-color:#f0b429;background:#26262e}
+  transition:border-color .1s,background .1s}
+.ptr-row:hover{border-color:#f0b429;background:#26262e}
 .ptr-row[data-owned="1"]{opacity:.45}
 .ptr-top{display:flex;align-items:center;gap:6px;width:100%}
 .ptr-name{flex:1;min-width:66px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
@@ -276,10 +278,8 @@ function tagList(textos: readonly string[]): HTMLElement {
 function setElement(set: SmogonBuild['sets'][number]): HTMLElement {
   const caixa = div('ptr-block');
 
-  const cabecalho = div('ptr-set-head');
-  cabecalho.append(span('ptr-tag ptr-strategy', set.name));
-  if (set.nature) cabecalho.append(span('ptr-facts', `Nature ${set.nature}`));
-  caixa.append(cabecalho, tagList(set.moves));
+  if (set.nature) caixa.append(span('ptr-facts ptr-set-head', `Nature ${set.nature}`));
+  caixa.append(tagList(set.moves));
 
   return caixa;
 }
@@ -314,6 +314,21 @@ function detailElement(row: PokemonRow, abilityNames: NamesByLocale, locale: Loc
   return box;
 }
 
+function rowSignature(row: PokemonRow): string {
+  return `${row.key}|${row.level}|${row.reachTier}|${row.owned}`;
+}
+
+function signatureOf(content: PanelContent): string {
+  return [
+    content.field.map(rowSignature).join(','),
+    content.party.map(rowSignature).join(','),
+    content.biome?.name ?? '',
+    content.biome?.groups.map((g) => `${g.tier}:${g.entries.length}`).join(',') ?? '',
+    content.destinations.map((d) => `${d.biome}:${d.novos}/${d.total}`).join(','),
+    content.missingTypes.join(','),
+  ].join('#');
+}
+
 function emptyElement(message: string): HTMLElement {
   return span('ptr-empty', message);
 }
@@ -325,10 +340,12 @@ export class Panel {
   private readonly body: HTMLElement;
   private readonly subtitle: HTMLElement;
   private readonly hint: HTMLElement;
+  private readonly langButton: HTMLElement;
   private readonly tabs = new Map<TabId, HTMLElement>();
   private open = false;
   private active: TabId = 'field';
   private expanded: string | null = null;
+  private signature = '';
   private content: PanelContent = {
     field: [],
     party: [],
@@ -364,6 +381,14 @@ export class Panel {
     this.subtitle = span('ptr-title', '');
     head.append(this.subtitle);
 
+    this.langButton = span('ptr-lang', '');
+    this.langButton.addEventListener('click', () => {
+      this.locale = this.locale === 'pt' ? 'en' : 'pt';
+      this.relabel();
+      if (this.open) this.render();
+    });
+    head.append(this.langButton);
+
     const tabs = document.createElement('div');
     tabs.className = 'ptr-tabs';
     for (const id of ['field', 'party', 'biome', 'destinations'] as TabId[]) {
@@ -381,7 +406,13 @@ export class Panel {
     this.root.append(this.toggle, this.panel);
     this.host.append(this.root);
 
+    this.relabel();
     this.select('field');
+  }
+
+  private relabel(): void {
+    this.langButton.textContent = this.locale === 'pt' ? 'EN' : 'PT';
+    for (const [id, tab] of this.tabs) tab.textContent = t(TAB_KEYS[id], this.locale);
   }
 
   get isOpen(): boolean {
@@ -399,6 +430,10 @@ export class Panel {
   }
 
   update(content: PanelContent): void {
+    const assinatura = signatureOf(content);
+    if (assinatura === this.signature) return;
+
+    this.signature = assinatura;
     this.content = content;
     if (this.open) this.render();
   }
