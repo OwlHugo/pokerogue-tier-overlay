@@ -10,8 +10,8 @@ import type { BadgeLayer } from '../render/badge-layer';
 import { shortLabel } from '../render/label';
 import { badgeSpecsFor } from './badge-specs';
 
-const FOCUS_OFFSET = { x: 8, y: 100 };
-const FOCUS_SCALE = 0.42;
+const FOCUS_OFFSET = { x: 55, y: 96 };
+const FOCUS_SCALE = 0.26;
 
 import type { Surface } from './surface';
 
