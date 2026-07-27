@@ -70,6 +70,11 @@ o jogo.
 Isso é sugestão competitiva, não uma lista do que o Pokémon aprende no PokéRogue — o jogo
 tem movepool e itens próprios.
 
+A mesma linha aberta mostra a **hidden ability** e a **catch rate**, lidas direto do objeto
+que o jogo tem em memória — então acompanham a versão que você está rodando, sem tabela
+gerada no meio. Espécie sem hidden ability simplesmente não mostra a linha: o overlay omite
+em vez de preencher.
+
 ### Aba de bioma
 
 Lista o que aparece no bioma atual, agrupado por raridade (Chefe, Ultra raro, … Comum) e

@@ -59,6 +59,7 @@ const css = `
 .ptr-lvl{color:#8b8b94;font-size:11px}
 .ptr-tier{padding:1px 7px;border-radius:4px;font-weight:700;font-size:11px;letter-spacing:.02em}
 .ptr-via{color:#a5a5ae;font-size:11px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ptr-facts{padding:1px 8px 5px;color:#8b8b94;font-size:11px}
 .ptr-group{margin:6px 2px 3px;color:#8b8b94;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
 .ptr-empty{padding:16px 8px;text-align:center;color:#8b8b94}
 .ptr-row{cursor:pointer}
@@ -121,6 +122,18 @@ function rowElement(row: PokemonRow): HTMLElement {
   }
 
   element.append(tierChip(row.reachTier));
+  return element;
+}
+
+function factsElement(row: PokemonRow): HTMLElement | null {
+  const facts: string[] = [];
+  if (row.hiddenAbility) facts.push(`HA ${row.hiddenAbility}`);
+  if (row.catchRate !== null) facts.push(`Captura ${row.catchRate}`);
+  if (!facts.length) return null;
+
+  const element = document.createElement('div');
+  element.className = 'ptr-facts';
+  element.textContent = facts.join(' · ');
   return element;
 }
 
@@ -261,7 +274,10 @@ export class Panel {
       this.render();
     });
 
-    return this.expanded === id ? [element, movesElement(row)] : [element];
+    if (this.expanded !== id) return [element];
+
+    const facts = factsElement(row);
+    return facts ? [element, facts, movesElement(row)] : [element, movesElement(row)];
   }
 
   private renderBiome(): void {

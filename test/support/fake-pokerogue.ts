@@ -11,6 +11,9 @@ interface PokemonOptions {
   name: string;
   formIndex?: number;
   forms?: SpeciesForm[];
+  catchRate?: number;
+  abilityHidden?: number;
+  types?: number[];
   fusion?: { speciesId: number; name: string; formIndex?: number; forms?: SpeciesForm[] };
 }
 
@@ -20,6 +23,11 @@ export function fakePokemon(options: PokemonOptions): PokeRoguePokemon {
     speciesId: options.speciesId,
     name: options.name,
     forms: options.forms ?? [],
+    ...(options.catchRate === undefined ? {} : { catchRate: options.catchRate }),
+    ...(options.abilityHidden === undefined ? {} : { abilityHidden: options.abilityHidden }),
+    ...(options.types === undefined
+      ? {}
+      : { type1: options.types[0], type2: options.types[1] ?? null }),
   };
   pokemon.formIndex = options.formIndex ?? 0;
   pokemon.fusionSpecies = options.fusion
@@ -46,10 +54,12 @@ export function fakeStarterContainer(options: {
 
 export function fakeBattleScene(options: {
   enemies: PokeRoguePokemon[] | null;
+  party?: PokeRoguePokemon[];
 }): FakeScene & BattleScene {
   const scene = new FakeScene() as FakeScene & BattleScene;
   scene.currentBattle = options.enemies ? {} : null;
   scene.getEnemyField = () => options.enemies ?? [];
+  scene.party = options.party ?? [];
   scene.ui = { mode: 0, handlers: [] };
   return scene;
 }

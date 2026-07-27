@@ -17,6 +17,8 @@ export interface PokemonRow {
   reachName: string | null;
   source: ReachableSource;
   moves: readonly string[];
+  hiddenAbility: string | null;
+  catchRate: number | null;
 }
 
 export interface BiomeGroup {
@@ -53,6 +55,21 @@ function rowFor(
     reachName: reach.name,
     source: reach.source,
     moves: moves ?? [],
+    hiddenAbility: null,
+    catchRate: null,
+  };
+}
+
+function detailsOf(
+  pokemon: PokeRoguePokemon,
+  abilityNames: Record<number, string>,
+): Pick<PokemonRow, 'hiddenAbility' | 'catchRate'> {
+  const species = pokemon.species;
+  const hidden = species.abilityHidden;
+
+  return {
+    hiddenAbility: hidden ? (abilityNames[hidden] ?? null) : null,
+    catchRate: species.catchRate ?? null,
   };
 }
 
@@ -60,8 +77,17 @@ const rowForPokemon = (
   pokemon: PokeRoguePokemon,
   table: TierTable,
   movesets: MovesetTable,
-): PokemonRow =>
-  rowFor(pokemon.species.name, pokemon.species.speciesId, pokemon.level ?? null, table, movesets);
+  abilityNames: Record<number, string>,
+): PokemonRow => ({
+  ...rowFor(
+    pokemon.species.name,
+    pokemon.species.speciesId,
+    pokemon.level ?? null,
+    table,
+    movesets,
+  ),
+  ...detailsOf(pokemon, abilityNames),
+});
 
 const byReach = (a: PokemonRow, b: PokemonRow) => compareTier(a.reachTier, b.reachTier);
 
@@ -69,17 +95,23 @@ export function fieldView(
   scene: BattleScene,
   table: TierTable,
   movesets: MovesetTable = {},
+  abilityNames: Record<number, string> = {},
 ): PokemonRow[] {
   if (!scene.currentBattle) return [];
-  return scene.getEnemyField().map((pokemon) => rowForPokemon(pokemon, table, movesets));
+  return scene
+    .getEnemyField()
+    .map((pokemon) => rowForPokemon(pokemon, table, movesets, abilityNames));
 }
 
 export function partyView(
   scene: BattleScene,
   table: TierTable,
   movesets: MovesetTable = {},
+  abilityNames: Record<number, string> = {},
 ): PokemonRow[] {
-  return (scene.party ?? []).map((pokemon) => rowForPokemon(pokemon, table, movesets));
+  return (scene.party ?? []).map((pokemon) =>
+    rowForPokemon(pokemon, table, movesets, abilityNames),
+  );
 }
 
 export function coverageView(scene: BattleScene): readonly number[] {

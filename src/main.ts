@@ -1,6 +1,6 @@
 import { BIOME_TABLE } from '../data/biome-table.generated';
 import { MOVESET_TABLE } from '../data/moveset-table.generated';
-import { BIOME_NAMES } from '../data/names.generated';
+import { ABILITY_NAMES, BIOME_NAMES } from '../data/names.generated';
 import { TIER_TABLE } from '../data/tier-table.generated';
 import { startOverlay } from './bootstrap';
 import { armCapture } from './game/capture';
@@ -12,7 +12,14 @@ const CAPTURE_TIMEOUT_MS = 20_000;
 
 const armed = armCapture(window as PhaserHost, ({ game }) => {
   window.clearTimeout(timeout);
-  const runner = startOverlay(game, TIER_TABLE, BIOME_TABLE, MOVESET_TABLE, BIOME_NAMES);
+  const runner = startOverlay(
+    game,
+    TIER_TABLE,
+    BIOME_TABLE,
+    MOVESET_TABLE,
+    BIOME_NAMES,
+    ABILITY_NAMES,
+  );
   window.setInterval(() => runner.tick(), TICK_INTERVAL_MS);
 });
 

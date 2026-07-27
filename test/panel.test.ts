@@ -11,6 +11,8 @@ const row = (over: Partial<PokemonRow> = {}): PokemonRow => ({
   reachTier: 'RU',
   reachName: 'Gyarados',
   source: 'line',
+  hiddenAbility: null,
+  catchRate: null,
   ...over,
 });
 
@@ -262,6 +264,40 @@ describe('golpes sugeridos', () => {
 
     const moves = [...document.querySelectorAll('.ptr-move')].map((m) => m.textContent);
     expect(moves).toEqual(['B']);
+  });
+
+  test('a linha aberta mostra hidden ability e catch rate', () => {
+    const panel = new Panel();
+    panel.update({
+      field: [row({ hiddenAbility: 'Telepathy', catchRate: 235, moves: ['Psychic'] })],
+      party: [],
+      biome: null,
+      destinations: [],
+      missingTypes: [],
+    });
+    toggle()?.click();
+
+    document.querySelector<HTMLElement>('.ptr-row')?.click();
+
+    expect(document.body.textContent).toContain('HA Telepathy');
+    expect(document.body.textContent).toContain('Captura 235');
+  });
+
+  test('sem hidden ability nem catch rate a linha de fatos nao existe', () => {
+    const panel = new Panel();
+    panel.update({
+      field: [row({ moves: ['Psychic'] })],
+      party: [],
+      biome: null,
+      destinations: [],
+      missingTypes: [],
+    });
+    toggle()?.click();
+
+    document.querySelector<HTMLElement>('.ptr-row')?.click();
+
+    expect(document.querySelectorAll('.ptr-facts')).toHaveLength(0);
+    expect(document.body.textContent).not.toMatch(/desconhecid/i);
   });
 
   test('especie sem set no Smogon diz isso em vez de ficar vazia', () => {

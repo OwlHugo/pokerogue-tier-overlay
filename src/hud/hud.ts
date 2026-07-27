@@ -14,6 +14,7 @@ export class Hud {
     private readonly biomes: BiomeTable,
     private readonly movesets: MovesetTable = {},
     private readonly biomeNames: Record<number, string> = {},
+    private readonly abilityNames: Record<number, string> = {},
   ) {}
 
   sync(scene: BattleScene): void {
@@ -24,8 +25,8 @@ export class Hud {
     const biome = biomeId === undefined ? null : this.biomes[biomeId];
 
     this.panel.update({
-      field: fieldView(scene, this.tiers, this.movesets),
-      party: partyView(scene, this.tiers, this.movesets),
+      field: fieldView(scene, this.tiers, this.movesets, this.abilityNames),
+      party: partyView(scene, this.tiers, this.movesets, this.abilityNames),
       biome: biome
         ? {
             name: this.biomeNames[biomeId as number] ?? biome.name,

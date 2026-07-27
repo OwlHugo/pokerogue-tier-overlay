@@ -9,6 +9,8 @@ export interface PokeRogueSpecies {
   name: string;
   type1?: number;
   type2?: number | null;
+  catchRate?: number;
+  abilityHidden?: number;
   forms?: readonly SpeciesForm[];
 }
 
