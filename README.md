@@ -42,7 +42,7 @@ tem cerca de 180 kB — alguns navegadores não gostam de favoritos tão longos.
 |---|---|
 | Batalha | Badge acima de cada Pokémon inimigo, com o tier atual e o melhor tier alcançável |
 | Escolha de starter | A sigla do melhor tier em cada ícone da grade, acompanhando filtros e rolagem |
-| Painel (botão "Tiers") | Abas de **Em campo**, **Meu time** e **Bioma** |
+| Painel (botão "Tiers") | Abas de **Em campo**, **Meu time** e **Bioma**; clique numa linha para ver os golpes |
 
 O painel fica fechado por padrão, como um botão pequeno no canto do jogo. Os dados só
 aparecem quando você pede — a tela do jogo continua sendo do jogo.
@@ -59,6 +59,16 @@ volta a ser Eevee, então ele não "alcança" o Gmax do Eevee nem os outros eeve
 
 Pokémon fundidos mostram o melhor tier entre as duas linhas. Espécie que o Smogon não
 cataloga aparece como `?` — o overlay nunca inventa um tier.
+
+### Golpes
+
+Clicar em qualquer Pokémon do painel abre os golpes que o Smogon mais usa nele. São 987
+espécies destiladas dos sets oficiais: guardamos apenas os 6 golpes mais recorrentes de
+cada uma, o que reduz 1,1 MB de sets para 75 kB e mantém tudo funcionando sem rede durante
+o jogo.
+
+Isso é sugestão competitiva, não uma lista do que o Pokémon aprende no PokéRogue — o jogo
+tem movepool e itens próprios.
 
 ### Aba de bioma
 
@@ -79,6 +89,7 @@ npm run build
 | `npm run build` | gera `dist/pokerogue-tier-overlay.user.js` |
 | `npm run build:tiers` | regenera a tabela de tiers a partir do `@pkmn/dex` |
 | `npm run build:biomes` | regenera os pools de encontro a partir do repositório do PokéRogue |
+| `npm run build:movesets` | regenera os golpes a partir dos sets do Smogon |
 | `npm run build:bookmarklet` | gera `dist/bookmarklet.txt` |
 | `npm test` | testes (Vitest) |
 | `npm run typecheck` | TypeScript em modo strict |
@@ -124,8 +135,7 @@ seria pior que nenhum painel.
 
 ## Limitações conhecidas
 
-- Não sugere moveset nem analisa cobertura de tipos do time. O painel mostra tier e
-  alcance; escolha de golpes ainda é com você.
+- Não analisa cobertura de tipos do time nem sugere trocas.
 - Formas exclusivas do PokéRogue sem equivalente no Smogon caem para a espécie base.
 - Tier mede força no metagame competitivo do Smogon, que não é a mesma coisa que força no
   PokéRogue: o jogo tem passivas, fusões e itens que o Smogon não modela.
