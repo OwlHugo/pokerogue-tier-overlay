@@ -3,6 +3,7 @@ export type PoolTier = 'COMMON' | 'UNCOMMON' | 'RARE' | 'SUPER_RARE' | 'ULTRA_RA
 export interface BiomeEntry {
   name: string;
   pools: Partial<Record<PoolTier, readonly number[]>>;
+  links: readonly number[];
 }
 
 export type BiomeTable = Record<number, BiomeEntry>;

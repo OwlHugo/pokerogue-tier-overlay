@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "..",
+    "paths": {
+      "#data/terrain": ["tools/stubs/terrain.ts"],
+      "#enums/*": [".upstream/pokerogue/src/enums/*"],
+      "#types/*": [".upstream/pokerogue/src/@types/*"],
+      "#data/*": [".upstream/pokerogue/src/data/*"]
+    }
+  },
+  "include": ["stubs"]
+}
