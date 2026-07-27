@@ -33,25 +33,27 @@
           <li class="node" data-hue="now" data-step="0">
             <span class="when">What you met</span>
             <span class="who">Magikarp</span>
-            <span class="score">Splash and nothing else</span>
+            <span class="score">Still grows</span>
           </li>
           <li class="node" data-hue="reach" data-step="1">
             <span class="when">What it becomes</span>
             <span class="who">Gyarados</span>
-            <span class="score">Worth the slot</span>
+            <span class="score">Good</span>
           </li>
           <li class="node" data-hue="ceiling" data-step="2">
             <span class="when">Its ceiling</span>
             <span class="who">Gyarados-Mega</span>
-            <span class="score">Carries a run</span>
+            <span class="score">Very good</span>
           </li>
         </ol>
 
         <p class="arc-note">
-          The scoring underneath is Smogon's species ranking — the best public measure of how
-          good a fully grown Pokémon is. PokéRogue has no ranking of its own, so the overlay
-          borrows that one and shows it for what it is: a strong hint about the end of the line,
-          not a stat the game tracks.
+          Those are the overlay's own words. Over that Magikarp it prints
+          <code>Good → Gyarados</code>: the verdict, and where the verdict comes from. The Mega
+          is not in the sentence — it shows up as a <code>+M</code> mark, and only when it is
+          genuinely better than where the line already ends. Behind the verdict sits Smogon's
+          species ranking, the best public measure of a grown Pokémon. PokéRogue has none of its
+          own, so the overlay borrows it and says the result in plain words.
         </p>
 
         <div class="cta-row">
@@ -59,8 +61,8 @@
              href="https://github.com/OwlHugo/pokerogue-tier-overlay">Install</a>
           <a class="btn" href="https://github.com/OwlHugo/pokerogue-tier-overlay">Read the source</a>
         </div>
-        <p class="btn-note" data-nolink="Greasyfork listing on the way · AGPL-3.0 · no network calls">
-          Free · AGPL-3.0 · no network calls
+        <p class="btn-note" data-nolink="Greasyfork listing on the way · AGPL-3.0 · English and Portuguese · no network calls">
+          Free · AGPL-3.0 · English and Portuguese · no network calls
         </p>
       </div>
     </header>
@@ -75,15 +77,39 @@
       <div class="surfaces">
         <article class="surface">
           <h3>Battle</h3>
-          <p>A badge above each enemy, with its current tier and the best tier anything in its line can reach — evolution, Mega and Gigantamax included.</p>
+          <p>A verdict above each enemy — <code>Good → Gyarados</code> — plus <code>+M</code> or <code>+G</code> when a Mega or Gigantamax beats where the line already ends.</p>
         </article>
         <article class="surface">
           <h3>Starter select</h3>
-          <p>The best reachable tier on every icon in the grid, following filters and scroll, because it is drawn by the game itself.</p>
+          <p>One letter per icon across the whole grid, following filters and scroll because the game draws it. The focused starter gets the verdict spelled out.</p>
         </article>
         <article class="surface">
           <h3>Guide panel</h3>
-          <p>Tabs for the enemy, your team, the current biome and where that biome leads. Closed until you open it.</p>
+          <p>Four tabs — enemy, team, biome, destinations — and a legend for the letters. Open a row for the evolution line graded step by step, the abilities, and how hard the catch is.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Not a Smogon reader</p>
+      <h2>The parts that only make sense here</h2>
+      <p class="section-lede">
+        A competitive ranking answers one question. A roguelite asks others, and these are the
+        ones the overlay went and answered on its own.
+      </p>
+
+      <div class="surfaces">
+        <article class="surface">
+          <h3>Snowball abilities</h3>
+          <p>Some abilities stack a stat on every knockout and keep it between waves. That is a Pokémon which clears waves by itself — a roguelite property Smogon has no reason to score. The panel flags it.</p>
+        </article>
+        <article class="surface">
+          <h3>Catch, in words</h3>
+          <p>The game holds a catch rate as a number. The panel says very easy, easy, average, hard, very hard — read straight from the object in memory, so it tracks whatever build you are running.</p>
+        </article>
+        <article class="surface">
+          <h3>It repairs the game</h3>
+          <p>PokéRogue can write the literal text <code>undefined</code> into its own <code>starterPrefs_</code> storage, and the starter screen then refuses to load. The overlay clears those entries before it draws anything.</p>
         </article>
       </div>
     </section>
@@ -122,9 +148,9 @@
       <p class="eyebrow">Honest limits</p>
       <h2>What it will not do for you</h2>
       <p class="section-lede">
-        Tier measures strength in Smogon's competitive metagame, which is not the same thing as
-        strength in PokéRogue — the game has passives, fusions and items Smogon does not model.
-        It is a signal, not a verdict.
+        The ranking underneath comes from Smogon's competitive metagame, which is not the same
+        thing as strength in PokéRogue — the game has passives, fusions and items Smogon never
+        modelled. The verdict is about the species, not about your run.
       </p>
       <p class="section-lede">
         It does not calculate damage, does not compute weaknesses, and does not tell you which

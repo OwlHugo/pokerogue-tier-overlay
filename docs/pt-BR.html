@@ -33,25 +33,27 @@
           <li class="node" data-hue="now" data-step="0">
             <span class="when">O que você encontrou</span>
             <span class="who">Magikarp</span>
-            <span class="score">Splash e mais nada</span>
+            <span class="score">Ainda cresce</span>
           </li>
           <li class="node" data-hue="reach" data-step="1">
             <span class="when">No que ele vira</span>
             <span class="who">Gyarados</span>
-            <span class="score">Vale a vaga</span>
+            <span class="score">Bom</span>
           </li>
           <li class="node" data-hue="ceiling" data-step="2">
             <span class="when">Até onde chega</span>
             <span class="who">Gyarados-Mega</span>
-            <span class="score">Carrega uma run</span>
+            <span class="score">Muito bom</span>
           </li>
         </ol>
 
         <p class="arc-note">
-          A nota por trás disso é o ranking de espécie do Smogon — a melhor medida pública de
-          quão bom um Pokémon crescido é. O PokéRogue não tem ranking próprio, então o overlay
-          empresta esse e mostra pelo que ele é: uma pista forte sobre o fim da linha, não um
-          stat que o jogo acompanhe.
+          Essas são as palavras do próprio overlay. Em cima daquele Magikarp ele escreve
+          <code>Bom → Gyarados</code>: o veredito, e de onde o veredito vem. A Mega não entra na
+          frase — aparece como uma marca <code>+M</code>, e só quando é de fato melhor do que o
+          ponto onde a linha já termina. Por trás do veredito está o ranking de espécie do
+          Smogon, a melhor medida pública de um Pokémon crescido. O PokéRogue não tem ranking
+          próprio, então o overlay empresta esse e diz o resultado em palavra de gente.
         </p>
 
         <div class="cta-row">
@@ -59,8 +61,8 @@
              href="https://github.com/OwlHugo/pokerogue-tier-overlay">Instalar</a>
           <a class="btn" href="https://github.com/OwlHugo/pokerogue-tier-overlay">Ver o código</a>
         </div>
-        <p class="btn-note" data-nolink="Página no Greasyfork a caminho · AGPL-3.0 · nenhuma chamada de rede">
-          Grátis · AGPL-3.0 · nenhuma chamada de rede
+        <p class="btn-note" data-nolink="Página no Greasyfork a caminho · AGPL-3.0 · português e inglês · nenhuma chamada de rede">
+          Grátis · AGPL-3.0 · português e inglês · nenhuma chamada de rede
         </p>
       </div>
     </header>
@@ -75,15 +77,39 @@
       <div class="surfaces">
         <article class="surface">
           <h3>Batalha</h3>
-          <p>Uma badge acima de cada inimigo, com o tier atual e o melhor tier que a linha dele alcança — evolução, Mega e Gigantamax inclusos.</p>
+          <p>Um veredito acima de cada inimigo — <code>Bom → Gyarados</code> — mais <code>+M</code> ou <code>+G</code> quando a Mega ou a Gigantamax supera o ponto onde a linha já termina.</p>
         </article>
         <article class="surface">
           <h3>Seleção de starter</h3>
-          <p>O melhor tier alcançável em cada ícone da grade, acompanhando filtro e rolagem, porque quem desenha é o próprio jogo.</p>
+          <p>Uma letra por ícone na grade inteira, acompanhando filtro e rolagem porque quem desenha é o jogo. O starter em foco recebe o veredito por extenso.</p>
         </article>
         <article class="surface">
           <h3>Painel Guia</h3>
-          <p>Abas para o inimigo, seu time, o bioma atual e para onde esse bioma leva. Fechado até você abrir.</p>
+          <p>Quatro abas — inimigo, time, bioma, destinos — e a legenda das letras. Abra uma linha para ver a evolução avaliada passo a passo, as habilidades, e o quanto a captura é difícil.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Não é um leitor de Smogon</p>
+      <h2>As partes que só fazem sentido aqui</h2>
+      <p class="section-lede">
+        Um ranking competitivo responde uma pergunta. Um roguelite faz outras, e essas o overlay
+        foi responder por conta própria.
+      </p>
+
+      <div class="surfaces">
+        <article class="surface">
+          <h3>Habilidade bola de neve</h3>
+          <p>Algumas habilidades acumulam atributo a cada derrota e mantêm entre waves. Isso é um Pokémon que passa fase sozinho — propriedade de roguelite que o Smogon não tem por que pontuar. O painel marca.</p>
+        </article>
+        <article class="surface">
+          <h3>Captura, em palavras</h3>
+          <p>O jogo guarda a taxa de captura como número. O painel diz muito fácil, fácil, média, difícil, muito difícil — lido direto do objeto em memória, então acompanha a versão que você está rodando.</p>
+        </article>
+        <article class="surface">
+          <h3>Ele conserta o jogo</h3>
+          <p>O PokéRogue consegue gravar o texto <code>undefined</code> no próprio <code>starterPrefs_</code>, e aí a tela de starter não carrega mais. O overlay limpa essas entradas antes de desenhar qualquer coisa.</p>
         </article>
       </div>
     </section>
@@ -122,9 +148,9 @@
       <p class="eyebrow">Limites honestos</p>
       <h2>O que ele não faz por você</h2>
       <p class="section-lede">
-        Tier mede força no metagame competitivo do Smogon, que não é a mesma coisa que força
-        no PokéRogue — o jogo tem passivas, fusões e itens que o Smogon não modela. É sinal,
-        não veredito.
+        O ranking por trás vem do metagame competitivo do Smogon, que não é a mesma coisa que
+        força no PokéRogue — o jogo tem passivas, fusões e itens que o Smogon nunca modelou. O
+        veredito é sobre a espécie, não sobre a sua run.
       </p>
       <p class="section-lede">
         Não calcula dano, não computa fraquezas e não diz qual Pokémon soltar. Não fala nada de
