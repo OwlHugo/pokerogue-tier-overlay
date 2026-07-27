@@ -3,7 +3,7 @@ import type { MovesetTable } from '../domain/moveset';
 import type { TierTable } from '../domain/tier-table';
 import type { BattleScene } from '../game/pokerogue';
 import { Panel } from './panel';
-import { biomeView, fieldView, partyView } from './views';
+import { biomeView, destinationsView, fieldView, partyView } from './views';
 
 const BIOME_LABELS = new Map<string, string>([
   ['TOWN', 'Cidade'],
@@ -68,6 +68,9 @@ export class Hud {
             groups: biomeView(biomeId as number, this.biomes, this.tiers, this.movesets),
           }
         : null,
+      destinations: destinationsView(biomeId ?? null, this.biomes, this.tiers, this.movesets).map(
+        (group) => ({ ...group, name: BIOME_LABELS.get(group.name) ?? group.name }),
+      ),
     });
   }
 

@@ -2,23 +2,25 @@ import type { PoolTier } from '../domain/biome';
 import type { ReachableSource } from '../domain/reachable';
 import type { Tier } from '../domain/tier';
 import { backgroundFor } from '../render/palette';
-import type { BiomeGroup, PokemonRow } from './views';
+import type { BiomeGroup, DestinationGroup, PokemonRow } from './views';
 
 const TOGGLE_OFFSET = 34;
 const PANEL_OFFSET = 44;
 
-export type TabId = 'field' | 'party' | 'biome';
+export type TabId = 'field' | 'party' | 'biome' | 'destinations';
 
 export interface PanelContent {
   field: PokemonRow[];
   party: PokemonRow[];
   biome: { name: string; groups: BiomeGroup[] } | null;
+  destinations: DestinationGroup[];
 }
 
 const TAB_LABELS: Record<TabId, string> = {
   field: 'Em campo',
   party: 'Meu time',
   biome: 'Bioma',
+  destinations: 'Para onde',
 };
 
 const POOL_LABELS: Record<PoolTier, string> = {
@@ -137,7 +139,7 @@ export class Panel {
   private open = false;
   private active: TabId = 'field';
   private expanded: string | null = null;
-  private content: PanelContent = { field: [], party: [], biome: null };
+  private content: PanelContent = { field: [], party: [], biome: null, destinations: [] };
 
   constructor(private readonly host: HTMLElement = document.body) {
     this.root = document.createElement('div');
@@ -159,7 +161,7 @@ export class Panel {
 
     const tabs = document.createElement('div');
     tabs.className = 'ptr-tabs';
-    for (const id of ['field', 'party', 'biome'] as TabId[]) {
+    for (const id of ['field', 'party', 'biome', 'destinations'] as TabId[]) {
       const tab = document.createElement('div');
       tab.className = 'ptr-tab';
       tab.textContent = TAB_LABELS[id];
@@ -222,6 +224,11 @@ export class Panel {
       return;
     }
 
+    if (this.active === 'destinations') {
+      this.renderDestinations();
+      return;
+    }
+
     const rows = this.active === 'field' ? this.content.field : this.content.party;
     if (!rows.length) {
       this.body.append(
@@ -261,6 +268,27 @@ export class Panel {
       heading.textContent = POOL_LABELS[group.tier];
       this.body.append(heading);
       for (const entry of group.entries) this.body.append(...this.expandable(entry));
+    }
+  }
+
+  private renderDestinations(): void {
+    if (!this.content.destinations.length) {
+      this.body.append(emptyElement('Nenhuma rota a partir daqui'));
+      return;
+    }
+
+    for (const group of this.content.destinations) {
+      const heading = document.createElement('div');
+      heading.className = 'ptr-group';
+      heading.textContent = group.name;
+      this.body.append(heading);
+
+      if (!group.highlights.length) {
+        this.body.append(emptyElement('Sem encontros catalogados'));
+        continue;
+      }
+
+      for (const entry of group.highlights) this.body.append(...this.expandable(entry));
     }
   }
 }

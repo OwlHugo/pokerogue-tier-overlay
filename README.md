@@ -42,7 +42,7 @@ tem cerca de 180 kB — alguns navegadores não gostam de favoritos tão longos.
 |---|---|
 | Batalha | Badge acima de cada Pokémon inimigo, com o tier atual e o melhor tier alcançável |
 | Escolha de starter | A sigla do melhor tier em cada ícone da grade, acompanhando filtros e rolagem |
-| Painel (botão "Tiers") | Abas de **Em campo**, **Meu time** e **Bioma**; clique numa linha para ver os golpes |
+| Painel (botão "Tiers") | Abas de **Em campo**, **Meu time**, **Bioma** e **Para onde**; clique numa linha para ver os golpes |
 
 O painel fica fechado por padrão, como um botão pequeno no canto do jogo. Os dados só
 aparecem quando você pede — a tela do jogo continua sendo do jogo.
@@ -75,7 +75,16 @@ tem movepool e itens próprios.
 Lista o que aparece no bioma atual, agrupado por raridade (Chefe, Ultra raro, … Comum) e
 ordenado pelo melhor tier alcançável — para decidir se vale continuar ali ou trocar de rota.
 Os pools de encontro são extraídos do próprio código do PokéRogue por
-`npm run build:biomes`.
+`npm run build:biomes`, a partir de um **commit fixo** registrado em
+`data/pokerogue-source.json`. Sem o pin, a tabela mudaria sozinha quando o jogo atualizasse.
+
+### Aba "Para onde"
+
+O PokéRogue não deixa você ir a qualquer bioma: cada um tem saídas próprias, declaradas no
+código do jogo como `biomeLinks`. Plains leva a Grass, Metropolis e Lake, e mais nada.
+
+Essa aba mostra os destinos possíveis a partir de onde você está, e em cada um os seis
+Pokémon de melhor tier alcançável. É a decisão de rota resolvida antes de você escolher.
 
 ## Desenvolver
 

@@ -23,6 +23,14 @@ export interface BiomeGroup {
   entries: PokemonRow[];
 }
 
+export interface DestinationGroup {
+  biome: number;
+  name: string;
+  highlights: PokemonRow[];
+}
+
+const HIGHLIGHT_LIMIT = 6;
+
 function rowFor(
   name: string,
   speciesId: number,
@@ -71,6 +79,32 @@ export function partyView(
   movesets: MovesetTable = {},
 ): PokemonRow[] {
   return (scene.party ?? []).map((pokemon) => rowForPokemon(pokemon, table, movesets));
+}
+
+export function destinationsView(
+  biomeId: number | null,
+  biomes: BiomeTable,
+  table: TierTable,
+  movesets: MovesetTable = {},
+): DestinationGroup[] {
+  const current = biomeId === null ? undefined : biomes[biomeId];
+  if (!current) return [];
+
+  return current.links.flatMap((destination) => {
+    const entry = biomes[destination];
+    if (!entry) return [];
+
+    const highlights = Object.values(entry.pools)
+      .flat()
+      .map((speciesId) => {
+        const known = table[`${speciesId}`];
+        return rowFor(known?.name ?? `#${speciesId}`, speciesId, null, table, movesets);
+      })
+      .sort(byReach)
+      .slice(0, HIGHLIGHT_LIMIT);
+
+    return [{ biome: destination, name: entry.name, highlights }];
+  });
 }
 
 export function biomeView(
