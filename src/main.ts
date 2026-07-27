@@ -19,7 +19,7 @@ const armed = armCapture(window as PhaserHost, ({ game }) => {
     TIER_TABLE,
     BIOME_TABLE,
     MOVESET_TABLE,
-    BIOME_NAMES[LOCALE],
+    BIOME_NAMES,
     ABILITY_NAMES,
     LOCALE,
   );

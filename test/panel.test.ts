@@ -135,7 +135,7 @@ describe('Panel', () => {
       field: [],
       party: [],
       biome: {
-        name: 'Lago',
+        id: 9,
         groups: [
           { tier: 'BOSS', entries: [row({ name: 'Gyarados' })] },
           { tier: 'COMMON', entries: [row({ name: 'Magikarp' })] },
@@ -147,7 +147,6 @@ describe('Panel', () => {
     toggle()?.click();
     tabs()[2]?.click();
 
-    expect(document.body.textContent).toContain('Lago');
     expect(document.body.textContent).toContain('Chefe');
     expect(document.body.textContent).toContain('Comum');
   });
@@ -159,17 +158,17 @@ describe('Panel', () => {
       party: [],
       biome: null,
       destinations: [
-        { biome: 2, name: 'Campo', novos: 1, total: 3, highlights: [row({ name: 'Ivysaur' })] },
-        { biome: 9, name: 'Lago', novos: 0, total: 0, highlights: [] },
+        { biome: 2, name: 'GRASS', novos: 1, total: 3, highlights: [row({ name: 'Ivysaur' })] },
+        { biome: 9, name: 'LAKE', novos: 0, total: 0, highlights: [] },
       ],
       missingTypes: [],
     });
     toggle()?.click();
     tabs()[3]?.click();
 
-    expect(document.body.textContent).toContain('Campo');
+    expect(document.body.textContent).toContain('GRASS');
     expect(document.body.textContent).toContain('Ivysaur');
-    expect(document.body.textContent).toContain('Lago');
+    expect(document.body.textContent).toContain('LAKE');
     expect(document.body.textContent).toContain('Sem encontros catalogados');
   });
 

@@ -1,3 +1,4 @@
+import { ratingColor, ratingOf } from '../domain/rating';
 import type { Tier } from '../domain/tier';
 import type { TextStyle } from '../game/phaser';
 
@@ -32,7 +33,7 @@ export function badgeStyle(tier: Tier | null): TextStyle {
     fontFamily: 'emerald',
     fontSize: '48px',
     color: '#ffffff',
-    backgroundColor: backgroundFor(tier),
+    backgroundColor: ratingColor(ratingOf(tier)),
     padding: { x: 6, y: 3 },
   };
 }

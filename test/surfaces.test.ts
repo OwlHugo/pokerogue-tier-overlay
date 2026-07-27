@@ -52,7 +52,7 @@ describe('BattleSurface', () => {
     surface.sync(contextOf(scene, 'CommandUiHandler'));
 
     expect(layer.size).toBe(1);
-    expect(scene.created[0]?.text).toBe('LC → RU (Gyarados)');
+    expect(scene.created[0]?.text).toBe('Bom → Gyarados');
   });
 
   test('marca especie fora da tabela sem inventar tier', () => {

@@ -1,3 +1,4 @@
+import type { Locale } from '../domain/names';
 import type { TierTable } from '../domain/tier-table';
 import { readBattleTargets } from '../game/battle';
 import type { GameContext } from '../game/context';
@@ -12,6 +13,7 @@ export class BattleSurface implements Surface {
   constructor(
     private readonly layer: BadgeLayer,
     private readonly table: TierTable,
+    private readonly locale: Locale = 'pt',
   ) {}
 
   matches(context: GameContext): boolean {
@@ -20,7 +22,11 @@ export class BattleSurface implements Surface {
 
   sync(context: GameContext): void {
     const targets = readBattleTargets(context.scene);
-    this.layer.reconcile(badgeSpecsFor(targets, this.table, fullLabel));
+    this.layer.reconcile(
+      badgeSpecsFor(targets, this.table, (resolved, nome) =>
+        fullLabel(resolved, this.locale, nome),
+      ),
+    );
   }
 
   clear(): void {

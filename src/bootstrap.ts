@@ -19,10 +19,10 @@ export interface OverlayRunner {
   destroy(): void;
 }
 
-function overlayFor(scene: BattleScene, table: TierTable): Overlay {
+function overlayFor(scene: BattleScene, table: TierTable, locale: Locale): Overlay {
   return new Overlay(
     [
-      new BattleSurface(new BadgeLayer(scene), table),
+      new BattleSurface(new BadgeLayer(scene), table, locale),
       new StarterSurface(new BadgeLayer(scene), table),
     ],
     () => contextOf(scene),
@@ -38,7 +38,7 @@ export function startOverlay(
   table: TierTable,
   biomes: BiomeTable = {},
   movesets: MovesetTable = {},
-  biomeNames: Record<number, string> = {},
+  biomeNames: NamesByLocale = { pt: {}, en: {} },
   abilityNames: NamesByLocale = { pt: {}, en: {} },
   locale: Locale = 'pt',
 ): OverlayRunner {
@@ -52,7 +52,7 @@ export function startOverlay(
     tick() {
       const scene = battleSceneOf(game);
       if (!scene) return;
-      overlay ??= overlayFor(scene, table);
+      overlay ??= overlayFor(scene, table, locale);
       overlay.tick();
       hud ??= new Hud(table, biomes, movesets, biomeNames, abilityNames, locale);
       hud.sync(scene);

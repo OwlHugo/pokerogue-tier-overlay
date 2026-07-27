@@ -1,3 +1,5 @@
+import type { Locale } from '../domain/names';
+import { ratingLabel, ratingOf } from '../domain/rating';
 import { bestReachable } from '../domain/reachable';
 import type { ResolvedTiers } from '../domain/tier-table';
 
@@ -11,13 +13,12 @@ export function shortLabel(resolved: ResolvedTiers): string {
   return `${reachable.tier}${MARKER[reachable.source]}`;
 }
 
-export function fullLabel(resolved: ResolvedTiers): string {
+export function fullLabel(resolved: ResolvedTiers, locale: Locale, atual: string): string {
   const reachable = bestReachable(resolved);
   if (!reachable.tier) return UNKNOWN;
 
-  const current = resolved.tier ?? UNKNOWN;
-  if (current === reachable.tier && reachable.source === 'line') return reachable.tier;
+  const nota = ratingLabel(ratingOf(reachable.tier), locale);
+  const via = reachable.name && reachable.name !== atual ? reachable.name : null;
 
-  const via = reachable.name ? ` (${reachable.name})` : '';
-  return `${current} \u2192 ${reachable.tier}${via}`;
+  return via ? `${nota} \u2192 ${via}` : nota;
 }

@@ -14,11 +14,11 @@ export class Hud {
     private readonly tiers: TierTable,
     private readonly biomes: BiomeTable,
     private readonly movesets: MovesetTable = {},
-    private readonly biomeNames: Record<number, string> = {},
+    private readonly biomeNames: NamesByLocale = { pt: {}, en: {} },
     abilityNames: NamesByLocale = { pt: {}, en: {} },
     private readonly locale: Locale = 'pt',
   ) {
-    this.panel = new Panel(abilityNames, this.locale);
+    this.panel = new Panel(abilityNames, this.biomeNames, this.locale);
   }
 
   sync(scene: BattleScene): void {
@@ -34,7 +34,7 @@ export class Hud {
       party: partyView(scene, this.tiers, this.movesets),
       biome: biome
         ? {
-            name: this.biomeNames[biomeId as number] ?? biome.name,
+            id: biomeId as number,
             groups: biomeView(biomeId as number, this.biomes, this.tiers, this.movesets, noTime),
           }
         : null,
@@ -44,7 +44,7 @@ export class Hud {
         this.tiers,
         this.movesets,
         noTime,
-      ).map((group) => ({ ...group, name: this.biomeNames[group.biome] ?? group.name })),
+      ),
       missingTypes: coverageView(scene).flatMap((type) => typeNameOf(type, this.locale) ?? []),
     });
   }

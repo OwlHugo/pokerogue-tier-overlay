@@ -26,7 +26,6 @@ export type StringKey =
   | 'becomes'
   | 'catch'
   | 'coverage'
-  | 'newOf'
   | 'snowball'
   | 'snowballHint';
 
@@ -65,7 +64,6 @@ const STRINGS: Record<StringKey, Record<Locale, string>> = {
   becomes: { pt: 'vira', en: 'becomes' },
   catch: { pt: 'Captura', en: 'Catch' },
   coverage: { pt: 'Sem cobertura', en: 'Missing types' },
-  newOf: { pt: 'novos de', en: 'new of' },
   snowball: { pt: 'bola de neve', en: 'snowball' },
   snowballHint: {
     pt: 'Acumula atributo a cada derrota e mantém entre waves — passa fase sozinho.',

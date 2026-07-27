@@ -20,7 +20,7 @@ export type TabId = 'field' | 'party' | 'biome' | 'destinations';
 export interface PanelContent {
   field: PokemonRow[];
   party: PokemonRow[];
-  biome: { name: string; groups: BiomeGroup[] } | null;
+  biome: { id: number; groups: BiomeGroup[] } | null;
   destinations: DestinationGroup[];
   missingTypes: readonly string[];
 }
@@ -145,8 +145,6 @@ const css = `
 .ptr-group{margin:11px 3px 5px;color:#8d8a83;font-size:9px;text-transform:uppercase;
   letter-spacing:.13em;font-weight:800;display:flex;align-items:center;gap:7px}
 .ptr-group::after{content:'';flex:1;height:1px;background:#31313a}
-.ptr-badge{padding:2px 8px;border-radius:999px;background:#2a2418;color:#f0b429;
-  font-size:9.5px;letter-spacing:.02em;text-transform:none;border:1px solid #6b5620}
 .ptr-empty{display:block;padding:18px 8px;text-align:center;color:#7d7a73;font-weight:600}
 `;
 
@@ -357,7 +355,7 @@ function signatureOf(content: PanelContent): string {
   return [
     content.field.map(rowSignature).join(','),
     content.party.map(rowSignature).join(','),
-    content.biome?.name ?? '',
+    String(content.biome?.id ?? ''),
     content.biome?.groups.map((g) => `${g.tier}:${g.entries.length}`).join(',') ?? '',
     content.destinations.map((d) => `${d.biome}:${d.novos}/${d.total}`).join(','),
     content.missingTypes.join(','),
@@ -391,6 +389,7 @@ export class Panel {
 
   constructor(
     private readonly abilityNames: NamesByLocale = { pt: {}, en: {} },
+    private readonly biomeNames: NamesByLocale = { pt: {}, en: {} },
     private locale: Locale = 'pt',
     private readonly host: HTMLElement = document.body,
   ) {
@@ -443,6 +442,10 @@ export class Panel {
 
     this.relabel();
     this.select('field');
+  }
+
+  private biomeName(id: number): string | null {
+    return this.biomeNames[this.locale][id] ?? this.biomeNames.en[id] ?? null;
   }
 
   private relabel(): void {
@@ -499,7 +502,9 @@ export class Panel {
   }
 
   private render(): void {
-    this.subtitle.textContent = this.content.biome?.name ?? 'fora de uma run';
+    const biomeId = this.content.biome?.id;
+    this.subtitle.textContent =
+      biomeId === undefined ? '—' : (this.biomeName(biomeId) ?? String(biomeId));
     this.hint.textContent = t(HINT_KEYS[this.active], this.locale);
     this.body.replaceChildren();
 
@@ -570,8 +575,7 @@ export class Panel {
     for (const group of this.content.destinations) {
       const heading = document.createElement('div');
       heading.className = 'ptr-group';
-      heading.textContent = group.name;
-      heading.append(span('ptr-badge', `${group.novos} ${t('newOf', this.locale)} ${group.total}`));
+      heading.textContent = this.biomeName(group.biome) ?? group.name;
       this.body.append(heading);
 
       if (!group.highlights.length) {
