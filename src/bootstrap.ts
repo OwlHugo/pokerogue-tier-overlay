@@ -1,5 +1,6 @@
 import type { BiomeTable } from './domain/biome';
 import type { MovesetTable } from './domain/moveset';
+import type { Locale, NamesByLocale } from './domain/names';
 import type { TierTable } from './domain/tier-table';
 import { contextOf } from './game/context';
 import type { PhaserGame } from './game/phaser';
@@ -38,7 +39,8 @@ export function startOverlay(
   biomes: BiomeTable = {},
   movesets: MovesetTable = {},
   biomeNames: Record<number, string> = {},
-  abilityNames: Record<number, string> = {},
+  abilityNames: NamesByLocale = { pt: {}, en: {} },
+  locale: Locale = 'pt',
 ): OverlayRunner {
   let overlay: Overlay | null = null;
   let hud: Hud | null = null;
@@ -52,7 +54,7 @@ export function startOverlay(
       if (!scene) return;
       overlay ??= overlayFor(scene, table);
       overlay.tick();
-      hud ??= new Hud(table, biomes, movesets, biomeNames, abilityNames);
+      hud ??= new Hud(table, biomes, movesets, biomeNames, abilityNames, locale);
       hud.sync(scene);
     },
     destroy() {

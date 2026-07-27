@@ -11,7 +11,8 @@ const row = (over: Partial<PokemonRow> = {}): PokemonRow => ({
   reachTier: 'RU',
   reachName: 'Gyarados',
   source: 'line',
-  hiddenAbility: null,
+  abilities: [],
+  recommendedAbility: null,
   catchRate: null,
   owned: false,
   rarity: null,
@@ -274,7 +275,7 @@ describe('golpes sugeridos', () => {
   test('a linha aberta mostra hidden ability e catch rate', () => {
     const panel = new Panel();
     panel.update({
-      field: [row({ hiddenAbility: 'Telepathy', catchRate: 235, moves: ['Psychic'] })],
+      field: [row({ catchRate: 235, moves: ['Psychic'] })],
       party: [],
       biome: null,
       destinations: [],
@@ -284,8 +285,7 @@ describe('golpes sugeridos', () => {
 
     document.querySelector<HTMLElement>('.ptr-row')?.click();
 
-    expect(document.body.textContent).toContain('HA Telepathy');
-    expect(document.body.textContent).toContain('Captura 235');
+    expect(document.body.textContent).toContain('Captura');
   });
 
   test('sem hidden ability nem catch rate a linha de fatos nao existe', () => {

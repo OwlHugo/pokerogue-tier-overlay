@@ -4,6 +4,7 @@ export interface SmogonSet {
   name: string;
   moves: readonly string[];
   nature: string | null;
+  ability: string | null;
 }
 
 export interface SmogonBuild {

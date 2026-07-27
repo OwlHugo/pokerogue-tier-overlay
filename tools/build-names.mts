@@ -1,17 +1,18 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fetchUpstream, readPins } from './upstream.mts';
 
-const LOCALE = 'pt-BR';
+const LOCALES = ['pt-BR', 'en'] as const;
+type Locale = (typeof LOCALES)[number];
 
 const camel = (value: string): string =>
   value.toLowerCase().replace(/_(.)/g, (_, letter: string) => letter.toUpperCase());
 
 const pins = readPins();
 const game = fetchUpstream('pokerogue', pins.pokerogue, ['src/enums']);
-const locales = fetchUpstream('locales', pins.locales, [LOCALE]);
+const locales = fetchUpstream('locales', pins.locales, [...LOCALES]);
 
-function localeOf(file: string): Record<string, { name?: string } | string> {
-  return JSON.parse(readFileSync(`${locales}/${LOCALE}/${file}`, 'utf8'));
+function localeOf(lang: Locale, file: string): Record<string, { name?: string } | string> {
+  return JSON.parse(readFileSync(`${locales}/${lang}/${file}`, 'utf8'));
 }
 
 function sorted(names: Record<number, string>): Record<number, string> {
@@ -21,13 +22,14 @@ function sorted(names: Record<number, string>): Record<number, string> {
 }
 
 async function namesFrom(
+  lang: Locale,
   enumFile: string,
   enumName: string,
   localeFile: string,
 ): Promise<Record<number, string>> {
   const loaded = (await import(`${game}/src/enums/${enumFile}`)) as Record<string, unknown>;
   const ids = loaded[enumName] as Record<string, string | number>;
-  const locale = localeOf(localeFile);
+  const locale = localeOf(lang, localeFile);
 
   const names: Record<number, string> = {};
 
@@ -41,17 +43,32 @@ async function namesFrom(
   return sorted(names);
 }
 
-const abilityNames = await namesFrom('ability-id.ts', 'AbilityId', 'ability.json');
-const biomeNames = await namesFrom('biome-id.ts', 'BiomeId', 'biomes.json');
+const porIdioma: Record<
+  string,
+  { abilities: Record<number, string>; biomes: Record<number, string> }
+> = {};
 
-const table = (name: string, value: Record<number, string>): string =>
-  `export const ${name}: Record<number, string> = ${JSON.stringify(value)};`;
+for (const lang of LOCALES) {
+  porIdioma[lang] = {
+    abilities: await namesFrom(lang, 'ability-id.ts', 'AbilityId', 'ability.json'),
+    biomes: await namesFrom(lang, 'biome-id.ts', 'BiomeId', 'biomes.json'),
+  };
+}
+
+const chave = (lang: Locale) => (lang === 'pt-BR' ? 'pt' : 'en');
+
+const bloco = (campo: 'abilities' | 'biomes') =>
+  Object.fromEntries(LOCALES.map((lang) => [chave(lang), porIdioma[lang]?.[campo] ?? {}]));
 
 writeFileSync(
   new URL('../data/names.generated.ts', import.meta.url),
-  [table('ABILITY_NAMES', abilityNames), table('BIOME_NAMES', biomeNames), ''].join('\n'),
+  [
+    `import type { NamesByLocale } from '../src/domain/names';`,
+    '',
+    `export const ABILITY_NAMES: NamesByLocale = ${JSON.stringify(bloco('abilities'))};`,
+    `export const BIOME_NAMES: NamesByLocale = ${JSON.stringify(bloco('biomes'))};`,
+    '',
+  ].join('\n'),
 );
 
-process.stdout.write(
-  `${Object.keys(abilityNames).length} abilities e ${Object.keys(biomeNames).length} biomas em data/names.generated.ts\n`,
-);
+process.stdout.write(`nomes gerados para ${LOCALES.join(', ')}\n`);

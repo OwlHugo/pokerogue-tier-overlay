@@ -51,9 +51,26 @@ cada versão. Funciona, mas você vai esquecer de atualizar.
 Notas: Greasyfork rejeita código ofuscado — o build já usa `minify: false`, mantenha assim.
 Conta nova tem limite de posts por dia; publique uma vez, sem retrabalho.
 
+## 4.5. Idioma da UI do overlay
+
+Bloqueio real, não polimento. Os rótulos do painel são pt-BR fixos (`PANEL_NAME = 'Guia'`,
+`'Inimigo'`, `'Como chega lá'`, `'Golpes mais usados'`, `'Sem cobertura'` — ~15 strings em
+`src/hud/panel.ts`). Anunciar em inglês e entregar painel em português perde o público que a
+descrição em inglês trouxe.
+
+- [ ] Extrair as strings para um único mapa por idioma
+- [ ] Escolher o idioma pelo locale que o jogo já expõe — o mesmo caminho que `build:names`
+      usa para nomes de bioma. Sem lib de i18n, sem seletor na UI
+- [ ] Default inglês; pt-BR quando o jogo estiver em pt
+- **Pronto quando:** teste prova rótulo inglês com locale `en`, rótulo pt-BR com locale `pt-BR`,
+      e fallback para inglês em locale desconhecido
+
 ## 5. Fechar o loop no README
 
-- [ ] Trocar `*(link após a publicação)*` pelo link real do Greasyfork
+- [ ] Trocar `*(link após a publicação)*` pelo link real do Greasyfork — **nos dois READMEs**
+- [ ] Promover o inglês a principal: `git mv README.md README.pt-BR.md` e
+      `git mv README.en.md README.md`, ajustando as duas linhas de troca de idioma.
+      **Fazer por último**, com a árvore parada — hoje o README pt-BR está sendo editado
 - [ ] Adicionar screenshot/GIF do painel — é o que converte na página do Greasyfork e no
       Reddit; texto sozinho não vende overlay
 - **Pronto quando:** alguém consegue instalar sem te perguntar nada
@@ -62,6 +79,8 @@ Conta nova tem limite de posts por dia; publique uma vez, sem retrabalho.
 
 Ordem importa: publique primeiro, divulgue depois. Link quebrado no primeiro post queima a
 única chance de atenção.
+
+Textos prontos em [`divulgacao.md`](divulgacao.md), incluindo onde **não** divulgar.
 
 - [ ] r/pokerogue — post mostrando o problema resolvido (o exemplo do Magikarp → Gyarados),
       não a lista de features. Ler as regras de self-promo antes

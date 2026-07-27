@@ -14,56 +14,61 @@ const tiers: TierTable = {
   },
 };
 
-const abilityNames = { 140: 'Telepathy' };
-
 const sceneWith = (over: Parameters<typeof fakePokemon>[0]) =>
   fakeBattleScene({ enemies: [fakePokemon(over)] });
 
 describe('detalhes lidos do runtime', () => {
-  test('resolve a hidden ability pelo id e traz a catch rate', () => {
+  test('reune as abilities comuns e a escondida, marcando qual e escondida', () => {
     const scene = sceneWith({
       speciesId: 280,
       name: 'Ralts',
+      ability1: 28,
+      ability2: 36,
       abilityHidden: 140,
-      catchRate: 235,
     });
 
-    const row = fieldView(scene, tiers, {}, abilityNames)[0];
+    const abilities = fieldView(scene, tiers, {})[0]?.abilities ?? [];
 
-    expect(row?.hiddenAbility).toBe('Telepathy');
-    expect(row?.catchRate).toBe(235);
+    expect(abilities.map((a) => a.id)).toEqual([28, 36, 140]);
+    expect(abilities.map((a) => a.hidden)).toEqual([false, false, true]);
   });
 
-  test('especie sem hidden ability devolve null em vez de texto de preenchimento', () => {
-    const scene = sceneWith({ speciesId: 280, name: 'Ralts', abilityHidden: 0, catchRate: 235 });
+  test('especie sem hidden ability lista so as comuns', () => {
+    const scene = sceneWith({ speciesId: 280, name: 'Ralts', ability1: 28, abilityHidden: 0 });
 
-    expect(fieldView(scene, tiers, {}, abilityNames)[0]?.hiddenAbility).toBeNull();
+    const abilities = fieldView(scene, tiers, {})[0]?.abilities ?? [];
+
+    expect(abilities).toHaveLength(1);
+    expect(abilities[0]?.hidden).toBe(false);
   });
 
-  test('id de ability fora da tabela devolve null, sem inventar nome', () => {
-    const scene = sceneWith({ speciesId: 280, name: 'Ralts', abilityHidden: 999 });
+  test('ability repetida entre comum e escondida entra uma vez so', () => {
+    const scene = sceneWith({ speciesId: 280, name: 'Ralts', ability1: 28, abilityHidden: 28 });
 
-    expect(fieldView(scene, tiers, {}, abilityNames)[0]?.hiddenAbility).toBeNull();
+    expect(fieldView(scene, tiers, {})[0]?.abilities).toHaveLength(1);
+  });
+
+  test('especie sem ability nenhuma devolve lista vazia sem lancar', () => {
+    const scene = sceneWith({ speciesId: 280, name: 'Ralts' });
+
+    expect(fieldView(scene, tiers, {})[0]?.abilities).toEqual([]);
+  });
+
+  test('traz a catch rate quando o jogo expoe', () => {
+    const scene = sceneWith({ speciesId: 280, name: 'Ralts', catchRate: 235 });
+
+    expect(fieldView(scene, tiers, {})[0]?.catchRate).toBe(235);
   });
 
   test('especie sem catch rate devolve null', () => {
-    const scene = sceneWith({ speciesId: 280, name: 'Ralts', abilityHidden: 140 });
+    const scene = sceneWith({ speciesId: 280, name: 'Ralts' });
 
-    expect(fieldView(scene, tiers, {}, abilityNames)[0]?.catchRate).toBeNull();
+    expect(fieldView(scene, tiers, {})[0]?.catchRate).toBeNull();
   });
 
-  test('sem tabela de nomes a hidden ability some, e o resto da linha continua', () => {
-    const scene = sceneWith({
-      speciesId: 280,
-      name: 'Ralts',
-      abilityHidden: 140,
-      catchRate: 235,
-    });
+  test('sem set do Smogon nao ha ability recomendada', () => {
+    const scene = sceneWith({ speciesId: 280, name: 'Ralts', ability1: 28 });
 
-    const row = fieldView(scene, tiers)[0];
-
-    expect(row?.hiddenAbility).toBeNull();
-    expect(row?.catchRate).toBe(235);
-    expect(row?.reachTier).toBe('OU');
+    expect(fieldView(scene, tiers, {})[0]?.recommendedAbility).toBeNull();
   });
 });

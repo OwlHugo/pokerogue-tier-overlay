@@ -1,3 +1,5 @@
+*Leia em [inglês](README.en.md).*
+
 # PokéRogue Tier Overlay
 
 Mostra, dentro do próprio jogo, **o melhor tier competitivo do Smogon que cada Pokémon

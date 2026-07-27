@@ -12,6 +12,8 @@ interface PokemonOptions {
   formIndex?: number;
   forms?: SpeciesForm[];
   catchRate?: number;
+  ability1?: number;
+  ability2?: number;
   abilityHidden?: number;
   types?: number[];
   fusion?: { speciesId: number; name: string; formIndex?: number; forms?: SpeciesForm[] };
@@ -24,6 +26,8 @@ export function fakePokemon(options: PokemonOptions): PokeRoguePokemon {
     name: options.name,
     forms: options.forms ?? [],
     ...(options.catchRate === undefined ? {} : { catchRate: options.catchRate }),
+    ...(options.ability1 === undefined ? {} : { ability1: options.ability1 }),
+    ...(options.ability2 === undefined ? {} : { ability2: options.ability2 }),
     ...(options.abilityHidden === undefined ? {} : { abilityHidden: options.abilityHidden }),
     ...(options.types === undefined
       ? {}

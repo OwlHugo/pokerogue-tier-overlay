@@ -12,7 +12,7 @@ const REGIONAL_FORMS = new Set(['alola', 'galar', 'hisui', 'paldea']);
 const MECANICA_AUSENTE = /\bZ[- ]|Z-Move|Z Crystal|Dynamax/i;
 
 type RawMove = string | string[];
-type RawSet = { moves?: RawMove[]; nature?: string | string[] };
+type RawSet = { moves?: RawMove[]; nature?: string | string[]; ability?: string | string[] };
 type RawGeneration = Record<string, Record<string, Record<string, RawSet>>>;
 
 async function fetchGeneration(gen: number): Promise<RawGeneration> {
@@ -66,6 +66,7 @@ function buildOf(sets: Record<string, RawSet>): SmogonBuild | null {
       name: nome,
       moves: proprios.slice(0, MOVES_PER_SET),
       nature: primeiro(set.nature),
+      ability: primeiro(set.ability),
     });
 
     if (nomeados.length === SETS_PER_SPECIES) break;

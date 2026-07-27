@@ -29,7 +29,12 @@ instalações; a pt-BR é secundária.
 > **Where it shows up**
 > - Battle: a badge above each enemy Pokémon, current tier and best reachable tier
 > - Starter select: the best reachable tier on every icon in the grid, following filters and scroll
-> - Panel: tabs for On field, My team, Biome and Where to — click a row for its most-used moves
+> - Guide panel: tabs for Enemy, Team, Biome and Destinations — click a row for the evolution
+>   line with the tier of every step, plus the moves Smogon actually uses
+>
+> It shows Nature but not EVs, IVs or held items: PokéRogue has no EVs, IVs are rolled at the
+> encounter, and items come from a modifier pool. Showing them would be competitive trivia,
+> not a decision you can act on.
 >
 > The panel is closed by default. Data appears when you ask for it; the game screen stays the
 > game's.
@@ -53,8 +58,11 @@ instalações; a pt-BR é secundária.
 > O PokéRogue libera Mega e Gigantamax, então o tier da espécie não é o que importa: Mawile é
 > ZU, Mawile-Mega é OU. O overlay considera evolução, mega e gmax, e mostra o melhor dos três.
 >
-> Badge na batalha, sigla em cada ícone da seleção de starter, e um painel com Em campo, Meu
-> time, Bioma e Para onde. Fechado por padrão.
+> Badge na batalha, sigla em cada ícone da seleção de starter, e um painel "Guia" com as abas
+> Inimigo, Time, Bioma e Destinos. Fechado por padrão.
+>
+> Mostra Nature, mas não EVs, IVs nem item: o PokéRogue não tem EVs, IVs são sorteados no
+> encontro e itens vêm de pool de modifier. O resto seria trivia, não decisão.
 >
 > **Zero chamada de rede.** Tudo embutido no script — sem `@require`, sem fetch, sem
 > telemetria. AGPL-3.0, código aberto.
@@ -78,8 +86,12 @@ Post sem screenshot/GIF morre — anexar o GIF do painel abrindo.
 > evolution line can reach — counting Mega and Gigantamax, since PokéRogue unlocks both.
 > Mawile-Mega being OU changes what a ZU encounter is worth.
 >
-> It also has a panel (closed by default) with what spawns in the current biome by rarity,
-> where the current biome can lead, and your team's missing type coverage.
+> It also has a guide panel (closed by default) with what spawns in the current biome by
+> rarity, where the current biome can lead, and your team's missing type coverage.
+>
+> It deliberately drops most of a Smogon set. PokéRogue has no EVs, IVs are rolled at the
+> encounter, held items come from a modifier pool. Nature stays, because Mints exist. Showing
+> the rest would look thorough and help nobody.
 >
 > Runs as a userscript via Tampermonkey. No network calls, nothing collected — the tier data
 > is compiled into the file. Source is AGPL-3.0, biome pools are generated straight from the

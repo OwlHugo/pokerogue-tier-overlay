@@ -1,21 +1,25 @@
 import type { BiomeTable } from '../domain/biome';
 import { typeNameOf } from '../domain/coverage';
 import type { MovesetTable } from '../domain/moveset';
+import type { Locale, NamesByLocale } from '../domain/names';
 import type { TierTable } from '../domain/tier-table';
 import type { BattleScene } from '../game/pokerogue';
 import { Panel } from './panel';
 import { biomeView, coverageView, destinationsView, fieldView, partyView, teamOf } from './views';
 
 export class Hud {
-  private readonly panel = new Panel();
+  private readonly panel: Panel;
 
   constructor(
     private readonly tiers: TierTable,
     private readonly biomes: BiomeTable,
     private readonly movesets: MovesetTable = {},
     private readonly biomeNames: Record<number, string> = {},
-    private readonly abilityNames: Record<number, string> = {},
-  ) {}
+    abilityNames: NamesByLocale = { pt: {}, en: {} },
+    locale: Locale = 'pt',
+  ) {
+    this.panel = new Panel(abilityNames, locale);
+  }
 
   sync(scene: BattleScene): void {
     this.place();
@@ -26,8 +30,8 @@ export class Hud {
     const biome = biomeId === undefined ? null : this.biomes[biomeId];
 
     this.panel.update({
-      field: fieldView(scene, this.tiers, this.movesets, this.abilityNames),
-      party: partyView(scene, this.tiers, this.movesets, this.abilityNames),
+      field: fieldView(scene, this.tiers, this.movesets),
+      party: partyView(scene, this.tiers, this.movesets),
       biome: biome
         ? {
             name: this.biomeNames[biomeId as number] ?? biome.name,

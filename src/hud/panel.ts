@@ -1,7 +1,10 @@
 import type { PoolTier } from '../domain/biome';
+import { catchText } from '../domain/catch-rate';
 import { typeColorOf, typeNameOf } from '../domain/coverage';
 import type { SmogonBuild } from '../domain/moveset';
+import type { Locale, NamesByLocale } from '../domain/names';
 import type { ReachableSource } from '../domain/reachable';
+import { type StringKey, t } from '../domain/strings';
 import type { Tier } from '../domain/tier';
 import { backgroundFor } from '../render/palette';
 import type { BiomeGroup, DestinationGroup, PokemonRow } from './views';
@@ -20,18 +23,18 @@ export interface PanelContent {
   missingTypes: readonly string[];
 }
 
-const TAB_LABELS: Record<TabId, string> = {
-  field: 'Inimigo',
-  party: 'Time',
-  biome: 'Bioma',
-  destinations: 'Destinos',
+const TAB_KEYS: Record<TabId, StringKey> = {
+  field: 'tabField',
+  party: 'tabParty',
+  biome: 'tabBiome',
+  destinations: 'tabDestinations',
 };
 
-const TAB_HINTS: Record<TabId, string> = {
-  field: 'Quem está na sua frente agora.',
-  party: 'Os seis que você carrega, e o que falta neles.',
-  biome: 'Tudo que pode aparecer no bioma onde você está.',
-  destinations: 'Para onde dá pra viajar daqui, e o que tem de novo em cada lugar.',
+const HINT_KEYS: Record<TabId, StringKey> = {
+  field: 'hintField',
+  party: 'hintParty',
+  biome: 'hintBiome',
+  destinations: 'hintDestinations',
 };
 
 const POOL_LABELS: Record<PoolTier, string> = {
@@ -129,6 +132,8 @@ const css = `
 .ptr-tag{padding:3px 9px;border-radius:6px;background:#26262e;border:1px solid #3c3c46;
   font-size:10.5px;color:#ddd9d1;font-weight:700}
 .ptr-set-head{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+.ptr-flag{margin-left:6px;padding:0 5px;border-radius:4px;background:rgba(0,0,0,.35);
+  font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;opacity:.9}
 .ptr-strategy{background:linear-gradient(180deg,#3a3222,#2a2418);border-color:#6b5620;color:#f0b429}
 .ptr-moves-empty{display:block;font-size:10.5px;color:#7d7a73;font-weight:500}
 
@@ -155,7 +160,7 @@ function span(className: string, text: string): HTMLElement {
   return element;
 }
 
-function rowElement(row: PokemonRow): HTMLElement {
+function rowElement(row: PokemonRow, locale: Locale): HTMLElement {
   const element = document.createElement('div');
   element.className = 'ptr-row';
   if (row.owned) element.dataset.owned = '1';
@@ -164,7 +169,7 @@ function rowElement(row: PokemonRow): HTMLElement {
   top.className = 'ptr-top';
   top.append(span('ptr-name', row.name));
 
-  if (row.owned) top.append(span('ptr-owned', 'no time'));
+  if (row.owned) top.append(span('ptr-owned', t('inTeam', locale)));
 
   for (const type of row.types) {
     const chip = span('ptr-type', typeNameOf(type) ?? '?');
@@ -238,11 +243,28 @@ function bloco(titulo: string, conteudo: readonly HTMLElement[]): HTMLElement {
   return caixa;
 }
 
-function inGameFacts(row: PokemonRow): readonly string[] {
-  const facts: string[] = [];
-  if (row.hiddenAbility) facts.push(`HA ${row.hiddenAbility}`);
-  if (row.catchRate !== null) facts.push(`Captura ${row.catchRate}`);
-  return facts;
+function abilityList(
+  row: PokemonRow,
+  abilityNames: NamesByLocale,
+  locale: Locale,
+): HTMLElement | null {
+  if (!row.abilities.length) return null;
+
+  const tags = div('ptr-tags');
+
+  for (const ability of row.abilities) {
+    const emIngles = abilityNames.en[ability.id];
+    const nome = abilityNames[locale][ability.id] ?? emIngles;
+    if (!nome) continue;
+
+    const recomendada = !!emIngles && emIngles === row.recommendedAbility;
+    const chip = span(recomendada ? 'ptr-tag ptr-strategy' : 'ptr-tag', nome);
+    if (ability.hidden) chip.append(span('ptr-flag', 'HA'));
+    if (recomendada) chip.append(span('ptr-flag', t('recommended', locale)));
+    tags.append(chip);
+  }
+
+  return tags.childElementCount ? tags : null;
 }
 
 function tagList(textos: readonly string[]): HTMLElement {
@@ -262,22 +284,31 @@ function setElement(set: SmogonBuild['sets'][number]): HTMLElement {
   return caixa;
 }
 
-function detailElement(row: PokemonRow): HTMLElement {
+function detailElement(row: PokemonRow, abilityNames: NamesByLocale, locale: Locale): HTMLElement {
   const box = div('ptr-detail');
 
   const path = pathElement(row);
-  if (path) box.append(bloco('Como chega lá', [path]));
+  if (path) box.append(bloco(t('path', locale), [path]));
 
-  const facts = inGameFacts(row);
-  if (facts.length) box.append(bloco('No jogo', [span('ptr-facts', facts.join(' \u00b7 '))]));
+  const abilities = abilityList(row, abilityNames, locale);
+  if (abilities) box.append(bloco(t('abilities', locale), [abilities]));
+
+  const captura = catchText(row.catchRate, locale);
+  if (captura) {
+    box.append(
+      bloco(t('inGame', locale), [
+        span('ptr-facts', `${t('catch', locale)}: ${captura} (${row.catchRate})`),
+      ]),
+    );
+  }
 
   const sets = row.build?.sets ?? [];
   if (sets.length) {
-    box.append(bloco('Como o Smogon monta', sets.map(setElement)));
+    box.append(bloco(t('smogonBuilds', locale), sets.map(setElement)));
   } else if (row.moves.length) {
-    box.append(bloco('Golpes mais usados', [tagList(row.moves)]));
+    box.append(bloco(t('topMoves', locale), [tagList(row.moves)]));
   } else {
-    box.append(bloco('Golpes', [span('ptr-moves-empty', 'Sem sets catalogados pelo Smogon')]));
+    box.append(bloco(t('topMoves', locale), [span('ptr-moves-empty', t('noSets', locale))]));
   }
 
   return box;
@@ -306,7 +337,11 @@ export class Panel {
     missingTypes: [],
   };
 
-  constructor(private readonly host: HTMLElement = document.body) {
+  constructor(
+    private readonly abilityNames: NamesByLocale = { pt: {}, en: {} },
+    private locale: Locale = 'pt',
+    private readonly host: HTMLElement = document.body,
+  ) {
     this.root = document.createElement('div');
     this.root.className = 'ptr-root';
 
@@ -328,12 +363,11 @@ export class Panel {
     head.className = 'ptr-head';
     this.subtitle = span('ptr-title', '');
     head.append(this.subtitle);
-    head.append(span('ptr-sub', 'PokeRogue'));
 
     const tabs = document.createElement('div');
     tabs.className = 'ptr-tabs';
     for (const id of ['field', 'party', 'biome', 'destinations'] as TabId[]) {
-      const tab = span('ptr-tab', TAB_LABELS[id]);
+      const tab = span('ptr-tab', t(TAB_KEYS[id], this.locale));
       tab.addEventListener('click', () => this.select(id));
       this.tabs.set(id, tab);
       tabs.append(tab);
@@ -396,7 +430,7 @@ export class Panel {
 
   private render(): void {
     this.subtitle.textContent = this.content.biome?.name ?? 'fora de uma run';
-    this.hint.textContent = TAB_HINTS[this.active];
+    this.hint.textContent = t(HINT_KEYS[this.active], this.locale);
     this.body.replaceChildren();
 
     if (this.active === 'biome') {
@@ -412,7 +446,9 @@ export class Panel {
     const rows = this.active === 'field' ? this.content.field : this.content.party;
     if (!rows.length) {
       this.body.append(
-        emptyElement(this.active === 'field' ? 'Nenhum inimigo em campo' : 'Time vazio'),
+        emptyElement(
+          this.active === 'field' ? t('noEnemy', this.locale) : t('emptyTeam', this.locale),
+        ),
       );
       return;
     }
@@ -421,14 +457,14 @@ export class Panel {
     if (this.active === 'party' && this.content.missingTypes.length) {
       const gap = document.createElement('div');
       gap.className = 'ptr-group';
-      gap.textContent = `Sem cobertura: ${this.content.missingTypes.join(', ')}`;
+      gap.textContent = `${t('coverage', this.locale)}: ${this.content.missingTypes.join(', ')}`;
       this.body.append(gap);
     }
   }
 
   private expandable(row: PokemonRow): HTMLElement[] {
     const id = `${this.active}:${row.key}`;
-    const element = rowElement(row);
+    const element = rowElement(row, this.locale);
     element.addEventListener('click', () => {
       this.expanded = this.expanded === id ? null : id;
       this.render();
@@ -436,13 +472,13 @@ export class Panel {
 
     if (this.expanded !== id) return [element];
 
-    return [element, detailElement(row)];
+    return [element, detailElement(row, this.abilityNames, this.locale)];
   }
 
   private renderBiome(): void {
     const biome = this.content.biome;
     if (!biome?.groups.length) {
-      this.body.append(emptyElement('Entre numa run para ver o bioma'));
+      this.body.append(emptyElement(t('noBiome', this.locale)));
       return;
     }
 
@@ -457,7 +493,7 @@ export class Panel {
 
   private renderDestinations(): void {
     if (!this.content.destinations.length) {
-      this.body.append(emptyElement('Nenhuma rota a partir daqui'));
+      this.body.append(emptyElement(t('noRoutes', this.locale)));
       return;
     }
 
@@ -465,12 +501,12 @@ export class Panel {
       const heading = document.createElement('div');
       heading.className = 'ptr-group';
       heading.textContent = group.name;
-      heading.append(span('ptr-badge', `${group.novos} novos de ${group.total}`));
+      heading.append(span('ptr-badge', `${group.novos} ${t('newOf', this.locale)} ${group.total}`));
       this.body.append(heading);
 
       if (!group.highlights.length) {
         this.body.append(
-          emptyElement(group.total ? 'Você já tem todos daqui' : 'Sem encontros catalogados'),
+          emptyElement(group.total ? t('allOwned', this.locale) : t('noEncounters', this.locale)),
         );
         continue;
       }

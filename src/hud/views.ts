@@ -18,7 +18,8 @@ export interface PokemonRow {
   reachName: string | null;
   source: ReachableSource;
   moves: readonly string[];
-  hiddenAbility: string | null;
+  abilities: readonly { id: number; hidden: boolean }[];
+  recommendedAbility: string | null;
   catchRate: number | null;
   owned: boolean;
   rarity: PoolTier | null;
@@ -65,7 +66,8 @@ function rowFor(
     source: reach.source,
     moves: build?.moves ?? [],
     build,
-    hiddenAbility: null,
+    recommendedAbility: build?.sets[0]?.ability ?? null,
+    abilities: [],
     catchRate: null,
     owned: false,
     rarity: null,
@@ -92,15 +94,32 @@ function evolutionsOf(
     .sort((a, b) => a.level - b.level);
 }
 
+function abilitiesOf(species: PokeRoguePokemon['species']): { id: number; hidden: boolean }[] {
+  const lista: { id: number; hidden: boolean }[] = [];
+  const vistos = new Set<number>();
+
+  for (const id of [species.ability1, species.ability2]) {
+    if (typeof id === 'number' && id > 0 && !vistos.has(id)) {
+      vistos.add(id);
+      lista.push({ id, hidden: false });
+    }
+  }
+
+  const hidden = species.abilityHidden;
+  if (typeof hidden === 'number' && hidden > 0 && !vistos.has(hidden)) {
+    lista.push({ id: hidden, hidden: true });
+  }
+
+  return lista;
+}
+
 function detailsOf(
   pokemon: PokeRoguePokemon,
-  abilityNames: Record<number, string>,
-): Pick<PokemonRow, 'hiddenAbility' | 'catchRate' | 'types'> {
+): Pick<PokemonRow, 'abilities' | 'catchRate' | 'types'> {
   const species = pokemon.species;
-  const hidden = species.abilityHidden;
 
   return {
-    hiddenAbility: hidden ? (abilityNames[hidden] ?? null) : null,
+    abilities: abilitiesOf(species),
     catchRate: species.catchRate ?? null,
     types: [species.type1, species.type2].filter((t): t is number => typeof t === 'number'),
   };
@@ -110,7 +129,6 @@ const rowForPokemon = (
   pokemon: PokeRoguePokemon,
   table: TierTable,
   movesets: MovesetTable,
-  abilityNames: Record<number, string>,
 ): PokemonRow => ({
   ...rowFor(
     pokemon.species.name,
@@ -119,7 +137,7 @@ const rowForPokemon = (
     table,
     movesets,
   ),
-  ...detailsOf(pokemon, abilityNames),
+  ...detailsOf(pokemon),
   evolutions: evolutionsOf(pokemon, table),
 });
 
@@ -129,23 +147,17 @@ export function fieldView(
   scene: BattleScene,
   table: TierTable,
   movesets: MovesetTable = {},
-  abilityNames: Record<number, string> = {},
 ): PokemonRow[] {
   if (!scene.currentBattle) return [];
-  return scene
-    .getEnemyField()
-    .map((pokemon) => rowForPokemon(pokemon, table, movesets, abilityNames));
+  return scene.getEnemyField().map((pokemon) => rowForPokemon(pokemon, table, movesets));
 }
 
 export function partyView(
   scene: BattleScene,
   table: TierTable,
   movesets: MovesetTable = {},
-  abilityNames: Record<number, string> = {},
 ): PokemonRow[] {
-  return (scene.party ?? []).map((pokemon) =>
-    rowForPokemon(pokemon, table, movesets, abilityNames),
-  );
+  return (scene.party ?? []).map((pokemon) => rowForPokemon(pokemon, table, movesets));
 }
 
 export function teamOf(scene: BattleScene): TeamSpecies {
