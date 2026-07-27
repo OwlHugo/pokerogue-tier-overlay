@@ -42,7 +42,7 @@ tem cerca de 180 kB — alguns navegadores não gostam de favoritos tão longos.
 |---|---|
 | Batalha | Badge acima de cada Pokémon inimigo, com o tier atual e o melhor tier alcançável |
 | Escolha de starter | A sigla do melhor tier em cada ícone da grade, acompanhando filtros e rolagem |
-| Painel (botão "Tiers") | Abas de **Em campo**, **Meu time**, **Bioma** e **Para onde**; clique numa linha para ver os golpes |
+| Painel (botão "Guia") | Abas de **Inimigo**, **Time**, **Bioma** e **Destinos**; clique numa linha para ver a linha evolutiva com o tier de cada passo, e as builds do Smogon |
 
 O painel fica fechado por padrão, como um botão pequeno no canto do jogo. Os dados só
 aparecem quando você pede — a tela do jogo continua sendo do jogo.
@@ -68,7 +68,19 @@ cada uma, o que reduz 1,1 MB de sets para 75 kB e mantém tudo funcionando sem r
 o jogo.
 
 Isso é sugestão competitiva, não uma lista do que o Pokémon aprende no PokéRogue — o jogo
-tem movepool e itens próprios.
+tem movepool próprio.
+
+**O que o overlay deliberadamente não mostra dos sets do Smogon**, porque não existe ou não é
+acionável no PokéRogue:
+
+| Dado do Smogon | Por que fica de fora |
+|---|---|
+| EVs | O PokéRogue **não tem EVs**. Stats sobem por vitaminas, que são modifiers de recompensa |
+| Item segurado | Itens vêm de um pool por `ModifierTier`, não do catálogo competitivo. Não existe Z-crystal |
+| IVs | Existem, mas são sorteados no encontro. Você não escolhe |
+| Sets de Z-move e Dynamax | Mecânicas que o jogo não implementa |
+
+**Nature fica**, porque é a única acionável: o PokéRogue tem Mints no pool de modifiers.
 
 A mesma linha aberta mostra a **hidden ability** e a **catch rate**, lidas direto do objeto
 que o jogo tem em memória — então acompanham a versão que você está rodando, sem tabela
@@ -180,6 +192,11 @@ Pools de espécie por bioma são geradas de
 
 A fonte da verdade é o código do jogo, não a wiki nem o fórum: onde os dois divergirem, vale o
 que efetivamente roda na máquina do jogador.
+
+## Apoiar
+
+O overlay é gratuito e não pede nada dentro do jogo. Quem quiser bancar o tempo de
+manutenção pode usar o [GitHub Sponsors](https://github.com/sponsors/OwlHugo).
 
 ## Licença
 

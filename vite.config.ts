@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import monkey from 'vite-plugin-monkey';
 
-const repository = 'https://github.com/hugoadriano/pokerogue-tier-overlay';
+const repository = 'https://github.com/OwlHugo/pokerogue-tier-overlay';
 
 export default defineConfig({
   plugins: [

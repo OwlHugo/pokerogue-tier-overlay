@@ -1,6 +1,6 @@
 import type { PoolTier } from '../domain/biome';
 import { typeColorOf, typeNameOf } from '../domain/coverage';
-import { spreadText } from '../domain/moveset';
+import type { SmogonBuild } from '../domain/moveset';
 import type { ReachableSource } from '../domain/reachable';
 import type { Tier } from '../domain/tier';
 import { backgroundFor } from '../render/palette';
@@ -128,6 +128,7 @@ const css = `
 .ptr-tags{display:flex;flex-wrap:wrap;gap:4px}
 .ptr-tag{padding:3px 9px;border-radius:6px;background:#26262e;border:1px solid #3c3c46;
   font-size:10.5px;color:#ddd9d1;font-weight:700}
+.ptr-set-head{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
 .ptr-strategy{background:linear-gradient(180deg,#3a3222,#2a2418);border-color:#6b5620;color:#f0b429}
 .ptr-moves-empty{display:block;font-size:10.5px;color:#7d7a73;font-weight:500}
 
@@ -231,63 +232,54 @@ function pathElement(row: PokemonRow): HTMLElement | null {
   return path;
 }
 
+function bloco(titulo: string, conteudo: readonly HTMLElement[]): HTMLElement {
+  const caixa = div('ptr-block');
+  caixa.append(span('ptr-detail-title', titulo), ...conteudo);
+  return caixa;
+}
+
+function inGameFacts(row: PokemonRow): readonly string[] {
+  const facts: string[] = [];
+  if (row.hiddenAbility) facts.push(`HA ${row.hiddenAbility}`);
+  if (row.catchRate !== null) facts.push(`Captura ${row.catchRate}`);
+  return facts;
+}
+
+function tagList(textos: readonly string[]): HTMLElement {
+  const tags = div('ptr-tags');
+  for (const texto of textos) tags.append(span('ptr-tag', texto));
+  return tags;
+}
+
+function setElement(set: SmogonBuild['sets'][number]): HTMLElement {
+  const caixa = div('ptr-block');
+
+  const cabecalho = div('ptr-set-head');
+  cabecalho.append(span('ptr-tag ptr-strategy', set.name));
+  if (set.nature) cabecalho.append(span('ptr-facts', `Nature ${set.nature}`));
+  caixa.append(cabecalho, tagList(set.moves));
+
+  return caixa;
+}
+
 function detailElement(row: PokemonRow): HTMLElement {
   const box = div('ptr-detail');
 
   const path = pathElement(row);
-  if (path) {
-    const bloco = div('ptr-block');
-    bloco.append(span('ptr-detail-title', 'Como chega lá'), path);
-    box.append(bloco);
+  if (path) box.append(bloco('Como chega lá', [path]));
+
+  const facts = inGameFacts(row);
+  if (facts.length) box.append(bloco('No jogo', [span('ptr-facts', facts.join(' \u00b7 '))]));
+
+  const sets = row.build?.sets ?? [];
+  if (sets.length) {
+    box.append(bloco('Como o Smogon monta', sets.map(setElement)));
+  } else if (row.moves.length) {
+    box.append(bloco('Golpes mais usados', [tagList(row.moves)]));
+  } else {
+    box.append(bloco('Golpes', [span('ptr-moves-empty', 'Sem sets catalogados pelo Smogon')]));
   }
 
-  const facts: string[] = [];
-  if (row.hiddenAbility) facts.push(`HA ${row.hiddenAbility}`);
-  if (row.catchRate !== null) facts.push(`Captura ${row.catchRate}`);
-  if (facts.length) {
-    const bloco = div('ptr-block');
-    bloco.append(span('ptr-detail-title', 'No jogo'), span('ptr-facts', facts.join(' \u00b7 ')));
-    box.append(bloco);
-  }
-
-  const build = row.build;
-
-  if (build?.strategies.length) {
-    const bloco = div('ptr-block');
-    const tags = div('ptr-tags');
-    for (const nome of build.strategies) tags.append(span('ptr-tag ptr-strategy', nome));
-    bloco.append(span('ptr-detail-title', 'Builds do Smogon'), tags);
-    box.append(bloco);
-  }
-
-  const linhas: string[] = [];
-  if (build?.nature) linhas.push(`Nature ${build.nature}`);
-  if (build?.item) linhas.push(`Item ${build.item}`);
-  const evs = spreadText(build?.evs ?? null);
-  if (evs) linhas.push(`EVs ${evs}`);
-  const ivs = spreadText(build?.ivs ?? null);
-  if (ivs) linhas.push(`IVs ${ivs}`);
-
-  if (linhas.length) {
-    const bloco = div('ptr-block');
-    bloco.append(span('ptr-detail-title', 'Como montar'));
-    for (const linha of linhas) bloco.append(span('ptr-facts', linha));
-    box.append(bloco);
-  }
-
-  const bloco = div('ptr-block');
-  bloco.append(span('ptr-detail-title', 'Golpes mais usados'));
-
-  if (!row.moves.length) {
-    bloco.append(span('ptr-moves-empty', 'Sem sets catalogados pelo Smogon'));
-    box.append(bloco);
-    return box;
-  }
-
-  const tags = div('ptr-tags');
-  for (const move of row.moves) tags.append(span('ptr-tag', move));
-  bloco.append(tags);
-  box.append(bloco);
   return box;
 }
 
