@@ -1,4 +1,5 @@
 import type { BiomeTable } from './domain/biome';
+import type { MovesetTable } from './domain/moveset';
 import type { TierTable } from './domain/tier-table';
 import { contextOf } from './game/context';
 import type { PhaserGame } from './game/phaser';
@@ -35,6 +36,7 @@ export function startOverlay(
   game: PhaserGame,
   table: TierTable,
   biomes: BiomeTable = {},
+  movesets: MovesetTable = {},
 ): OverlayRunner {
   let overlay: Overlay | null = null;
   let hud: Hud | null = null;
@@ -48,7 +50,7 @@ export function startOverlay(
       if (!scene) return;
       overlay ??= overlayFor(scene, table);
       overlay.tick();
-      hud ??= new Hud(table, biomes);
+      hud ??= new Hud(table, biomes, movesets);
       hud.sync(scene);
     },
     destroy() {

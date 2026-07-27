@@ -32,7 +32,7 @@ const tiers: TierTable = {
 };
 
 const biomes: BiomeTable = {
-  9: { name: 'LAKE', pools: { COMMON: [129], BOSS: [303] } },
+  9: { name: 'LAKE', pools: { COMMON: [129], BOSS: [303] }, links: [] },
 };
 
 describe('fieldView', () => {
@@ -83,7 +83,7 @@ describe('biomeView', () => {
   });
 
   test('ordena cada grupo pelo melhor tier alcancavel', () => {
-    const table: BiomeTable = { 1: { name: 'PLAINS', pools: { COMMON: [163, 303, 129] } } };
+    const table: BiomeTable = { 1: { name: 'PLAINS', pools: { COMMON: [163, 303, 129] }, links: [] } };
     const [group] = biomeView(1, table, tiers);
 
     expect(group?.entries.map((e) => e.name)).toEqual(['Mawile', 'Magikarp', 'Hoothoot']);

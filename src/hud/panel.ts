@@ -58,6 +58,11 @@ const css = `
 .ptr-via{color:#a5a5ae;font-size:11px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ptr-group{margin:6px 2px 3px;color:#8b8b94;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
 .ptr-empty{padding:16px 8px;text-align:center;color:#8b8b94}
+.ptr-row{cursor:pointer}
+.ptr-row:hover{background:rgba(99,102,241,.14)}
+.ptr-moves{display:flex;flex-wrap:wrap;gap:4px;padding:2px 8px 8px}
+.ptr-move{padding:2px 7px;border-radius:4px;background:rgba(255,255,255,.09);font-size:11px;color:#d7d7dd}
+.ptr-moves-empty{padding:2px 8px 8px;font-size:11px;color:#8b8b94}
 `;
 
 function tierChip(tier: Tier | null): HTMLElement {
@@ -66,6 +71,25 @@ function tierChip(tier: Tier | null): HTMLElement {
   chip.textContent = tier ?? '?';
   chip.style.background = backgroundFor(tier);
   return chip;
+}
+
+function movesElement(row: PokemonRow): HTMLElement {
+  if (!row.moves.length) {
+    const empty = document.createElement('div');
+    empty.className = 'ptr-moves-empty';
+    empty.textContent = 'Sem golpes catalogados pelo Smogon';
+    return empty;
+  }
+
+  const list = document.createElement('div');
+  list.className = 'ptr-moves';
+  for (const move of row.moves) {
+    const chip = document.createElement('span');
+    chip.className = 'ptr-move';
+    chip.textContent = move;
+    list.append(chip);
+  }
+  return list;
 }
 
 function rowElement(row: PokemonRow): HTMLElement {
@@ -112,6 +136,7 @@ export class Panel {
   private readonly tabs = new Map<TabId, HTMLElement>();
   private open = false;
   private active: TabId = 'field';
+  private expanded: string | null = null;
   private content: PanelContent = { field: [], party: [], biome: null };
 
   constructor(private readonly host: HTMLElement = document.body) {
@@ -204,7 +229,18 @@ export class Panel {
       );
       return;
     }
-    this.body.append(...rows.map(rowElement));
+    for (const row of rows) this.body.append(...this.expandable(row));
+  }
+
+  private expandable(row: PokemonRow): HTMLElement[] {
+    const id = `${this.active}:${row.key}`;
+    const element = rowElement(row);
+    element.addEventListener('click', () => {
+      this.expanded = this.expanded === id ? null : id;
+      this.render();
+    });
+
+    return this.expanded === id ? [element, movesElement(row)] : [element];
   }
 
   private renderBiome(): void {
@@ -223,7 +259,8 @@ export class Panel {
       const heading = document.createElement('div');
       heading.className = 'ptr-group';
       heading.textContent = POOL_LABELS[group.tier];
-      this.body.append(heading, ...group.entries.map(rowElement));
+      this.body.append(heading);
+      for (const entry of group.entries) this.body.append(...this.expandable(entry));
     }
   }
 }

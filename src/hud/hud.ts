@@ -1,4 +1,5 @@
 import type { BiomeTable } from '../domain/biome';
+import type { MovesetTable } from '../domain/moveset';
 import type { TierTable } from '../domain/tier-table';
 import type { BattleScene } from '../game/pokerogue';
 import { Panel } from './panel';
@@ -48,6 +49,7 @@ export class Hud {
   constructor(
     private readonly tiers: TierTable,
     private readonly biomes: BiomeTable,
+    private readonly movesets: MovesetTable = {},
   ) {}
 
   sync(scene: BattleScene): void {
@@ -58,12 +60,12 @@ export class Hud {
     const biome = biomeId === undefined ? null : this.biomes[biomeId];
 
     this.panel.update({
-      field: fieldView(scene, this.tiers),
-      party: partyView(scene, this.tiers),
+      field: fieldView(scene, this.tiers, this.movesets),
+      party: partyView(scene, this.tiers, this.movesets),
       biome: biome
         ? {
             name: BIOME_LABELS.get(biome.name) ?? biome.name,
-            groups: biomeView(biomeId as number, this.biomes, this.tiers),
+            groups: biomeView(biomeId as number, this.biomes, this.tiers, this.movesets),
           }
         : null,
     });

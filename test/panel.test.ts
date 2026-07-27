@@ -3,6 +3,8 @@ import { Panel } from '../src/hud/panel';
 import type { PokemonRow } from '../src/hud/views';
 
 const row = (over: Partial<PokemonRow> = {}): PokemonRow => ({
+  key: '129',
+  moves: [],
   name: 'Magikarp',
   level: 5,
   tier: 'LC',
@@ -115,5 +117,64 @@ describe('Panel', () => {
     panel.destroy();
 
     expect(document.querySelector('.ptr-root')).toBeNull();
+  });
+});
+
+describe('golpes sugeridos', () => {
+  test('a linha comeca fechada, sem mostrar golpes', () => {
+    const panel = new Panel();
+    panel.update({ field: [row({ moves: ['Waterfall', 'Dragon Dance'] })], party: [], biome: null });
+    toggle()?.click();
+
+    expect(document.querySelectorAll('.ptr-move')).toHaveLength(0);
+  });
+
+  test('clicar na linha revela os golpes do Smogon', () => {
+    const panel = new Panel();
+    panel.update({ field: [row({ moves: ['Waterfall', 'Dragon Dance'] })], party: [], biome: null });
+    toggle()?.click();
+
+    document.querySelector<HTMLElement>('.ptr-row')?.click();
+
+    const moves = [...document.querySelectorAll('.ptr-move')].map((m) => m.textContent);
+    expect(moves).toEqual(['Waterfall', 'Dragon Dance']);
+  });
+
+  test('clicar de novo esconde', () => {
+    const panel = new Panel();
+    panel.update({ field: [row({ moves: ['Waterfall'] })], party: [], biome: null });
+    toggle()?.click();
+
+    document.querySelector<HTMLElement>('.ptr-row')?.click();
+    document.querySelector<HTMLElement>('.ptr-row')?.click();
+
+    expect(document.querySelectorAll('.ptr-move')).toHaveLength(0);
+  });
+
+  test('so uma linha fica aberta por vez', () => {
+    const panel = new Panel();
+    panel.update({
+      field: [row({ key: '1', moves: ['A'] }), row({ key: '2', moves: ['B'] })],
+      party: [],
+      biome: null,
+    });
+    toggle()?.click();
+
+    const linhas = () => [...document.querySelectorAll<HTMLElement>('.ptr-row')];
+    linhas()[0]?.click();
+    linhas()[1]?.click();
+
+    const moves = [...document.querySelectorAll('.ptr-move')].map((m) => m.textContent);
+    expect(moves).toEqual(['B']);
+  });
+
+  test('especie sem set no Smogon diz isso em vez de ficar vazia', () => {
+    const panel = new Panel();
+    panel.update({ field: [row({ moves: [] })], party: [], biome: null });
+    toggle()?.click();
+
+    document.querySelector<HTMLElement>('.ptr-row')?.click();
+
+    expect(document.body.textContent).toContain('Sem golpes catalogados');
   });
 });
