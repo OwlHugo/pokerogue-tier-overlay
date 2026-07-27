@@ -1,7 +1,8 @@
 import type { BiomeTable } from '../domain/biome';
 import { typeNameOf } from '../domain/coverage';
+import type { LocaleRef } from '../domain/locale-ref';
 import type { MovesetTable } from '../domain/moveset';
-import type { Locale, NamesByLocale } from '../domain/names';
+import type { NamesByLocale } from '../domain/names';
 import type { TierTable } from '../domain/tier-table';
 import type { BattleScene } from '../game/pokerogue';
 import { Panel } from './panel';
@@ -16,9 +17,9 @@ export class Hud {
     private readonly movesets: MovesetTable = {},
     private readonly biomeNames: NamesByLocale = { pt: {}, en: {} },
     abilityNames: NamesByLocale = { pt: {}, en: {} },
-    private readonly locale: Locale = 'pt',
+    private readonly localeRef: LocaleRef = { current: 'pt' },
   ) {
-    this.panel = new Panel(abilityNames, this.biomeNames, this.locale);
+    this.panel = new Panel(abilityNames, this.biomeNames, this.localeRef);
   }
 
   sync(scene: BattleScene): void {
@@ -45,7 +46,9 @@ export class Hud {
         this.movesets,
         noTime,
       ),
-      missingTypes: coverageView(scene).flatMap((type) => typeNameOf(type, this.locale) ?? []),
+      missingTypes: coverageView(scene).flatMap(
+        (type) => typeNameOf(type, this.localeRef.current) ?? [],
+      ),
     });
   }
 

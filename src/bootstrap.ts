@@ -1,4 +1,5 @@
 import type { BiomeTable } from './domain/biome';
+import { type LocaleRef, localeRef } from './domain/locale-ref';
 import type { MovesetTable } from './domain/moveset';
 import type { Locale, NamesByLocale } from './domain/names';
 import type { TierTable } from './domain/tier-table';
@@ -19,10 +20,10 @@ export interface OverlayRunner {
   destroy(): void;
 }
 
-function overlayFor(scene: BattleScene, table: TierTable, locale: Locale): Overlay {
+function overlayFor(scene: BattleScene, table: TierTable, ref: LocaleRef): Overlay {
   return new Overlay(
     [
-      new BattleSurface(new BadgeLayer(scene), table, locale),
+      new BattleSurface(new BadgeLayer(scene), table, ref),
       new StarterSurface(new BadgeLayer(scene), table),
     ],
     () => contextOf(scene),
@@ -42,6 +43,7 @@ export function startOverlay(
   abilityNames: NamesByLocale = { pt: {}, en: {} },
   locale: Locale = 'pt',
 ): OverlayRunner {
+  const ref = localeRef(locale);
   let overlay: Overlay | null = null;
   let hud: Hud | null = null;
 
@@ -52,9 +54,9 @@ export function startOverlay(
     tick() {
       const scene = battleSceneOf(game);
       if (!scene) return;
-      overlay ??= overlayFor(scene, table, locale);
+      overlay ??= overlayFor(scene, table, ref);
       overlay.tick();
-      hud ??= new Hud(table, biomes, movesets, biomeNames, abilityNames, locale);
+      hud ??= new Hud(table, biomes, movesets, biomeNames, abilityNames, ref);
       hud.sync(scene);
     },
     destroy() {

@@ -2,6 +2,7 @@ import { SNOWBALL_ABILITIES } from '../../data/snowball.generated';
 import type { PoolTier } from '../domain/biome';
 import { catchText } from '../domain/catch-rate';
 import { typeColorOf, typeNameOf } from '../domain/coverage';
+import type { LocaleRef } from '../domain/locale-ref';
 import type { SmogonBuild } from '../domain/moveset';
 import type { Locale, NamesByLocale } from '../domain/names';
 import { ratingColor, ratingLabel, ratingOf } from '../domain/rating';
@@ -390,7 +391,7 @@ export class Panel {
   constructor(
     private readonly abilityNames: NamesByLocale = { pt: {}, en: {} },
     private readonly biomeNames: NamesByLocale = { pt: {}, en: {} },
-    private locale: Locale = 'pt',
+    private readonly localeRef: LocaleRef = { current: 'pt' },
     private readonly host: HTMLElement = document.body,
   ) {
     this.root = document.createElement('div');
@@ -417,7 +418,7 @@ export class Panel {
 
     this.langButton = span('ptr-lang', '');
     this.langButton.addEventListener('click', () => {
-      this.locale = this.locale === 'pt' ? 'en' : 'pt';
+      this.localeRef.current = this.locale === 'pt' ? 'en' : 'pt';
       this.relabel();
       if (this.open) this.render();
     });
@@ -442,6 +443,10 @@ export class Panel {
 
     this.relabel();
     this.select('field');
+  }
+
+  private get locale(): Locale {
+    return this.localeRef.current;
   }
 
   private biomeName(id: number): string | null {

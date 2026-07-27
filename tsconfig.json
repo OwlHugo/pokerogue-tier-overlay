@@ -18,5 +18,6 @@
     "resolveJsonModule": true,
     "noEmit": true
   },
-  "include": ["src", "test", "tools", "data", "vite.config.ts"]
+  "include": ["src", "test", "tools", "data", "vite.config.ts"],
+  "exclude": ["tools/tmp-*"]
 }
