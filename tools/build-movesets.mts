@@ -72,7 +72,7 @@ function buildOf(sets: Record<string, RawSet>): SmogonBuild | null {
     if (nomeados.length === SETS_PER_SPECIES) break;
   }
 
-  return { moves, sets: nomeados };
+  return { moves: nomeados.length ? [] : moves, sets: nomeados };
 }
 
 function keyOfSpeciesName(name: string): SpeciesKey | null {

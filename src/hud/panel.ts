@@ -1,8 +1,10 @@
+import { SNOWBALL_ABILITIES } from '../../data/snowball.generated';
 import type { PoolTier } from '../domain/biome';
 import { catchText } from '../domain/catch-rate';
 import { typeColorOf, typeNameOf } from '../domain/coverage';
 import type { SmogonBuild } from '../domain/moveset';
 import type { Locale, NamesByLocale } from '../domain/names';
+import { ratingColor, ratingLabel, ratingOf } from '../domain/rating';
 import type { ReachableSource } from '../domain/reachable';
 import { type StringKey, t } from '../domain/strings';
 import type { Tier } from '../domain/tier';
@@ -134,6 +136,7 @@ const css = `
 .ptr-tag{padding:3px 9px;border-radius:6px;background:#26262e;border:1px solid #3c3c46;
   font-size:10.5px;color:#ddd9d1;font-weight:700}
 .ptr-set-head{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
+.ptr-snow{background:rgba(34,197,94,.32);color:#bbf7d0}
 .ptr-flag{margin-left:6px;padding:0 5px;border-radius:4px;background:rgba(0,0,0,.35);
   font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;opacity:.9}
 .ptr-strategy{background:linear-gradient(180deg,#3a3222,#2a2418);border-color:#6b5620;color:#f0b429}
@@ -147,9 +150,20 @@ const css = `
 .ptr-empty{display:block;padding:18px 8px;text-align:center;color:#7d7a73;font-weight:600}
 `;
 
-function tierChip(tier: Tier | null): HTMLElement {
+const SNOWBALL = new Set(SNOWBALL_ABILITIES);
+
+function ratingChip(tier: Tier | null, locale: Locale): HTMLElement {
+  const rating = ratingOf(tier);
   const chip = document.createElement('span');
   chip.className = 'ptr-tier';
+  chip.textContent = ratingLabel(rating, locale);
+  chip.style.background = ratingColor(rating);
+  return chip;
+}
+
+function tierChip(tier: Tier | null): HTMLElement {
+  const chip = document.createElement('span');
+  chip.className = 'ptr-tier-mini';
   chip.textContent = tier ?? '?';
   chip.style.background = backgroundFor(tier);
   return chip;
@@ -179,7 +193,7 @@ function rowElement(row: PokemonRow, locale: Locale): HTMLElement {
     top.append(chip);
   }
 
-  top.append(tierChip(row.reachTier));
+  top.append(ratingChip(row.reachTier, locale));
   element.append(top);
 
   const under = document.createElement('div');
@@ -245,6 +259,27 @@ function bloco(titulo: string, conteudo: readonly HTMLElement[]): HTMLElement {
   return caixa;
 }
 
+function abilityChip(
+  ability: PokemonRow['abilities'][number],
+  row: PokemonRow,
+  abilityNames: NamesByLocale,
+  locale: Locale,
+): HTMLElement | null {
+  const emIngles = abilityNames.en[ability.id];
+  const nome = abilityNames[locale][ability.id] ?? emIngles;
+  if (!nome) return null;
+
+  const neve = SNOWBALL.has(ability.id);
+  const recomendada = !!emIngles && emIngles === row.recommendedAbility;
+  const chip = span(neve || recomendada ? 'ptr-tag ptr-strategy' : 'ptr-tag', nome);
+
+  if (ability.hidden) chip.append(span('ptr-flag', 'HA'));
+  if (neve) chip.append(span('ptr-flag ptr-snow', t('snowball', locale)));
+  else if (recomendada) chip.append(span('ptr-flag', t('recommended', locale)));
+
+  return chip;
+}
+
 function abilityList(
   row: PokemonRow,
   abilityNames: NamesByLocale,
@@ -253,17 +288,9 @@ function abilityList(
   if (!row.abilities.length) return null;
 
   const tags = div('ptr-tags');
-
   for (const ability of row.abilities) {
-    const emIngles = abilityNames.en[ability.id];
-    const nome = abilityNames[locale][ability.id] ?? emIngles;
-    if (!nome) continue;
-
-    const recomendada = !!emIngles && emIngles === row.recommendedAbility;
-    const chip = span(recomendada ? 'ptr-tag ptr-strategy' : 'ptr-tag', nome);
-    if (ability.hidden) chip.append(span('ptr-flag', 'HA'));
-    if (recomendada) chip.append(span('ptr-flag', t('recommended', locale)));
-    tags.append(chip);
+    const chip = abilityChip(ability, row, abilityNames, locale);
+    if (chip) tags.append(chip);
   }
 
   return tags.childElementCount ? tags : null;
@@ -291,7 +318,15 @@ function detailElement(row: PokemonRow, abilityNames: NamesByLocale, locale: Loc
   if (path) box.append(bloco(t('path', locale), [path]));
 
   const abilities = abilityList(row, abilityNames, locale);
-  if (abilities) box.append(bloco(t('abilities', locale), [abilities]));
+  if (abilities) {
+    const conteudo: HTMLElement[] = [abilities];
+    if (row.abilities.some((a) => SNOWBALL.has(a.id))) {
+      conteudo.push(span('ptr-facts', t('snowballHint', locale)));
+    }
+    box.append(bloco(t('abilities', locale), conteudo));
+  }
+
+  box.append(bloco('Smogon', [tierChip(row.reachTier)]));
 
   const captura = catchText(row.catchRate, locale);
   if (captura) {

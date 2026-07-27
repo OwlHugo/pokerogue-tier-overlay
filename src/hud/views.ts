@@ -62,7 +62,7 @@ function rowFor(
     reachTier: reach.tier,
     reachName: reach.name,
     source: reach.source,
-    moves: build?.moves ?? [],
+    moves: build?.sets[0]?.moves ?? build?.moves ?? [],
     build,
     recommendedAbility: build?.sets[0]?.ability ?? null,
     abilities: [],

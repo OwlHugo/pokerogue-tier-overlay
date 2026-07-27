@@ -16,7 +16,8 @@
     "build:bookmarklet": "tsx tools/build-bookmarklet.mts",
     "build:biomes": "tsx --tsconfig tools/pokerogue.tsconfig.json tools/build-biomes.mts",
     "build:movesets": "tsx tools/build-movesets.mts",
-    "build:names": "tsx --tsconfig tools/pokerogue.tsconfig.json tools/build-names.mts"
+    "build:names": "tsx --tsconfig tools/pokerogue.tsconfig.json tools/build-names.mts",
+    "build:snowball": "tsx --tsconfig tools/pokerogue.tsconfig.json tools/build-snowball.mts"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.14",

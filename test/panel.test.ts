@@ -72,7 +72,7 @@ describe('Panel', () => {
 
     expect(rows()).toHaveLength(2);
     expect(document.body.textContent).toContain('Magikarp');
-    expect(document.body.textContent).toContain('RU');
+    expect(document.body.textContent).toContain('Bom');
   });
 
   test('troca de aba mostra o time', () => {

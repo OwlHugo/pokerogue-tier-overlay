@@ -43,8 +43,19 @@ cada versão. Funciona, mas você vai esquecer de atualizar.
 - [ ] Publicar apontando para a URL do release, ou colando o bundle
 - [ ] Descrição em pt-BR **e** en — rascunhos prontos em [`divulgacao.md`](divulgacao.md).
       A maior parte do público do PokéRogue é internacional; só pt-BR corta o teto
-- [ ] Bundle abaixo de 500 KB — critério AD-8 de `dossie-in-game`. O último build deu
-      **527 KB**, acima do limite. Resolver antes de tagear
+- [ ] Bundle abaixo de 500 KB — critério AD-8 de `dossie-in-game`. No HEAD `5e146a3` deu
+      **636 KB**. O custo é encoding, não dado: as tabelas guardam nome de golpe como string
+      repetida (10.068 ocorrências para 1.037 valores únicos) e repetem o nome de cada chave
+      987 vezes. Nenhuma informação precisa ser cortada:
+
+      | Mudança no gerador | Ganho estimado |
+      |---|---|
+      | Internar strings num array de índices | ~107 KB |
+      | Chaves de um caractere (`"moves"` → `"m"`) | ~40 KB |
+      | O mesmo em `tier-table.generated.ts` | ~40 KB |
+
+      Sobra ~450 KB. Mexe em `tools/build-movesets.mts` e `tools/build-tier-table.mts` mais
+      os tipos que leem as tabelas — **não** na UI.
 - [ ] Confirmar que a licença declarada bate: `AGPL-3.0-only`
 - **Pronto quando:** a página do script está no ar e instala num browser limpo
 
