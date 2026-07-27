@@ -1,6 +1,6 @@
 import { type BiomeTable, POOL_TIER_ORDER, type PoolTier } from '../domain/biome';
 import { missingTypes } from '../domain/coverage';
-import type { MovesetTable } from '../domain/moveset';
+import type { MovesetTable, SmogonBuild } from '../domain/moveset';
 import { bestReachable, type ReachableSource } from '../domain/reachable';
 import { keyFor } from '../domain/species-key';
 import { type TeamSpecies, teamSpeciesOf } from '../domain/team-species';
@@ -23,7 +23,8 @@ export interface PokemonRow {
   owned: boolean;
   rarity: PoolTier | null;
   types: readonly number[];
-  evolutions: readonly { name: string; level: number }[];
+  evolutions: readonly { name: string; level: number; tier: Tier | null }[];
+  build: SmogonBuild | null;
 }
 
 export interface BiomeGroup {
@@ -51,7 +52,8 @@ function rowFor(
   const ref = speciesRefOf(speciesId, '');
   const resolved = resolveTiers(table, ref, null);
   const reach = bestReachable(resolved);
-  const moves = movesets[keyFor(ref.speciesId, ref.formKey)] ?? movesets[keyFor(ref.speciesId, '')];
+  const build =
+    movesets[keyFor(ref.speciesId, ref.formKey)] ?? movesets[keyFor(ref.speciesId, '')] ?? null;
 
   return {
     key: `${speciesId}`,
@@ -61,7 +63,8 @@ function rowFor(
     reachTier: reach.tier,
     reachName: reach.name,
     source: reach.source,
-    moves: moves ?? [],
+    moves: build?.moves ?? [],
+    build,
     hiddenAbility: null,
     catchRate: null,
     owned: false,
@@ -74,14 +77,18 @@ function rowFor(
 function evolutionsOf(
   pokemon: PokeRoguePokemon,
   table: TierTable,
-): readonly { name: string; level: number }[] {
+): readonly { name: string; level: number; tier: Tier | null }[] {
   const steps = pokemon.species.getEvolutionLevels?.() ?? [];
 
   return steps
-    .map(([speciesId, level]) => ({
-      name: table[`${speciesId}`]?.name ?? `#${speciesId}`,
-      level,
-    }))
+    .map(([speciesId, level]) => {
+      const entry = table[`${speciesId}`];
+      return {
+        name: entry?.name ?? `#${speciesId}`,
+        level,
+        tier: entry?.tier ?? null,
+      };
+    })
     .sort((a, b) => a.level - b.level);
 }
 

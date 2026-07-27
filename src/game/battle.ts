@@ -3,7 +3,7 @@ import { type BattleScene, formKeyOf, type PokeRoguePokemon } from './pokerogue'
 import { speciesRefOf } from './species-ref';
 import type { Target } from './target';
 
-const BADGE_OFFSET = { x: 0, y: -30 };
+const BADGE_OFFSET = { x: 0, y: -52 };
 const BADGE_SCALE = 0.16;
 
 function targetFor(pokemon: PokeRoguePokemon, index: number): Target {

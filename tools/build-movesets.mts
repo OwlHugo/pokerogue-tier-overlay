@@ -1,6 +1,6 @@
 import { writeFileSync } from 'node:fs';
 import { Dex } from '@pkmn/dex';
-import type { MovesetTable } from '../src/domain/moveset';
+import type { MovesetTable, SmogonBuild, StatSpread } from '../src/domain/moveset';
 import { keyFor, type SpeciesKey } from '../src/domain/species-key';
 
 const SOURCE = 'https://data.pkmn.cc/sets';
@@ -9,7 +9,19 @@ const MOVES_PER_SPECIES = 6;
 const REGIONAL_FORMS = new Set(['alola', 'galar', 'hisui', 'paldea']);
 
 type RawMove = string | string[];
-type RawSet = { moves?: RawMove[] };
+type RawSet = {
+  moves?: RawMove[];
+  nature?: string | string[];
+  item?: string | string[];
+  evs?: StatSpread | StatSpread[];
+  ivs?: StatSpread | StatSpread[];
+};
+
+const primeiroSpread = (valor: StatSpread | StatSpread[] | undefined): StatSpread | null =>
+  Array.isArray(valor) ? (valor[0] ?? null) : (valor ?? null);
+
+const primeiro = (valor: string | string[] | undefined): string | null =>
+  Array.isArray(valor) ? (valor[0] ?? null) : (valor ?? null);
 type RawGeneration = Record<string, Record<string, Record<string, RawSet>>>;
 
 async function fetchGeneration(gen: number): Promise<RawGeneration> {
@@ -39,6 +51,71 @@ function topMoves(sets: Record<string, RawSet>): string[] {
     .map(([move]) => move);
 }
 
+function maisComum<T>(valores: readonly T[], chave: (valor: T) => string): T | null {
+  const contagem = new Map<string, { valor: T; vezes: number }>();
+
+  for (const valor of valores) {
+    const k = chave(valor);
+    const atual = contagem.get(k);
+    if (atual) atual.vezes += 1;
+    else contagem.set(k, { valor, vezes: 1 });
+  }
+
+  const melhor = [...contagem.entries()].sort(
+    (a, b) => b[1].vezes - a[1].vezes || a[0].localeCompare(b[0]),
+  )[0];
+
+  return melhor ? melhor[1].valor : null;
+}
+
+function buildOf(sets: Record<string, RawSet>): SmogonBuild | null {
+  const moves = topMoves(sets);
+  if (!moves.length) return null;
+
+  const todos = Object.values(sets);
+
+  const estrategias = [
+    ...new Set(
+      Object.keys(sets)
+        .map((nome) => nome.split(':')[1] ?? '')
+        .filter(Boolean),
+    ),
+  ].slice(0, 3);
+
+  return {
+    moves,
+    strategies: estrategias,
+    nature: maisComum(
+      todos.flatMap((set) => {
+        const n = primeiro(set.nature);
+        return n ? [n] : [];
+      }),
+      (n) => n,
+    ),
+    item: maisComum(
+      todos.flatMap((set) => {
+        const i = primeiro(set.item);
+        return i ? [i] : [];
+      }),
+      (i) => i,
+    ),
+    evs: maisComum(
+      todos.flatMap((set) => {
+        const e = primeiroSpread(set.evs);
+        return e ? [e] : [];
+      }),
+      (e) => JSON.stringify(e),
+    ),
+    ivs: maisComum(
+      todos.flatMap((set) => {
+        const i = primeiroSpread(set.ivs);
+        return i ? [i] : [];
+      }),
+      (i) => JSON.stringify(i),
+    ),
+  };
+}
+
 function keyOfSpeciesName(name: string): SpeciesKey | null {
   const species = Dex.species.get(name);
   if (!species?.exists || species.num < 1) return null;
@@ -65,8 +142,8 @@ for (const gen of GENERATIONS) {
       }
     }
 
-    const moves = topMoves(sets);
-    if (moves.length) table[key] = moves;
+    const build = buildOf(sets);
+    if (build) table[key] = build;
   }
 }
 

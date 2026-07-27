@@ -1,11 +1,12 @@
 import type { PoolTier } from '../domain/biome';
 import { typeColorOf, typeNameOf } from '../domain/coverage';
+import { spreadText } from '../domain/moveset';
 import type { ReachableSource } from '../domain/reachable';
 import type { Tier } from '../domain/tier';
 import { backgroundFor } from '../render/palette';
 import type { BiomeGroup, DestinationGroup, PokemonRow } from './views';
 
-const PANEL_NAME = 'Companheiro';
+const PANEL_NAME = 'Guia';
 const TOGGLE_OFFSET = 46;
 const PANEL_HEIGHT_RATIO = 0.66;
 
@@ -20,10 +21,17 @@ export interface PanelContent {
 }
 
 const TAB_LABELS: Record<TabId, string> = {
-  field: 'Campo',
+  field: 'Inimigo',
   party: 'Time',
-  biome: 'Aqui',
-  destinations: 'Rotas',
+  biome: 'Bioma',
+  destinations: 'Destinos',
+};
+
+const TAB_HINTS: Record<TabId, string> = {
+  field: 'Quem está na sua frente agora.',
+  party: 'Os seis que você carrega, e o que falta neles.',
+  biome: 'Tudo que pode aparecer no bioma onde você está.',
+  destinations: 'Para onde dá pra viajar daqui, e o que tem de novo em cada lugar.',
 };
 
 const POOL_LABELS: Record<PoolTier, string> = {
@@ -43,85 +51,92 @@ const SOURCE_NOTE: Record<ReachableSource, string> = {
 
 const css = `
 .ptr-root{position:fixed;inset:0;pointer-events:none;z-index:2147483000;
-  font:600 12px/1.4 "Trebuchet MS",ui-rounded,system-ui,sans-serif;color:#20304a}
+  font:600 12px/1.45 "Trebuchet MS",ui-rounded,system-ui,sans-serif;color:#e6e3dc}
 
 .ptr-toggle{position:absolute;pointer-events:auto;display:flex;align-items:center;gap:7px;
-  padding:7px 14px 7px 11px;cursor:pointer;user-select:none;color:#eaf3ff;
-  background:linear-gradient(180deg,#4a7fc4 0%,#2f5591 55%,#254576 100%);
-  border:2px solid #16223a;border-radius:999px;
-  box-shadow:0 3px 0 #16223a,0 6px 14px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.45);
-  transition:transform .1s}
-.ptr-toggle:active{transform:translateY(2px);box-shadow:0 1px 0 #16223a,0 3px 8px rgba(0,0,0,.4)}
-.ptr-dot{width:8px;height:8px;border-radius:50%;background:#ffd34d;
-  box-shadow:0 0 0 2px rgba(0,0,0,.35),0 0 8px #ffd34d}
+  padding:7px 14px 7px 11px;cursor:pointer;user-select:none;color:#f3edde;
+  background:linear-gradient(180deg,#3a3a42 0%,#26262c 55%,#1a1a1f 100%);
+  border:2px solid #0c0c0f;border-radius:999px;
+  box-shadow:0 3px 0 #0c0c0f,0 6px 16px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.14);
+  transition:transform .1s,border-color .1s}
+.ptr-toggle:hover{border-color:#f0b429}
+.ptr-toggle:active{transform:translateY(2px);box-shadow:0 1px 0 #0c0c0f}
+.ptr-dot{width:8px;height:8px;border-radius:50%;background:#f0b429;
+  box-shadow:0 0 0 2px rgba(0,0,0,.5),0 0 9px #f0b429}
 
-.ptr-panel{position:absolute;pointer-events:auto;width:336px;display:flex;flex-direction:column;
-  background:linear-gradient(180deg,#fdfeff 0%,#e9f1fb 100%);
-  border:2px solid #16223a;border-radius:16px;overflow:hidden;
-  box-shadow:0 4px 0 #16223a,0 16px 40px rgba(0,0,0,.55);
+.ptr-panel{position:absolute;pointer-events:auto;width:344px;display:flex;flex-direction:column;
+  background:linear-gradient(180deg,#1c1c21 0%,#141418 100%);
+  border:2px solid #0c0c0f;border-radius:14px;overflow:hidden;
+  box-shadow:0 4px 0 #0c0c0f,0 18px 44px rgba(0,0,0,.66);
   opacity:0;transform:translateY(-8px) scale(.97);transform-origin:top left;
   transition:opacity .18s cubic-bezier(.2,.9,.3,1.2),transform .18s cubic-bezier(.2,.9,.3,1.2)}
 .ptr-panel[data-open="1"]{opacity:1;transform:none}
 
-.ptr-head{display:flex;align-items:center;gap:8px;padding:7px 12px;color:#fff;
-  background:linear-gradient(180deg,#4a7fc4 0%,#2f5591 100%);
-  border-bottom:2px solid #16223a;text-shadow:0 1px 0 rgba(0,0,0,.45)}
-.ptr-title{flex:1;font-size:13px;letter-spacing:.03em}
-.ptr-sub{font-size:10.5px;opacity:.85;font-weight:500}
+.ptr-head{display:flex;align-items:baseline;gap:8px;padding:8px 13px;
+  background:linear-gradient(180deg,#2a2a31,#1e1e24);border-bottom:2px solid #0c0c0f}
+.ptr-title{flex:1;font-size:12.5px;color:#f0b429;letter-spacing:.05em;text-transform:uppercase}
+.ptr-sub{font-size:10.5px;color:#8d8a83;font-weight:600}
 
-.ptr-tabs{display:flex;gap:4px;padding:6px;background:#dce8f6;border-bottom:2px solid #b9cde4}
-.ptr-tab{flex:1;padding:6px 4px;text-align:center;cursor:pointer;font-size:11.5px;color:#4a6a95;
-  background:#eef5fd;border:1px solid #b9cde4;border-radius:9px;
-  transition:background .1s,color .1s,transform .1s}
-.ptr-tab:hover{background:#fff;transform:translateY(-1px)}
-.ptr-tab[data-on="1"]{color:#fff;background:linear-gradient(180deg,#5a90d6,#33619f);
-  border-color:#16223a;box-shadow:0 2px 0 #16223a}
+.ptr-tabs{display:flex;gap:4px;padding:6px;background:#191920;border-bottom:1px solid #0c0c0f}
+.ptr-tab{flex:1;padding:6px 4px;text-align:center;cursor:pointer;font-size:11.5px;color:#9a968d;
+  background:#232329;border:1px solid #34343d;border-radius:8px;transition:all .1s}
+.ptr-tab:hover{background:#2c2c34;color:#d8d4cb}
+.ptr-tab[data-on="1"]{color:#1a1a1f;background:linear-gradient(180deg,#f5c74a,#e0a51f);
+  border-color:#0c0c0f;box-shadow:0 2px 0 #0c0c0f;font-weight:800}
 
-.ptr-body{overflow-y:auto;padding:7px 8px 10px;background:#f2f7fd}
+.ptr-hint{padding:7px 10px 2px;color:#8d8a83;font-size:10.5px;font-weight:600;line-height:1.35}
+
+.ptr-body{overflow-y:auto;padding:5px 8px 10px;background:#141418}
 .ptr-body::-webkit-scrollbar{width:9px}
-.ptr-body::-webkit-scrollbar-thumb{background:#b9cde4;border-radius:9px;border:2px solid #f2f7fd}
+.ptr-body::-webkit-scrollbar-thumb{background:#34343d;border-radius:9px;border:2px solid #141418}
 
-.ptr-row{display:flex;flex-direction:column;gap:3px;padding:6px 9px;margin-bottom:4px;cursor:pointer;
-  background:#fff;border:1px solid #cddcee;border-left:5px solid #8fb3dd;border-radius:9px;
-  box-shadow:0 1px 0 rgba(22,34,58,.08);transition:transform .08s,border-color .1s}
-.ptr-row:hover{transform:translateX(2px);border-color:#5a90d6}
-.ptr-row[data-owned="1"]{background:#eaeef3;opacity:.62}
+.ptr-row{display:flex;flex-direction:column;gap:3px;padding:7px 9px;margin-bottom:4px;cursor:pointer;
+  background:#202026;border:1px solid #31313a;border-left:4px solid #4d4d59;border-radius:8px;
+  transition:transform .08s,border-color .1s,background .1s}
+.ptr-row:hover{transform:translateX(2px);border-color:#f0b429;background:#26262e}
+.ptr-row[data-owned="1"]{opacity:.45}
 .ptr-top{display:flex;align-items:center;gap:6px;width:100%}
 .ptr-name{flex:1;min-width:66px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-  font-size:12.5px;color:#1b2b45}
-.ptr-under{display:flex;align-items:center;gap:6px;color:#5b7391;font-size:10.5px;font-weight:600;
+  font-size:12.5px;color:#f2efe8}
+.ptr-under{display:flex;align-items:center;gap:6px;color:#8d8a83;font-size:10.5px;font-weight:600;
   min-width:0}
 .ptr-reach{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ptr-owned{font-size:9.5px;padding:1px 6px;border-radius:999px;background:#2f5591;color:#fff;
+.ptr-owned{font-size:9.5px;padding:1px 6px;border-radius:999px;background:#4d4d59;color:#d8d4cb;
   letter-spacing:.03em;white-space:nowrap}
-.ptr-lvl{color:#6f8299;font-size:10.5px;font-weight:800;white-space:nowrap}
-.ptr-tier{padding:2px 7px;border-radius:6px;font-weight:800;font-size:10.5px;color:#fff;
-  letter-spacing:.04em;border:1px solid rgba(0,0,0,.35);text-shadow:0 1px 0 rgba(0,0,0,.35);
+.ptr-lvl{color:#f0b429;font-size:10.5px;font-weight:800;white-space:nowrap}
+.ptr-tier{padding:2px 7px;border-radius:5px;font-weight:800;font-size:10.5px;color:#fff;
+  letter-spacing:.04em;border:1px solid rgba(0,0,0,.5);text-shadow:0 1px 0 rgba(0,0,0,.5);
   white-space:nowrap}
-.ptr-type{padding:1px 6px;border-radius:5px;font-size:9.5px;color:#fff;font-weight:700;
-  border:1px solid rgba(0,0,0,.3);text-shadow:0 1px 0 rgba(0,0,0,.35);white-space:nowrap}
+.ptr-tier-mini{padding:1px 5px;border-radius:4px;font-weight:800;font-size:9px;color:#fff;
+  border:1px solid rgba(0,0,0,.5);text-shadow:0 1px 0 rgba(0,0,0,.5)}
+.ptr-type{padding:1px 6px;border-radius:4px;font-size:9.5px;color:#fff;font-weight:700;
+  border:1px solid rgba(0,0,0,.45);text-shadow:0 1px 0 rgba(0,0,0,.45);white-space:nowrap}
 
-.ptr-detail{margin:-2px 2px 7px;padding:9px 11px;background:#fff;
-  border:1px solid #cddcee;border-radius:0 0 10px 10px;box-shadow:0 2px 0 rgba(22,34,58,.06)}
-.ptr-detail-title{color:#2f5591;font-size:9.5px;text-transform:uppercase;letter-spacing:.11em;
-  margin-bottom:5px;font-weight:800}
-.ptr-path{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-bottom:9px}
-.ptr-step{padding:3px 9px;border-radius:999px;font-size:10.5px;background:#eef5fd;
-  border:1px solid #b9cde4;color:#28405f;font-weight:700}
-.ptr-step-now{background:linear-gradient(180deg,#ffe27a,#f5c542);border-color:#a37b12;color:#4a3703}
-.ptr-arrow{color:#8aa4c4;font-size:11px;font-weight:800}
-.ptr-facts{color:#4a6a95;font-size:10.5px;margin-bottom:9px;font-weight:600}
-.ptr-moves{display:flex;flex-wrap:wrap;gap:4px}
-.ptr-move{padding:3px 9px;border-radius:6px;background:linear-gradient(180deg,#f7fbff,#e3edf9);
-  border:1px solid #b9cde4;font-size:10.5px;color:#28405f;font-weight:700}
-.ptr-moves-empty{font-size:10.5px;color:#7a8da5;font-weight:500}
+.ptr-detail{display:block;margin:-2px 2px 8px;padding:10px 11px;background:#191920;
+  border:1px solid #31313a;border-radius:0 0 9px 9px}
+.ptr-detail-title{display:block;color:#f0b429;font-size:9px;text-transform:uppercase;
+  letter-spacing:.13em;margin:0 0 6px;font-weight:800}
+.ptr-detail-title + *{margin-top:0}
+.ptr-block{display:block;margin-bottom:11px}
+.ptr-path{display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+.ptr-step{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:999px;
+  font-size:10.5px;background:#26262e;border:1px solid #3c3c46;color:#ddd9d1;font-weight:700}
+.ptr-step-now{background:linear-gradient(180deg,#f5c74a,#e0a51f);border-color:#8a6510;color:#241a02}
+.ptr-arrow{color:#5c5c68;font-size:11px;font-weight:800}
+.ptr-facts{display:block;color:#b6b2a9;font-size:10.5px;font-weight:600}
+.ptr-facts b{color:#f0b429;font-weight:800}
+.ptr-tags{display:flex;flex-wrap:wrap;gap:4px}
+.ptr-tag{padding:3px 9px;border-radius:6px;background:#26262e;border:1px solid #3c3c46;
+  font-size:10.5px;color:#ddd9d1;font-weight:700}
+.ptr-strategy{background:linear-gradient(180deg,#3a3222,#2a2418);border-color:#6b5620;color:#f0b429}
+.ptr-moves-empty{display:block;font-size:10.5px;color:#7d7a73;font-weight:500}
 
-.ptr-group{margin:10px 3px 5px;color:#2f5591;font-size:9.5px;text-transform:uppercase;
-  letter-spacing:.11em;font-weight:800;display:flex;align-items:center;gap:7px}
-.ptr-group::after{content:'';flex:1;height:2px;border-radius:2px;background:#c9daed}
-.ptr-badge{padding:2px 8px;border-radius:999px;background:linear-gradient(180deg,#5fbf7a,#3d9a5a);
-  color:#fff;font-size:9.5px;letter-spacing:.02em;text-transform:none;border:1px solid #1d5c32}
-.ptr-empty{padding:18px 8px;text-align:center;color:#7a8da5;font-weight:600}
+.ptr-group{margin:11px 3px 5px;color:#8d8a83;font-size:9px;text-transform:uppercase;
+  letter-spacing:.13em;font-weight:800;display:flex;align-items:center;gap:7px}
+.ptr-group::after{content:'';flex:1;height:1px;background:#31313a}
+.ptr-badge{padding:2px 8px;border-radius:999px;background:#2a2418;color:#f0b429;
+  font-size:9.5px;letter-spacing:.02em;text-transform:none;border:1px solid #6b5620}
+.ptr-empty{display:block;padding:18px 8px;text-align:center;color:#7d7a73;font-weight:600}
 `;
 
 function tierChip(tier: Tier | null): HTMLElement {
@@ -174,57 +189,105 @@ function rowElement(row: PokemonRow): HTMLElement {
   return element;
 }
 
+function div(className: string): HTMLElement {
+  const element = document.createElement('div');
+  element.className = className;
+  return element;
+}
+
+function miniTier(tier: Tier | null): HTMLElement | null {
+  if (!tier) return null;
+  const chip = span('ptr-tier-mini', tier);
+  chip.style.background = backgroundFor(tier);
+  return chip;
+}
+
+function step(text: string, tier: Tier | null, agora: boolean): HTMLElement {
+  const chip = span(agora ? 'ptr-step ptr-step-now' : 'ptr-step', text);
+  const mini = agora ? null : miniTier(tier);
+  if (mini) chip.append(mini);
+  return chip;
+}
+
 function pathElement(row: PokemonRow): HTMLElement | null {
   if (!row.evolutions.length) return null;
 
-  const path = document.createElement('div');
-  path.className = 'ptr-path';
-
-  const agora = span(
-    'ptr-step ptr-step-now',
-    row.level === null ? row.name : `${row.name} Nv.${row.level}`,
-  );
-  path.append(agora);
+  const path = div('ptr-path');
+  path.append(step(row.level === null ? row.name : `${row.name} Nv.${row.level}`, row.tier, true));
 
   for (const passo of row.evolutions) {
-    path.append(span('ptr-arrow', '→'));
-    path.append(span('ptr-step', passo.level > 1 ? `${passo.name} Nv.${passo.level}` : passo.name));
+    path.append(span('ptr-arrow', '\u2192'));
+    path.append(
+      step(passo.level > 1 ? `${passo.name} Nv.${passo.level}` : passo.name, passo.tier, false),
+    );
   }
 
   const note = SOURCE_NOTE[row.source];
   if (note && row.reachName) {
-    path.append(span('ptr-arrow', '→'));
-    path.append(span('ptr-step', `${row.reachName} (${note})`));
+    path.append(span('ptr-arrow', '\u2192'));
+    path.append(step(`${row.reachName} (${note})`, row.reachTier, false));
   }
 
   return path;
 }
 
 function detailElement(row: PokemonRow): HTMLElement {
-  const box = document.createElement('div');
-  box.className = 'ptr-detail';
+  const box = div('ptr-detail');
 
   const path = pathElement(row);
   if (path) {
-    box.append(span('ptr-detail-title', 'Como chega la'), path);
+    const bloco = div('ptr-block');
+    bloco.append(span('ptr-detail-title', 'Como chega lá'), path);
+    box.append(bloco);
   }
 
   const facts: string[] = [];
   if (row.hiddenAbility) facts.push(`HA ${row.hiddenAbility}`);
   if (row.catchRate !== null) facts.push(`Captura ${row.catchRate}`);
-  if (facts.length) box.append(span('ptr-facts', facts.join(' · ')));
+  if (facts.length) {
+    const bloco = div('ptr-block');
+    bloco.append(span('ptr-detail-title', 'No jogo'), span('ptr-facts', facts.join(' \u00b7 ')));
+    box.append(bloco);
+  }
 
-  box.append(span('ptr-detail-title', 'Golpes mais usados no Smogon'));
+  const build = row.build;
+
+  if (build?.strategies.length) {
+    const bloco = div('ptr-block');
+    const tags = div('ptr-tags');
+    for (const nome of build.strategies) tags.append(span('ptr-tag ptr-strategy', nome));
+    bloco.append(span('ptr-detail-title', 'Builds do Smogon'), tags);
+    box.append(bloco);
+  }
+
+  const linhas: string[] = [];
+  if (build?.nature) linhas.push(`Nature ${build.nature}`);
+  if (build?.item) linhas.push(`Item ${build.item}`);
+  const evs = spreadText(build?.evs ?? null);
+  if (evs) linhas.push(`EVs ${evs}`);
+  const ivs = spreadText(build?.ivs ?? null);
+  if (ivs) linhas.push(`IVs ${ivs}`);
+
+  if (linhas.length) {
+    const bloco = div('ptr-block');
+    bloco.append(span('ptr-detail-title', 'Como montar'));
+    for (const linha of linhas) bloco.append(span('ptr-facts', linha));
+    box.append(bloco);
+  }
+
+  const bloco = div('ptr-block');
+  bloco.append(span('ptr-detail-title', 'Golpes mais usados'));
 
   if (!row.moves.length) {
-    box.append(span('ptr-moves-empty', 'Sem golpes catalogados pelo Smogon'));
+    bloco.append(span('ptr-moves-empty', 'Sem sets catalogados pelo Smogon'));
+    box.append(bloco);
     return box;
   }
 
-  const list = document.createElement('div');
-  list.className = 'ptr-moves';
-  for (const move of row.moves) list.append(span('ptr-move', move));
-  box.append(list);
+  const tags = div('ptr-tags');
+  for (const move of row.moves) tags.append(span('ptr-tag', move));
+  bloco.append(tags);
+  box.append(bloco);
   return box;
 }
 
@@ -238,6 +301,7 @@ export class Panel {
   private readonly panel: HTMLElement;
   private readonly body: HTMLElement;
   private readonly subtitle: HTMLElement;
+  private readonly hint: HTMLElement;
   private readonly tabs = new Map<TabId, HTMLElement>();
   private open = false;
   private active: TabId = 'field';
@@ -270,9 +334,9 @@ export class Panel {
 
     const head = document.createElement('div');
     head.className = 'ptr-head';
-    head.append(span('ptr-title', PANEL_NAME));
-    this.subtitle = span('ptr-sub', '');
+    this.subtitle = span('ptr-title', '');
     head.append(this.subtitle);
+    head.append(span('ptr-sub', 'PokeRogue'));
 
     const tabs = document.createElement('div');
     tabs.className = 'ptr-tabs';
@@ -283,9 +347,11 @@ export class Panel {
       tabs.append(tab);
     }
 
+    this.hint = span('ptr-hint', '');
+
     this.body = document.createElement('div');
     this.body.className = 'ptr-body';
-    this.panel.append(head, tabs, this.body);
+    this.panel.append(head, tabs, this.hint, this.body);
     this.root.append(this.toggle, this.panel);
     this.host.append(this.root);
 
@@ -338,6 +404,7 @@ export class Panel {
 
   private render(): void {
     this.subtitle.textContent = this.content.biome?.name ?? 'fora de uma run';
+    this.hint.textContent = TAB_HINTS[this.active];
     this.body.replaceChildren();
 
     if (this.active === 'biome') {
@@ -411,7 +478,7 @@ export class Panel {
 
       if (!group.highlights.length) {
         this.body.append(
-          emptyElement(group.total ? 'Voce ja tem todos daqui' : 'Sem encontros catalogados'),
+          emptyElement(group.total ? 'Você já tem todos daqui' : 'Sem encontros catalogados'),
         );
         continue;
       }

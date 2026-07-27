@@ -17,6 +17,7 @@ const row = (over: Partial<PokemonRow> = {}): PokemonRow => ({
   rarity: null,
   types: [],
   evolutions: [],
+  build: null,
   ...over,
 });
 
@@ -214,7 +215,7 @@ describe('golpes sugeridos', () => {
     });
     toggle()?.click();
 
-    expect(document.querySelectorAll('.ptr-move')).toHaveLength(0);
+    expect(document.querySelectorAll('.ptr-tag')).toHaveLength(0);
   });
 
   test('clicar na linha revela os golpes do Smogon', () => {
@@ -230,7 +231,7 @@ describe('golpes sugeridos', () => {
 
     document.querySelector<HTMLElement>('.ptr-row')?.click();
 
-    const moves = [...document.querySelectorAll('.ptr-move')].map((m) => m.textContent);
+    const moves = [...document.querySelectorAll('.ptr-tag')].map((m) => m.textContent);
     expect(moves).toEqual(['Waterfall', 'Dragon Dance']);
   });
 
@@ -248,7 +249,7 @@ describe('golpes sugeridos', () => {
     document.querySelector<HTMLElement>('.ptr-row')?.click();
     document.querySelector<HTMLElement>('.ptr-row')?.click();
 
-    expect(document.querySelectorAll('.ptr-move')).toHaveLength(0);
+    expect(document.querySelectorAll('.ptr-tag')).toHaveLength(0);
   });
 
   test('so uma linha fica aberta por vez', () => {
@@ -266,7 +267,7 @@ describe('golpes sugeridos', () => {
     linhas()[0]?.click();
     linhas()[1]?.click();
 
-    const moves = [...document.querySelectorAll('.ptr-move')].map((m) => m.textContent);
+    const moves = [...document.querySelectorAll('.ptr-tag')].map((m) => m.textContent);
     expect(moves).toEqual(['B']);
   });
 
@@ -317,6 +318,6 @@ describe('golpes sugeridos', () => {
 
     document.querySelector<HTMLElement>('.ptr-row')?.click();
 
-    expect(document.body.textContent).toContain('Sem golpes catalogados');
+    expect(document.body.textContent).toContain('Sem sets catalogados pelo Smogon');
   });
 });
