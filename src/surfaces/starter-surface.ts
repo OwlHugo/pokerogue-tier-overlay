@@ -1,10 +1,11 @@
 import type { LocaleRef } from '../domain/locale-ref';
 import { ratingLabel, ratingOf } from '../domain/rating';
-import { bestReachable } from '../domain/reachable';
+import { baseReachable } from '../domain/reachable';
 import type { TierTable } from '../domain/tier-table';
 import { resolveTiers } from '../domain/tier-table';
 import type { GameContext } from '../game/context';
 import type { StarterSelectHandler } from '../game/pokerogue';
+import { speciesRefOf } from '../game/species-ref';
 import { readStarterTargets } from '../game/starter';
 import type { BadgeLayer } from '../render/badge-layer';
 import { shortLabel } from '../render/label';
@@ -43,8 +44,8 @@ export class StarterSurface implements Surface {
       return;
     }
 
-    const resolved = resolveTiers(this.table, { speciesId: species.speciesId, formKey: '' }, null);
-    const alcance = bestReachable(resolved);
+    const resolved = resolveTiers(this.table, speciesRefOf(species.speciesId, ''), null);
+    const alcance = baseReachable(resolved);
 
     layer.reconcile([
       {

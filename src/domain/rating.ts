@@ -35,8 +35,8 @@ const COLORS: Record<Rating, string> = {
   muitoBom: '#ef4444',
   bom: '#f97316',
   mediano: '#eab308',
-  fraco: '#64748b',
-  cresce: '#22c55e',
+  fraco: '#6b7280',
+  cresce: '#3b82f6',
 };
 
 const SHORT: Record<Rating, string> = {
@@ -51,6 +51,15 @@ const SHORT: Record<Rating, string> = {
 export function ratingShort(rating: Rating | null): string {
   return rating === null ? '?' : SHORT[rating];
 }
+
+export const ALL_RATINGS: readonly Rating[] = [
+  'excepcional',
+  'muitoBom',
+  'bom',
+  'mediano',
+  'fraco',
+  'cresce',
+];
 
 export function ratingOf(tier: Tier | null): Rating | null {
   return tier === null ? null : BY_TIER[tier];

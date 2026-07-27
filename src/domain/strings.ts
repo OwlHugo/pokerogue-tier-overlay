@@ -28,7 +28,8 @@ export type StringKey =
   | 'coverage'
   | 'snowball'
   | 'snowballHint'
-  | 'legend';
+  | 'legend'
+  | 'upside';
 
 const STRINGS: Record<StringKey, Record<Locale, string>> = {
   tabField: { pt: 'Inimigo', en: 'Enemy' },
@@ -72,9 +73,13 @@ const STRINGS: Record<StringKey, Record<Locale, string>> = {
   catch: { pt: 'Captura', en: 'Catch' },
   coverage: { pt: 'Sem cobertura', en: 'Missing types' },
   snowball: { pt: 'bola de neve', en: 'snowball' },
+  upside: {
+    pt: 'Se conseguir a pedra, sobe para',
+    en: 'If you get the stone, it rises to',
+  },
   legend: {
-    pt: 'S excepcional · A muito bom · B bom · C mediano · D fraco  |  +M mega · +G gmax',
-    en: 'S exceptional · A very good · B good · C average · D weak  |  +M mega · +G gmax',
+    pt: 'S · A · B · C · D  ·  +M mega  ·  +G gmax',
+    en: 'S · A · B · C · D  ·  +M mega  ·  +G gmax',
   },
   snowballHint: {
     pt: 'Acumula atributo a cada derrota e mantém entre waves — passa fase sozinho.',

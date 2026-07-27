@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { ratingLabel, ratingOf } from '../src/domain/rating';
+import { ALL_RATINGS, ratingColor, ratingLabel, ratingOf } from '../src/domain/rating';
 import { TIER_ORDER } from '../src/domain/tier';
 
 describe('ratingOf', () => {
@@ -30,5 +30,16 @@ describe('ratingLabel', () => {
 
   test('sem nota mostra interrogacao, como o overlay ja faz com tier', () => {
     expect(ratingLabel(null, 'pt')).toBe('?');
+  });
+});
+
+describe('escala de cor', () => {
+  test('cada nota tem cor propria, sem repeticao', () => {
+    const cores = ALL_RATINGS.map((r) => ratingColor(r));
+    expect(new Set(cores).size).toBe(cores.length);
+  });
+
+  test('sem nota usa cor neutra distinta das notas', () => {
+    expect(ALL_RATINGS.map((r) => ratingColor(r))).not.toContain(ratingColor(null));
   });
 });

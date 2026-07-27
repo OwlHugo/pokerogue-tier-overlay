@@ -44,7 +44,18 @@ describe('fieldView', () => {
     const rows = fieldView(scene, tiers);
 
     expect(rows).toHaveLength(1);
-    expect(rows[0]).toMatchObject({ name: 'Mawile', tier: 'ZU', reachTier: 'OU', source: 'mega' });
+    expect(rows[0]).toMatchObject({ name: 'Mawile', tier: 'ZU', reachTier: 'ZU', source: 'line' });
+  });
+
+  test('mega nao infla a nota base, mas aparece como upside', () => {
+    const scene = fakeBattleScene({
+      enemies: [fakePokemon({ speciesId: 303, name: 'Mawile' })],
+    });
+
+    const linha = fieldView(scene, tiers)[0];
+
+    expect(linha?.reachTier).toBe('ZU');
+    expect(linha?.upgrades).toEqual([{ source: 'mega', tier: 'OU', name: 'Mawile-Mega' }]);
   });
 
   test('sem batalha, nao ha nada em campo', () => {
@@ -75,7 +86,7 @@ describe('biomeView', () => {
     const groups = biomeView(9, biomes, tiers);
 
     expect(groups).toHaveLength(1);
-    expect(groups[0]?.entries[0]).toMatchObject({ name: 'Mawile', reachTier: 'OU' });
+    expect(groups[0]?.entries[0]).toMatchObject({ reachTier: 'RU' });
   });
 
   test('nao repete a especie que aparece em duas raridades', () => {
@@ -96,6 +107,6 @@ describe('biomeView', () => {
     };
     const [group] = biomeView(1, table, tiers);
 
-    expect(group?.entries.map((e) => e.name)).toEqual(['Mawile', 'Magikarp', 'Hoothoot']);
+    expect(group?.entries.map((e) => e.name)).toEqual(['Magikarp', 'Hoothoot', 'Mawile']);
   });
 });

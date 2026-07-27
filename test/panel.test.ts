@@ -18,6 +18,7 @@ const row = (over: Partial<PokemonRow> = {}): PokemonRow => ({
   rarity: null,
   types: [],
   evolutions: [],
+  upgrades: [],
   build: null,
   ...over,
 });

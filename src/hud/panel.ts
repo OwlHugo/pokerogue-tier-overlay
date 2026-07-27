@@ -5,11 +5,10 @@ import { typeColorOf, typeNameOf } from '../domain/coverage';
 import type { LocaleRef } from '../domain/locale-ref';
 import type { SmogonBuild } from '../domain/moveset';
 import type { Locale, NamesByLocale } from '../domain/names';
-import { ratingColor, ratingLabel, ratingOf } from '../domain/rating';
+import { ratingColor, ratingLabel, ratingOf, ratingShort } from '../domain/rating';
 import type { ReachableSource } from '../domain/reachable';
 import { type StringKey, t } from '../domain/strings';
 import type { Tier } from '../domain/tier';
-import { backgroundFor } from '../render/palette';
 import type { BiomeGroup, DestinationGroup, PokemonRow } from './views';
 
 const PANEL_NAME = 'Guia';
@@ -93,8 +92,8 @@ const css = `
   border-color:#0c0c0f;box-shadow:0 2px 0 #0c0c0f;font-weight:800}
 
 .ptr-hint{padding:7px 10px 2px;color:#8d8a83;font-size:10.5px;font-weight:600;line-height:1.35}
-.ptr-legend{padding:6px 10px 8px;color:#7d7a73;font-size:9.5px;font-weight:600;line-height:1.4;
-  border-top:1px solid #2a2a31;background:#191920}
+.ptr-legend{padding:5px 10px 6px;color:#6e6b65;font-size:9px;font-weight:600;letter-spacing:.02em;
+  border-top:1px solid #2a2a31;background:#191920;text-align:center}
 
 .ptr-body{overflow-y:auto;padding:5px 8px 10px;background:#141418}
 .ptr-body::-webkit-scrollbar{width:9px}
@@ -117,8 +116,8 @@ const css = `
 .ptr-tier{padding:2px 7px;border-radius:5px;font-weight:800;font-size:10.5px;color:#fff;
   letter-spacing:.04em;border:1px solid rgba(0,0,0,.5);text-shadow:0 1px 0 rgba(0,0,0,.5);
   white-space:nowrap}
-.ptr-tier-mini{padding:1px 5px;border-radius:4px;font-weight:800;font-size:9px;color:#fff;
-  border:1px solid rgba(0,0,0,.5);text-shadow:0 1px 0 rgba(0,0,0,.5)}
+.ptr-tier-mini{padding:1px 5px;border-radius:4px;font-weight:800;font-size:9px;color:#9a968d;
+  background:#26262e;border:1px solid #3c3c46}
 .ptr-type{padding:1px 6px;border-radius:4px;font-size:9.5px;color:#fff;font-weight:700;
   border:1px solid rgba(0,0,0,.45);text-shadow:0 1px 0 rgba(0,0,0,.45);white-space:nowrap}
 
@@ -166,7 +165,6 @@ function tierChip(tier: Tier | null): HTMLElement {
   const chip = document.createElement('span');
   chip.className = 'ptr-tier-mini';
   chip.textContent = tier ?? '?';
-  chip.style.background = backgroundFor(tier);
   return chip;
 }
 
@@ -219,16 +217,19 @@ function div(className: string): HTMLElement {
   return element;
 }
 
-function miniTier(tier: Tier | null): HTMLElement | null {
+function miniRating(tier: Tier | null): HTMLElement | null {
   if (!tier) return null;
-  const chip = span('ptr-tier-mini', tier);
-  chip.style.background = backgroundFor(tier);
+  const rating = ratingOf(tier);
+  const chip = span('ptr-tier-mini', ratingShort(rating));
+  chip.style.background = ratingColor(rating);
+  chip.style.color = '#fff';
+  chip.style.borderColor = 'rgba(0,0,0,.45)';
   return chip;
 }
 
 function step(text: string, tier: Tier | null, agora: boolean): HTMLElement {
   const chip = span(agora ? 'ptr-step ptr-step-now' : 'ptr-step', text);
-  const mini = agora ? null : miniTier(tier);
+  const mini = agora ? null : miniRating(tier);
   if (mini) chip.append(mini);
   return chip;
 }
@@ -318,6 +319,16 @@ function detailElement(row: PokemonRow, abilityNames: NamesByLocale, locale: Loc
 
   const path = pathElement(row);
   if (path) box.append(bloco(t('path', locale), [path]));
+
+  if (row.upgrades.length) {
+    const linhas = row.upgrades.map((u) =>
+      span(
+        'ptr-facts',
+        `${u.source === 'mega' ? 'Mega' : 'Gigantamax'}: ${ratingLabel(ratingOf(u.tier), locale)} (${u.name})`,
+      ),
+    );
+    box.append(bloco(t('upside', locale), linhas));
+  }
 
   const abilities = abilityList(row, abilityNames, locale);
   if (abilities) {

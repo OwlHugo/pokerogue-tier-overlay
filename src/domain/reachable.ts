@@ -16,6 +16,31 @@ export interface ReachableInput {
   gmax: UnlockedForm | null;
 }
 
+export interface Upgrade {
+  source: 'mega' | 'gmax';
+  tier: Tier;
+  name: string;
+}
+
+export function baseReachable(entry: ReachableInput): Reachable {
+  return { tier: entry.bestTier, name: entry.bestName, source: 'line' };
+}
+
+export function upgradesOf(entry: ReachableInput): readonly Upgrade[] {
+  const upgrades: Upgrade[] = [];
+
+  for (const [source, form] of [
+    ['mega', entry.mega],
+    ['gmax', entry.gmax],
+  ] as const) {
+    if (!form) continue;
+    if (entry.bestTier !== null && compareTier(entry.bestTier, form.tier) <= 0) continue;
+    upgrades.push({ source, tier: form.tier, name: form.name });
+  }
+
+  return upgrades;
+}
+
 export function bestReachable(entry: ReachableInput): Reachable {
   let best: Reachable = { tier: entry.bestTier, name: entry.bestName, source: 'line' };
 

@@ -1,7 +1,7 @@
 import { type BiomeTable, POOL_TIER_ORDER, type PoolTier } from '../domain/biome';
 import { missingTypes } from '../domain/coverage';
 import type { MovesetTable, SmogonBuild } from '../domain/moveset';
-import { bestReachable, type ReachableSource } from '../domain/reachable';
+import { baseReachable, type ReachableSource, type Upgrade, upgradesOf } from '../domain/reachable';
 import { keyFor } from '../domain/species-key';
 import { type TeamSpecies, teamSpeciesOf } from '../domain/team-species';
 import { compareTier, type Tier } from '../domain/tier';
@@ -25,6 +25,7 @@ export interface PokemonRow {
   rarity: PoolTier | null;
   types: readonly number[];
   evolutions: readonly { name: string; level: number; tier: Tier | null }[];
+  upgrades: readonly Upgrade[];
   build: SmogonBuild | null;
 }
 
@@ -50,7 +51,8 @@ function rowFor(
 ): PokemonRow {
   const ref = speciesRefOf(speciesId, '');
   const resolved = resolveTiers(table, ref, null);
-  const reach = bestReachable(resolved);
+  const reach = baseReachable(resolved);
+  const upgrades = upgradesOf(resolved);
   const build =
     movesets[keyFor(ref.speciesId, ref.formKey)] ?? movesets[keyFor(ref.speciesId, '')] ?? null;
 
@@ -63,6 +65,7 @@ function rowFor(
     reachName: reach.name,
     source: reach.source,
     moves: build?.sets[0]?.moves ?? build?.moves ?? [],
+    upgrades,
     build,
     recommendedAbility: build?.sets[0]?.ability ?? null,
     abilities: [],
