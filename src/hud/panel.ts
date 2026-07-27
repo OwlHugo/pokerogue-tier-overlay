@@ -93,6 +93,8 @@ const css = `
   border-color:#0c0c0f;box-shadow:0 2px 0 #0c0c0f;font-weight:800}
 
 .ptr-hint{padding:7px 10px 2px;color:#8d8a83;font-size:10.5px;font-weight:600;line-height:1.35}
+.ptr-legend{padding:6px 10px 8px;color:#7d7a73;font-size:9.5px;font-weight:600;line-height:1.4;
+  border-top:1px solid #2a2a31;background:#191920}
 
 .ptr-body{overflow-y:auto;padding:5px 8px 10px;background:#141418}
 .ptr-body::-webkit-scrollbar{width:9px}
@@ -374,6 +376,7 @@ export class Panel {
   private readonly body: HTMLElement;
   private readonly subtitle: HTMLElement;
   private readonly hint: HTMLElement;
+  private readonly legend: HTMLElement;
   private readonly langButton: HTMLElement;
   private readonly tabs = new Map<TabId, HTMLElement>();
   private open = false;
@@ -434,10 +437,11 @@ export class Panel {
     }
 
     this.hint = span('ptr-hint', '');
+    this.legend = span('ptr-legend', '');
 
     this.body = document.createElement('div');
     this.body.className = 'ptr-body';
-    this.panel.append(head, tabs, this.hint, this.body);
+    this.panel.append(head, tabs, this.hint, this.body, this.legend);
     this.root.append(this.toggle, this.panel);
     this.host.append(this.root);
 
@@ -511,6 +515,7 @@ export class Panel {
     this.subtitle.textContent =
       biomeId === undefined ? '—' : (this.biomeName(biomeId) ?? String(biomeId));
     this.hint.textContent = t(HINT_KEYS[this.active], this.locale);
+    this.legend.textContent = t('legend', this.locale);
     this.body.replaceChildren();
 
     if (this.active === 'biome') {

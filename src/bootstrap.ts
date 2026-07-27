@@ -24,7 +24,7 @@ function overlayFor(scene: BattleScene, table: TierTable, ref: LocaleRef): Overl
   return new Overlay(
     [
       new BattleSurface(new BadgeLayer(scene), table, ref),
-      new StarterSurface(new BadgeLayer(scene), table),
+      new StarterSurface(new BadgeLayer(scene), table, new BadgeLayer(scene), ref),
     ],
     () => contextOf(scene),
   );
