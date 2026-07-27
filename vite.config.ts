@@ -16,7 +16,7 @@ export default defineConfig({
         match: ['https://pokerogue.net/*'],
         'run-at': 'document-start',
         grant: 'none',
-        license: 'MIT',
+        license: 'AGPL-3.0-only',
         homepageURL: repository,
         supportURL: `${repository}/issues`,
       },

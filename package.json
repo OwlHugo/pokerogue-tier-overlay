@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "Marca o melhor tier competitivo do Smogon da linha evolutiva de cada Pokemon no PokeRogue",
   "type": "module",
-  "license": "MIT",
+  "license": "AGPL-3.0-only",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

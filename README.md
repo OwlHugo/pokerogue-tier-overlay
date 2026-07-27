@@ -135,7 +135,21 @@ seria pior que nenhum painel.
   do `vite-plugin-monkey`. Ela não entra no bundle distribuído, e o `audit fix` rebaixaria o
   plugin para uma versão incompatível com o Vite 8.
 
+## De onde vêm os dados
+
+Tiers do Smogon via [`@pkmn/dex`](https://github.com/pkmn/ps), que é MIT.
+
+Pools de espécie por bioma são geradas de
+[`pagefaultgames/pokerogue`](https://github.com/pagefaultgames/pokerogue), que é
+**AGPL-3.0-only**.
+
+A fonte da verdade é o código do jogo, não a wiki nem o fórum: onde os dois divergirem, vale o
+que efetivamente roda na máquina do jogador.
+
 ## Licença
 
-MIT. Este é um projeto de fã, sem vínculo com a Nintendo, a The Pokémon Company, o Smogon ou
-o PokéRogue. Os dados de tier vêm do [`@pkmn/dex`](https://github.com/pkmn/ps), também MIT.
+**AGPL-3.0-only**, porque o overlay embute dados derivados do repositório do PokéRogue, que é
+AGPL-3.0-only. Distribuir isso sob MIT seria incompatível com a licença da fonte.
+
+Este é um projeto de fã, sem vínculo com a Nintendo, a The Pokémon Company, o Smogon ou o
+PokéRogue.

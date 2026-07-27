@@ -3,7 +3,7 @@
 // @namespace    https://github.com/hugoadriano/pokerogue-tier-overlay
 // @version      2.0.0
 // @description  Mostra o melhor tier competitivo do Smogon que a linha evolutiva de cada Pokemon alcanca, na batalha e na selecao de starter
-// @license      MIT
+// @license      AGPL-3.0-only
 // @icon         https://pokerogue.net/logo512.png
 // @homepageURL  https://github.com/hugoadriano/pokerogue-tier-overlay
 // @supportURL   https://github.com/hugoadriano/pokerogue-tier-overlay/issues
