@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PokéRogue Tier Overlay — veja no que ele vira, antes de gastar a bola</title>
+<meta name="description" content="Userscript que mostra o melhor tier do Smogon que cada Pokémon alcança no PokéRogue — evolução, Mega e Gigantamax — dentro do jogo.">
+<link rel="alternate" hreflang="en" href="./index.html">
+<link rel="alternate" hreflang="pt-BR" href="./pt-BR.html">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<main>
+  <div class="wrap">
+
+    <nav class="langbar" aria-label="Idioma">
+      <a href="./index.html" lang="en">English</a>
+      <a href="./pt-BR.html" aria-current="page">Português</a>
+    </nav>
+
+    <header class="hero">
+      <div class="ladder" aria-hidden="true">
+        <div class="rung" data-hue="lc"   data-step="0"><span class="pip"></span>LC<span class="who">Magikarp</span></div>
+        <div class="rung" data-hue="lc"   data-step="1"><span class="pip"></span>NFE</div>
+        <div class="rung" data-hue="low"  data-step="2"><span class="pip"></span>ZU</div>
+        <div class="rung" data-hue="low"  data-step="3"><span class="pip"></span>PU</div>
+        <div class="rung" data-hue="low"  data-step="4"><span class="pip"></span>NU</div>
+        <div class="rung" data-hue="mid"  data-step="5"><span class="pip"></span>RU<span class="who">Gyarados</span></div>
+        <div class="rung" data-hue="mid"  data-step="6"><span class="pip"></span>UU</div>
+        <div class="rung" data-hue="ou"   data-step="7"><span class="pip"></span>OU<span class="who">Mega</span></div>
+        <div class="rung" data-hue="uber" data-step="8"><span class="pip"></span>Uber</div>
+        <div class="rung" data-hue="ag"   data-step="9"><span class="pip"></span>AG</div>
+      </div>
+
+      <div>
+        <p class="eyebrow">Userscript · pokerogue.net</p>
+        <h1>A bola é a <em>decisão</em>.</h1>
+        <p class="lede">
+          Um Magikarp é LC e parece lixo. Ele vira Gyarados, que é RU — e Mega Gyarados
+          é OU. O overlay diz isso enquanto a bola ainda está na mochila.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" id="install" data-nolink="Pegar no GitHub"
+             href="https://github.com/OwlHugo/pokerogue-tier-overlay">Instalar</a>
+          <a class="btn" href="https://github.com/OwlHugo/pokerogue-tier-overlay">Ver o código</a>
+        </div>
+        <p class="btn-note" data-nolink="Página no Greasyfork a caminho · AGPL-3.0 · nenhuma chamada de rede">
+          Grátis · AGPL-3.0 · nenhuma chamada de rede
+        </p>
+      </div>
+    </header>
+
+    <section>
+      <p class="eyebrow">Onde aparece</p>
+      <h2>Três telas, uma pergunta</h2>
+      <p class="section-lede">
+        Toda superfície responde a mesma coisa: vale a bola, e para onde isso leva?
+      </p>
+
+      <div class="surfaces">
+        <article class="surface">
+          <h3>Batalha</h3>
+          <p>Uma badge acima de cada inimigo, com o tier atual e o melhor tier que a linha dele alcança — evolução, Mega e Gigantamax inclusos.</p>
+        </article>
+        <article class="surface">
+          <h3>Seleção de starter</h3>
+          <p>O melhor tier alcançável nos 572 ícones da grade, acompanhando filtro e rolagem, porque quem desenha é o próprio jogo.</p>
+        </article>
+        <article class="surface">
+          <h3>Painel Guia</h3>
+          <p>Abas para o inimigo, seu time, o bioma atual e para onde esse bioma leva. Fechado até você abrir.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Linha editorial</p>
+      <h2>O que ele se recusa a mostrar</h2>
+      <p class="section-lede">
+        Um set do Smogon carrega dado que o PokéRogue não tem. Mostrar tudo pareceria
+        caprichado e não ajudaria ninguém.
+      </p>
+
+      <dl class="refusals">
+        <div class="refusal">
+          <dt>EVs</dt>
+          <dd>O PokéRogue não tem EVs. Stats sobem por vitaminas, que são modifiers de recompensa.</dd>
+        </div>
+        <div class="refusal">
+          <dt>IVs</dt>
+          <dd>Existem, mas são sorteados no encontro. Você não escolhe.</dd>
+        </div>
+        <div class="refusal">
+          <dt>Item segurado</dt>
+          <dd>Itens vêm de um pool por tier de modifier, não do catálogo competitivo. Não existe Z-crystal.</dd>
+        </div>
+        <div class="refusal">
+          <dt>Sets de Z e Dynamax</dt>
+          <dd>Mecânicas que o jogo não implementa.</dd>
+        </div>
+      </dl>
+
+      <p class="keeper">
+        <strong>Nature fica</strong>, porque é a única acionável — o PokéRogue tem Mints no
+        pool de modifiers.
+      </p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Instalar</p>
+      <h2>Duas coisas, uma vez só</h2>
+
+      <ol class="steps">
+        <li class="step">
+          <div>
+            <strong>Instale um gerenciador de userscript</strong>
+            <p><a href="https://www.tampermonkey.net/">Tampermonkey</a> ou <a href="https://violentmonkey.github.io/">Violentmonkey</a>. Chrome, Firefox, Edge e Safari no desktop, Firefox no Android.</p>
+          </div>
+        </li>
+        <li class="step">
+          <div>
+            <strong>Adicione o overlay</strong>
+            <p data-nolink="Pegue o .user.js no repositório e abra — seu gerenciador vai oferecer a instalação. Depois abra pokerogue.net.">
+              Instale o script e abra pokerogue.net. A badge aparece no próximo encontro.
+            </p>
+          </div>
+        </li>
+      </ol>
+
+      <p class="chrome-note">
+        No Chrome você também precisa ligar o <strong>Modo do desenvolvedor</strong> em
+        <code>chrome://extensions</code> — desde o Manifest V3, gerenciador de userscript não
+        roda sem isso. O Firefox não precisa de nada.
+      </p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Limites honestos</p>
+      <h2>O que ele não faz por você</h2>
+      <p class="section-lede">
+        Tier mede força no metagame competitivo do Smogon, que não é a mesma coisa que força
+        no PokéRogue — o jogo tem passivas, fusões e itens que o Smogon não modela. É sinal,
+        não veredito.
+      </p>
+      <p class="section-lede">
+        Não calcula dano, não computa fraquezas e não diz qual Pokémon soltar. Quando a
+        espécie não está no catálogo do Smogon, mostra <code>?</code> em vez de inventar um
+        tier. Quando não encontra o jogo, avisa em vermelho em vez de mostrar um número que
+        não tem.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>
+      Tiers via <a href="https://github.com/pkmn/ps">@pkmn/dex</a> (MIT). Pools de encontro por
+      bioma gerados de <a href="https://github.com/pagefaultgames/pokerogue">pagefaultgames/pokerogue</a>
+      (AGPL-3.0), a partir de um commit fixo.
+    </p>
+    <p>
+      Tudo vai dentro do script: sem <code>@require</code>, sem fetch, sem telemetria.
+      Publicado sob AGPL-3.0 — <a href="https://github.com/OwlHugo/pokerogue-tier-overlay">leia</a>.
+    </p>
+    <p>
+      Projeto de fã, sem vínculo com a Nintendo, a The Pokémon Company, o Smogon ou o PokéRogue.
+    </p>
+  </div>
+</footer>
+
+<script src="./app.js"></script>
+
+</body>
+</html>
