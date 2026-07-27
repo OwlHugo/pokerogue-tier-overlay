@@ -1,209 +1,208 @@
-*Leia em [inglês](README.en.md).*
+*Leia em [português](README.pt-BR.md).*
 
 # PokéRogue Tier Overlay
 
-Mostra, dentro do próprio jogo, **o melhor tier competitivo do Smogon que cada Pokémon
-consegue alcançar** — contando evolução, Mega Evolução e Gigantamax.
+Shows, inside the game itself, **the best competitive Smogon tier each Pokémon can reach** —
+counting evolution, Mega Evolution and Gigantamax.
 
-Um Magikarp é LC e parece lixo. Ele vira Gyarados. O overlay diz isso antes de você decidir
-gastar a Pokébola.
+A Magikarp is LC and looks like trash. It becomes Gyarados. The overlay tells you that before
+you decide to spend the ball.
 
 ```
 Hoothoot   LC → RU (Noctowl)
 ```
 
-## Instalar
+## Install
 
-1. Instale [Tampermonkey](https://www.tampermonkey.net/) ou
+1. Install [Tampermonkey](https://www.tampermonkey.net/) or
    [Violentmonkey](https://violentmonkey.github.io/).
-2. Instale o script pelo Greasyfork *(link após a publicação)*.
-3. Abra [pokerogue.net](https://pokerogue.net/). Pronto.
+2. Install the script from Greasyfork *(link once published)*.
+3. Open [pokerogue.net](https://pokerogue.net/). Done.
 
-Funciona em Chrome, Firefox, Edge e Safari no desktop, e no Firefox do Android.
+Works on Chrome, Firefox, Edge and Safari on desktop, and on Firefox for Android.
 
-### No celular, ou onde não dá para instalar extensão
+### On mobile, or anywhere you can't install an extension
 
-O Chrome do Android não suporta extensão nenhuma, e o Kiwi Browser, que era a saída, foi
-descontinuado. Para esses casos existe um bookmarklet: um favorito que você toca depois que
-o jogo abre.
+Chrome for Android supports no extensions at all, and Kiwi Browser, which used to be the way
+out, is discontinued. For those cases there is a bookmarklet: a bookmark you tap after the
+game loads.
 
 ```bash
 npm run build:bookmarklet
 ```
 
-Isso gera `dist/bookmarklet.txt`. Crie um favorito e cole o conteúdo no campo de endereço.
-Abra o PokéRogue, toque no favorito, e o overlay liga.
+That generates `dist/bookmarklet.txt`. Create a bookmark and paste the contents into the
+address field. Open PokéRogue, tap the bookmark, and the overlay turns on.
 
-Ele funciona **porque a captura do jogo não depende de injeção precoce** (veja abaixo). A
-contrapartida é que você precisa tocar o favorito a cada carregamento da página, e que a URL
-tem cerca de 180 kB — alguns navegadores não gostam de favoritos tão longos.
+It works **because capturing the game does not depend on early injection** (see below). The
+trade-off is that you have to tap the bookmark on every page load, and that the URL is around
+180 kB — some browsers dislike bookmarks that long.
 
-## Onde aparece
+## Where it shows up
 
-| Tela | O que mostra |
+| Screen | What it shows |
 |---|---|
-| Batalha | Badge acima de cada Pokémon inimigo, com o tier atual e o melhor tier alcançável |
-| Escolha de starter | A sigla do melhor tier em cada ícone da grade, acompanhando filtros e rolagem |
-| Painel (botão "Guia") | Abas de **Inimigo**, **Time**, **Bioma** e **Destinos**; clique numa linha para ver a linha evolutiva com o tier de cada passo, e as builds do Smogon |
+| Battle | A badge above each enemy Pokémon, with the current tier and the best reachable tier |
+| Starter select | The best reachable tier on every icon in the grid, following filters and scroll |
+| Panel ("Guia" button) | Tabs for **Enemy**, **Team**, **Biome** and **Destinations**; click a row for the evolution line with the tier of every step, plus Smogon builds |
 
-O painel fica fechado por padrão, como um botão pequeno no canto do jogo. Os dados só
-aparecem quando você pede — a tela do jogo continua sendo do jogo.
+The panel is closed by default, a small button in the corner of the game. Data only appears
+when you ask for it — the game screen stays the game's.
 
-### O que conta como "alcançável"
+### What counts as "reachable"
 
-O PokéRogue libera Mega Evolução e Gigantamax, então o tier que importa não é só o da
-espécie: **Mawile é ZU, mas Mawile-Mega é OU. Kangaskhan-Mega é Uber. Charizard-Gmax é AG.**
-O overlay considera as três coisas — evolução, mega e gmax — e mostra qual delas dá o
-melhor resultado.
+PokéRogue unlocks Mega Evolution and Gigantamax, so the tier that matters is not the species'
+tier: **Mawile is ZU, but Mawile-Mega is OU. Kangaskhan-Mega is Uber. Charizard-Gmax is AG.**
+The overlay accounts for all three — evolution, mega and gmax — and shows whichever gives the
+best result.
 
-O alcance conta apenas o que dá para obter **a partir daquele Pokémon**: um Vaporeon não
-volta a ser Eevee, então ele não "alcança" o Gmax do Eevee nem os outros eeveelutions.
+Reach counts only what you can obtain **starting from that Pokémon**: a Vaporeon does not turn
+back into an Eevee, so it does not "reach" Eevee's Gmax nor the other eeveelutions.
 
-Pokémon fundidos mostram o melhor tier entre as duas linhas. Espécie que o Smogon não
-cataloga aparece como `?` — o overlay nunca inventa um tier.
+Fused Pokémon show the best tier across both lines. A species Smogon does not catalog shows up
+as `?` — the overlay never invents a tier.
 
-### Golpes
+### Moves
 
-Clicar em qualquer Pokémon do painel abre os golpes que o Smogon mais usa nele. São 987
-espécies destiladas dos sets oficiais: guardamos apenas os 6 golpes mais recorrentes de
-cada uma, o que reduz 1,1 MB de sets para 75 kB e mantém tudo funcionando sem rede durante
-o jogo.
+Clicking any Pokémon in the panel opens the moves Smogon uses most on it. That's 987 species
+distilled from the official sets: we keep only the 6 most recurring moves of each, which cuts
+1.1 MB of sets down to 75 kB and keeps everything working offline during a run.
 
-Isso é sugestão competitiva, não uma lista do que o Pokémon aprende no PokéRogue — o jogo
-tem movepool próprio.
+This is a competitive suggestion, not a list of what the Pokémon learns in PokéRogue — the
+game has its own movepool.
 
-**O que o overlay deliberadamente não mostra dos sets do Smogon**, porque não existe ou não é
-acionável no PokéRogue:
+**What the overlay deliberately leaves out of a Smogon set**, because it does not exist or is
+not actionable in PokéRogue:
 
-| Dado do Smogon | Por que fica de fora |
+| Smogon data | Why it's out |
 |---|---|
-| EVs | O PokéRogue **não tem EVs**. Stats sobem por vitaminas, que são modifiers de recompensa |
-| Item segurado | Itens vêm de um pool por `ModifierTier`, não do catálogo competitivo. Não existe Z-crystal |
-| IVs | Existem, mas são sorteados no encontro. Você não escolhe |
-| Sets de Z-move e Dynamax | Mecânicas que o jogo não implementa |
+| EVs | PokéRogue **has no EVs**. Stats rise through vitamins, which are reward modifiers |
+| Held item | Items come from a pool per `ModifierTier`, not the competitive catalog. There are no Z-crystals |
+| IVs | They exist, but are rolled at the encounter. You don't choose them |
+| Z-move and Dynamax sets | Mechanics the game doesn't implement |
 
-**Nature fica**, porque é a única acionável: o PokéRogue tem Mints no pool de modifiers.
+**Nature stays**, because it's the only actionable one: PokéRogue has Mints in the modifier
+pool.
 
-A mesma linha aberta mostra a **hidden ability** e a **catch rate**, lidas direto do objeto
-que o jogo tem em memória — então acompanham a versão que você está rodando, sem tabela
-gerada no meio. Espécie sem hidden ability simplesmente não mostra a linha: o overlay omite
-em vez de preencher.
+That same expanded row shows the **hidden ability** and the **catch rate**, read straight from
+the object the game holds in memory — so they track whatever version you're running, with no
+generated table in between. A species without a hidden ability simply doesn't show the line:
+the overlay omits rather than fills in.
 
-### Aba de bioma
+### Biome tab
 
-Lista o que aparece no bioma atual, agrupado por raridade (Chefe, Ultra raro, … Comum) e
-ordenado pelo melhor tier alcançável — para decidir se vale continuar ali ou trocar de rota.
-Os pools de encontro são extraídos do próprio código do PokéRogue por
-`npm run build:biomes`, a partir de um **commit fixo** registrado em
-`data/pokerogue-source.json`. Sem o pin, a tabela mudaria sozinha quando o jogo atualizasse.
+Lists what appears in the current biome, grouped by rarity (Boss, Ultra rare, … Common) and
+sorted by best reachable tier — so you can decide whether it's worth staying or switching
+routes. Encounter pools are extracted from PokéRogue's own code by `npm run build:biomes`,
+from a **pinned commit** recorded in `data/pokerogue-source.json`. Without the pin, the table
+would change on its own whenever the game updated.
 
-### Cobertura de tipos
+### Type coverage
 
-A aba **Meu time** termina com os tipos que ninguém no seu time tem. Um time inteiro de Água
-e Planta mostra `Sem cobertura: Fogo, Elétrico, ...` — é o buraco que a próxima captura
-poderia tapar.
+The **Team** tab ends with the types nobody on your team has. A team of nothing but Water and
+Grass shows `Sem cobertura: Fogo, Elétrico, ...` — that's the hole the next catch could fill.
 
-Time vazio não mostra nada. Sem time, "faltam todos os tipos" seria uma frase verdadeira e
-inútil.
+An empty team shows nothing. With no team, "every type is missing" would be a true and useless
+sentence.
 
-### Aba "Para onde"
+### Destinations tab
 
-O PokéRogue não deixa você ir a qualquer bioma: cada um tem saídas próprias, declaradas no
-código do jogo como `biomeLinks`. Plains leva a Grass, Metropolis e Lake, e mais nada.
+PokéRogue does not let you go to any biome you like: each one has its own exits, declared in
+the game's code as `biomeLinks`. Plains leads to Grass, Metropolis and Lake, and nowhere else.
 
-Essa aba mostra os destinos possíveis a partir de onde você está, e em cada um os seis
-Pokémon de melhor tier alcançável. É a decisão de rota resolvida antes de você escolher.
+This tab shows the destinations reachable from where you are, and in each of them the six
+Pokémon with the best reachable tier. It's the routing decision, settled before you choose.
 
-## Desenvolver
+## Development
 
 ```bash
 npm install
 npm run build
 ```
 
-| Comando | O que faz |
+| Command | What it does |
 |---|---|
-| `npm run build` | gera `dist/pokerogue-tier-overlay.user.js` |
-| `npm run build:tiers` | regenera a tabela de tiers a partir do `@pkmn/dex` |
-| `npm run build:biomes` | regenera os pools de encontro a partir do repositório do PokéRogue |
-| `npm run build:movesets` | regenera os golpes a partir dos sets do Smogon |
-| `npm run build:bookmarklet` | gera `dist/bookmarklet.txt` |
-| `npm test` | testes (Vitest) |
-| `npm run typecheck` | TypeScript em modo strict |
+| `npm run build` | generates `dist/pokerogue-tier-overlay.user.js` |
+| `npm run build:tiers` | regenerates the tier table from `@pkmn/dex` |
+| `npm run build:biomes` | regenerates encounter pools from the PokéRogue repository |
+| `npm run build:movesets` | regenerates moves from Smogon sets |
+| `npm run build:bookmarklet` | generates `dist/bookmarklet.txt` |
+| `npm test` | tests (Vitest) |
+| `npm run typecheck` | TypeScript in strict mode |
 | `npm run lint` | Biome |
-| `npm run launch` | abre o jogo num Chrome com o bundle injetado |
-| `npm run launch -- --late` | o mesmo, injetando **depois** do jogo carregar |
+| `npm run launch` | opens the game in a Chrome with the bundle injected |
+| `npm run launch -- --late` | the same, injecting **after** the game loads |
 
-## Como funciona, e por que assim
+## How it works, and why this way
 
-O PokéRogue é um jogo Phaser desenhado em canvas: não existe DOM para ler. Ele também não
-expõe a instância do `Phaser.Game` em nenhuma variável global. Três decisões saem daí, e
-nenhuma é óbvia olhando só o código:
+PokéRogue is a Phaser game drawn on canvas: there is no DOM to read. It also doesn't expose the
+`Phaser.Game` instance in any global. Three decisions follow from that, and none is obvious
+from the code alone:
 
-**A captura do jogo tem duas estratégias, e isso não é redundância.** A primeira intercepta
-a atribuição de `window.Phaser` e depende de rodar antes do bundle do jogo. Só que o
-`@run-at document-start` do Tampermonkey
-[não é determinístico](https://github.com/Tampermonkey/tampermonkey/issues/211): às vezes o
-script chega tarde. A segunda estratégia cobre esse caso, capturando o jogo em pleno
-funcionamento pelo primeiro frame de qualquer scene. Sem ela, o overlay falharia de forma
-intermitente e difícil de reproduzir.
+**Capturing the game has two strategies, and that is not redundancy.** The first intercepts the
+assignment to `window.Phaser` and depends on running before the game's bundle. Except
+Tampermonkey's `@run-at document-start`
+[is not deterministic](https://github.com/Tampermonkey/tampermonkey/issues/211): sometimes the
+script arrives late. The second strategy covers that case, capturing the game mid-flight on the
+first frame of any scene. Without it, the overlay would fail intermittently and be hard to
+reproduce.
 
-**As badges são objetos Phaser, não elementos HTML.** A grade de starter tem 572 ícones.
-Um overlay em HTML precisaria converter coordenadas do canvas, reagir a rolagem, a filtro e
-a redimensionamento, e manter centenas de nós sincronizados. Como cada badge é filha do
-container que o próprio jogo desenha, posição, escala, rolagem e visibilidade são herdadas.
-O problema de sincronização não é resolvido — ele deixa de existir. É também o que faz o
-overlay funcionar em tela de celular sem código extra.
+**Badges are Phaser objects, not HTML elements.** The starter grid has 572 icons. An HTML
+overlay would have to convert canvas coordinates, react to scroll, to filters and to resizing,
+and keep hundreds of nodes in sync. Because each badge is a child of the container the game
+itself draws, position, scale, scroll and visibility are inherited. The synchronization problem
+isn't solved — it stops existing. It's also what makes the overlay work on a phone screen with
+no extra code.
 
-**A identificação é sempre por `speciesId`, nunca por texto.** A interface do jogo é
-traduzida; nomes de habilidade e bioma mudam com o idioma. O número da Pokédex não muda.
+**Identification is always by `speciesId`, never by text.** The game's interface is translated;
+ability and biome names change with the language. The Pokédex number does not.
 
-Detalhes de arquitetura e o que foi verificado em produção estão em
+Architecture details and what was verified in production are in
 [`specs/userscript-v2/design.md`](specs/userscript-v2/design.md).
 
-## Se aparecer um aviso vermelho
+## If a red warning shows up
 
-`tier overlay: nao capturou o jogo (...)` significa que nenhuma das estratégias encontrou a
-instância do Phaser em 20 segundos — normalmente porque uma atualização do PokéRogue mudou a
-forma como o jogo carrega. Abra uma issue com a versão do jogo.
+`tier overlay: nao capturou o jogo (...)` means neither strategy found the Phaser instance
+within 20 seconds — usually because a PokéRogue update changed how the game loads. Open an
+issue with the game version.
 
-O overlay falha de forma visível de propósito. Um painel silencioso mostrando tier errado
-seria pior que nenhum painel.
+The overlay fails visibly on purpose. A silent panel showing the wrong tier would be worse than
+no panel.
 
-## Limitações conhecidas
+## Known limitations
 
-- A cobertura de tipos considera **presença**, não eficácia: ela diz quais tipos ninguém no
-  seu time tem, não calcula fraquezas nem resistências. Cálculo de dano é outra história.
-- Não sugere trocas nem diz qual Pokémon soltar.
-- Formas exclusivas do PokéRogue sem equivalente no Smogon caem para a espécie base.
-- Tier mede força no metagame competitivo do Smogon, que não é a mesma coisa que força no
-  PokéRogue: o jogo tem passivas, fusões e itens que o Smogon não modela.
-- Depende de nomes internos do PokéRogue, que não são uma API pública. Hoje eles não são
-  minificados; se isso mudar, o overlay avisa em vez de mentir.
-- `npm audit` acusa uma falha de DoS em `brace-expansion`, dependência transitiva de build
-  do `vite-plugin-monkey`. Ela não entra no bundle distribuído, e o `audit fix` rebaixaria o
-  plugin para uma versão incompatível com o Vite 8.
+- Type coverage considers **presence**, not effectiveness: it tells you which types nobody on
+  your team has, it does not compute weaknesses or resistances. Damage calculation is another
+  story.
+- It does not suggest swaps or tell you which Pokémon to release.
+- PokéRogue-exclusive forms with no Smogon equivalent fall back to the base species.
+- Tier measures strength in Smogon's competitive metagame, which is not the same thing as
+  strength in PokéRogue: the game has passives, fusions and items Smogon doesn't model.
+- It depends on PokéRogue's internal names, which are not a public API. Today they aren't
+  minified; if that changes, the overlay warns instead of lying.
+- `npm audit` reports a DoS flaw in `brace-expansion`, a transitive build dependency of
+  `vite-plugin-monkey`. It doesn't reach the distributed bundle, and `audit fix` would downgrade
+  the plugin to a version incompatible with Vite 8.
 
-## De onde vêm os dados
+## Where the data comes from
 
-Tiers do Smogon via [`@pkmn/dex`](https://github.com/pkmn/ps), que é MIT.
+Smogon tiers via [`@pkmn/dex`](https://github.com/pkmn/ps), which is MIT.
 
-Pools de espécie por bioma são geradas de
-[`pagefaultgames/pokerogue`](https://github.com/pagefaultgames/pokerogue), que é
+Per-biome species pools are generated from
+[`pagefaultgames/pokerogue`](https://github.com/pagefaultgames/pokerogue), which is
 **AGPL-3.0-only**.
 
-A fonte da verdade é o código do jogo, não a wiki nem o fórum: onde os dois divergirem, vale o
-que efetivamente roda na máquina do jogador.
+The source of truth is the game's code, not the wiki or the forum: where the two disagree, what
+actually runs on the player's machine wins.
 
-## Apoiar
+## Support
 
-O overlay é gratuito e não pede nada dentro do jogo. Quem quiser bancar o tempo de
-manutenção pode usar o [GitHub Sponsors](https://github.com/sponsors/OwlHugo).
+The overlay is free and asks for nothing in-game. Anyone who wants to fund maintenance time can
+use [GitHub Sponsors](https://github.com/sponsors/OwlHugo).
 
-## Licença
+## License
 
-**AGPL-3.0-only**, porque o overlay embute dados derivados do repositório do PokéRogue, que é
-AGPL-3.0-only. Distribuir isso sob MIT seria incompatível com a licença da fonte.
+**AGPL-3.0-only**, because the overlay embeds data derived from the PokéRogue repository, which
+is AGPL-3.0-only. Shipping this under MIT would be incompatible with the source's license.
 
-Este é um projeto de fã, sem vínculo com a Nintendo, a The Pokémon Company, o Smogon ou o
-PokéRogue.
+This is a fan project, not affiliated with Nintendo, The Pokémon Company, Smogon or PokéRogue.
