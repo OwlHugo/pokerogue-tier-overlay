@@ -78,6 +78,15 @@ Os pools de encontro são extraídos do próprio código do PokéRogue por
 `npm run build:biomes`, a partir de um **commit fixo** registrado em
 `data/pokerogue-source.json`. Sem o pin, a tabela mudaria sozinha quando o jogo atualizasse.
 
+### Cobertura de tipos
+
+A aba **Meu time** termina com os tipos que ninguém no seu time tem. Um time inteiro de Água
+e Planta mostra `Sem cobertura: Fogo, Elétrico, ...` — é o buraco que a próxima captura
+poderia tapar.
+
+Time vazio não mostra nada. Sem time, "faltam todos os tipos" seria uma frase verdadeira e
+inútil.
+
 ### Aba "Para onde"
 
 O PokéRogue não deixa você ir a qualquer bioma: cada um tem saídas próprias, declaradas no
@@ -144,7 +153,9 @@ seria pior que nenhum painel.
 
 ## Limitações conhecidas
 
-- Não analisa cobertura de tipos do time nem sugere trocas.
+- A cobertura de tipos considera **presença**, não eficácia: ela diz quais tipos ninguém no
+  seu time tem, não calcula fraquezas nem resistências. Cálculo de dano é outra história.
+- Não sugere trocas nem diz qual Pokémon soltar.
 - Formas exclusivas do PokéRogue sem equivalente no Smogon caem para a espécie base.
 - Tier mede força no metagame competitivo do Smogon, que não é a mesma coisa que força no
   PokéRogue: o jogo tem passivas, fusões e itens que o Smogon não modela.

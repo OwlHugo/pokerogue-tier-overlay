@@ -46,14 +46,14 @@ describe('Panel', () => {
 
   test('nao desenha conteudo enquanto esta fechado', () => {
     const panel = new Panel();
-    panel.update({ field: [row()], party: [], biome: null, destinations: [] });
+    panel.update({ field: [row()], party: [], biome: null, destinations: [], missingTypes: [] });
 
     expect(rows()).toHaveLength(0);
   });
 
   test('mostra os inimigos em campo ao abrir', () => {
     const panel = new Panel();
-    panel.update({ field: [row(), row({ name: 'Hoothoot' })], party: [], biome: null, destinations: [] });
+    panel.update({ field: [row(), row({ name: 'Hoothoot' })], party: [], biome: null, destinations: [], missingTypes: [] });
     toggle()?.click();
 
     expect(rows()).toHaveLength(2);
@@ -63,7 +63,7 @@ describe('Panel', () => {
 
   test('troca de aba mostra o time', () => {
     const panel = new Panel();
-    panel.update({ field: [], party: [row({ name: 'Mawile' })], biome: null, destinations: [] });
+    panel.update({ field: [], party: [row({ name: 'Mawile' })], biome: null, destinations: [], missingTypes: [] });
     toggle()?.click();
 
     tabs()[1]?.click();
@@ -71,9 +71,39 @@ describe('Panel', () => {
     expect(document.body.textContent).toContain('Mawile');
   });
 
+  test('mostra os tipos sem cobertura no rodape do time', () => {
+    const panel = new Panel();
+    panel.update({
+      field: [],
+      party: [row({ name: 'Mawile' })],
+      biome: null,
+      destinations: [],
+      missingTypes: ['Fogo', 'Água'],
+    });
+    toggle()?.click();
+    tabs()[1]?.click();
+
+    expect(document.body.textContent).toContain('Sem cobertura: Fogo, Água');
+  });
+
+  test('time que cobre tudo nao mostra rodape de cobertura', () => {
+    const panel = new Panel();
+    panel.update({
+      field: [],
+      party: [row({ name: 'Mawile' })],
+      biome: null,
+      destinations: [],
+      missingTypes: [],
+    });
+    toggle()?.click();
+    tabs()[1]?.click();
+
+    expect(document.body.textContent).not.toContain('Sem cobertura');
+  });
+
   test('avisa quando nao ha inimigo em campo', () => {
     const panel = new Panel();
-    panel.update({ field: [], party: [], biome: null, destinations: [] });
+    panel.update({ field: [], party: [], biome: null, destinations: [], missingTypes: [] });
     toggle()?.click();
 
     expect(document.body.textContent).toContain('Nenhum inimigo em campo');
@@ -92,6 +122,7 @@ describe('Panel', () => {
         ],
       },
       destinations: [],
+      missingTypes: [],
     });
     toggle()?.click();
     tabs()[2]?.click();
@@ -111,6 +142,7 @@ describe('Panel', () => {
         { biome: 2, name: 'Campo', highlights: [row({ name: 'Ivysaur' })] },
         { biome: 9, name: 'Lago', highlights: [] },
       ],
+      missingTypes: [],
     });
     toggle()?.click();
     tabs()[3]?.click();
@@ -123,7 +155,7 @@ describe('Panel', () => {
 
   test('bioma sem rota avisa em vez de mostrar aba vazia', () => {
     const panel = new Panel();
-    panel.update({ field: [], party: [], biome: null, destinations: [] });
+    panel.update({ field: [], party: [], biome: null, destinations: [], missingTypes: [] });
     toggle()?.click();
     tabs()[3]?.click();
 
@@ -137,6 +169,7 @@ describe('Panel', () => {
       party: [],
       biome: null,
       destinations: [],
+      missingTypes: [],
     });
     toggle()?.click();
 
@@ -154,7 +187,7 @@ describe('Panel', () => {
 describe('golpes sugeridos', () => {
   test('a linha comeca fechada, sem mostrar golpes', () => {
     const panel = new Panel();
-    panel.update({ field: [row({ moves: ['Waterfall', 'Dragon Dance'] })], party: [], biome: null, destinations: [] });
+    panel.update({ field: [row({ moves: ['Waterfall', 'Dragon Dance'] })], party: [], biome: null, destinations: [], missingTypes: [] });
     toggle()?.click();
 
     expect(document.querySelectorAll('.ptr-move')).toHaveLength(0);
@@ -162,7 +195,7 @@ describe('golpes sugeridos', () => {
 
   test('clicar na linha revela os golpes do Smogon', () => {
     const panel = new Panel();
-    panel.update({ field: [row({ moves: ['Waterfall', 'Dragon Dance'] })], party: [], biome: null, destinations: [] });
+    panel.update({ field: [row({ moves: ['Waterfall', 'Dragon Dance'] })], party: [], biome: null, destinations: [], missingTypes: [] });
     toggle()?.click();
 
     document.querySelector<HTMLElement>('.ptr-row')?.click();
@@ -173,7 +206,7 @@ describe('golpes sugeridos', () => {
 
   test('clicar de novo esconde', () => {
     const panel = new Panel();
-    panel.update({ field: [row({ moves: ['Waterfall'] })], party: [], biome: null, destinations: [] });
+    panel.update({ field: [row({ moves: ['Waterfall'] })], party: [], biome: null, destinations: [], missingTypes: [] });
     toggle()?.click();
 
     document.querySelector<HTMLElement>('.ptr-row')?.click();
@@ -189,6 +222,7 @@ describe('golpes sugeridos', () => {
       party: [],
       biome: null,
       destinations: [],
+      missingTypes: [],
     });
     toggle()?.click();
 
@@ -202,7 +236,7 @@ describe('golpes sugeridos', () => {
 
   test('especie sem set no Smogon diz isso em vez de ficar vazia', () => {
     const panel = new Panel();
-    panel.update({ field: [row({ moves: [] })], party: [], biome: null, destinations: [] });
+    panel.update({ field: [row({ moves: [] })], party: [], biome: null, destinations: [], missingTypes: [] });
     toggle()?.click();
 
     document.querySelector<HTMLElement>('.ptr-row')?.click();

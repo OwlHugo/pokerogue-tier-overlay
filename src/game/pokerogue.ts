@@ -7,6 +7,8 @@ export interface SpeciesForm {
 export interface PokeRogueSpecies {
   speciesId: number;
   name: string;
+  type1?: number;
+  type2?: number | null;
   forms?: readonly SpeciesForm[];
 }
 

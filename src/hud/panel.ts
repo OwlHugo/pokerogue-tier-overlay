@@ -14,6 +14,7 @@ export interface PanelContent {
   party: PokemonRow[];
   biome: { name: string; groups: BiomeGroup[] } | null;
   destinations: DestinationGroup[];
+  missingTypes: readonly string[];
 }
 
 const TAB_LABELS: Record<TabId, string> = {
@@ -139,7 +140,13 @@ export class Panel {
   private open = false;
   private active: TabId = 'field';
   private expanded: string | null = null;
-  private content: PanelContent = { field: [], party: [], biome: null, destinations: [] };
+  private content: PanelContent = {
+    field: [],
+    party: [],
+    biome: null,
+    destinations: [],
+    missingTypes: [],
+  };
 
   constructor(private readonly host: HTMLElement = document.body) {
     this.root = document.createElement('div');
@@ -237,6 +244,13 @@ export class Panel {
       return;
     }
     for (const row of rows) this.body.append(...this.expandable(row));
+
+    if (this.active === 'party' && this.content.missingTypes.length) {
+      const gap = document.createElement('div');
+      gap.className = 'ptr-group';
+      gap.textContent = `Sem cobertura: ${this.content.missingTypes.join(', ')}`;
+      this.body.append(gap);
+    }
   }
 
   private expandable(row: PokemonRow): HTMLElement[] {

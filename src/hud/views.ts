@@ -1,4 +1,5 @@
 import { type BiomeTable, POOL_TIER_ORDER, type PoolTier } from '../domain/biome';
+import { missingTypes } from '../domain/coverage';
 import { bestReachable, type ReachableSource } from '../domain/reachable';
 import { compareTier, type Tier } from '../domain/tier';
 import { keyFor } from '../domain/species-key';
@@ -79,6 +80,16 @@ export function partyView(
   movesets: MovesetTable = {},
 ): PokemonRow[] {
   return (scene.party ?? []).map((pokemon) => rowForPokemon(pokemon, table, movesets));
+}
+
+export function coverageView(scene: BattleScene): readonly number[] {
+  const team = (scene.party ?? []).map((pokemon) => ({
+    types: [pokemon.species.type1, pokemon.species.type2].filter(
+      (type): type is number => typeof type === 'number',
+    ),
+  }));
+
+  return missingTypes(team);
 }
 
 export function destinationsView(
