@@ -1,0 +1,60 @@
+name: Data drift
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: 'true'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Apontar os pins para a HEAD dos upstreams
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          game=$(gh api repos/pagefaultgames/pokerogue/commits/beta --jq .sha)
+          loc=$(gh api repos/pagefaultgames/pokerogue-locales/commits/main --jq .sha)
+          node -e "
+            const f = require('fs'), p = 'data/pokerogue-source.json';
+            const o = JSON.parse(f.readFileSync(p, 'utf8'));
+            o.pokerogue.commit = process.argv[1];
+            o.locales.commit = process.argv[2];
+            f.writeFileSync(p, JSON.stringify(o, null, 2) + '\n');
+          " "$game" "$loc"
+
+      - run: npm run build:biomes
+
+      - run: npm run typecheck
+
+      - run: npm test
+
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: data-drift
+          title: 'chore: atualizar tabela de biomas do PokeRogue'
+          commit-message: 'chore: atualizar tabela de biomas do PokeRogue'
+          body: |
+            Gerado pelo workflow `data-drift`.
+
+            O pin em `data/pokerogue-source.json` foi movido para a HEAD do upstream e a
+            tabela regenerada. **Revise o diff antes do merge** — o overlay não se atualiza
+            sozinho a partir de código de terceiro.
+
+            Se a contagem de espécies caiu muito, o formato do upstream provavelmente mudou:
+            investigue antes de aceitar.
