@@ -1,26 +1,28 @@
+import type { Locale } from './names';
+
 export interface TypedMember {
   types: readonly number[];
 }
 
-const TYPE_NAMES: Record<number, string> = {
-  0: 'Normal',
-  1: 'Lutador',
-  2: 'Voador',
-  3: 'Venenoso',
-  4: 'Terrestre',
-  5: 'Pedra',
-  6: 'Inseto',
-  7: 'Fantasma',
-  8: 'Aço',
-  9: 'Fogo',
-  10: 'Água',
-  11: 'Planta',
-  12: 'Elétrico',
-  13: 'Psíquico',
-  14: 'Gelo',
-  15: 'Dragão',
-  16: 'Sombrio',
-  17: 'Fada',
+const TYPE_NAMES: Record<number, Record<Locale, string>> = {
+  0: { pt: 'Normal', en: 'Normal' },
+  1: { pt: 'Lutador', en: 'Fighting' },
+  2: { pt: 'Voador', en: 'Flying' },
+  3: { pt: 'Venenoso', en: 'Poison' },
+  4: { pt: 'Terrestre', en: 'Ground' },
+  5: { pt: 'Pedra', en: 'Rock' },
+  6: { pt: 'Inseto', en: 'Bug' },
+  7: { pt: 'Fantasma', en: 'Ghost' },
+  8: { pt: 'Aço', en: 'Steel' },
+  9: { pt: 'Fogo', en: 'Fire' },
+  10: { pt: 'Água', en: 'Water' },
+  11: { pt: 'Planta', en: 'Grass' },
+  12: { pt: 'Elétrico', en: 'Electric' },
+  13: { pt: 'Psíquico', en: 'Psychic' },
+  14: { pt: 'Gelo', en: 'Ice' },
+  15: { pt: 'Dragão', en: 'Dragon' },
+  16: { pt: 'Sombrio', en: 'Dark' },
+  17: { pt: 'Fada', en: 'Fairy' },
 };
 
 const TYPE_COLORS: Record<number, string> = {
@@ -50,8 +52,8 @@ export function typeColorOf(type: number): string {
   return TYPE_COLORS[type] ?? '#9098a1';
 }
 
-export function typeNameOf(type: number): string | null {
-  return TYPE_NAMES[type] ?? null;
+export function typeNameOf(type: number, locale: Locale): string | null {
+  return TYPE_NAMES[type]?.[locale] ?? null;
 }
 
 export function missingTypes(team: readonly TypedMember[]): readonly number[] {

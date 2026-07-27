@@ -16,9 +16,9 @@ export class Hud {
     private readonly movesets: MovesetTable = {},
     private readonly biomeNames: Record<number, string> = {},
     abilityNames: NamesByLocale = { pt: {}, en: {} },
-    locale: Locale = 'pt',
+    private readonly locale: Locale = 'pt',
   ) {
-    this.panel = new Panel(abilityNames, locale);
+    this.panel = new Panel(abilityNames, this.locale);
   }
 
   sync(scene: BattleScene): void {
@@ -45,7 +45,7 @@ export class Hud {
         this.movesets,
         noTime,
       ).map((group) => ({ ...group, name: this.biomeNames[group.biome] ?? group.name })),
-      missingTypes: coverageView(scene).flatMap((type) => typeNameOf(type) ?? []),
+      missingTypes: coverageView(scene).flatMap((type) => typeNameOf(type, this.locale) ?? []),
     });
   }
 

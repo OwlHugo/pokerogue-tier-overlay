@@ -188,7 +188,7 @@ function rowElement(row: PokemonRow, locale: Locale): HTMLElement {
   if (row.owned) top.append(span('ptr-owned', t('inTeam', locale)));
 
   for (const type of row.types) {
-    const chip = span('ptr-type', typeNameOf(type) ?? '?');
+    const chip = span('ptr-type', typeNameOf(type, locale) ?? '?');
     chip.style.background = typeColorOf(type);
     top.append(chip);
   }

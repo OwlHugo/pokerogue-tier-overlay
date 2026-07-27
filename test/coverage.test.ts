@@ -39,13 +39,21 @@ describe('missingTypes', () => {
 });
 
 describe('typeNameOf', () => {
-  test('traduz os ids conhecidos', () => {
-    expect(typeNameOf(9)).toBe('Fogo');
-    expect(typeNameOf(10)).toBe('Água');
-    expect(typeNameOf(17)).toBe('Fada');
+  test('traduz os ids conhecidos nos dois idiomas', () => {
+    expect(typeNameOf(9, 'pt')).toBe('Fogo');
+    expect(typeNameOf(9, 'en')).toBe('Fire');
+    expect(typeNameOf(17, 'pt')).toBe('Fada');
+    expect(typeNameOf(17, 'en')).toBe('Fairy');
+  });
+
+  test('todo tipo tem nome nos dois idiomas', () => {
+    for (const type of ALL_TYPES) {
+      expect(typeNameOf(type, 'pt')).toBeTypeOf('string');
+      expect(typeNameOf(type, 'en')).toBeTypeOf('string');
+    }
   });
 
   test('id desconhecido devolve null em vez de inventar nome', () => {
-    expect(typeNameOf(999)).toBeNull();
+    expect(typeNameOf(999, 'pt')).toBeNull();
   });
 });
