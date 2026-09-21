@@ -1,10 +1,10 @@
 {
   "pokerogue": {
     "repo": "pagefaultgames/pokerogue",
-    "commit": "9640f6da692d75983012e880c7ee3e5eb34190c1"
+    "commit": "7a83d855dc6b6a668bff12ce7602c5ebcb557c97"
   },
   "locales": {
     "repo": "pagefaultgames/pokerogue-locales",
-    "commit": "a03edad02031df475488dbf8dddb7eec1604b2cd"
+    "commit": "06aa8b9194a7aa7feebe1fd35b280648f2831934"
   }
 }
